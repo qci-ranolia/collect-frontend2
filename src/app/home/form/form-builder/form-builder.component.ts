@@ -41,7 +41,7 @@ export class FormBuilderComponent implements OnInit {
       this.name = res.Details.name;
       this.project_name = res.Details.project;
       this.jsonArray = res.Elements;
-      this.sumbitTemp = 'Save Template';
+      this.sumbitTemp = 'Modify Template';
       if(this.jsonArray.length > 0) {
         this.displayPublish = true;
       } else {
@@ -138,7 +138,8 @@ export class FormBuilderComponent implements OnInit {
   publishForm() {
     if(this.formID != undefined) {
       this.projectService.formArray.splice(this.formID,1);
-      this.projectService.formArray.push({Details: this.formDetails, Elements:this.jsonArray});
+      this.projectService.formArray.push({Details: this.formDetails, Elements:this.jsonArray, Rules:[]});
+      // console.log('form published 1 ');
     } else {
       $("#newFormModal").modal('show');
     }
@@ -148,7 +149,8 @@ export class FormBuilderComponent implements OnInit {
   publishTemplate() {
     if(this.tempID != undefined) {
       this.projectService.templateArray.splice(this.tempID,1);
-      this.projectService.templateArray.push({Details: this.tempDetails, Elements:this.jsonArray, Rules:[], Tail:0});
+      this.projectService.templateArray.push({Details: this.tempDetails, Elements:this.jsonArray});
+      // console.log('template published 1 ');
     } else {
       $("#newTempModal").modal('show');
     }
@@ -156,11 +158,16 @@ export class FormBuilderComponent implements OnInit {
   }
 
   conformForm() {
-    this.projectService.formArray.push({Details: {name: this.newFormName, rule: 'None', project: this.newFormProjectName, status:'Offline', id:'1' }, Elements:this.jsonArray});
+
+    let id = (this.projectService.formArray.length  ) + '';
+    this.projectService.formArray.push({Details: {name: this.newFormName, rule: 'None', project: this.newFormProjectName, status:'Offline', id:id }, Elements:this.jsonArray,  Rules:[]});
+    // console.log('form published 2 ');
   }
 
   conformTemp() {
-    this.projectService.templateArray.push({Details: {name: this.newTempName, rule: 'None', project: 'N/A', id:'1' }, Elements:this.jsonArray, Rules:[], Tail:0});
+    let id = (this.projectService.templateArray.length  ) + '';
+    this.projectService.templateArray.push({Details: {name: this.newTempName, rule: 'None', project: 'N/A', id:id }, Elements:this.jsonArray});
+    // console.log('template published 2 ');
   }
 
   ngOnDestroy() {
@@ -170,7 +177,8 @@ export class FormBuilderComponent implements OnInit {
     this.sub3.unsubscribe();
     this.sub4.unsubscribe();
     this.sub5.unsubscribe();
-
+    this.sub6.unsubscribe();
+    this.sub7.unsubscribe();
   }
 
 }

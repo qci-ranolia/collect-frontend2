@@ -21,12 +21,14 @@ export class ProjectService {
                 { Details: { name: 'Form1', rule: 'None', project: 'Test Project1', status:'Offline', id:'0' },
                   Elements:  [{type: "text", required: false, name: "Name"},
                                   {type: "email", required: false, hepltext: "", name: "Email ID"},
-                                  {type: "number", required: false, hepltext: "", name: "Number Input"},]
+                                  {type: "number", required: false, hepltext: "", name: "Number Input"},],
+                  Rules: [{name: 'Rule 1', elementName:'Name', elementType: "text", elementValue:"sam", template: 1 },],
                 },
                 { Details: { name: 'Form2', rule: 'None', project: 'Test Project2', status:'Online', id:'1' },
                   Elements:  [{type: "text", required: false, name: "Name2"},
-                    {type: "email", required: false, hepltext: "", name: "Email ID2"},
-                    {type: "number", required: false, hepltext: "", name: "Number Input2"},]
+                                  {type: "email", required: false, hepltext: "", name: "Email ID2"},
+                                  {type: "number", required: false, hepltext: "", name: "Number Input2"},],
+                  Rules: [],
                 }];
 
   templateArray = [
@@ -34,15 +36,12 @@ export class ProjectService {
                   Elements:  [{type: "text", required: false, name: "Name"},
                                   {type: "email", required: false, hepltext: "", name: "Email ID"},
                                   {type: "number", required: false, hepltext: "", name: "Number Input"},],
-                  Rules:     [{ruleName:'Rule1', type: "text", name: "Name", value: "Sam"}],
-                  Tail:      1,
+
                 },
                 { Details:   { name: 'template2', rule: 'None', id:'1', project:"N/A" },
                   Elements:  [{type: "text", required: false, name: "Name2"},
                                 {type: "email", required: false, hepltext: "", name: "Email ID2"},
                                 {type: "number", required: false, hepltext: "", name: "Number Input2"},],
-                  Rules:     [],
-                  Tail:      0,
                 }];
 
   getFormArray() {

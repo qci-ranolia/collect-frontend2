@@ -5,16 +5,16 @@
 
   <ul class="nav nav-tabs justify-content-center">
     <li class="nav-item">
-      <a class="nav-link " data-toggle="tab" role="tab" href="#form">Forms</a>
+      <a class="nav-link active" data-toggle="tab" role="tab" href="#form">Forms</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" role="tab" href="#template">Templates</a>
+      <a class="nav-link " data-toggle="tab" role="tab" href="#template">Templates</a>
     </li>
 
   </ul>
 
   <div class="tab-content">
-      <div class="tab-pane " id="form" role="tabpanel" >
+      <div class="tab-pane active" id="form" role="tabpanel" >
         <br>
 
         <div class="row justify-content-center" >
@@ -25,9 +25,15 @@
                 <h4 class="card-title">{{form.Details.name}}</h4>
                 <h6 class="card-subtitle mb-2 text-muted">{{form.Details.project}}</h6>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="card-link">Rule: {{form.Details.rule}}</a>
+                <!-- <a href="#" class="card-link">Rule: {{form.Details.rule}}</a> -->
                 <a href="#" class="card-link">{{form.Details.status}}</a>
                 <a href="#" class="card-link" [routerLink]="['/formBuilder']" [queryParams]="{formID : i }" >View form</a>
+                <div  >
+                  <button   (click)='rule(form.Rules, i)' type="button" class="btn btn-primary" data-toggle="modal" data-target="#rules">
+                    Rule/s
+                  </button>
+                </div>
+
               </div>
             </div>
           </div>
@@ -35,7 +41,7 @@
         </div>
 
       </div>
-      <div class="tab-pane active" id="template" role="tabpanel" >
+      <div class="tab-pane " id="template" role="tabpanel" >
         <br>
         <div class="row justify-content-center" >
 
@@ -46,9 +52,6 @@
                 <h6 class="card-subtitle mb-2 text-muted">{{temp.Details.project}}</h6>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a class="card-link" [routerLink]="['/formBuilder']" [queryParams]="{templateID : i }" >View template</a>
-                <button (click)='tempID(i)' type="button" class="btn btn-primary" data-toggle="modal" data-target="#rules">
-                  Rules
-                </button>
               </div>
             </div>
           </div>
@@ -56,7 +59,6 @@
         </div>
       </div>
   </div>
-
 
 </div>
 
@@ -68,29 +70,29 @@
         <h5 class="modal-title" id="exampleModalLabel">Rules</h5>
       </div>
       <div class="modal-body text-center" style="height:300px; overflow-y: auto">
-
-        <div class="row justify-content-center" >
-          <div *ngFor='let rule of rulesArray' class="col-10 text-center" style="border: 2px solid gray; border-radius: 10px; height: 230px; margin: 1px;  " >
-              <h5> Rule Name: {{rule.ruleName}} </h5>
-
-              <p>Question: {{rule.name}}  </p>
-              <p>Condition: {{rule.value}}, {{rule.type}} </p>
-              <hr>
-              Associated Template: <b> {{aTemp}} </b>
-              <hr>
-              <a class="card-link" [routerLink]="['/formBuilder']" [queryParams]="{templateID : i }" >Edit</a>
-              <a class="card-link" [routerLink]="['/formBuilder']" [queryParams]="{templateID : i }" >Delete</a>
-
+          <div class="row justify-content-center" >
+            <div *ngIf='rulesArray.length < 1' >
+              <h4> No Rule was created </h4>
             </div>
-        </div>
+            <div *ngFor='let rule of rulesArray; let i = index ' class="col-10 text-center" style="border: 2px solid gray; border-radius: 10px; height: 230px; margin: 1px;  " >
+                <h5>{{i+1}}. Rule Name: {{rule.name}} </h5>
+                <p>Element: {{rule.elementName}} </p>
+                <p>Condition: {{rule.elementValue}} </p>
+                <hr>
+                Associated Template: <b>{{templateArray[rule.template].Details.name}}</b>
+                <hr>
+                <a class="card-link" href="#" >Edit</a>
+                <a class="card-link" href="#"  >Delete</a>
+              </div>
+          </div>
 
-        <a href="#" data-toggle="modal" data-target="#addRules" class="text-center">Add Rule</a>
+        <!-- <a href="#"  class="text-center">Add Rule</a> -->
 
       </div>
 
       <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addRules" >Add rule</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <!-- <button type="button" class="btn btn-primary" (click)='conformForm()'  data-dismiss="modal" >Publish new Form</button> -->
       </div>
     </div>
   </div>
@@ -114,13 +116,14 @@
              <option *ngFor='let opt of rnameArray; let i=i' [ngValue]=opt  >{{opt.name}}</option>
            </select>
         <hr>
-        2. Condition :
-          <select [(ngModel)]="ruleCondition" >
+        2. Condition : Equlas
+          <!-- <select [(ngModel)]="ruleCondition" >
             <option *ngFor='let opt of rcondition; let i=i' [ngValue]=opt  >{{opt}}</option>
-          </select>
+          </select> -->
         <hr>
         3. Value :
         <input type="text" name="" value="" [(ngModel)]='ruleTarget'>
+         * if mulitple values, separeate with comas
         <br>
         <i *ngIf='hint' > hint: {{hint}}</i>
         <hr>
@@ -131,8 +134,8 @@
 
       </div>
       <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)='conformRule()'  data-dismiss="modal" >Create rule</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)='conformRule()'  data-dismiss="modal" >Add rule</button>
       </div>
     </div>
   </div>
