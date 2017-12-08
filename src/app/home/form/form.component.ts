@@ -27,16 +27,16 @@ export class FormComponent implements OnInit {
   ruleName: any;
 
   rulesArray: any=[];
-  formIDWithRule: any;
+  formCIDWithRule: any;
 
   constructor( private projectService: ProjectService, private router: Router ){
     this.fArray = this.projectService.emitFormArray.subscribe((res)=>{
-      // console.log(res);
+      console.log(res);
       this.formArray = res;
     });
 
     this.tArray = this.projectService.emitTemplateArray.subscribe((res)=>{
-      // console.log(res);
+      console.log(res);
       this.templateArray = res;
     });
 
@@ -58,14 +58,11 @@ export class FormComponent implements OnInit {
     this.tArray.unsubscribe();
   }
 
-  rule(data, id) {
+  rule(data, cid, formElement) {
 
     this.rulesArray = data;
-    this.formIDWithRule = id;
-    let tempLen = this.formArray[id].Elements.length;
-    for(let i=0; i<tempLen; i++) {
-      this.rnameArray.push(this.formArray[id].Elements[i]);
-    }
+    this.formCIDWithRule = cid;
+    this.rnameArray = formElement;
   }
 
   getVal() {
@@ -81,14 +78,13 @@ export class FormComponent implements OnInit {
 
   conformRule() {
 
-    this.ruleTempTail = this.ruleTempTail.Details.id;
-    // console.log('Tail = '+this.ruleTempTail);
-    // console.log('Value = '+this.ruleTarget);
-    // console.log('Element name = '+this.ruleElement.name);
-    // console.log('Element type = '+this.ruleElement.type);
-    // console.log('Template Id = '+this.ruleTempTail);
-    this.formArray[this.formIDWithRule].Rules.push({name: this.ruleName, elementName: this.ruleElement.name, elementType: this.ruleElement.type, elementValue: this.ruleTarget, condition: this.ruleCondition, template: this.ruleTempTail});
+    let tempCid = this.ruleTempTail.Details.cid;
+    let tempName = this.ruleTempTail.Details.name;
 
+    let newRule = {name: this.ruleName, elementName: this.ruleElement.name, elementType: this.ruleElement.type, elementValue: this.ruleTarget, condition: this.ruleCondition, tempCid: tempCid, tempName: tempName};
+    this.projectService.addNewRule(this.formCIDWithRule, newRule);
+
+    // {name: 'Rule 1', elementName:'Name', elementType: "text", elementValue:"sam", template:1, tempCid: '2332', tempName: 'template1'},
   }
 
 }

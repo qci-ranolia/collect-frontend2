@@ -1,12 +1,31 @@
-<div class="row justify-content-center" style="width:98%">
-  <div class='col-3 divheight' >
-    <a [routerLink]="['./']" >Home</a> <br>
-    <a [routerLink]="['./form']" >Forms</a> <br>
-    <a [routerLink]="['./response']" >Responce</a> <br>
-    <a [routerLink]="['./org']" >Organisation</a> <br>
+<div class="row justify-content-center" >
+  <div class="col-12 text-center headerBar" > 
+  </div>
+</div>
+<div class="row justify-content-center">
 
+  <div class="col-2 modal-height slider-bg" >
+    <!-- Nav tabs -->
+    <ul class="nav flex-column text-left " role="tablist">
+
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['./']">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " [routerLink]="['./form']" >Forms</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link "  [routerLink]="['./response']" >Responce</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link "  [routerLink]="['./org']" >Organisation</a>
+      </li>
+
+    </ul>
   </div>
-  <div class='col-9 divheight' >
-    <router-outlet></router-outlet>
+
+  <div class="col-10 modal-height">
+      <router-outlet></router-outlet>
   </div>
+
 </div>

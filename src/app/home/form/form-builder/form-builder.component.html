@@ -1,6 +1,6 @@
 <div class="container form-container text-center">
   <br>
-  <h3> Form builder </h3>
+  <h3>QCI Form Builder &reg;</h3>
   <div class="row justify-content-center">
     <div class="col-md-12"  >
       <h5> {{name}} </h5>
@@ -81,11 +81,12 @@
       <br>
 
       <div *ngIf='displayPublish' >
-        <button type="button" class="btn btn-success" (click)='publishForm()'> {{sumbitForm}} </button>
+          <button *ngIf='displayPublishForm' type="button" class="btn btn-success" (click)='publishForm()'> {{sumbitForm}} </button>
       </div>
+
       <br>
       <div *ngIf='displayPublish' >
-        <button type="button" class="btn btn-success" (click)='publishTemplate()'> {{sumbitTemp}} </button>
+          <button *ngIf='displayPublishTemp' type="button" class="btn btn-success" (click)='publishTemplate()'> {{sumbitTemp}} </button>
       </div>
 
       <br>
@@ -129,9 +130,7 @@
     </div>
   </div>
 </div>
-<!-- New form modal ends here -->
 
-<!-- New template modal starts here -->
 <div class="modal fade" id="newTempModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

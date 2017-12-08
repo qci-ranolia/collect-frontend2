@@ -1,9 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
-$text-color: #5e5e5e;
+@import "~bootstrap/scss/_variables.scss";
 
+$brand-primary:    red;
+
+
+
+$text-color: #5e5e5e;
+$primary-color: #0275d8;
 $body-background: #fff;
 $container-background: #e4e5f1;
+$div-height: 950px;
+
+
 
 body{
   color: $text-color;

@@ -27,6 +27,12 @@ import { InputBreakComponent } from './home/form/form-builder/input-break/input-
 
 import { routes } from './app.routes';
 import { TemplateTabContentComponent } from './home/form/form-builder/template-tab-content/template-tab-content.component';
+import { AssessorComponent } from './home/organisation/assessor/assessor.component';
+import { UserComponent } from './home/organisation/user/user.component';
+import { ProjectComponent } from './home/project/project.component';
+import { DashboardComponent } from './home/dashboard/dashboard.component';
+import { OrganisationComponent } from './home/organisation/organisation.component';
+import { ResponseComponent } from './home/response/response.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +57,12 @@ import { TemplateTabContentComponent } from './home/form/form-builder/template-t
     InputFileComponent,
     InputBreakComponent,
     TemplateTabContentComponent,
+    AssessorComponent,
+    UserComponent,
+    ProjectComponent,
+    DashboardComponent,
+    OrganisationComponent,
+    ResponseComponent,
   ],
   imports: [
     BrowserModule,

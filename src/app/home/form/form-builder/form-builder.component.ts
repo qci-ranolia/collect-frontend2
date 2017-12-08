@@ -25,6 +25,8 @@ export class FormBuilderComponent implements OnInit {
   newFormName = '';
   newFormProjectName = '';
   newTempName = '';
+  displayPublishForm = true;
+  displayPublishTemp = true;
   sub: any;
   sub1:any;
   sub2:any;
@@ -41,12 +43,13 @@ export class FormBuilderComponent implements OnInit {
       this.name = res.Details.name;
       this.project_name = res.Details.project;
       this.jsonArray = res.Elements;
-      this.sumbitTemp = 'Modify Template';
+      this.sumbitTemp = "Modify Template";
       if(this.jsonArray.length > 0) {
         this.displayPublish = true;
       } else {
         this.displayPublish = false;
       }
+      this.displayPublishTemp = false;
     });
 
     this.sub2 = this.projectService.emitFormWithID.subscribe((res)=>{
@@ -54,12 +57,13 @@ export class FormBuilderComponent implements OnInit {
       this.jsonArray = res.Elements;
       this.name = res.Details.name;
       this.project_name = res.Details.project;
-      this.sumbitForm = 'Modify Form';
+      this.sumbitForm = "Modify Form";
       if(this.jsonArray.length > 0) {
         this.displayPublish = true;
       } else {
         this.displayPublish = false;
       }
+      this.displayPublishForm = false;
     });
 
     this.sub3 = this.projectService.emitFormElement.subscribe((res)=>{
@@ -136,38 +140,51 @@ export class FormBuilderComponent implements OnInit {
   }
 
   publishForm() {
+
     if(this.formID != undefined) {
-      this.projectService.formArray.splice(this.formID,1);
-      this.projectService.formArray.push({Details: this.formDetails, Elements:this.jsonArray, Rules:[]});
-      // console.log('form published 1 ');
+
+      let updatedData = this.jsonArray
+      this.projectService.updateFormArray(this.formID,updatedData);
+
     } else {
       $("#newFormModal").modal('show');
+
     }
     // console.log(this.projectService.formArray);
   }
 
   publishTemplate() {
+
     if(this.tempID != undefined) {
-      this.projectService.templateArray.splice(this.tempID,1);
-      this.projectService.templateArray.push({Details: this.tempDetails, Elements:this.jsonArray});
-      // console.log('template published 1 ');
+
+      let updatedData = this.jsonArray
+      this.projectService.updateTempArray(this.tempID,updatedData);
+
     } else {
       $("#newTempModal").modal('show');
+
     }
     // console.log(this.projectService.templateArray);
   }
 
   conformForm() {
 
-    let id = (this.projectService.formArray.length  ) + '';
-    this.projectService.formArray.push({Details: {name: this.newFormName, rule: 'None', project: this.newFormProjectName, status:'Offline', id:id }, Elements:this.jsonArray,  Rules:[]});
-    // console.log('form published 2 ');
+    let id = this.projectService.calFormArrayLength();
+    let now = new Date();
+    let cid = now.getTime() + id;
+    let dataToPush = {Details: {name: this.newFormName, rule: 'None', project: this.newFormProjectName, status:'Offline', cid: cid }, Elements:this.jsonArray,  Rules:[]}
+    this.projectService.pushIntoForm(dataToPush);
+
   }
 
   conformTemp() {
-    let id = (this.projectService.templateArray.length  ) + '';
-    this.projectService.templateArray.push({Details: {name: this.newTempName, rule: 'None', project: 'N/A', id:id }, Elements:this.jsonArray});
-    // console.log('template published 2 ');
+    
+    let id = this.projectService.calTemplateArrayLength();
+    let now = new Date();
+    let cid = now.getTime() + id;
+    let dataToPush = {Details: {name: this.newTempName, rule: 'None', project: 'N/A', cid: cid }, Elements:this.jsonArray};
+    this.projectService.pushIntoTemplate(dataToPush);
+
   }
 
   ngOnDestroy() {

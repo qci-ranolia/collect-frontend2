@@ -27,9 +27,9 @@
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <!-- <a href="#" class="card-link">Rule: {{form.Details.rule}}</a> -->
                 <a href="#" class="card-link">{{form.Details.status}}</a>
-                <a href="#" class="card-link" [routerLink]="['/formBuilder']" [queryParams]="{formID : i }" >View form</a>
+                <a href="#" class="card-link" [routerLink]="['/formBuilder']" [queryParams]="{formID : form.Details.cid }" >View form</a>
                 <div  >
-                  <button   (click)='rule(form.Rules, i)' type="button" class="btn btn-primary" data-toggle="modal" data-target="#rules">
+                  <button   (click)='rule(form.Rules, form.Details.cid, form.Elements)' type="button" class="btn btn-primary" data-toggle="modal" data-target="#rules">
                     Rule/s
                   </button>
                 </div>
@@ -39,25 +39,24 @@
           </div>
 
         </div>
-
       </div>
+
       <div class="tab-pane " id="template" role="tabpanel" >
         <br>
         <div class="row justify-content-center" >
-
           <div *ngFor='let temp of templateArray; let i = index' class="col-6"  style="margin-bottom:15px">
             <div class="card">
               <div class="card-block">
                 <h4 class="card-title">{{temp.Details.name}}</h4>
                 <h6 class="card-subtitle mb-2 text-muted">{{temp.Details.project}}</h6>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a class="card-link" [routerLink]="['/formBuilder']" [queryParams]="{templateID : i }" >View template</a>
+                <a class="card-link" [routerLink]="['/formBuilder']" [queryParams]="{templateID : temp.Details.cid }" >View template</a>
               </div>
             </div>
           </div>
-
         </div>
       </div>
+
   </div>
 
 </div>
@@ -79,7 +78,7 @@
                 <p>Element: {{rule.elementName}} </p>
                 <p>Condition: {{rule.elementValue}} </p>
                 <hr>
-                Associated Template: <b>{{templateArray[rule.template].Details.name}}</b>
+                Associated Template: <b>{{rule.tempName}}</b>
                 <hr>
                 <a class="card-link" href="#" >Edit</a>
                 <a class="card-link" href="#"  >Delete</a>
