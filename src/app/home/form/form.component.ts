@@ -31,19 +31,19 @@ export class FormComponent implements OnInit {
 
   constructor( private projectService: ProjectService, private router: Router ){
     this.fArray = this.projectService.emitFormArray.subscribe((res)=>{
-      console.log(res);
+      // console.log(res);
       this.formArray = res;
     });
 
     this.tArray = this.projectService.emitTemplateArray.subscribe((res)=>{
-      console.log(res);
+      // console.log(res);
       this.templateArray = res;
     });
 
   }
 
   new() {
-    this.router.navigate(['/formBuilder']);
+    this.router.navigate(['dash/formBuilder']);
   }
 
   ngOnInit() {

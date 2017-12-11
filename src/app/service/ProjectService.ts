@@ -16,15 +16,17 @@ export class ProjectService {
   emitTemplateWithID = new EventEmitter<any>();
   emitUpElement = new EventEmitter<any>();
   emitDownElement = new EventEmitter<any>();
+  emitProject = new EventEmitter<any>();
+  emitResponse = new EventEmitter<any>();
 
   formArray = [
-                { Details: { name: 'Form1', rule: 'None', project: 'Test Project1', status:'Offline', cid:'1221' },
+                { Details: { name: 'Form1', rule: 'None', project: 'Project 1', status:'Offline', cid:'1221' },
                   Elements:  [{type: "text", required: false, name: "Name"},
                                   {type: "email", required: false, hepltext: "", name: "Email ID"},
                                   {type: "number", required: false, hepltext: "", name: "Number Input"},],
                   Rules: [{name: 'Rule 1', elementName:'Name', elementType: "text", elementValue:"sam", template:1, tempCid: '2332', tempName: 'template1'},],
                 },
-                { Details: { name: 'Form2', rule: 'None', project: 'Test Project2', status:'Online', cid:'2121' },
+                { Details: { name: 'Form2', rule: 'None', project: 'Project 2', status:'Online', cid:'2121' },
                   Elements:  [{type: "text", required: false, name: "Name2"},
                                   {type: "email", required: false, hepltext: "", name: "Email ID2"},
                                   {type: "number", required: false, hepltext: "", name: "Number Input2"},],
@@ -45,6 +47,67 @@ export class ProjectService {
                                 {type: "number", required: false, hepltext: "", name: "Number Input2"},],
                 }
               ];
+
+  projectArray = [
+    {name: 'Project 1', form: '10', user: '8', assessor: '10', desc:'This is a test project'},
+    {name: 'Project 2', form: '2', user: '1', assessor: '13',  desc:'Test project2'},
+    {name: 'Project 3', form: '10', user: '2', assessor: '3',  desc:'This is a test project3'},
+  ];
+
+  responseArray1 = [
+    {name:'sam ', position:'position status', office: 'noida', age: '22', startDate:'21/3/2010', salary: '$1500'},
+    {name:'tom ', position:'position N/A', office: 'Delhi', age: '19', startDate:'01/11/2014', salary: '$3500'},
+    {name:'gimmy ', position:'pos UP', office: 'New-Delhi', age: '31', startDate:'09/01/2015', salary: '$2500'},
+    {name:'sam ', position:'position status', office: 'noida', age: '22', startDate:'21/3/2010', salary: '$1500'},
+    {name:'tom ', position:'position N/A', office: 'Delhi', age: '19', startDate:'01/11/2014', salary: '$3500'},
+    {name:'Gimmy ', position:'pos UP', office: 'New-Delhi', age: '31', startDate:'09/01/2015', salary: '$2500'},
+    {name:'sam ', position:'position status', office: 'noida', age: '22', startDate:'21/3/2010', salary: '$1500'},
+    {name:'Gimmy ', position:'pos UP', office: 'New-Delhi', age: '31', startDate:'09/01/2015', salary: '$2500'},
+    {name:'tom ', position:'position N/A', office: 'Delhi', age: '19', startDate:'01/11/2014', salary: '$3500'},
+    {name:'Gimmy ', position:'pos UP', office: 'New-Delhi', age: '31', startDate:'09/01/2015', salary: '$2500'},
+    {name:'sam ', position:'position status', office: 'noida', age: '22', startDate:'21/3/2010', salary: '$1500'},
+    {name:'tom ', position:'position N/A', office: 'Delhi', age: '19', startDate:'01/11/2014', salary: '$3500'},
+    {name:'Gimmy ', position:'pos UP', office: 'New-Delhi', age: '31', startDate:'09/01/2015', salary: '$2500'},
+    {name:'sam ', position:'position status', office: 'noida', age: '22', startDate:'21/3/2010', salary: '$1500'},
+    {name:'tom ', position:'position N/A', office: 'Delhi', age: '19', startDate:'01/11/2014', salary: '$3500'},
+    {name:'Gimmy ', position:'pos UP', office: 'New-Delhi', age: '31', startDate:'09/01/2015', salary: '$2500'},
+  ];
+
+  responseArray2 = [
+    {name:'sam ', position:'position status', office: 'noida', age: '22', startDate:'21/3/2010', salary: '1500'},
+    {name:'tom ', position:'position N/A', office: 'Delhi', age: '19', startDate:'01/11/2014', salary: '3500'},
+    {name:'Gimmy ', position:'pos UP', office: 'New-Delhi', age: '31', startDate:'09/01/2015', salary: '2500'},
+    {name:'sam ', position:'position status', office: 'noida', age: '22', startDate:'21/3/2010', salary: '1500'},
+    {name:'tom ', position:'position N/A', office: 'Delhi', age: '19', startDate:'01/11/2014', salary: '3500'},
+    {name:'Gimmy ', position:'pos UP', office: 'New-Delhi', age: '31', startDate:'09/01/2015', salary: '2500'},
+    {name:'sam ', position:'position status', office: 'noida', age: '22', startDate:'21/3/2010', salary: '1500'},
+    {name:'tom ', position:'position N/A', office: 'Delhi', age: '19', startDate:'01/11/2014', salary: '3500'},
+    {name:'Gimmy ', position:'pos UP', office: 'New-Delhi', age: '31', startDate:'09/01/2015', salary: '2500'},
+    {name:'sam ', position:'position status', office: 'noida', age: '22', startDate:'21/3/2010', salary: '1500'},
+    {name:'tom ', position:'position N/A', office: 'Delhi', age: '19', startDate:'01/11/2014', salary: '3500'},
+    {name:'sam ', position:'position status', office: 'noida', age: '22', startDate:'21/3/2010', salary: '1500'},
+    {name:'Gimmy ', position:'pos UP', office: 'New-Delhi', age: '31', startDate:'09/01/2015', salary: '2500'},
+    {name:'tom ', position:'position N/A', office: 'Delhi', age: '19', startDate:'01/11/2014', salary: '3500'},
+  ];
+
+  addNewProject(pname: string, pdesc: string) {
+    this.projectArray.push({name: pname, desc: pdesc, form:'N/A', user: 'N/A', assessor: 'N/A'});
+    this.getProject();
+  }
+
+  getResponce2() {
+    console.log('res4');
+    this.emitResponse.emit(this.responseArray2);
+  }
+
+  getResponce() {
+    console.log('res2');
+    this.emitResponse.emit(this.responseArray1);
+  }
+
+  getProject(){
+    this.emitProject.emit(this.projectArray);
+  }
 
   getFormArray() {
     this.emitFormArray.emit(this.formArray);

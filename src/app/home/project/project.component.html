@@ -1,3 +1,59 @@
-<p>
-  project works!
-</p>
+<div class="container-fluid">
+  <br>
+  <div class="row " style="overflow-y: auto">
+    <div class="col-md-6 col-sm-12" >
+      <div class="col-md-12" style="height:200px; border:2px solid gray"> Graph 1.1
+      </div>
+      <div class="col-md-12" style="height:200px; border:2px solid gray">
+        Project summary block
+        <br>
+        <div class="text-right" >
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectModal"> + Project </button>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-12 " style="height:400px;  border:2px solid gray"> Graph 2
+    </div>
+  </div>
+
+  <br>
+
+
+  <div class="row justify-content-center overflow-y: auto" >
+
+    <div *ngFor='let project of projects' class="col-md-3 col-sm-12 "  style="height:200px; border:2px solid gray; margin:10px">
+
+      {{project.name}} <br>
+      Forms: {{project.form}} <br>
+      Users: {{project.user}} <br>
+      Assessor: {{project.assessor}} <br>
+      Desc: {{project.desc}}
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Project</h5>
+      </div>
+      <div class="modal-body text-center" style="height:150px; overflow-y: auto">
+
+            Project name: <input type="text" name="" value="" [(ngModel)]='pname' >
+            <hr>
+            Project desc: <input type="text" name="" value="" [(ngModel)]='pdesc' >
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-target="#addRules" (click)='newProject()'>Initialize project</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

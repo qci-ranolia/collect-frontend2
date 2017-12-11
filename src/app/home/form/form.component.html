@@ -1,7 +1,7 @@
-<div class="container" style="background-color: white !important;">
+<div class="container-fluid" style="">
   <br>
 
-    <button type="button" class="btn btn-primary " (click)='new()'  data-dismiss="modal" >+ New</button>
+    <button type="button" class="btn btn-primary " (click)='new()'   >+ New</button>
 
   <ul class="nav nav-tabs justify-content-center">
     <li class="nav-item">
@@ -17,7 +17,7 @@
       <div class="tab-pane active" id="form" role="tabpanel" >
         <br>
 
-        <div class="row justify-content-center" >
+        <div class="row text-left" >
 
           <div *ngFor='let form of formArray; let i = index' class="col-6" style="margin-bottom:15px">
             <div class="card">
@@ -27,7 +27,7 @@
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <!-- <a href="#" class="card-link">Rule: {{form.Details.rule}}</a> -->
                 <a href="#" class="card-link">{{form.Details.status}}</a>
-                <a href="#" class="card-link" [routerLink]="['/formBuilder']" [queryParams]="{formID : form.Details.cid }" >View form</a>
+                <a href="#" class="card-link" [routerLink]="['../formBuilder']" [queryParams]="{formID : form.Details.cid }" >View form</a>
                 <div  >
                   <button   (click)='rule(form.Rules, form.Details.cid, form.Elements)' type="button" class="btn btn-primary" data-toggle="modal" data-target="#rules">
                     Rule/s
@@ -50,7 +50,7 @@
                 <h4 class="card-title">{{temp.Details.name}}</h4>
                 <h6 class="card-subtitle mb-2 text-muted">{{temp.Details.project}}</h6>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a class="card-link" [routerLink]="['/formBuilder']" [queryParams]="{templateID : temp.Details.cid }" >View template</a>
+                <a class="card-link" [routerLink]="['../formBuilder']" [queryParams]="{templateID : temp.Details.cid }" >View template</a>
               </div>
             </div>
           </div>
