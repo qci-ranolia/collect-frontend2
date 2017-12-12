@@ -1,3 +1,24 @@
-<p>
-  organisation works!
-</p>
+<div class="container-fluid" style="">
+  <br>
+  <ul class="nav nav-tabs justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" role="tab" href="#user">Users</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link " data-toggle="tab" role="tab" href="#ass">Assessor</a>
+    </li>
+
+  </ul>
+
+  <div class="tab-content">
+      <div class="tab-pane active" id="user" role="tabpanel" >
+        <app-user></app-user>
+      </div>
+
+      <div class="tab-pane " id="ass" role="tabpanel" >
+        <app-assessor></app-assessor>
+      </div>
+
+  </div>
+
+</div>
