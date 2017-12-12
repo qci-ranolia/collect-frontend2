@@ -1,28 +1,11 @@
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-primary sticky-top col-sm-12">
   <a class="navbar-brand" href="#" style="margin:auto; "><h3 style="margin-top:0px; margin-bottom:0px" ><b>QCI Collect </b></h3></a>
-  <!-- <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-    </ul>
-    <span class="navbar-text">
-      Navbar text with an inline element
-    </span>
-  </div> -->
 </nav>
-<div class="row justify-content-center">
+<div class="row justify-content-center m-0 frame">
 
-  <div class="col-2 modal-height slider-bg" >
+  <div class="col-lg-2 slider-fix p-0 ">
+  <i class="fa fa-bars text-white text-center" aria-hidden="true"></i>
+  <i class="fa fa-times text-white text-center active" aria-hidden="true"></i>
     <!-- Nav tabs -->
     <ul class="nav flex-column text-left " role="tablist">
 
@@ -38,11 +21,14 @@
       <li class="nav-item">
         <a class="nav-link "  [routerLink]="['./org']" >Organisation</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" style="border-bottom:none;"></a>
+      </li>
 
     </ul>
   </div>
 
-  <div class="col-10 modal-height">
+  <div class="col-lg-10 col-sm-12 wrap-cont">
       <router-outlet></router-outlet>
   </div>
 
