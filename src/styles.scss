@@ -36,10 +36,14 @@ a:focus, a:hover, input:focus, input:hover, button:hover, button:focus {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+} .btn-primary {
+  box-shadow:0px 15px 20px -10px #aaa;
+} .btn-primary:hover {
+  box-shadow:0px 7px 5px -5px #888;
 }
 /*Navigation*/
 /*Navigation Left*/
-.slider-fix{
+.slider-fix {
   background-color:$body-bg2;
   border-right:$br-light;
   position:fixed;
@@ -47,7 +51,7 @@ a:focus, a:hover, input:focus, input:hover, button:hover, button:focus {
   left:0;
   z-index:9999;
   @include transition(all 0.15s linear .01s);
-}.sf {
+} .sf {
   left:-17%;
   @include transition(all 0.15s linear .01s);
 } .sf + .wrap-cont {
@@ -55,7 +59,7 @@ a:focus, a:hover, input:focus, input:hover, button:hover, button:focus {
   @include transition(all 0.15s linear .01s);
 }
  /*Hamburger Menu*/
-.slider-fix .fa.text-white{
+.slider-fix .fa.text-white {
   background:$primary-color-dark;
   position:fixed;
   top:0;
@@ -67,9 +71,9 @@ a:focus, a:hover, input:focus, input:hover, button:hover, button:focus {
   width: 54px;
   height: 54px;
   line-height: 54px;
-}.slider-fix .fa.active{
+} .slider-fix .fa.active {
   display: block; 
-}.slider-fix .fa.active:hover {
+} .slider-fix .fa.active:hover {
   background:$primary-color-dark-hover;
 }/*Hamburger Menu Ends*/
 .frame {
