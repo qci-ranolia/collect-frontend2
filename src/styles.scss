@@ -22,6 +22,7 @@ $div-height:95vh;
 
 $br-light:1px solid #ddd;
 $bl-light:1px solid #ddd;
+$bb-light:1px solid #ddd;
 
 $top-menu-height:47px;
 
@@ -175,6 +176,7 @@ ul.nav.flex-column
   border-bottom:1px solid #ccc;
   @include transition( all 0.15s linear .01s );
   color: $text-color-darkset3;
+  padding:1em; 
 }
 .slider-fix a.nav-link:hover
 {
@@ -182,6 +184,14 @@ ul.nav.flex-column
   border-bottom:2px solid #ccc;
   @include transition( all 0.15s linear .01s );
   color: #000;
+  background: rgba(0,0,0,0.02);
+}
+.fa-6 
+{
+  font-size:22px;
+  width:50px;
+  position: relative;
+  top: 3px;
 }
 /* Container */
 .container
@@ -198,7 +208,25 @@ ul.nav.flex-column
 }
 
 
-
+/*Dashboard project css*/
+.bb
+{
+  border-bottom: $bl-light;
+}
+.crdHvr{
+  height:150px;
+  border:1px solid #ddd;
+  background:#FFF;
+  box-shadow:0px 1px 1px #a8a8a8;
+  @include transition( all 0.15s linear .01s );
+  overflow: hidden;
+}
+.crdHvr:hover
+{
+  cursor: pointer;
+  box-shadow: none;
+  @include transition( all 0.15s linear .01s );
+}
 
 
 

@@ -19,12 +19,23 @@
   </div>
   <div class="row justify-content-center" >
     <div *ngFor='let project of projects' class="col-md-4 col-sm-12">
-      <div class="col-sm-12 p-0 mb-3" style="height:200px;border:1px solid #ddd;background:#FFF;box-shadow:0px 1px 1px #a8a8a8;">
-        {{project.name}} <br>
-        Forms: {{project.form}} <br>
-        Users: {{project.user}} <br>
-        Assessor: {{project.assessor}} <br>
-        Desc: {{project.desc}}
+      <div class="col-sm-12 p-0 mb-3 crdHvr">
+        <div class="collapse" id="cllapseExample">
+            <i class="fa fa-close float-right p-3 collapsed" aria-hidden="true" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample"></i>
+            <h4 class="text-left col-sm-11 p-3 bb ">{{project.name}}<br /><small>Desc: {{project.desc}}<a href="" class="nav-link d-inline-block">See More...</a></small></h4>
+            <div class="row m-0">
+              <p class="col-4 text-center mb-0">{{project.form}} : Forms</p>
+              <p class="col-4 text-center mb-0">Users: {{project.user}}</p>
+              <p class="col-4 text-center mb-0">Assessor: {{project.assessor}}</p>
+            </div>
+        </div>
+        <i class="fa fa-ellipsis-v float-right pl-3 pr-4 pt-3 pb-3" aria-hidden="true" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"></i>
+                <h4 class="text-left col-sm-11 p-3 bb ">{{project.name}}<br /><small>Desc: {{project.desc}}<a href="" class="nav-link d-inline-block">See More...</a></small></h4>
+        <div class="row m-0">
+          <p class="col-4 text-center mb-0">{{project.form}} : Forms</p>
+          <p class="col-4 text-center mb-0">Users: {{project.user}}</p>
+          <p class="col-4 text-center mb-0">Assessor: {{project.assessor}}</p>
+        </div>
       </div>
     </div>
   </div>
