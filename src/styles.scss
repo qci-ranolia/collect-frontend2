@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-
 @import "~bootstrap/scss/_variables.scss";
 
 /*transitions mixins*/
@@ -9,97 +8,247 @@
 @mixin transition-timing-function($timing...) { -moz-transition-timing-function:$timing; -o-transition-timing-function:$timing; -webkit-transition-timing-function:$timing; transition-timing-function:$timing; }
 @mixin transition-delay($delay...) { -moz-transition-delay:$delay; -o-transition-delay:$delay; -webkit-transition-delay:$delay; transition-delay:$delay; }
 
-
 /*variables*/
 $brand-primary:red;
 $text-color-darkset3:#525351;
+$primary-color-light:#2295f8;
 $primary-color:#0275d8;
 $primary-color-dark:#0265c8;
 $primary-color-dark-hover:#0255b8;
-$body-bg1:#fff;
-$body-bg2:#f5f5f5;
+$body-bg1:#eeeeef;
+$body-bg2:#fff;
 $cont-bg1:#e4e5f1;
-$div-height:100vh;
+$div-height:95vh;
+
 $br-light:1px solid #ddd;
 $bl-light:1px solid #ddd;
 
+$top-menu-height:47px;
+
+
 
 /*Common css*/
-a:focus, a:hover, input:focus, input:hover, button:hover, button:focus {
+a:focus,
+  a:hover,
+    input:focus,
+      input:hover,
+        button:hover,
+            .fa:hover
+{
   cursor:pointer;
   outline:none;
-} body {
+}
+/*remove box-shadow issues*/
+button:focus
+{
+  box-shadow:0px 12px 20px -10px #999 !important;
+}
+.cl2 {width:16.667%;float:left;}
+.cl8 { width: 66.666%;float:left;}
+body
+{
   color:$text-color-darkset3;
   background-color:$body-bg1;
-} * {
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-} .btn-primary {
-  box-shadow:0px 15px 20px -10px #aaa;
-} .btn-primary:hover {
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+}
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+	background-color: #F5F5F5;
+	border-radius: 0px;
+}
+::-webkit-scrollbar
+{
+	width: 7px;
+	background-color: #F5F5F5;
+}
+::-webkit-scrollbar-thumb
+{
+	border-radius: 0px;
+	background-color: #FFF;
+	background-image: -webkit-gradient(linear, 10% 0%, 45% 54%, from( $primary-color ), to( $primary-color ), color-stop( .6, $primary-color ));/* 24a1b5 : 28b6cc */
+}
+.btn
+{
+  box-shadow:0px 15px 20px -10px #aaa;/* App Button Material Shadow Surface */
+}
+.btn:hover
+{
   box-shadow:0px 7px 5px -5px #888;
 }
-/*Navigation*/
-/*Navigation Left*/
-.slider-fix {
-  background-color:$body-bg2;
-  border-right:$br-light;
+.pos-bl
+{
   position:fixed;
-  top:54px;
+  bottom:0px;
   left:0;
-  z-index:9999;
-  @include transition(all 0.15s linear .01s);
-} .sf {
-  left:-17%;
-  @include transition(all 0.15s linear .01s);
-} .sf + .wrap-cont {
-  max-width:100%;
+  width:16.667%;
+  font-size:10px;
+  color:#656565;
   @include transition(all 0.15s linear .01s);
 }
- /*Hamburger Menu*/
-.slider-fix .fa.text-white {
+
+/*Navigation*/
+.navbar-toggleable-md
+{
+  box-shadow:0px 20px 15px -15px #ccc;/*App Top Menu Bar Material Shadow*/
+  height: $top-menu-height;
+}
+.navbar-toggleable-md .fa.text-white
+{
+  font-size:22px;
+  width:$top-menu-height;
+  height:$top-menu-height;
+  line-height:$top-menu-height;
+}
+/*Hamburger Menu*/
+.navbar-toggleable-md .fa-bars.text-white,
+.navbar-toggleable-md .fa-times.text-white,
+{
   background:$primary-color-dark;
-  position:fixed;
-  top:0;
-  left:0;
   font-size:24px;
   text-shadow:1px 1px 1px #555;
   display:none;
   cursor:pointer;
-  width: 54px;
-  height: 54px;
-  line-height: 54px;
-} .slider-fix .fa.active {
+  width:$top-menu-height;
+  height:$top-menu-height;
+  line-height:$top-menu-height;
+}
+.navbar-toggleable-md .fa.active
+{
   display: block; 
-} .slider-fix .fa.active:hover {
+}
+.navbar-toggleable-md .fa.active:hover
+{
   background:$primary-color-dark-hover;
-}/*Hamburger Menu Ends*/
-.frame {
-  height:$div-height; 
-} ul.nav.flex-column {
+} /*Hamburger Menu Ends*/
+/*Navigation Left*/
+.slider-fix
+{
+  background-color:$body-bg2;
+  //border-right:$br-light;
+  position:fixed;
+  top:$top-menu-height;
+  left:0;
+  z-index:1031;
+  box-shadow:1px 0px 2px #a0a0a0;/*App Left Menu Bar Material Shadow*/
+  @include transition(all 0.15s linear .01s);
+}
+.left-menu-close .frame .slider-fix,
+  .left-menu-close .frame .slider-fix .nav-item.pos-bl
+{
+  left:-17%;
+  @include transition(all 0.15s linear .01s);
+}
+.left-menu-close .wrap-cont
+{
+  max-width:100%;
+  @include transition(all 0.15s linear .01s);
+}
+.black-shadow
+{
+  opacity:0;
+  z-index:-100;
+  background:rgba(0,0,0,0.7);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+.black-shadow.active
+{
+  opacity: 1;
+  z-index: 1030;
+}
+.frame
+{
   height:$div-height;
-} .slider-fix a.nav-link {
+}
+ul.nav.flex-column
+{
+  height:$div-height;
+}
+.slider-fix a.nav-link
+{
   border-top:3px solid #fff;
   border-bottom:1px solid #ccc;
-  @include transition(all 0.15s linear .01s);
+  @include transition( all 0.15s linear .01s );
   color: $text-color-darkset3;
-} .slider-fix a.nav-link:hover {
+}
+.slider-fix a.nav-link:hover
+{
   border-top:2px solid #fff;
   border-bottom:2px solid #ccc;
-  @include transition(all 0.15s linear .01s);
+  @include transition( all 0.15s linear .01s );
   color: #000;
 }
-
 /* Container */
-.container {
+.container
+{
   background-color: $cont-bg1;
 }
 /* Wrap-container */
-.wrap-cont {
+.wrap-cont
+{
   position: absolute;
-  top: 54px;
+  top: $top-menu-height;
   right: 0;
   @include transition(all 0.15s linear .01s);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width:992px){
+  .slider-fix,
+    .pos-bl
+  {
+    width: 40%
+  }
+  .left-menu-close .frame .slider-fix,
+    .left-menu-close .frame .slider-fix .nav-item.pos-bl
+  {
+    left:-45%;
+    @include transition(all 0.15s linear .01s);
+  }
+}
+@media only screen and (max-width:640px){
+  .slider-fix,
+    .pos-bl
+  {
+    width: 70%
+  }
+  .left-menu-close .frame .slider-fix,
+    .left-menu-close .frame .slider-fix .nav-item.pos-bl
+  {
+    left:-75%;
+    @include transition(all 0.15s linear .01s);
+  }
 }
