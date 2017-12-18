@@ -3,13 +3,10 @@
   <h5 class="modal-title" id="exampleModalLabel">Form elements</h5>
 
 </div> -->
-<div class="modal-body" style="height:400px;  ">
+<div class="modal-body">
   <div class="form-group">
-
     <ul class="nav nav-tabs" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#m1" role="tab" (click)='inputType("text")'>Inputs</a>
-      </li>
+      <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#m1" role="tab" (click)='inputType("text")'>Inputs</a></li>
       <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#m2" role="tab" (click)='inputType("file")'>File & Media</a>
       </li>
@@ -19,33 +16,51 @@
       <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#m4" role="tab" (click)='inputType("template")'>Template</a>
       </li>
-
     </ul>
-
-    <div class="tab-content">
-
+    <div class="tab-content mt-5">
       <!-- Input tab -->
       <div class="tab-pane active" id="m1" role="tabpanel" >
-
         <div class="">
-          <div class="row justify-content-center">
-
-            <div class="col-3 modal-height slider-bg" >
+          <div class="row justify-content-center m-0">
+            <div class="col-3 modal-height slider-bg" style="background:#fff;height:290px;">
               <!-- Nav tabs -->
               <ul class="nav flex-column text-left " role="tablist">
-                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#s1" role="tab" (click)='inputType("text")'>Text</a></li>
-                <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#s2" role="tab" (click)='inputType("password")'>Password</a></li>
-                <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#s3" role="tab" (click)='inputType("email")'>Email</a></li>
-                <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#s4" role="tab" (click)='inputType("number")'>Number</a></li>
-                <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#s5" role="tab" (click)='inputType("phone")'>Pnone</a></li>
-                <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#s6" role="tab" (click)='inputType("textarea")'>Textarea</a></li>
-                <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#s7" role="tab" (click)='inputType("date")'>Date</a></li>
-                <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#s8" role="tab"  (click)='inputType("time")'>Time</a></li>
-                <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#s9" role="tab" (click)='inputType("radio")'> Radio</a></li>
-                <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#s10" role="tab" (click)='inputType("checkbox")'>Checkbox</a></li>
-                <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#s11" role="tab" (click)='inputType("dropdown")'>Dropdown</a></li>
-                <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#s12" role="tab" (click)='inputType("slider")'>Slider</a></li>
-
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab" href="#s1" role="tab" (click)='inputType("text")'>Text</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " data-toggle="tab" href="#s2" role="tab" (click)='inputType("password")'>Password</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " data-toggle="tab" href="#s3" role="tab" (click)='inputType("email")'>Email</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " data-toggle="tab" href="#s4" role="tab" (click)='inputType("number")'>Number</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " data-toggle="tab" href="#s5" role="tab" (click)='inputType("phone")'>Pnone</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " data-toggle="tab" href="#s6" role="tab" (click)='inputType("textarea")'>Textarea</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " data-toggle="tab" href="#s7" role="tab" (click)='inputType("date")'>Date</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " data-toggle="tab" href="#s8" role="tab"  (click)='inputType("time")'>Time</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " data-toggle="tab" href="#s9" role="tab" (click)='inputType("radio")'> Radio</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " data-toggle="tab" href="#s10" role="tab" (click)='inputType("checkbox")'>Checkbox</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " data-toggle="tab" href="#s11" role="tab" (click)='inputType("dropdown")'>Dropdown</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " data-toggle="tab" href="#s12" role="tab" (click)='inputType("slider")'>Slider</a>
+                </li>
               </ul>
             </div>
 
@@ -55,7 +70,6 @@
 
                 <!-- Text Input s1-->
                 <div class="tab-pane active" id="s1" role="tabpanel">
-
                   <h4>Text Element</h4>
                   <br>
                   <div class="form-group row">
@@ -517,9 +531,9 @@
       <div class="tab-pane" id="m2" role="tabpanel">
 
         <div class="" >
-          <div class="row justify-content-center" >
+          <div class="row justify-content-center m-0" >
 
-            <div class="col-3 modal-height slider-bg" >
+            <div class="col-3 modal-height slider-bg" style="background:#fff;height:290px;">
               <ul class="nav flex-column text-left " role="tablist">
                 <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#f1" role="tab" (click)='inputType("file")'>File </a></li>
                 <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#f2" role="tab" (click)='inputType("location")'>Location </a></li>
@@ -637,6 +651,6 @@
   </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-  <button type="button" class="btn btn-primary" (click)='addElement()'  data-dismiss="modal" >Add element</button>
+  <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>
+  <button type="button" class="btn btn-primary col-sm-4 pt-3 pb-3" (click)='addElement()'  data-dismiss="modal" >Add element</button>
 </div>

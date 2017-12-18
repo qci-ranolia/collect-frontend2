@@ -11,10 +11,15 @@
 /*variables*/
 $brand-primary:red;
 $text-color-darkset3:#525351;
+$text-color-darkset3-hover:#424341;
 $primary-color-light:#2295f8;
 $primary-color:#0275d8;
 $primary-color-dark:#0265c8;
 $primary-color-dark-hover:#0255b8;
+$secondary-color:#ffd741;
+$secondary-color-border:#efc731;
+$secondary-color-hover:#efc731;
+$secondary-color-border-hover:#dfb721;
 $body-bg1:#eeeeef;
 $body-bg2:#fff;
 $cont-bg1:#e4e5f1;
@@ -95,15 +100,57 @@ body
 {
 	border-radius: 0px;
 	background-color: #FFF;
-	background-image: -webkit-gradient(linear, 10% 0%, 45% 54%, from( $primary-color ), to( $primary-color ), color-stop( .6, $primary-color ));/* 24a1b5 : 28b6cc */
+	background-image: -webkit-gradient(linear, 10% 0%, 45% 54%, from( #ccc ), to( #ccc ), color-stop( .6, #999 ));/* 24a1b5 : 28b6cc */
+}
+::-webkit-scrollbar-thumb:hover
+{
+  background-image: -webkit-gradient(linear, 10% 0%, 45% 54%, from( #bbb ), to( #bbb ), color-stop( .6, #888 ));
+  cursor: pointer;
 }
 .btn
 {
-  box-shadow:0px 15px 20px -10px #aaa;/* App Button Material Shadow Surface */
+  box-shadow:0px 15px 20px -10px #ddd;/* App Button Material Shadow Surface */
 }
 .btn:hover
 {
-  box-shadow:0px 7px 5px -5px #888;
+  box-shadow:0px 7px 5px -5px #aaa;
+}
+.btn-primary,
+  .btn-primary:active
+{
+  background:$secondary-color;
+  border-color:$secondary-color-border;
+  color:$text-color-darkset3;
+}
+.btn-primary:hover
+{
+  background:$secondary-color-hover;
+  border-color:$secondary-color-border-hover;
+  color:$text-color-darkset3-hover;
+}
+.btn-primary:active
+{
+  -webkit-transform: scale(0.95);
+  transform: scale(0.95);
+  transition-duration:0.15s;
+}
+.cbx
+{
+  box-shadow: 0px 2px 2px #ccc;
+  @include transition(all 0.15s linear .01s);
+  background:linear-gradient(#fcfcfc, #fafafa);
+  background:-webkit-linear-gradient(#fcfcfc, #fafafa);
+  background:-moz-linear-gradient(#fcfcfc, #fafafa);
+  background:-ms-linear-gradient(#fcfcfc, #fafafa);
+}
+.cbx:hover
+{
+  box-shadow:none;
+  @include transition(all 0.15s linear .01s);
+  background:linear-gradient(#fafafa, #fcfcfc);
+  background:-webkit-linear-gradient(#fafafa, #fcfcfc);
+  background:-moz-linear-gradient(#fafafa, #fcfcfc);
+  background:-ms-linear-gradient(#fafafa, #fcfcfc);
 }
 .pos-bl
 {
@@ -201,30 +248,31 @@ ul.nav.flex-column
 {
   border-top:3px solid #fff;
   border-bottom:1px solid #ccc;
-  @include transition( all 0.15s linear .01s );
-  color: $text-color-darkset3;
-  padding:1em; 
+  @include transition(all 0.15s linear .01s);
+  color:$text-color-darkset3;
+  padding:1em;
+  text-transform:capitalize; 
 }
 .slider-fix a.nav-link:hover
 {
   border-top:2px solid #fff;
   border-bottom:2px solid #ccc;
   @include transition( all 0.15s linear .01s );
-  color:#0275d8;
+  color:$primary-color;
   background: rgba(0,0,0,0.02);
 }
 .fa-6 
 {
   font-size:22px;
-  width:50px;
+  width:45px;
   position: relative;
   top: 3px;
 }
-/* Container */
+/* Container
 .container
 {
   background-color: $cont-bg1;
-}
+} */
 /* Wrap-container */
 .wrap-cont
 {
@@ -284,13 +332,65 @@ ul.nav.flex-column
 }
 .crdHvr h4 span
 {
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  line-height: 18px;
-  max-height: 18px;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-line-clamp:1;
+  overflow:hidden;
+  -webkit-box-orient:vertical;
+  line-height:18px;
+  max-height:18px;
+}
+
+
+
+
+
+
+
+
+.fn .bbot a:after {
+  /*fill blank space*/
+  content:" ";
+  /*just animate*/
+  width:0;
+  height:0;
+  position:relative;
+  /*center content*/
+  left:0;
+  right:0;
+  margin:0 auto;
+  top:3px;
+  /*show the content*/
+  display:block;
+  /*give some colour*/
+  background:#ffd741;
+} .fn .bbot a.active:after {
+  width:70px;/* sass width thing */
+  height:5px;/* sass height thing */
+} .fn .bbot a.strt:hover{
+  //color: #ffd741;
+  /* Is Sass module applicable on this transition */
+  -webkit-transition:color 0.25s ease-in-out 0.05s;
+  -moz-transition:color 0.25s ease-in-out 0.05s;
+  -ms-transition:color 0.25s ease-in-out 0.05s;
+  -o-transition:color 0.25s ease-in-out 0.05s;
+  transition:color 0.25s ease-in-out 0.05s;
+} .fn .bbot a.strt:hover:after {
+  -o-animation:widen 0.3s 1;
+  -ms-animation:widen 0.3s 1;
+  -moz-animation:widen 0.3s 1;
+  -webkit-animation:widen 0.3s 1;
+  animation:widen 0.3s 1;
+  width:70px;/* sass width thing */
+  height:5px;/* sass height thing */
+} @-webkit-keyframes widen {
+0% { width:0;height:0px; } 100%{ width:100%;height:5px; }
+} @-moz-keyframes widen {
+0% { width:0;height:0px; } 100%{ width:100%;height:5px; }
+} @-ms-keyframes widen { 
+0% { width:0;height:0px; } 100%{ width:100%;height:5px; }
+} @keyframes widen {
+0% { width:0;height:0px; } 100%{ width:70px;height:5px;/* sass width thing */ }
 }
 
 
@@ -305,8 +405,147 @@ ul.nav.flex-column
 
 
 
+/*Datatable css*/
+.dataTables_wrapper
+{
+  padding-top:4rem;
+}
+// select
+.dataTables_length label select
+{
+  background: #fff;
+  border-color: #ddd;
+  width: 60px;
+  height: 30px;
+  line-height: 30px;
+  padding: 3px;
+  text-indent: 3px;
+  margin: 0 5px;
+}
+// input
+.dataTables_filter label input
+{
+  border: 1px solid #ccc !important;
+  box-shadow: none !important;
+  padding: 3px;
+  text-indent: 3px;
+}
+// main table
+table.dataTable tfoot th,
+  table.dataTable tfoot td
+{
+  border-top: 1px solid #aaa;
+}
+table.dataTable thead th,
+  table.dataTable thead td
+{
+ border-bottom: 1px solid #aaa;
+}
+// table result info
+.dataTables_info
+{
+  font-size:12px;
+}
+
+.row th,
+  .row td
+{
+  //width:100% !important;
+  padding:4px 3px !important;
+  //font-size: 90%; 
+}
 
 
+
+
+/*Bootstrap modal popup changed css*/
+.modal-dialog
+{
+  margin:100px auto 30px;
+}
+.modal-content
+{
+  border-radius:0 0 0.3rem 0.3rem;
+}
+.modal-header
+{
+  background:$primary-color;
+  box-shadow:0px 15px 15px -10px #ccc;
+  border-bottom:transparent;
+  color:#fff;
+}
+.modal-body
+{
+  margin-top:25px;
+}
+.modal-backdrop.show
+{
+  opacity: 0.7;
+}
+
+
+
+
+
+
+/* Templates fields */
+.adf .modal-body
+{
+  height:400px;
+  margin:0;
+  padding-top:0;
+  position:relative;
+  top:-21px;
+  padding:0;
+}
+.adf .modal-body .nav-tabs
+{
+  border-bottom:2px solid $primary-color;
+}
+.adf .modal-body .nav-tabs .nav-item
+{
+  margin-bottom:0;
+}
+.adf .modal-body .nav-tabs a
+{
+  color: $primary-color;
+  position: relative;
+}
+.adf .modal-body .nav-tabs a.active
+{
+  color: $primary-color;
+  border-color:transparent;
+  border-radius:0 !important;
+}
+.adf .modal-body .nav-tabs .nav-link:focus,
+  .adf .modal-body .nav-tabs .nav-link:hover
+{
+  border-color: transparent;
+  border-radius: 0;
+}
+.adf .modal-body .nav-tabs .nav-link:after
+{
+  content:" ";
+  border:20px solid $primary-color;
+  display:none;
+  border-color:$primary-color transparent transparent transparent;
+  position:absolute;
+  top:41px;
+  border-width:5px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: fit-content;
+  @include transition( all 0.15s linear .01s );
+}
+.adf .modal-body .nav-tabs .nav-link.active:after,
+  .adf .modal-body .nav-tabs .nav-link:hover:after
+{
+  display:block;
+  //border-color:transparent;
+  @include transition( all 0.15s linear .01s );
+
+}.adf .flex-column .nav-link { color: $text-color-darkset3;}
 
 
 @media only screen and (max-width:1024px){
