@@ -1,4 +1,4 @@
-$( function() {
+$(function(){
     "use strict";
     $(".fa-bars").click(function(){
         //$(".black-shadow").addClass("active");
@@ -12,4 +12,15 @@ $( function() {
         $(this).removeClass("active");
         $(this).parents("body").addClass("left-menu-close");
     });
+});
+$(document).on("mouseup touchend", function (e) {
+    "use strict";
+    if(!$('body').hasClass('left-menu-close')){
+        var fc = $(".slider-fix");
+        if(!fc.is(e.target)&&fc.has(e.target).length===0){
+            $('body').addClass('left-menu-close');
+            $('.navbar-toggleable-md').find(".fa-times").removeClass("active");
+            $('.navbar-toggleable-md').find(".fa-bars").addClass("active");    
+        }
+    }
 });

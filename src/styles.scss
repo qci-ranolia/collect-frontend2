@@ -20,6 +20,23 @@ $body-bg2:#fff;
 $cont-bg1:#e4e5f1;
 $div-height:95vh;
 
+$col-1:8.33%;
+$col-2:16.67%;
+$col-3:25%;
+$col-4:33.33%;
+$col-5:41.67%;
+$col-6:50%;
+$col-7:58.33%;
+$col-8:66.67%;
+$col-9:75%;
+$col-10:83.33%;
+$col-11:91.67%;
+$col-12:100%;
+
+
+$float-left:float-left;
+
+$bt-light:1px solid #ddd;
 $br-light:1px solid #ddd;
 $bl-light:1px solid #ddd;
 $bb-light:1px solid #ddd;
@@ -44,8 +61,16 @@ button:focus
 {
   box-shadow:0px 12px 20px -10px #999 !important;
 }
-.cl2 {width:16.667%;float:left;}
-.cl8 { width: 66.666%;float:left;}
+.cl2
+{
+  width:$col-2;
+  float:$float-left;
+}
+.cl8
+{
+  width:$col-8;
+  float:$float-left;
+}
 body
 {
   color:$text-color-darkset3;
@@ -135,12 +160,14 @@ body
   left:0;
   z-index:1031;
   box-shadow:1px 0px 2px #a0a0a0;/*App Left Menu Bar Material Shadow*/
+  opacity: 1;
   @include transition(all 0.15s linear .01s);
 }
 .left-menu-close .frame .slider-fix,
   .left-menu-close .frame .slider-fix .nav-item.pos-bl
 {
   left:-17%;
+  opacity: 0;
   @include transition(all 0.15s linear .01s);
 }
 .left-menu-close .wrap-cont
@@ -183,7 +210,7 @@ ul.nav.flex-column
   border-top:2px solid #fff;
   border-bottom:2px solid #ccc;
   @include transition( all 0.15s linear .01s );
-  color: #000;
+  color:#0275d8;
   background: rgba(0,0,0,0.02);
 }
 .fa-6 
@@ -209,23 +236,88 @@ ul.nav.flex-column
 
 
 /*Dashboard project css*/
-.bb
+.bt
 {
-  border-bottom: $bl-light;
+  border-top: $bl-light;
 }
 .crdHvr{
-  height:150px;
+  height:210px;
   border:1px solid #ddd;
   background:#FFF;
-  box-shadow:0px 1px 1px #a8a8a8;
+  box-shadow:none;
   @include transition( all 0.15s linear .01s );
   overflow: hidden;
 }
 .crdHvr:hover
 {
   cursor: pointer;
-  box-shadow: none;
+  box-shadow:0px 1px 1px #a8a8a8;  
   @include transition( all 0.15s linear .01s );
+}
+.crdHvr .collapse p,
+.crdHvr .collapsing p
+{
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  line-height: 22px;
+  max-height: 140px;
+  font-size: 15px;
+}
+.crdHvr .fa.fa-ellipsis-v
+{
+  position:relative;
+  left:3px;
+}
+.crdHvr h4 small
+{
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  line-height: 18px;
+  max-height: 40px;
+  font-size: 14px;
+}
+.crdHvr h4 span
+{
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  line-height: 18px;
+  max-height: 18px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width:1024px){
+.crdHvr
+{
+  height:210px;
+}
+.crdHvr p span
+{
+  display: block;  
+}
 }
 
 
@@ -263,7 +355,7 @@ ul.nav.flex-column
   .left-menu-close .frame .slider-fix,
     .left-menu-close .frame .slider-fix .nav-item.pos-bl
   {
-    left:-45%;
+   left:-45%;
     @include transition(all 0.15s linear .01s);
   }
 }
