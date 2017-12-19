@@ -13,17 +13,21 @@ $brand-primary:red;
 $text-color-darkset3:#525351;
 $text-color-darkset3-hover:#424341;
 $red-hover: #c9433f !important;
+
 $primary-color-light:#2295f8;
 $primary-color:#0275d8;
 $primary-color-dark:#0265c8;
 $primary-color-dark-hover:#0255b8;
+
 $secondary-color:#ffd741;
 $secondary-color-border:#efc731;
 $secondary-color-hover:#efc731;
 $secondary-color-border-hover:#dfb721;
+
 $body-bg1:#eeeeef;
 $body-bg2:#fff;
 $cont-bg1:#e4e5f1;
+
 $div-height:95vh;
 
 
@@ -43,10 +47,16 @@ $col-12:100%;
 
 $float-left:float-left;
 
+//border scss
 $bt-light:1px solid #ddd;
 $br-light:1px solid #ddd;
 $bl-light:1px solid #ddd;
 $bb-light:1px solid #ddd;
+$bt-second-clr:1px solid #ffd741;
+
+
+$aliceblue:aliceblue;
+
 
 $top-menu-height:47px;
 
@@ -56,11 +66,15 @@ $top-menu-height:47px;
 a:focus,
   a:hover,
     input:focus,
-      input:hover,
-        button:hover,
-            .fa:hover
+      button:hover,
+        .fa:hover
 {
   cursor:pointer;
+  outline:none;
+}
+input:hover
+{
+  cursor:text;
   outline:none;
 }
 /*remove box-shadow issues*/
@@ -247,7 +261,7 @@ body
 {
   height:$div-height;
 }
-ul.nav.flex-column
+.slider-fix ul.nav.flex-column
 {
   height:$div-height;
 }
@@ -305,9 +319,13 @@ ul.nav.flex-column
   box-shadow:0px 0px 3px #aaa;
   @include transition(all 0.15s linear .01s);
 }
+.bt-sc
+{
+  border-top: $bt-second-clr;
+}
 .bt
 {
-  border-top: $bl-light;
+  border-top:$bt-light;
 }
 .crdHvr{
   height:210px;
@@ -481,6 +499,10 @@ table.dataTable thead th,
 
 
 /*Bootstrap modal popup changed css*/
+.md //modal-dialog
+{
+  max-width: 50%;//by default max-width:500px;
+}
 .modal-dialog
 {
   margin:100px auto 30px;
@@ -489,12 +511,17 @@ table.dataTable thead th,
 {
   border-radius:0 0 0.3rem 0.3rem;
 }
+.modal-title
+{
+   text-shadow:-1px 3px 1px #0245a8;
+}
 .modal-header
 {
   background:$primary-color;
-  box-shadow:0px 15px 15px -10px #ccc;
+  box-shadow:0px 20px 15px -15px #aaa;
   border-bottom:transparent;
   color:#fff;
+  z-index: 99;
 }
 .modal-body
 {
@@ -513,12 +540,45 @@ table.dataTable thead th,
 }
 .modal-body input
 {
-  box-shadow:1px 1px 1px -1px #ccc;
+  box-shadow:0px 0px 1px -1px #ccc;
 }
+
+
+
+
+
+
+
+
+
 small
 {
   color:#000;
 }
+
+
+
+// backgrounds colors 
+  //.aliceblue
+  //{
+  //  background:$aliceblue;
+  //}
+
+
+
+
+//heading
+h5 
+{
+   border-bottom: 4px solid $secondary-color;
+   display: inline-block;
+}
+
+
+
+
+
+
 
 
 
@@ -527,7 +587,7 @@ small
 .adf .modal-body
 {
   height:400px;
-  margin:0;
+  margin:0 0 -18px;
   padding-top:0;
   position:relative;
   top:-21px;
