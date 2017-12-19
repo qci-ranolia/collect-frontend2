@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { HttpModule } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -11,6 +13,7 @@ import { FormBuilderComponent } from './home/form/form-builder/form-builder.comp
 import { FormModalComponent } from './home/form/form-builder/form-modal/form-modal.component';
 import { InputTextComponent } from './home/form/form-builder/input-text/input-text.component';
 import { ProjectService } from './service/ProjectService';
+import { APIService } from './service/APIService';
 import { InputPasswordComponent } from './home/form/form-builder/input-password/input-password.component';
 import { InputEmailComponent } from './home/form/form-builder/input-email/input-email.component';
 import { InputNumberComponent } from './home/form/form-builder/input-number/input-number.component';
@@ -33,6 +36,7 @@ import { ProjectComponent } from './home/project/project.component';
 import { DashboardComponent } from './home/dashboard/dashboard.component';
 import { OrganisationComponent } from './home/organisation/organisation.component';
 import { ResponseComponent } from './home/response/response.component';
+
 
 @NgModule({
   declarations: [
@@ -67,9 +71,13 @@ import { ResponseComponent } from './home/response/response.component';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     RouterModule.forRoot(routes, { useHash: true }),
   ],
-  providers: [ProjectService],
+  providers: [
+    ProjectService,
+    APIService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

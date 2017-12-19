@@ -8,7 +8,7 @@
     <div class="col-lg-12 col-md-12 row col-sm-12 ml-0 mt-5 mb-3 justify-content-md-center fn" style="display:none;">
       <div class="row col-lg-9 col-md-12 text-center bbot">
         <a class="col-lg-2 col-md-2 col-sm-2 col-xs-2 active">Forms</a>
-        <a class="col-lg-2 col-md-2 col-sm-2 col-xs-2 strt">Templates</a>    
+        <a class="col-lg-2 col-md-2 col-sm-2 col-xs-2 strt">Templates</a>
       </div>
     </div>
   <div class="tab-content">
@@ -35,6 +35,10 @@
             </div>
           </div>
         </div>
+
+      <br>
+      <button type="button" class="btn btn-primary mb-5 col-sm-5 col-md-4 col-lg-2 pt-3 pb-3" (click)='sync()'><i class="fa fa-refresh" aria-hidden="true"></i> Sync</button>
+
       </div>
       <div class="tab-pane " id="template" role="tabpanel" >
         <br>
@@ -113,7 +117,7 @@
         <label class="row ml-0 mr-0 col-12 pl-0 pr-0">
           <span class="col-4 pl-0 pr-0 pt-2 text-left">3. Value :</span>
           <input type="text" name="" value="" [(ngModel)]='ruleTarget' class="col-4 form-control" />
-          <small class="col-4 pl-0 pr-0 pt-2">* if mulitple values, separeate with comas</small>
+          <!-- <small class="col-4 pl-0 pr-0 pt-2">* if mulitple values, separeate with comas</small> -->
         <br>
         <i *ngIf='hint' > hint: {{hint}}</i><!--css not Defined yet-->
         </label>

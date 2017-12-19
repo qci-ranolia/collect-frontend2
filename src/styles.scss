@@ -124,6 +124,7 @@ body
   background:$secondary-color;
   border-color:$secondary-color-border;
   color:$text-color-darkset3;
+  font-weight: 800;
 }
 .btn-primary:hover
 {
@@ -194,7 +195,7 @@ body
 }
 .navbar-toggleable-md .fa.active
 {
-  display: block; 
+  display: block;
 }
 .navbar-toggleable-md .fa.active:hover
 {
@@ -258,7 +259,7 @@ ul.nav.flex-column
   @include transition(all 0.15s linear .01s);
   color:$text-color-darkset3;
   padding:1em;
-  text-transform:capitalize; 
+  text-transform:capitalize;
 }
 .slider-fix a.nav-link:hover
 {
@@ -268,7 +269,7 @@ ul.nav.flex-column
   color:$primary-color;
   background: rgba(0,0,0,0.02);
 }
-.fa-6 
+.fa-6
 {
   font-size:22px;
   width:45px;
@@ -311,7 +312,7 @@ ul.nav.flex-column
 }
 .crdHvr{
   height:210px;
-  border:1px solid transparent;  
+  border:1px solid transparent;
   background:#FFF;
   box-shadow:0px 12px 4px -10px #bbb;
   @include transition( all 0.15s linear .01s );
@@ -409,7 +410,7 @@ ul.nav.flex-column
 0% { width:0;height:0px; } 100%{ width:100%;height:5px; }
 } @-moz-keyframes widen {
 0% { width:0;height:0px; } 100%{ width:100%;height:5px; }
-} @-ms-keyframes widen { 
+} @-ms-keyframes widen {
 0% { width:0;height:0px; } 100%{ width:100%;height:5px; }
 } @keyframes widen {
 0% { width:0;height:0px; } 100%{ width:70px;height:5px;/* sass width thing */ }
@@ -474,7 +475,7 @@ table.dataTable thead th,
 {
   //width:100% !important;
   padding:4px 3px !important;
-  //font-size: 90%; 
+  //font-size: 90%;
 }
 
 
@@ -626,7 +627,7 @@ small
 }
 .crdHvr p span
 {
-  display: block;  
+  display: block;
 }
 }
 

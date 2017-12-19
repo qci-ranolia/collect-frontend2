@@ -1,11 +1,12 @@
 import { EventEmitter, Injectable, } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { APIService } from './APIService';
 
 @Injectable()
 export class ProjectService {
 
-  constructor() {}
+  constructor(private apiService: APIService) {}
 
   emitFormElement = new EventEmitter<any>();
   emitFormElementTemp = new EventEmitter<any>();
@@ -20,31 +21,31 @@ export class ProjectService {
   emitResponse = new EventEmitter<any>();
 
   formArray = [
-                { Details: { name: 'Form1', rule: 'None', project: 'Project 1', status:'Offline', cid:'1221' },
-                  Elements:  [{type: "text", required: false, name: "Name"},
-                                  {type: "email", required: false, hepltext: "", name: "Email ID"},
-                                  {type: "number", required: false, hepltext: "", name: "Number Input"},],
-                  Rules: [{name: 'Rule 1', elementName:'Name', elementType: "text", elementValue:"sam", template:1, tempCid: '2332', tempName: 'template1'},],
+                { Details: { name: 'Form1', rule: 'None', project: 'Project 1', status:'Offline', cid:'a1221' },
+                  Elements:  [{type: "text", required: false, name: "Name", value:"", cid:"a1", hepltext: ""},
+                                  {type: "email", required: false, hepltext: "", name: "Email ID", value:"", cid:"b1"},
+                                  {type: "number", required: false, hepltext: "", name: "Number Input", value:"", cid:"c1"},],
+                  Rules: [{cid:"211", name: 'Rule 1', elementName:'Name', elementType: "text", elementValue:"sam", template:1, tempCid: '2332', tempName: 'template1'},],
                 },
-                { Details: { name: 'Form2', rule: 'None', project: 'Project 2', status:'Online', cid:'2121' },
-                  Elements:  [{type: "text", required: false, name: "Name2"},
-                                  {type: "email", required: false, hepltext: "", name: "Email ID2"},
-                                  {type: "number", required: false, hepltext: "", name: "Number Input2"},],
+                { Details: { name: 'Form2', rule: 'None', project: 'Project 2', status:'Online', cid:'a2121' },
+                  Elements:  [{type: "text", required: false, name: "Name2", value:"", cid:"a11", hepltext: ""},
+                                  {type: "email", required: false, value:"", cid:"a12", hepltext: "", name: "Email ID2"},
+                                  {type: "number", required: false, value:"", cid:"a13", hepltext: "", name: "Number Input2"},],
                   Rules: [],
                 }
               ];
 
   templateArray = [
-                { Details:   { name: 'template1', rule: 'None', project:"N/A", cid:'2332'},
-                  Elements:  [{type: "text", required: false, name: "Name"},
-                                  {type: "email", required: false, hepltext: "", name: "Email ID"},
-                                  {type: "number", required: false, hepltext: "", name: "Number Input"},],
+                { Details:   { name: 'template1', rule: 'None', project:"N/A", cid:'2332b'},
+                  Elements:  [{type: "text", required: false, name: "Name", value:"", cid:"a1q", hepltext: ""},
+                                  {type: "email", required: false, value:"", cid:"a1b", hepltext: "", name: "Email ID"},
+                                  {type: "number", required: false, value:"", cid:"a1c", hepltext: "", name: "Number Input"},],
 
                 },
-                { Details:   { name: 'template2', rule: 'None', project:"N/A", cid:'2323' },
-                  Elements:  [{type: "text", required: false, name: "Name2"},
-                                {type: "email", required: false, hepltext: "", name: "Email ID2"},
-                                {type: "number", required: false, hepltext: "", name: "Number Input2"},],
+                { Details:   { name: 'template2', rule: 'None', project:"N/A", cid:'2323b' },
+                  Elements:  [{type: "text", required: false, name: "Name2", value:"", cid:"aa1", hepltext: ""},
+                                {type: "email", required: false, value:"", cid:"ba1", hepltext: "", name: "Email ID2"},
+                                {type: "number", required: false, value:"", cid:"ca1", hepltext: "", name: "Number Input2"},],
                 }
               ];
 
@@ -188,6 +189,7 @@ export class ProjectService {
     if(temp != undefined) {
       this.formArray[temp].Rules.push(newRule);
     }
+    console.log(newRule);
   }
 
   pushIntoForm(data: any) {
@@ -208,5 +210,11 @@ export class ProjectService {
     return (this.templateArray.length+'');
   }
 
+  syncAll() {
+    this.apiService.SyncAll(this.formArray, this.templateArray).subscribe(res=>{
+      console.log(res);
+      
+    });
+  }
 
 }
