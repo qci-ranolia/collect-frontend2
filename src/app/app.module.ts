@@ -33,11 +33,6 @@ import { ProjectComponent } from './home/project/project.component';
 import { DashboardComponent } from './home/dashboard/dashboard.component';
 import { OrganisationComponent } from './home/organisation/organisation.component';
 import { ResponseComponent } from './home/response/response.component';
-import { GraphsComponent } from './home/project/graphs/graphs.component';
-import { G1Component } from './home/project/graphs/g1/g1.component';
-import { G2Component } from './home/project/graphs/g2/g2.component';
-import { G3Component } from './home/project/graphs/g3/g3.component';
-import { G4Component } from './home/project/graphs/g4/g4.component';
 
 @NgModule({
   declarations: [
@@ -68,11 +63,6 @@ import { G4Component } from './home/project/graphs/g4/g4.component';
     DashboardComponent,
     OrganisationComponent,
     ResponseComponent,
-    GraphsComponent,
-    G1Component,
-    G2Component,
-    G3Component,
-    G4Component,
   ],
   imports: [
     BrowserModule,
