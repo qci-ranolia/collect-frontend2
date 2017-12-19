@@ -25,7 +25,7 @@ export class ProjectService {
                   Elements:  [{type: "text", required: false, name: "Name", value:"", cid:"a1", hepltext: ""},
                                   {type: "email", required: false, hepltext: "", name: "Email ID", value:"", cid:"b1"},
                                   {type: "number", required: false, hepltext: "", name: "Number Input", value:"", cid:"c1"},],
-                  Rules: [{cid:"211", name: 'Rule 1', elementName:'Name', elementType: "text", elementValue:"sam", template:1, tempCid: '2332', tempName: 'template1'},],
+                  Rules: [{cid:"211", name: 'Rule 1', elementName:'Name', elementType: "text", elementValue:"sam",elementCid:"a1", tempCid: '2332b', tempName: 'template1'},],
                 },
                 { Details: { name: 'Form2', rule: 'None', project: 'Project 2', status:'Online', cid:'a2121' },
                   Elements:  [{type: "text", required: false, name: "Name2", value:"", cid:"a11", hepltext: ""},
@@ -213,7 +213,7 @@ export class ProjectService {
   syncAll() {
     this.apiService.SyncAll(this.formArray, this.templateArray).subscribe(res=>{
       console.log(res);
-      
+
     });
   }
 

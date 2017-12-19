@@ -82,7 +82,7 @@ export class FormComponent implements OnInit {
     let tempName = this.ruleTempTail.Details.name;
     let now = new Date();
     let cid = now.getTime() +""+ Math.floor(1000 + Math.random() * 9000);
-    let newRule = {cid:cid, name: this.ruleName, elementName: this.ruleElement.name, elementType: this.ruleElement.type, elementValue: this.ruleTarget.trim(), condition: this.ruleCondition, tempCid: tempCid, tempName: tempName};
+    let newRule = {cid:cid, name: this.ruleName, elementName: this.ruleElement.name,elementCid: this.ruleElement.cid, elementType: this.ruleElement.type, elementValue: this.ruleTarget.trim(), condition: this.ruleCondition, tempCid: tempCid};
     this.projectService.addNewRule(this.formCIDWithRule, newRule);
 
     // {name: 'Rule 1', elementName:'Name', elementType: "text", elementValue:"sam", template:1, tempCid: '2332', tempName: 'template1'},
