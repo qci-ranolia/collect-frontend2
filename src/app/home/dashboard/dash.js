@@ -18,6 +18,9 @@ $(function(){
 $(function(){
 "use strict";
     if ( window.innerWidth <= 1024 ) {
+        $("body").addClass("left-menu-close");
+        $('.navbar-toggleable-md').find(".fa-times").removeClass("active");
+        $('.navbar-toggleable-md').find(".fa-bars").addClass("active");
         $(".nav-link").click(function(){
             $('body').addClass('left-menu-close');
             $('.navbar-toggleable-md').find(".fa-times").removeClass("active");

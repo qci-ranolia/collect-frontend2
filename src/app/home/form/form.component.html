@@ -23,7 +23,7 @@
                   <h6 class="card-subtitle col-sm-12 mb-2 text-muted">{{form.Details.project}}</h6>
                 </div>
                 <div class="col-sm-12 p-3 row m-0">
-                  <p class="card-text col-sm-12">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <p class="card-text col-sm-12">Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                   <!-- <a href="#" class="card-link">Rule: {{form.Details.rule}}</a> -->
                   <a href="#" class="card-link col-6 d-inline-block">{{form.Details.status}}</a>
                   <a href="#" class="card-link col-6 d-inline-block ml-0" [routerLink]="['../formBuilder']" [queryParams]="{formID : form.Details.cid }" >View form</a>
@@ -39,7 +39,7 @@
       <div class="tab-pane " id="template" role="tabpanel" >
         <br>
         <div class="row justify-content-center" >
-          <div *ngFor='let temp of templateArray; let i = index' class="col-6"  style="margin-bottom:15px">
+          <div *ngFor='let temp of templateArray; let i = index' class="col-sm-6"  style="margin-bottom:15px">
             <div class="card cbx">
               <div class="card-block">
                 <h4 class="card-title">{{temp.Details.name}}</h4>

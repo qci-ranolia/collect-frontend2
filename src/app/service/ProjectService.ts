@@ -49,9 +49,9 @@ export class ProjectService {
               ];
 
   projectArray = [
-    {name: 'Project 1', form: '10', user: '8', assessor: '10', desc:'This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil'},
-    {name: 'Project 2', form: '2', user: '1', assessor: '13',  desc:'This is again a test project about different design concepts we can adopt to show a card design. sit amet chip  c '},
-    {name: 'Project 3', form: '10', user: '2', assessor: '3',  desc:'This is again  a test project about different design concepts we can adopt to show a card design. Lorem ipsum dole il'},
+    {name: 'Project Name Here 1', form: '1', user: '8', assessor: '1', desc:'This is a test project about different design concepts we can adopt to show a card design. Lorem iThis is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kilpsum doler sit kil This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil'},
+    {name: 'Project Name Here 2', form: '2', user: '1', assessor: '13',  desc:'This is again a test project about different design concepts we can adopt to show a card design. sit amet chip c This is a test project about different design concepts we can adopt to show a card designThis is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil. Lorem ipsum doler sit   kil'},
+    {name: 'Project Name Here 3', form: '1', user: '2', assessor: '3',  desc:'This is again  a test project about different design concepts we can adopt to show a card design. Lorem ipsum dole il This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil  kil'},
   ];
 
   responseArray1 = [

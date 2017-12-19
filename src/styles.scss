@@ -12,6 +12,7 @@
 $brand-primary:red;
 $text-color-darkset3:#525351;
 $text-color-darkset3-hover:#424341;
+$red-hover: #c9433f !important;
 $primary-color-light:#2295f8;
 $primary-color:#0275d8;
 $primary-color-dark:#0265c8;
@@ -24,6 +25,7 @@ $body-bg1:#eeeeef;
 $body-bg2:#fff;
 $cont-bg1:#e4e5f1;
 $div-height:95vh;
+
 
 $col-1:8.33%;
 $col-2:16.67%;
@@ -98,18 +100,19 @@ body
 }
 ::-webkit-scrollbar-thumb
 {
-	border-radius: 0px;
-	background-color: #FFF;
-	background-image: -webkit-gradient(linear, 10% 0%, 45% 54%, from( #ccc ), to( #ccc ), color-stop( .6, #999 ));/* 24a1b5 : 28b6cc */
+	border-radius:0px;
+	background-color:#FFF;
+	background-image:-webkit-gradient(linear, 10% 0%, 45% 54%, from( #ccc ), to( #ccc ), color-stop( .6, #999 ));/* 24a1b5 : 28b6cc */
 }
 ::-webkit-scrollbar-thumb:hover
 {
-  background-image: -webkit-gradient(linear, 10% 0%, 45% 54%, from( #bbb ), to( #bbb ), color-stop( .6, #888 ));
-  cursor: pointer;
+  background-image:-webkit-gradient(linear, 10% 0%, 45% 54%, from( #bbb ), to( #bbb ), color-stop( .6, #888 ));
+  cursor:pointer;
 }
 .btn
 {
   box-shadow:0px 15px 20px -10px #ddd;/* App Button Material Shadow Surface */
+  font-weight:bold;
 }
 .btn:hover
 {
@@ -138,19 +141,19 @@ body
 {
   box-shadow: 0px 2px 2px #ccc;
   @include transition(all 0.15s linear .01s);
-  background:linear-gradient(#fcfcfc, #fafafa);
-  background:-webkit-linear-gradient(#fcfcfc, #fafafa);
-  background:-moz-linear-gradient(#fcfcfc, #fafafa);
-  background:-ms-linear-gradient(#fcfcfc, #fafafa);
+  background:linear-gradient(#fefefe, #f8f8f8);
+  background:-webkit-linear-gradient(#fefefe, #f8f8f8);
+  background:-moz-linear-gradient(#fefefe, #f8f8f8);
+  background:-ms-linear-gradient(#fefefe, #f8f8f8);
 }
 .cbx:hover
 {
   box-shadow:none;
   @include transition(all 0.15s linear .01s);
-  background:linear-gradient(#fafafa, #fcfcfc);
-  background:-webkit-linear-gradient(#fafafa, #fcfcfc);
-  background:-moz-linear-gradient(#fafafa, #fcfcfc);
-  background:-ms-linear-gradient(#fafafa, #fcfcfc);
+  background:linear-gradient(#f8f8f8, #fefefe);
+  background:-webkit-linear-gradient(#f8f8f8, #fefefe);
+  background:-moz-linear-gradient(#f8f8f8, #fefefe);
+  background:-ms-linear-gradient(#f8f8f8, #fefefe);
 }
 .pos-bl
 {
@@ -166,8 +169,8 @@ body
 /*Navigation*/
 .navbar-toggleable-md
 {
-  box-shadow:0px 20px 15px -15px #ccc;/*App Top Menu Bar Material Shadow*/
-  height: $top-menu-height;
+  box-shadow:0px 20px 15px -15px #aaa;/*App Top Menu Bar Material Shadow*/
+  height:$top-menu-height;
 }
 .navbar-toggleable-md .fa.text-white
 {
@@ -197,6 +200,10 @@ body
 {
   background:$primary-color-dark-hover;
 } /*Hamburger Menu Ends*/
+.fa-sign-out:hover {
+  color:$red-hover;
+}
+
 /*Navigation Left*/
 .slider-fix
 {
@@ -284,22 +291,37 @@ ul.nav.flex-column
 
 
 /*Dashboard project css*/
+.homeDivStyle
+{
+  border:1px solid #ccc;
+  background:#fafafa;
+  box-shadow:none;
+  @include transition(all 0.15s linear .01s);
+}
+.homeDivStyle:hover
+{
+  border:1px solid transparent;
+  background:#f7f7f7;
+  box-shadow:0px 0px 3px #aaa;
+  @include transition(all 0.15s linear .01s);
+}
 .bt
 {
   border-top: $bl-light;
 }
 .crdHvr{
   height:210px;
-  border:1px solid #ddd;
+  border:1px solid transparent;  
   background:#FFF;
-  box-shadow:none;
+  box-shadow:0px 12px 4px -10px #bbb;
   @include transition( all 0.15s linear .01s );
   overflow: hidden;
 }
 .crdHvr:hover
 {
   cursor: pointer;
-  box-shadow:0px 1px 1px #a8a8a8;  
+  border:1px solid #ddd;
+  box-shadow:0px 6px 5px -5px #999;
   @include transition( all 0.15s linear .01s );
 }
 .crdHvr .collapse p,
@@ -337,8 +359,8 @@ ul.nav.flex-column
   -webkit-line-clamp:1;
   overflow:hidden;
   -webkit-box-orient:vertical;
-  line-height:18px;
-  max-height:18px;
+  line-height:25px;
+  max-height:25px;
 }
 
 
@@ -476,14 +498,27 @@ table.dataTable thead th,
 }
 .modal-body
 {
-  margin-top:25px;
+  padding-top:25px;
+  background: #fbfbfb;
 }
 .modal-backdrop.show
 {
   opacity: 0.7;
 }
-
-
+.modal-footer
+{
+  box-shadow:-3px -15px 20px -20px #999;
+  border:none;
+  z-index: 99;
+}
+.modal-body input
+{
+  box-shadow:1px 1px 1px -1px #ccc;
+}
+small
+{
+  color:#000;
+}
 
 
 
@@ -545,7 +580,43 @@ table.dataTable thead th,
   //border-color:transparent;
   @include transition( all 0.15s linear .01s );
 
-}.adf .flex-column .nav-link { color: $text-color-darkset3;}
+}
+.adf .flex-column .nav-link
+{
+  color:$text-color-darkset3;
+}
+.adf .flex-column .nav-link:hover
+{
+  color:$text-color-darkset3-hover;
+}
+
+
+
+
+
+
+
+
+
+//font awesome css
+.fa-arrow-up,
+.fa-arrow-down,
+  .fa-trash-o
+  {
+    opacity: 0.2;
+    @include transition( all 0.15s linear .01s );
+  }
+  .fa:hover
+      {
+        opacity: 1;
+        @include transition( all 0.15s linear .01s );
+      }
+
+
+
+
+
+
 
 
 @media only screen and (max-width:1024px){

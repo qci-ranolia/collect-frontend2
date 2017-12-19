@@ -1,3 +1,37 @@
-<p>
-  user works!
-</p>
+
+<div class="container-fluid mt-4 pb-3" style="background:#fff;">
+    <table *ngIf='flag' id="example" class="display pt-4 pb-4 text-left" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr *ngFor='let res of responces; let i = index'>
+                <td>{{res.name}}</td>
+                <td>{{res.position}}</td>
+                <td>{{res.office}}</td>
+                <td>{{res.age}}</td>
+                <td>{{res.startDate}}</td>
+                <td>{{res.salary}}</td>
+            </tr>
+    </tbody>
+    </table>
+    
+    <button type="button" class="btn btn-primary col-sm-3 col-md-2 pt-3 pb-3 mt-4" (click)='reload()'>Reload</button>
+</div>
