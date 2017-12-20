@@ -94,6 +94,7 @@ export class ProjectService {
   addNewProject(pname: string, pdesc: string) {
     this.projectArray.push({name: pname, desc: pdesc, form:'N/A', user: 'N/A', assessor: 'N/A'});
     this.getProject();
+
   }
 
   getResponce2() {
@@ -177,11 +178,50 @@ export class ProjectService {
 
   }
 
-  addNewRule(cid: any,newRule: any) {
+  addNewRule(fcid: any,newRule: any) {
+
+    if(newRule.ruleFormQuestion != undefined) {
+      let now = new Date();
+      let cid = now.getTime() +""+ Math.floor(1000 + Math.random() * 9000);
+
+      let template: any = {Details:{},Elements:[]};       // generate new template
+      template.Details.name = 'Form question';            // generate template properties
+      template.Details.rule = '';
+      template.Details.project = '';
+      template.Details.cid = cid;
+      template.Elements.push(newRule.ruleFormQuestion);   // push elements
+      console.log(template);
+      this.templateArray.push(template);                  // push new generated template on the template array
+
+      console.log("1");
+      for(let i = 0; i< this.formArray.length; i++) {
+        console.log(this.formArray[i]);
+        console.log(fcid);
+          if(this.formArray[i].Details.cid == fcid) {
+            console.log(this.formArray[i]);
+            for(let j=0; j< this.formArray[i].Elements.length; j++) {
+              console.log("4");
+              if(this.formArray[i].Elements[j].cid == newRule.ruleFormQuestion.cid) {
+                console.log("here");
+                this.formArray[i].Elements.splice(j,1);
+                console.log(this.formArray);
+                break;
+
+              }
+            }
+          }
+      }
+
+      newRule.tempCid = cid;                               // insert tempID on the rule list
+      newRule.tempName = template.Details.name;            // insert temp Name on the rule list
+      console.log(newRule);
+
+    }
+
     let i=0;
     let temp: any;
     for(i=0; i<this.formArray.length; i++) {
-      if(cid == this.formArray[i].Details.cid) {
+      if(fcid == this.formArray[i].Details.cid) {
         temp = i;
         break;
       }

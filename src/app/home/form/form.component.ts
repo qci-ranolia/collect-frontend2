@@ -25,7 +25,7 @@ export class FormComponent implements OnInit {
   ruleTarget: any;
   ruleID: any;
   ruleName: any;
-
+  ruleFormQuestion: any;
   rulesArray: any=[];
   formCIDWithRule: any;
 
@@ -78,14 +78,19 @@ export class FormComponent implements OnInit {
 
   conformRule() {
 
-    let tempCid = this.ruleTempTail.Details.cid;
-    let tempName = this.ruleTempTail.Details.name;
+    let tempCid = "";
+    let tempName = "";
+    if(this.ruleTempTail==undefined) {
+
+    } else {
+      tempCid = this.ruleTempTail.Details.cid;
+      tempName = this.ruleTempTail.Details.name;
+    }
     let now = new Date();
     let cid = now.getTime() +""+ Math.floor(1000 + Math.random() * 9000);
-    let newRule = {cid:cid, name: this.ruleName, elementName: this.ruleElement.name,elementCid: this.ruleElement.cid, elementType: this.ruleElement.type, elementValue: this.ruleTarget.trim(), condition: this.ruleCondition, tempCid: tempCid};
+    let newRule = {cid:cid, name: this.ruleName, elementName: this.ruleElement.name,elementCid: this.ruleElement.cid, elementType: this.ruleElement.type, elementValue: this.ruleTarget.trim(), condition: this.ruleCondition, tempCid: tempCid, tempName: tempName, ruleFormQuestion: this.ruleFormQuestion};
     this.projectService.addNewRule(this.formCIDWithRule, newRule);
 
-    // {name: 'Rule 1', elementName:'Name', elementType: "text", elementValue:"sam", template:1, tempCid: '2332', tempName: 'template1'},
   }
 
   sync() {
