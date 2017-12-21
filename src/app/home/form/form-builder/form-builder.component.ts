@@ -71,7 +71,7 @@ export class FormBuilderComponent implements OnInit {
       res = JSON.stringify(res);
       res = JSON.parse(res);
       this.jsonArray.push(res);
-      // console.log(this.jsonArray);
+      console.log(this.jsonArray);
       this.displayPublish = true;
 
     });
@@ -97,23 +97,23 @@ export class FormBuilderComponent implements OnInit {
 
     });
 
-    this.sub6 = this.projectService.emitUpElement.subscribe((res)=>{
-
-      let temp1 = this.jsonArray[(parseInt(res)-1)];
-      this.jsonArray.splice((parseInt(res)-1),1);
-      this.jsonArray.splice(parseInt(res), 0, temp1);
-    });
-
-    this.sub7 = this.projectService.emitDownElement.subscribe((res)=>{
-
-      if(res < (this.jsonArray.length-1)) {
-
-        let temp2 = this.jsonArray[(parseInt(res)+1)];
-        this.jsonArray.splice((parseInt(res)+1),1);
-        this.jsonArray.splice(parseInt(res), 0, temp2);
-      }
-
-    });
+    // this.sub6 = this.projectService.emitUpElement.subscribe((res)=>{
+    //
+    //   let temp1 = this.jsonArray[(parseInt(res)-1)];
+    //   this.jsonArray.splice((parseInt(res)-1),1);
+    //   this.jsonArray.splice(parseInt(res), 0, temp1);
+    // });
+    //
+    // this.sub7 = this.projectService.emitDownElement.subscribe((res)=>{
+    //
+    //   if(res < (this.jsonArray.length-1)) {
+    //
+    //     let temp2 = this.jsonArray[(parseInt(res)+1)];
+    //     this.jsonArray.splice((parseInt(res)+1),1);
+    //     this.jsonArray.splice(parseInt(res), 0, temp2);
+    //   }
+    //
+    // });
 
   }
 
@@ -171,17 +171,17 @@ export class FormBuilderComponent implements OnInit {
 
     let id = this.projectService.calFormArrayLength();
     let now = new Date();
-    let cid = now.getTime() + id;
+    let cid = now.getTime() + id +""+ Math.floor(1000 + Math.random() * 9000);
     let dataToPush = {Details: {name: this.newFormName, rule: 'None', project: this.newFormProjectName, status:'Offline', cid: cid }, Elements:this.jsonArray,  Rules:[]}
     this.projectService.pushIntoForm(dataToPush);
 
   }
 
   conformTemp() {
-    
+
     let id = this.projectService.calTemplateArrayLength();
     let now = new Date();
-    let cid = now.getTime() + id;
+    let cid = now.getTime() + id +""+ Math.floor(1000 + Math.random() * 9000);
     let dataToPush = {Details: {name: this.newTempName, rule: 'None', project: 'N/A', cid: cid }, Elements:this.jsonArray};
     this.projectService.pushIntoTemplate(dataToPush);
 
@@ -194,8 +194,8 @@ export class FormBuilderComponent implements OnInit {
     this.sub3.unsubscribe();
     this.sub4.unsubscribe();
     this.sub5.unsubscribe();
-    this.sub6.unsubscribe();
-    this.sub7.unsubscribe();
+    // this.sub6.unsubscribe();
+    // this.sub7.unsubscribe();
   }
 
 }

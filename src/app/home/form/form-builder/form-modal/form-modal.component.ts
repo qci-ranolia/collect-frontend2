@@ -39,6 +39,7 @@ export class FormModalComponent implements OnInit {
     } else {
       this.required = true;
     }
+    console.log(this.required);
   }
 
   checkVal(opt) {
@@ -81,28 +82,42 @@ export class FormModalComponent implements OnInit {
       }
       this.resultArray.splice(pos,1);
     }
-    console.log(this.resultArray);
+    // console.log(this.resultArray);
   }
 
   addElement() {
     this.json.required = this.required;
     this.json.hepltext =  this.helptext;
     this.json.name =  this.name;
+    this.json.value = "";
+    let now = new Date();
+    this.json.cid = now.getTime() +""+ Math.floor(1000 + Math.random() * 9000);
 
     if(this.json.type === "number" || this.json.type === "date" || this.json.type === "time"  || this.json.type === "slider") {
-      this.json.rangeFrom = this.rangeFrom;
+      // console.log('type : number');
+      // console.log(this.rangeFrom);
+      // console.log(this.rangeTo);
+      // this.json.rangeFrom = this.rangeFrom;
       this.json.rangeTo = this.rangeTo;
       this.json.value = this.value;
     }
 
     if(this.json.type === "radio" || this.json.type === "dropdown" ) {
+      // console.log('type : radio');
       this.json.value = this.value;
       this.json.option = this.option.split(',');
     }
 
     if(this.json.type === "checkbox" ) {
-      this.json.values = this.values.split(',');
-      this.json.option = this.option.split(',');
+      // console.log('type : checkbox');
+      // console.log(this.values);
+      // console.log(this.option);
+      if(this.values!=[] && this.values!=""){
+        this.json.values = this.values.split(',');
+      }
+      if(this.option!=[] && this.option!="") {
+        this.json.option = this.option.split(',');
+      }
     }
 
     if(this.json.type === "file") {

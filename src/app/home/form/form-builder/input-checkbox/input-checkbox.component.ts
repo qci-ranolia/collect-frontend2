@@ -31,10 +31,12 @@ export class InputCheckboxComponent implements OnInit {
 
   checkVal(opt) {
     let flg = false;
-
-    for(let j=0; j<this.values.length; j++) {
-      if(opt == this.values[j]) {
-          flg = true;
+    // console.log(this.values);
+    if(this.values!=undefined) {
+      for(let j=0; j<this.values.length; j++) {
+        if(opt == this.values[j]) {
+            flg = true;
+        }
       }
     }
 
