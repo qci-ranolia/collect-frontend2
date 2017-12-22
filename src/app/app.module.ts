@@ -36,6 +36,7 @@ import { ProjectComponent } from './home/project/project.component';
 import { DashboardComponent } from './home/dashboard/dashboard.component';
 import { OrganisationComponent } from './home/organisation/organisation.component';
 import { ResponseComponent } from './home/response/response.component';
+import { ResponseTableComponent } from './home/response/response-table/response-table.component';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import { ResponseComponent } from './home/response/response.component';
     DashboardComponent,
     OrganisationComponent,
     ResponseComponent,
+    ResponseTableComponent,
   ],
   imports: [
     BrowserModule,

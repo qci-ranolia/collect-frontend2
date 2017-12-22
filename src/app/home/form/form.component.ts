@@ -28,6 +28,7 @@ export class FormComponent implements OnInit {
   ruleFormQuestion: any;
   rulesArray: any=[];
   formCIDWithRule: any;
+  satisfyAll = false;
 
   constructor( private projectService: ProjectService, private router: Router ){
     this.fArray = this.projectService.emitFormArray.subscribe((res)=>{
@@ -76,6 +77,14 @@ export class FormComponent implements OnInit {
     // console.log(this.ruleCondition);
   }
 
+  satisfyAllCondition() {
+      if(this.satisfyAll) {
+        this.satisfyAll = false;
+      } else {
+        this.satisfyAll = true;
+      }
+  }
+
   conformRule() {
 
     let tempCid = "";
@@ -88,8 +97,10 @@ export class FormComponent implements OnInit {
     }
     let now = new Date();
     let cid = now.getTime() +""+ Math.floor(1000 + Math.random() * 9000);
-    let newRule = {cid:cid, name: this.ruleName, elementName: this.ruleElement.name,elementCid: this.ruleElement.cid, elementType: this.ruleElement.type, elementValue: this.ruleTarget.trim(), condition: this.ruleCondition, tempCid: tempCid, tempName: tempName, ruleFormQuestion: this.ruleFormQuestion};
+    let newRule = {cid:cid, name: this.ruleName, elementName: this.ruleElement.name,elementCid: this.ruleElement.cid, elementType: this.ruleElement.type, elementValue: this.ruleTarget.trim(), condition: this.ruleCondition, tempCid: tempCid, tempName: tempName, ruleFormQuestion: this.ruleFormQuestion, satisfyAll: this.satisfyAll};
     this.projectService.addNewRule(this.formCIDWithRule, newRule);
+
+    
 
   }
 

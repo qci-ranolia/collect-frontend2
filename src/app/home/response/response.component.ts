@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import {ProjectService} from '../../service/ProjectService';
 declare var $: any;
@@ -11,13 +12,14 @@ import 'datatables.net';
 })
 export class ResponseComponent implements OnInit {
 
-  responces: any;
+  response: any;
   flag = false;
+  sub: any;
 
-  constructor(private projectService: ProjectService) {
-    this.projectService.emitResponse.subscribe(res=>{
-      console.log(res);
-      this.responces = res;
+  constructor(private projectService: ProjectService, private router: Router) {
+    this.sub = this.projectService.emitResponse.subscribe(res=>{
+      // console.log(res);
+      this.response = res;
       this.flag = true;
       this.display();
     });
@@ -29,18 +31,35 @@ export class ResponseComponent implements OnInit {
 
   display() {
     if(this.flag) {
-      $(document).ready(function() {
-        $('#example').DataTable();
+       $(document).ready(function() {
+        var t = $('#example').DataTable({
+          "columnDefs": [ {
+            "searchable": false,
+            "orderable": false,
+            "targets": 0
+        } ],
+        "order": [[ 1, 'asc' ]]
+        });
+        t.on( 'order.dt search.dt', function () {
+            t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                cell.innerHTML = i+1;
+            } );
+        }).draw();
+
       });
     }
   }
 
+  getData(data) {
+    this.router.navigate(['dash/resTable'], { queryParams: { id: data } });
+  }
+
   reload() {
-    this.responces = [];
-    this.flag = false;
-    console.log('res1');
-    this.projectService.getResponce2();
+
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }
-  

@@ -74,6 +74,7 @@
                 <h5>{{i+1}}. Rule Name: {{rule.name}} </h5>
                 <p>Element: {{rule.elementName}} </p>
                 <p>Condition: {{rule.elementValue}} </p>
+
                 <hr>
                 Associated Template: <b>{{rule.tempName}}</b>
                 <hr>
@@ -120,7 +121,10 @@
           <input type="text" name="" value="" [(ngModel)]='ruleTarget' class="col-4 form-control" />
         <br>
         <i *ngIf='hint' > hint: {{hint}}</i><!--css not Defined yet-->
+        <i>(* If multiple, saparated by commas)</i>
         </label>
+
+        <input type="checkbox" class="form-check-input" [checked]="satisfyAll" (change)='satisfyAllCondition()'> Satisfy all conditions (Only if multiple!)
 
         <label class="row ml-0 mr-0 col-12 pl-0 pr-0">
           <span class="col-4 pl-0 pr-0 pt-2 text-left">4. Associate template:</span>

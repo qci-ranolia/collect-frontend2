@@ -19,13 +19,14 @@ export class ProjectService {
   emitDownElement = new EventEmitter<any>();
   emitProject = new EventEmitter<any>();
   emitResponse = new EventEmitter<any>();
+  emitResTable = new EventEmitter<any>();
 
   formArray = [
                 { Details: { name: 'Form1', rule: 'None', project: 'Project 1', status:'Offline', cid:'a1221' },
                   Elements:  [{type: "text", required: false, name: "Name", value:"", cid:"a1", hepltext: ""},
                                   {type: "email", required: false, hepltext: "", name: "Email ID", value:"", cid:"b1"},
                                   {type: "number", required: false, hepltext: "", name: "Number Input", value:"", cid:"c1"},],
-                  Rules: [{cid:"211", name: 'Rule 1', elementName:'Name', elementType: "text", elementValue:"sam",elementCid:"a1", tempCid: '2332b', tempName: 'template1'},],
+                  Rules: [{cid:"211", name: 'Rule 1', elementName:'Name', elementType: "text", elementValue:"sam",elementCid:"a1", tempCid: '2332b', tempName: 'template1', satisfyAll:false},],
                 },
                 { Details: { name: 'Form2', rule: 'None', project: 'Project 2', status:'Online', cid:'a2121' },
                   Elements:  [{type: "text", required: false, name: "Name2", value:"", cid:"a11", hepltext: ""},
@@ -253,8 +254,17 @@ export class ProjectService {
   syncAll() {
     this.apiService.SyncAll(this.formArray, this.templateArray).subscribe(res=>{
       console.log(res);
-
     });
+  }
+
+  emitResponseForResTable(data) {
+    let tempArray :any = [];
+    for(let m of this.responseArray1) {
+        if(m.office == data) {
+          tempArray.push(m);
+        }
+    }
+    this.emitResTable.emit(tempArray);
   }
 
 }

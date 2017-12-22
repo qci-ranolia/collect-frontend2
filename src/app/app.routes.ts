@@ -9,16 +9,18 @@ import { ProjectComponent } from './home/project/project.component';
 import { DashboardComponent } from './home/dashboard/dashboard.component';
 import { OrganisationComponent } from './home/organisation/organisation.component';
 import { ResponseComponent } from './home/response/response.component';
+import { ResponseTableComponent } from './home/response/response-table/response-table.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'forms', component:  FormComponent},
   { path: 'formBuilder', component:  FormBuilderComponent},
   { path: 'dash', component:  DashboardComponent, children: [
-    { path: '', component: FormComponent},
+    { path: '', component: ResponseComponent},
     { path: 'form', component: FormComponent},
     { path: 'formBuilder', component:  FormBuilderComponent},
     { path: 'response', component: ResponseComponent},
     { path: 'org', component: OrganisationComponent},
+    { path: 'resTable', component: ResponseTableComponent},
   ]}
 ];
