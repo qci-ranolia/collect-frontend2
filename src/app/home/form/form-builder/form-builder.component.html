@@ -1,4 +1,16 @@
-<div class="container form-container text-center col-sm-8 mt-4 cbx" style="background:#fff;">
+<div class="col-sm-12 row m-0">
+  <div class="col-sm-6 pl-0 pr-0 pt-5">
+    <ol class="breadcrumb mb-0 bg-trans p-0">
+      <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+      <li class="breadcrumb-item"><a href="#">Forms</a></li>
+      <li class="breadcrumb-item active">Form Builder</li>
+    </ol>
+  </div>
+  <div class="col-sm-6 pl-0 pr-0 pt-1">
+    &nbsp;
+  </div>
+</div>
+<div class="container form-container text-center col-sm-12 mt-4 cbx" style="background:#fff;">
   <br />
   <h3>QCI Form Builder &reg;</h3>
   <div class="row justify-content-center">
@@ -14,31 +26,31 @@
         <div *ngIf="json.type == 'location'" >
             <input type="checkbox" name="checkbox" checked disabled> &nbsp; Form submition location will be shared by default &nbsp; <i class="fa fa-trash-o" aria-hidden="true" (click)='deleteElement(i)' ></i>
         </div>
-        <div *ngIf="json.type == 'text'" >
+        <div *ngIf="json.type == 'text'">
           <app-input-text name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} >  </app-input-text>
         </div>
         <div *ngIf="json.type == 'password'" >
           <app-input-password name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} >  </app-input-password>
         </div>
-        <div *ngIf="json.type == 'email'" >
+        <div *ngIf="json.type == 'email'">
           <app-input-email name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} >  </app-input-email>
         </div>
-        <div *ngIf="json.type == 'number'" >
+        <div *ngIf="json.type == 'number'">
           <app-input-number name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} rangeFrom={{json.rangeFrom}} rangeTo={{json.rangeTo}} >  </app-input-number>
         </div>
-        <div *ngIf="json.type == 'phone'" >
+        <div *ngIf="json.type == 'phone'">
           <app-input-phone name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} >  </app-input-phone>
         </div>
-        <div *ngIf="json.type == 'textarea'" >
+        <div *ngIf="json.type == 'textarea'">
           <app-input-textarea name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} >  </app-input-textarea>
         </div>
-        <div *ngIf="json.type == 'date'" >
+        <div *ngIf="json.type == 'date'">
           <app-input-date name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} rangeFrom={{json.rangeFrom}} rangeTo={{json.rangeTo}} >  </app-input-date>
         </div>
-        <div *ngIf="json.type == 'time'" >
+        <div *ngIf="json.type == 'time'">
           <app-input-time name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} rangeFrom={{json.rangeFrom}} rangeTo={{json.rangeTo}} >  </app-input-time>
         </div>
-        <div *ngIf="json.type == 'radio'" >
+        <div *ngIf="json.type == 'radio'">
           <app-input-radio name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [option]=json.option >  </app-input-radio>
         </div>
         <div *ngIf="json.type == 'checkbox'" >
@@ -59,11 +71,11 @@
       </div>
       <br />
       <div *ngIf='displayPublish' >
-          <button *ngIf='displayPublishForm' type="button" class="btn btn-success" (click)='publishForm()'> {{sumbitForm}} </button>
+          <button *ngIf='displayPublishForm' type="button" class="btn btn-success col-sm-2 pt-3 pb-3" (click)='publishForm()'> {{sumbitForm}} </button>
       </div>
       <br />
       <div *ngIf='displayPublish' >
-          <button *ngIf='displayPublishTemp' type="button" class="btn btn-success" (click)='publishTemplate()'> {{sumbitTemp}} </button>
+          <button *ngIf='displayPublishTemp' type="button" class="btn btn-success col-sm-2 pt-3 pb-3" (click)='publishTemplate()'> {{sumbitTemp}} </button>
       </div>
       <br />
     </div>
@@ -83,17 +95,25 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New Form</h5>
+        <h5 class="modal-title" id="exampleModalLabel">+ New Form</h5>
       </div>
-      <div class="modal-body" style="height:200px;  ">Form Name:
-        <input type="text" name="" id="" [(ngModel)]=newFormName>
-        <br />
-        Project:
-        <input type="text" name="" id="" [(ngModel)]=newFormProjectName>
+      <div class="modal-body" style="height:200px;  ">
+        <form class="col-sm-12">
+          <fieldset class="form-group row">
+            <input class="form-control pl-0" id="fn" type="text" name="" value="" [(ngModel)]=newFormName required />
+            <label class="col-form-label" for="fn">Form Name:</label>
+            <div class="after"></div>
+          </fieldset>
+          <fieldset class="form-group row">
+            <input class="form-control pl-0" id="pr" type="text" name="" value="" [(ngModel)]=newFormProjectName required />
+            <label class="col-form-label" for="pr">Project:</label>
+            <div class="after"></div>
+          </fieldset>
+        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)='conformForm()'  data-dismiss="modal" >Publish new Form</button>
+        <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary col-sm-5 pt-3 pb-3" (click)='conformForm()'  data-dismiss="modal" >Publish new Form</button>
       </div>
     </div>
   </div>
@@ -102,12 +122,16 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New Template</h5>
+        <h5 class="modal-title" id="exampleModalLabel">+ New Template</h5>
       </div>
       <div class="modal-body" style="height:200px;  ">
-        Template Name:
-        <input type="text" name="" id="" [(ngModel)]=newTempName>
-        <br />
+        <form class="col-sm-12">
+          <fieldset class="form-group row">
+            <input class="form-control pl-0" id="tn" type="text" name="" value="" [(ngModel)]=newTempName required />
+            <label class="col-form-label" for="tn">Template Name:</label>
+            <div class="after"></div>
+          </fieldset>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>

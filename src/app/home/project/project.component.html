@@ -1,3 +1,13 @@
+<div class="col-sm-12 row m-0">
+  <div class="col-sm-6 pl-0 pr-0 pt-5">
+    <ol class="breadcrumb mb-0 bg-trans p-0">
+      <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+      <li class="breadcrumb-item active">Home</li>
+    </ol>
+  </div>
+  <div class="col-sm-6 pl-0 pr-0 pt-1">&nbsp;</div>
+</div>
+
 <div class="container-fluid p-0">
     <div class="row ml-0 mr-0 mb-5">
       <div class="col-md-6 col-sm-12 p-0 mt-4" style="background:#fff;box-shadow:0px 2px 2px #bbb;">
@@ -25,7 +35,7 @@
     <div class="clearfix p-5"></div>
     <!--clearfix class is used to remove the floats-->
     <div class="row justify-content-center bg2 mt-5 mb-5"><!--Whenever it is necessary to use bg2 class, use mt-5 and mb-5 class too-->
-      <h1 class="col-sm-12 text-center" style="color:#404040;text-shadow:1px 1px 1px #777, 2px 2px 2px #999, 3px 3px 3px #aaa">Project Information</h1>
+      <h1 class="col-sm-12 text-center">Project Information</h1>
       <div *ngFor='let project of projects' class="col-lg-4 col-md-6 col-sm-12 pt-3">
         <div class="col-sm-12 pl-0 pr-0 mb-3 crdHvr">
           <!--<div class="collapse" id="collapseExample">
@@ -34,24 +44,24 @@
               <p class="pt-0 pl-4 pr-4 text-justify mb-5">{{project.desc}}</p>
           </div>-->
           <!--<i class="fa fa-ellipsis-v float-right pl-3 pr-4 pt-3 pb-3" aria-hidden="true"></i>--><!-- data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"-->
-          <h3 class="text-left col-12 p-5 mb-0 bg-muted">
-            <span>{{project.name}}</span>
-            <small class="pt-2"><u>Short Description:</u> {{project.desc}}</small>
-          </h3>
-          <div class="row m-0 pt-3 pb-3 bt">
+          <div class="row m-0 pt-2 pb-2 cbx" style="">
             <p class="col-4 text-center mb-0 p-0">
-              <i class="fa fa-file fa-6" aria-hidden="true"></i><br />
+              <i class="fa fa-file p-2 fa-6 rounded-circle cbx mb-2" aria-hidden="true"></i><br />
               Forms: <span>{{project.form}}</span>
             </p>
             <p class="col-4 text-center mb-0 p-0">
-              <i class="fa fa-user-circle fa-6" aria-hidden="true"></i><br />
+              <i class="fa fa-user-circle fa-6 p-2 rounded-circle cbx mb-2" aria-hidden="true"></i><br />
               Users: <span>{{project.user}}</span>
             </p>
             <p class="col-4 text-center mb-0 p-0">
-              <i class="fa fa-universal-access fa-6" aria-hidden="true"></i><br />
+              <i class="fa fa-universal-access fa-6 p-2 rounded-circle cbx mb-2" aria-hidden="true"></i><br />
               Assessor: <span>{{project.assessor}}</span>
             </p>
           </div>
+          <h3 class="text-left col-12 pl-4 pr-4 pt-5 pb-5 mb-0">
+              <span class="pb-1">{{project.name}}</span>
+              <small class="pt-2"><u>Short Description:</u> {{project.desc}}</small>
+            </h3>
         </div>
       </div>
       <div class="clearfix col-sm-12"></div><!--So that navigation will remain below the projects div box-->
@@ -78,15 +88,18 @@
           <h5 class="modal-title" id="exampleModalLabel">+ New Project</h5>
         </div>
         <div class="modal-body text-center">
-          <label class="row ml-0 mr-0 mb-3">
-            <span class="col-5 text-left pt-2 pl-0">Project name:</span>
-            <input type="text" name="" value="" [(ngModel)]='pname' class="col-7 form-control" />
-          </label>
-  
-          <label class="row ml-0 mr-0 mb-3">
-            <span class="col-5 text-left pt-2 pl-0">Project desc:</span>
-            <input type="text" name="" value="" [(ngModel)]='pdesc' class="col-7 form-control" >
-          </label>
+            <form class="col-sm-12">
+              <fieldset class="form-group row">
+                  <input class="form-control pl-0" id="pn" type="text" name="first" value="" [(ngModel)]='pname' required />
+                  <label class="col-form-label" for="pn">Project Name:</label>
+                  <div class="after"></div>
+              </fieldset>
+              <fieldset class="form-group row">
+                  <input class="form-control pl-0" id="pd" type="text" name="first" value="" [(ngModel)]='pdesc' required />
+                  <label class="col-form-label" for="pd">Project Desc:</label>
+                  <div class="after"></div>
+              </fieldset>
+            </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary col-sm-4 pt-3 pb-3" data-target="#addRules" (click)='newProject()'>Initialize project</button>

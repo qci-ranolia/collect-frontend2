@@ -53,18 +53,23 @@
               <h5 class="modal-title">User Profile</h5>
             </div>
             <div class="modal-body text-center">
-              <label class="row ml-0 mr-0 mb-3">
-                <span class="col-5 text-left pt-2 pl-0">Old Password:</span>
-                <input type="text" name="" value="" class="col-7 form-control" />
-              </label>
-              <label class="row ml-0 mr-0 mb-3">
-                <span class="col-5 text-left pt-2 pl-0">New Password:</span>
-                <input type="text" name="" value="" class="col-7 form-control" />
-              </label>
-              <label class="row ml-0 mr-0 mb-3">
-                 <span class="col-5 text-left pt-2 pl-0">Match New Password:</span>
-                 <input type="text" name="" value="" class="col-7 form-control" />
-              </label>
+                <form class="col-sm-12">
+                  <fieldset class="form-group row">
+                    <input class="form-control pl-0" id="op" type="text" name="" value="" required />
+                    <label class="col-form-label" for="op">Old Password:</label>
+                    <div class="after"></div>
+                  </fieldset>
+                  <fieldset class="form-group row">
+                    <input class="form-control pl-0" id="np" type="text" name="" value="" required />
+                    <label class="col-form-label" for="np">New Password:</label>
+                    <div class="after"></div>
+                  </fieldset>
+                  <fieldset class="form-group row">
+                    <input class="form-control pl-0" id="mnp" type="text" name="" value="" required />
+                    <label class="col-form-label" for="mnp">Match New Password:</label>
+                    <div class="after"></div>
+                  </fieldset>
+                </form>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-primary col-sm-4 pt-3 pb-3">Save Changes</button>
