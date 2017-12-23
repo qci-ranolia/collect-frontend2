@@ -3,7 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'rxjs/add/operator/map';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import {ToastOptions} from 'ng2-toastr';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -37,7 +40,7 @@ import { DashboardComponent } from './home/dashboard/dashboard.component';
 import { OrganisationComponent } from './home/organisation/organisation.component';
 import { ResponseComponent } from './home/response/response.component';
 import { ResponseTableComponent } from './home/response/response-table/response-table.component';
-
+import { CustomOption } from './home/dashboard/ng2-toastr-custom-option';
 
 @NgModule({
   declarations: [
@@ -72,6 +75,8 @@ import { ResponseTableComponent } from './home/response/response-table/response-
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    ToastModule.forRoot(),
     FormsModule,
     HttpModule,
     RouterModule.forRoot(routes, { useHash: true }),
@@ -79,6 +84,7 @@ import { ResponseTableComponent } from './home/response/response-table/response-
   providers: [
     ProjectService,
     APIService,
+    {provide: ToastOptions, useClass: CustomOption},
   ],
   bootstrap: [AppComponent]
 })
