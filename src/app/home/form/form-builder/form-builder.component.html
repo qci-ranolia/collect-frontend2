@@ -89,7 +89,13 @@
         <input type="text" name="" id="" [(ngModel)]=newFormName>
         <br />
         Project:
-        <input type="text" name="" id="" [(ngModel)]=newFormProjectName>
+
+        <select [(ngModel)]="projectAssociate" class="col-4 form-control">
+          <option *ngFor='let opt of projectArray; let i=i' [ngValue]=opt  >{{opt.name}}</option>
+        </select>
+
+        <!-- <input type="text" name="" id="" [(ngModel)]=newFormProjectName> -->
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

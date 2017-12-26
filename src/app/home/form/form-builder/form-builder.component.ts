@@ -27,6 +27,8 @@ export class FormBuilderComponent implements OnInit {
   newTempName = '';
   displayPublishForm = true;
   displayPublishTemp = true;
+  projectArray : any = [];
+  projectAssociate: any;
   sub: any;
   sub1:any;
   sub2:any;
@@ -35,6 +37,8 @@ export class FormBuilderComponent implements OnInit {
   sub5:any;
   sub6:any;
   sub7:any;
+  sub8:any;
+
 
   constructor (private projectService:ProjectService, private activatedRoute: ActivatedRoute) {
 
@@ -115,6 +119,11 @@ export class FormBuilderComponent implements OnInit {
     //
     // });
 
+    this.sub8 = this.projectService.emitProject.subscribe((res)=>{
+
+      this.projectArray = res;
+    });
+
   }
 
   ngOnInit () {
@@ -148,7 +157,7 @@ export class FormBuilderComponent implements OnInit {
 
     } else {
       $("#newFormModal").modal('show');
-
+      this.projectService.getProject();
     }
     // console.log(this.projectService.formArray);
   }
@@ -172,7 +181,8 @@ export class FormBuilderComponent implements OnInit {
     let id = this.projectService.calFormArrayLength();
     let now = new Date();
     let cid = now.getTime() + id +""+ Math.floor(1000 + Math.random() * 9000);
-    let dataToPush = {Details: {name: this.newFormName, rule: 'None', project: this.newFormProjectName, status:'Offline', cid: cid }, Elements:this.jsonArray,  Rules:[]}
+    let dataToPush = {Details: {name: this.newFormName, rule: 'None', project: this.projectAssociate.name, projectcid: this.projectAssociate.cid, status:'Offline', cid: cid }, Elements:this.jsonArray,  Rules:[]}
+    this.projectService.incFromCount(this.projectAssociate.cid);
     this.projectService.pushIntoForm(dataToPush);
 
   }
@@ -196,6 +206,7 @@ export class FormBuilderComponent implements OnInit {
     this.sub5.unsubscribe();
     // this.sub6.unsubscribe();
     // this.sub7.unsubscribe();
+    this.sub8.unsubscribe();
   }
 
 }

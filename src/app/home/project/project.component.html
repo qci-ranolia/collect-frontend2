@@ -1,4 +1,5 @@
 <div class="container-fluid p-0">
+
   <div class="row ml-0 mr-0 mb-3">
     <div class="col-md-6 col-sm-12 p-0 mt-4" style="background:#fff;box-shadow:0px 2px 2px #bbb;">
       <div class="col-md-12 p-3"><!--background:#3399ff-->
@@ -21,6 +22,7 @@
       </div>
     </div>
   </div>
+
   <div class="row justify-content-center" >
     <div *ngFor='let project of projects' class="col-md-4 col-sm-12 pt-3">
       <div class="col-sm-12 pl-0 pr-0 mb-3 crdHvr">
@@ -32,6 +34,7 @@
         <i class="fa fa-ellipsis-v float-right pl-3 pr-4 pt-3 pb-3" aria-hidden="true" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"></i>
         <h4 class="text-left col-11 pt-5 pl-4 pb-5 pr-3 mb-0">
           <span>{{project.name}}</span>
+          <small class="pt-2"> {{project.cdate}}</small>
           <small class="pt-2"><u>Short Description:</u> {{project.desc}}</small>
         </h4>
         <div class="row m-0 pt-2 pb-1 bt">
@@ -42,6 +45,7 @@
       </div>
     </div>
   </div>
+
 </div>
 <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
