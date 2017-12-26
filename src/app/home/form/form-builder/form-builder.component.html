@@ -97,19 +97,17 @@
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">+ New Form</h5>
       </div>
-      <div class="modal-body" style="height:200px;  ">
-        <form class="col-sm-12">
-          <fieldset class="form-group row">
-            <input class="form-control pl-0" id="fn" type="text" name="" value="" [(ngModel)]=newFormName required />
-            <label class="col-form-label" for="fn">Form Name:</label>
-            <div class="after"></div>
-          </fieldset>
-          <fieldset class="form-group row">
-            <input class="form-control pl-0" id="pr" type="text" name="" value="" [(ngModel)]=newFormProjectName required />
-            <label class="col-form-label" for="pr">Project:</label>
-            <div class="after"></div>
-          </fieldset>
-        </form>
+      <div class="modal-body" style="height:200px;  ">Form Name:
+        <input type="text" name="" id="" [(ngModel)]=newFormName>
+        <br />
+        Project:
+
+        <select [(ngModel)]="projectAssociate" class="col-4 form-control">
+          <option *ngFor='let opt of projectArray; let i=i' [ngValue]=opt  >{{opt.name}}</option>
+        </select>
+
+        <!-- <input type="text" name="" id="" [(ngModel)]=newFormProjectName> -->
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>

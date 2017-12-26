@@ -114,9 +114,16 @@ export class FormModalComponent implements OnInit {
       // console.log(this.option);
       if(this.values!=[] && this.values!=""){
         this.json.values = this.values.split(',');
+        this.json.value = this.json.values;
       }
       if(this.option!=[] && this.option!="") {
         this.json.option = this.option.split(',');
+      }
+      if( this.json.value == undefined || this.json.value == "") {
+        this.json.value = [];
+      }
+      if( this.json.values == undefined || this.json.values == "") {
+        this.json.values = [];
       }
     }
 
@@ -148,7 +155,7 @@ export class FormModalComponent implements OnInit {
 
     if(this.json.type === "radio" || this.json.type === "checkbox" || this.json.type === "dropdown") {
       this.json.value = "";
-      this.json.value = "";
+      this.json.values = "";
       this.json.option = "";
 
       this.value = "";

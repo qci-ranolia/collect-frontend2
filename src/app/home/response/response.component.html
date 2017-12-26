@@ -10,6 +10,7 @@
     </div>
 </div>
 <div class="container-fluid mt-4 pb-3 text-center" style="background:#fff;">
+<<<<<<< HEAD
     <table *ngIf='flag' id="example" class="display pt-4 pb-4 text-left" cellspacing="0" width="100%">
         <thead>
             <tr>
@@ -39,10 +40,32 @@
                 <td><!--<input class="col-sm-12" type="text" value="{{res.age}}" />-->{{res.age}}</td>
                 <td>{{res.startDate}}</td>
                 <td>{{res.salary}}</td>
+=======
+    <br />
+    <h2>This is a demo table, Actual response interface will be same as social-cops collect Data</h2>
+    <br />
+    <table *ngIf='flag' id="example" class="table table-striped " cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th></th>
+                <th>From</th>
+                <th>Description</th>
+                <th>Responces</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let res of response; let i = index'>
+                <td></td>
+                <td>{{res.name}}</td>
+                <td>{{res.position}}</td>
+                <td>
+                  <button type="button" class="btn btn-primary col-sm-3 col-md-2" (click)='getData(res.office)'>  {{res.office}}  </button>
+                </td>
+>>>>>>> origin
             </tr>
         </tbody>
     <!--<p class="cted col-sm-12 p-0 text-center bg-primary text-white">Click on fields to edit data</p>-->
     </table>
-    
+
     <button type="button" class="btn btn-primary col-sm-3 col-md-2 pt-3 pb-3 mt-4" (click)='reload()'>Reload</button>
 </div>

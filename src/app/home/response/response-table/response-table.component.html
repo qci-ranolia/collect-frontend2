@@ -1,0 +1,24 @@
+<div class="container-fluid mt-4 pb-3 text-center" style="background:#fff;">
+    <table *ngIf='flag' id="example" class="table table-striped " cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th></th>
+                <th>From</th>
+                <th>Description</th>
+                <th>Responces</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let res of response; let i = index'>
+
+                <td> {{i+1}} </td>
+                <td>{{res.name}}</td>
+                <td>{{res.position}}</td>
+                <td>
+                  <button type="button" class="btn btn-primary col-sm-3 col-md-2" >  {{res.office}}  </button>
+                </td>
+            </tr>
+    </tbody>
+    </table>
+
+</div>
