@@ -52,9 +52,9 @@ export class ProjectService {
               ];
 
   projectArray = [
-    {cid:"p121", cdate:"26/11/2017 10:14", name: 'Project Name Here 1', form: 2, user: 3, assessor: 0, desc:'This is a test project about different design concepts we can adopt to show a card design. Lorem iThis is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kilpsum doler sit kil This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil'},
-    {cid:"p122", cdate:"26/11/2017 10:22", name: 'Project Name Here 2', form: 0, user: 0, assessor: 0,  desc:'This is again a test project about different design concepts we can adopt to show a card design. sit amet chip c This is a test project about different design concepts we can adopt to show a card designThis is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil. Lorem ipsum doler sit   kil'},
-    {cid:"p123", cdate:"26/11/2017 10:25", name: 'Project Name Here 3', form: 0, user: 0, assessor: 0,  desc:'This is again  a test project about different design concepts we can adopt to show a card design. Lorem ipsum dole il This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil  kil'},
+    {cid:"p121", cdate:"26/11/2017 10:14", name: 'Project Name Here11 1', form: 2, user: 3, assessor: 0, desc:'This is a test project about different design concepts we can adopt to show a card design. Lorem iThis is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kilpsum doler sit kil This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil'},
+    {cid:"p122", cdate:"26/11/2017 10:22", name: 'Project Name Here22 2', form: 0, user: 0, assessor: 0,  desc:'This is again a test project about different design concepts we can adopt to show a card design. sit amet chip c This is a test project about different design concepts we can adopt to show a card designThis is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil. Lorem ipsum doler sit   kil'},
+    {cid:"p123", cdate:"26/11/2017 10:25", name: 'Project Name Here33 3', form: 0, user: 0, assessor: 0,  desc:'This is again  a test project about different design concepts we can adopt to show a card design. Lorem ipsum dole il This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil  kil'},
   ];
 
   responseArray1 = [
@@ -76,11 +76,12 @@ export class ProjectService {
     {name:'Gimmy ', position:'pos UP', office: 'New-Delhi', age: '31', startDate:'09/01/2015', salary: '$2500'},
   ];
 
-  userList = [
-    {cid:"p121", cdate:"26/11/2017 10:14", name: 'Sam', projectcid: 'p121', projectname:'Project Name Here 1', details:'Details'},
-    {cid:"p121", cdate:"26/11/2017 10:14", name: 'Tom', projectcid: 'p121', projectname:'Project Name Here 1', details:'Details'},
-    {cid:"p121", cdate:"26/11/2017 10:14", name: 'Rick', projectcid: 'p121', projectname:'Project Name Here 1', details:'Details'},
-  ]
+  userArray = [
+    {cid:"p121", cdate:"26/11/2017 10:14", name: 'Sam', project:[{cid:'p121', name:'Project Name Here11 1'}], details:'Details'},
+    {cid:"p122", cdate:"26/11/2017 10:13", name: 'Tom', project:[{cid:'p121', name:'Project Name Here11 1'}], details:'Details'},
+    {cid:"p123", cdate:"26/11/2017 10:20", name: 'Rony', project:[{cid:'p121', name:'Project Name Here11 1'}], details:'Details'},
+
+  ];
 
   addNewProject(pname: string, pdesc: string) {
     let d = new Date();
@@ -90,11 +91,25 @@ export class ProjectService {
     this.getProject();
   }
 
-  addProjectUser(name,project) {
+  addUserArray(name, project) {
     let d = new Date();
     let cid = d.getTime() +""+ Math.floor(1000 + Math.random() * 9000);
     let cdate = d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear()+" "+d.getHours()+":"+d.getMinutes();
-    this.userList.push({cid:cid, cdate:cdate, name: name, projectcid: project.cid, projectname:project.name, details:'Details'});
+    let temp = { 'cid':project.cid, 'name':project.name };
+    let projObj = [];
+    projObj.push(temp);
+    this.userArray.push({cid:cid, cdate:cdate, name: name, project:projObj, details:'Details'});
+    this.incUserCount(project.cid);
+  }
+
+  assignNewProjectToUser(cid,project) {
+    let array = {cid:project.cid, name: project.name};
+    for(let user of this.userArray) {
+      if(user.cid == cid) {
+        user.project.push(array);
+        break;
+      }
+    }
     this.incUserCount(project.cid);
   }
 
@@ -102,6 +117,15 @@ export class ProjectService {
     for(let proj of this.projectArray) {
       if(proj.cid === cid) {
         proj.user++;
+        break;
+      }
+    }
+  }
+
+  descUserCount(cid) {
+    for(let proj of this.projectArray) {
+      if(proj.cid === cid) {
+        proj.user--;
         break;
       }
     }
@@ -126,14 +150,14 @@ export class ProjectService {
   }
 
   getUsers() {
-      this.emitUsers.emit(this.userList);
+      this.emitUsers.emit(this.userArray);
   }
 
   getResponce() {
     this.emitResponse.emit(this.responseArray1);
   }
 
-  getProject(){
+  getProject() {
     this.emitProject.emit(this.projectArray);
   }
 
@@ -143,6 +167,30 @@ export class ProjectService {
 
   getTemplateArray() {
     this.emitTemplateArray.emit(this.templateArray);
+  }
+
+  deleteProjectUserArray(uCid,pCid) {
+    // console.log(uCid +" "+pCid);
+    let ipos: any;
+    let jpos: any;
+
+    for(let i = 0; i< this.userArray.length; i++) {
+        if(uCid == this.userArray[i].cid) {
+            ipos = i;
+            break;
+      }
+    }
+
+    for(let j = 0; j< this.userArray[ipos].project.length; j++) {
+      if(pCid == this.userArray[ipos].project[j].cid) {
+        jpos = j;
+        break;
+      }
+    }
+    // console.log(ipos +" "+jpos);
+    this.userArray[ipos].project.splice(jpos,1);
+    // console.log(this.userArray[ipos]);
+    this.descUserCount(pCid);
   }
 
   getFormArrayWithID(cid) {

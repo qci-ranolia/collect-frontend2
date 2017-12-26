@@ -16,11 +16,12 @@ export const routes: Routes = [
   { path: 'forms', component:  FormComponent},
   { path: 'formBuilder', component:  FormBuilderComponent},
   { path: 'dash', component:  DashboardComponent, children: [
-    { path: '', component: ProjectComponent},
+    { path: '', component: OrganisationComponent},
     { path: 'form', component: FormComponent},
     { path: 'formBuilder', component:  FormBuilderComponent},
     { path: 'response', component: ResponseComponent},
     { path: 'org', component: OrganisationComponent},
     { path: 'resTable', component: ResponseTableComponent},
+    { path: 'proj', component: ProjectComponent},
   ]}
 ];
