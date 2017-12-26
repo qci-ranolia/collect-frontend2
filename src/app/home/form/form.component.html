@@ -9,8 +9,7 @@
     <button type="button" class="btn btn-primary mt-3 mb-0 col-sm-6 col-md-5 col-lg-3 pt-3 pb-3" (click)='new()'>+ New</button>
   </div>
 </div>
-<div class="container-fluid mt-4 text-center" style="background:#fff; box-shadow:0 1px 1px #a9a8a9; min-height:90vh">
-    <br />
+<div class="container-fluid text-center" style="min-height:85vh"><!--background:#fff; box-shadow:0 1px 1px #a9a8a9;-->
     <ul class="nav nav-tabs justify-content-center">
       <li class="nav-item"><a class="nav-link active" data-toggle="tab" role="tab" href="#form">Forms</a></li>
       <li class="nav-item"><a class="nav-link " data-toggle="tab" role="tab" href="#template">Templates</a></li>
@@ -22,9 +21,9 @@
       </div>
     </div>
   <div class="tab-content">
-      <div class="tab-pane active" id="form" role="tabpanel" >
+      <div class="tab-pane active" id="form" role="tabpanel">
         <br>
-        <div class="row text-left" >
+        <div class="row text-left">
           <div *ngFor='let form of formArray; let i = index' class="col-sm-6" style="margin-bottom:15px">
             <div class="card cbx">
               <div class="card-block p-0">
@@ -45,10 +44,8 @@
             </div>
           </div>
         </div>
-
       <br>
       <button type="button" class="btn btn-primary mb-5 col-sm-5 col-md-4 col-lg-2 pt-3 pb-3" (click)='sync()'><i class="fa fa-refresh" aria-hidden="true"></i> Sync</button>
-
       </div>
       <div class="tab-pane " id="template" role="tabpanel" >
         <br>
@@ -67,7 +64,6 @@
       </div>
   </div>
 </div>
-
 <!-- rule modal starts here-->
 <div class="modal fade" id="rules" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -84,9 +80,7 @@
                 <h5>{{i+1}}. Rule Name: {{rule.name}} </h5>
                 <p>Element: {{rule.elementName}} </p>
                 <p>Condition: {{rule.elementValue}} </p>
-
-                <hr>
-                Associated Template: <b>{{rule.tempName}}</b>
+                <hr> Associated Template: <b>{{rule.tempName}}</b>
                 <hr>
                 <a class="card-link" href="#" >Edit</a>
                 <a class="card-link" href="#"  >Delete</a>
@@ -102,8 +96,6 @@
   </div>
 </div>
 <!-- rule modal ends here-->
-
-
 <!--Add rule modal starts here-->
 <div class="modal fade" id="addRules" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -112,20 +104,16 @@
         <h5 class="modal-title" id="exampleModalLabel">+ Add Rules</h5>
       </div>
       <div class="modal-body text-center" style="height:300px; overflow-y: auto">
-
         <input type="text" name="" value="" [(ngModel)]='ruleName' placeholder="Rule Name" class="col-12 form-control mb-5" />
-
         <label class="row ml-0 mr-0 col-12 pl-0 pr-0">
           <span class="col-4 pl-0 pr-0 pt-2 text-left">1. Select element :</span>
           <select [(ngModel)]="ruleElement" (change)='getVal()' class="col-4 form-control">
             <option *ngFor='let opt of rnameArray; let i=i' [ngValue]=opt  >{{opt.name}}</option>
           </select>
         </label>
-
         <label class="row ml-0 mr-0 col-12 pl-0 pr-0">
           <span class="col-4 pl-0 pr-0 pt-2 text-left">2. Condition : Equals</span>
         </label>
-
         <label class="row ml-0 mr-0 col-12 pl-0 pr-0">
           <span class="col-4 pl-0 pr-0 pt-2 text-left">3. Value :</span>
           <input type="text" name="" value="" [(ngModel)]='ruleTarget' class="col-4 form-control" />
@@ -133,16 +121,13 @@
         <i *ngIf='hint' > hint: {{hint}}</i><!--css not Defined yet-->
         <i>(* If multiple, saparated by commas)</i>
         </label>
-
         <input type="checkbox" class="form-check-input" [checked]="satisfyAll" (change)='satisfyAllCondition()'> Satisfy all conditions (Only if multiple!)
-
         <label class="row ml-0 mr-0 col-12 pl-0 pr-0">
           <span class="col-4 pl-0 pr-0 pt-2 text-left">4. Associate template:</span>
           <select [(ngModel)]="ruleTempTail" class="col-4 form-control">
             <option *ngFor='let opt of templateArray; let i=i' [ngValue]=opt  >{{opt.Details.name}}</option>
           </select>
         </label>
-
         - - OR - -
         <label class="row ml-0 mr-0 col-12 pl-0 pr-0">
           <span class="col-4 pl-0 pr-0 pt-2 text-left">&nbsp;  Associate form element</span>
@@ -150,7 +135,6 @@
             <option *ngFor='let opt of rnameArray; let i=i' [ngValue]=opt  >{{opt.name}}</option>
           </select>
         </label>
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary col-sm-3 pt-3 pb-3" (click)='conformRule()'  data-dismiss="modal" >Create rule</button>

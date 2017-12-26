@@ -1,32 +1,29 @@
-<div class="container-fluid mt-4 pb-3 text-center" style="background:#fff;">
-
-  <button type="button" class="btn btn-primary col-sm-3 col-md-2 pt-3 pb-3 mt-4" (click)='user()'>+ User</button>
-  <br>
-    <table *ngIf='flag' id="example" class="table table-striped " cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th></th>
-                <th>User</th>
-                <th>Project</th>
-                <th>Created Date</th>
-                <td>Details</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor='let res of users; let i = index'>
-                <td>{{i+1}}</td>
-                <td>{{res.name}}</td>
-                <td>{{res.projectname}}</td>
-                <td>{{res.cdate}}</td>
-                <td>
-                  <button type="button" class="btn btn-primary col-sm-3 col-md-2">  {{res.details}}  </button>
-                </td>
-            </tr>
+<button type="button" class="btn btn-primary col-sm-3 col-md-2 pt-3 pb-3 mt-4" (click)='user()'>+ User</button>
+<div class="container-fluid mt-4 pb-3 text-center">
+  <br />
+    <table *ngIf='flag' id="example" class="table table-striped bg-white mt-5 brd-def" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th></th>
+          <th>User</th>
+          <th>Project</th>
+          <th>Created Date</th>
+          <td>Details</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let res of users; let i = index'>
+          <td>{{i+1}}</td>
+          <td>{{res.name}}</td>
+          <td>{{res.projectname}}</td>
+          <td>{{res.cdate}}</td>
+          <td>
+            <button type="button" class="btn btn-primary col-sm-3 col-md-2 bg-white">{{res.details}}</button>
+          </td>
+        </tr>
     </tbody>
-    </table>
-
+  </table>
 </div>
-
 <!-- Add user model -->
 <div class="modal fade" id="newUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -34,10 +31,10 @@
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Add new User</h5>
       </div>
-      <div class="modal-body text-center" style="height:300px; overflow-y: auto">
+      <div class="modal-body text-center" style="height:300px;overflow-y:auto">
           <div class="row justify-content-center" >
             <input type="text" name="" value="" [(ngModel)]='userName' placeholder="User Name" class="col-8 form-control mb-5" />
-            <br>
+            <br />
             <select [(ngModel)]="projectAssociate" class="col-8 form-control mb-5" >
               <option *ngFor='let opt of projectArray; let i=i' [ngValue]=opt  >{{opt.name}}</option>
             </select>

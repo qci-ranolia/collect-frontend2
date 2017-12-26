@@ -2,29 +2,27 @@
   <div class="col-sm-6 pl-0 pr-0 pt-5">
     <ol class="breadcrumb mb-0 bg-trans p-0">
       <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-      <li class="breadcrumb-item"><a href="#">Forms</a></li>
+      <li class="breadcrumb-item"><a href="javascript:void(0)">Forms</a></li>
       <li class="breadcrumb-item active">Form Builder</li>
     </ol>
   </div>
-  <div class="col-sm-6 pl-0 pr-0 pt-1">
-    &nbsp;
-  </div>
+  <div class="col-sm-6 pl-0 pr-0 pt-1">&nbsp;</div>
 </div>
-<div class="container form-container text-center col-sm-12 mt-4 cbx" style="background:#fff;">
+<div class="container form-container text-center col-sm-12 mt-4">
   <br />
   <h3>QCI Form Builder &reg;</h3>
   <div class="row justify-content-center">
-    <div class="col-md-12"  >
+    <div class="col-md-12">
       <h5>{{name}}</h5>
       <p>{{project_name}}</p>
       <button type="button" class="btn btn-primary col-sm-4 col-md-3 pt-3 pb-3" data-toggle="modal" data-target="#exampleModal">Add element</button>
       <br /><br />
-      <div *ngIf='!displayPublish' style="font-size:4rem;margin-top:30px;color:#b1b1b1" >
+      <div *ngIf='!displayPublish' style="font-size:4rem;margin-top:30px;color:#b1b1b1">
         <p>Form elements will be displayed here!</p>
       </div>
-      <div *ngFor='let json of jsonArray; let i = index' style=" max-height:750px; overflow-y:auto; overflow-x:hidden;">
+      <div *ngFor='let json of jsonArray; let i = index' style="max-height:750px;overflow-y:auto;overflow-x:hidden;">
         <div *ngIf="json.type == 'location'" >
-            <input type="checkbox" name="checkbox" checked disabled> &nbsp; Form submition location will be shared by default &nbsp; <i class="fa fa-trash-o" aria-hidden="true" (click)='deleteElement(i)' ></i>
+          <input type="checkbox" name="checkbox" checked disabled>&nbsp; Form submition location will be shared by default &nbsp; <i class="fa fa-trash-o" aria-hidden="true" (click)='deleteElement(i)' ></i>
         </div>
         <div *ngIf="json.type == 'text'">
           <app-input-text name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} >  </app-input-text>
@@ -69,15 +67,14 @@
           <app-input-break name={{json.name}} id={{i}}>  </app-input-break>
         </div>
       </div>
-      <br />
-      <div *ngIf='displayPublish' >
-          <button *ngIf='displayPublishForm' type="button" class="btn btn-success col-sm-2 pt-3 pb-3" (click)='publishForm()'> {{sumbitForm}} </button>
+      <div class="col-sm-12 row m-0">
+        <div class="col-sm-6 text-right" *ngIf='displayPublish' >
+            <button *ngIf='displayPublishForm' type="button" class="btn btn-success col-sm-3 pt-3 pb-3" (click)='publishForm()'> {{sumbitForm}} </button>
+        </div>
+        <div class="col-sm-6 text-left" *ngIf='displayPublish' >
+            <button *ngIf='displayPublishTemp' type="button" class="btn btn-success col-sm-3 pt-3 pb-3" (click)='publishTemplate()'> {{sumbitTemp}} </button>
+        </div>
       </div>
-      <br />
-      <div *ngIf='displayPublish' >
-          <button *ngIf='displayPublishTemp' type="button" class="btn btn-success col-sm-2 pt-3 pb-3" (click)='publishTemplate()'> {{sumbitTemp}} </button>
-      </div>
-      <br />
     </div>
   </div>
 </div>
@@ -98,7 +95,7 @@
         <h5 class="modal-title" id="exampleModalLabel">+ New Form</h5>
       </div>
       <div class="modal-body" style="height:200px;  ">Form Name:
-        <input type="text" name="" id="" [(ngModel)]=newFormName>
+        <input type="text" name="Form Name" id="" [(ngModel)]=newFormName>
         <br />
         Project:
 
@@ -125,7 +122,7 @@
       <div class="modal-body" style="height:200px;  ">
         <form class="col-sm-12">
           <fieldset class="form-group row">
-            <input class="form-control pl-0" id="tn" type="text" name="" value="" [(ngModel)]=newTempName required />
+            <input class="form-control pl-0" id="tn" type="text" name="Template name" value="" [(ngModel)]=newTempName required />
             <label class="col-form-label" for="tn">Template Name:</label>
             <div class="after"></div>
           </fieldset>

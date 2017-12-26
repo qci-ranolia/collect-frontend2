@@ -1,5 +1,17 @@
-<div class="container-fluid mt-4 pb-3 text-center" style="background:#fff;">
-    <table *ngIf='flag' id="example" class="table table-striped " cellspacing="0" width="100%">
+<div class="col-sm-12 row m-0">
+    <div class="col-sm-6 pl-0 pr-0 pt-5">
+        <ol class="breadcrumb mb-0 bg-trans p-0">
+            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Response</a></li>
+            <li class="breadcrumb-item active">Response Table</li>
+        </ol>
+    </div>
+    <div class="col-sm-6 pl-0 pr-0 pt-1">
+        &nbsp;
+    </div>
+</div>
+<div class="container-fluid mt-4 pb-3 text-center">
+    <table *ngIf='flag' id="example" class="table table-striped bg-white mt-5 brd-def" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th></th>
@@ -15,7 +27,7 @@
                 <td>{{res.name}}</td>
                 <td>{{res.position}}</td>
                 <td>
-                  <button type="button" class="btn btn-primary col-sm-3 col-md-2" >  {{res.office}}  </button>
+                  <button type="button" class="btn btn-primary col-sm-3 col-md-2 bg-trans" >  {{res.office}}  </button>
                 </td>
             </tr>
     </tbody>

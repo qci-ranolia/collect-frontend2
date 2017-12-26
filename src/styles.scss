@@ -7,14 +7,17 @@
 @mixin transition-duration($duration...) { -moz-transition-property:$duration; -o-transition-property:$duration; -webkit-transition-property:$duration; transition-property:$duration; }
 @mixin transition-timing-function($timing...) { -moz-transition-timing-function:$timing; -o-transition-timing-function:$timing; -webkit-transition-timing-function:$timing; transition-timing-function:$timing; }
 @mixin transition-delay($delay...) { -moz-transition-delay:$delay; -o-transition-delay:$delay; -webkit-transition-delay:$delay; transition-delay:$delay; }
+@mixin linear-gradient-cbx($shade...) {background-image:-o-linear-gradient($shade);background-image:-moz-linear-gradient($shade);background-image:-webkit-linear-gradient($shade);background-image:linear-gradient($shade);}
 
+
+@mixin rotate($degrees) {-webkit-transform:rotate($degrees);-moz-transform:rotate($degrees);-ms-transform:rotate($degrees);-o-transform:rotate($degrees);transform:rotate($degrees);}
 
 /*variables*/
 
 // text colors
 $brand-primary:red;
-$text-color-darkset3:#525351;
-$text-color-darkset3-hover:#424341;
+$text-color-darkset3:#525351 !important;
+$text-color-darkset3-hover:#424341 !important;
 $red-hover: #c9433f !important;
 
 
@@ -32,11 +35,12 @@ $secondary-color-border-hover:#dfb721;
 
 //backgrounds
 $body-bg-default:#eeeeef;
-$body-bg-white:#fff;
-$body-bg-trans:transparent;
+$body-bg-white:#fff !important;
+$body-bg-trans:transparent !important;
 $bcf5:#f5f5f5;
 $bg2:#dcdcdc;
 $cont-bg1:#e4e5f1;
+$rgba-white:rgba(255,255,255,0.1);
 
 
 
@@ -44,8 +48,20 @@ $cont-bg1:#e4e5f1;
 $div-height:95vh;
 $top-menu-height:47px;
 
-
-
+.nav-tabs .nav-link, .nav-tabs .nav-item.show .nav-link
+{
+  background: transparent;
+  border: none;
+  //border-bottom: 3px solid royalblue;
+  color:$text-color-darkset3;
+}
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link
+{
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid royalblue;
+  color: royalblue;
+}
 //body background classes
 
 .bg-white
@@ -86,6 +102,12 @@ $br-light:1px solid #ddd;
 $bl-light:1px solid #ddd;
 $bb-light:1px solid #ddd;
 
+
+$brd-light:1px solid #ddd !important;
+.brd-def
+{
+  border: $brd-light;
+}
 $bt-second-clr:1px solid #ffd741;
 
 
@@ -110,6 +132,10 @@ input:hover
 {
   cursor:text;
   outline:none;
+}
+.dataTables_filter label input:focus, input:focus
+{
+  border:1px solid #aaa !important; 
 }
 /*remove box-shadow issues*/
 button:focus
@@ -147,6 +173,8 @@ body
   background-image:url(http://docs.qcitech.org/thumbnail/68cdb5911c834599b53f/1024/lp.png);
   position:relative;
 }
+
+
 .bg2::before,
   .bg2::after
 {
@@ -157,11 +185,7 @@ body
   width:110%;
   height:200px;
   top:-85px;
-  -webkit-transform:rotate(-5deg);
-  -moz-transform:rotate(-5deg);
-  -ms-transform:rotate(-5deg);
-  -o-transform:rotate(-5deg);
-  transform:rotate(-5deg);
+  @include rotate(-5deg);
   background:$bg2;
   background-image:url(http://docs.qcitech.org/thumbnail/68cdb5911c834599b53f/1024/lp.png);
 }
@@ -225,19 +249,13 @@ body
 {
   box-shadow: 0px 2px 2px #ccc;
   @include transition(all 0.15s linear .01s);
-  background:linear-gradient(#fefefe, #f8f8f8);
-  background:-webkit-linear-gradient(#fefefe, #f8f8f8);
-  background:-moz-linear-gradient(#fefefe, #f8f8f8);
-  background:-ms-linear-gradient(#fefefe, #f8f8f8);
+  @include linear-gradient-cbx(#fefefe, #f8f8f8);
 }
 .cbx:hover
 {
   box-shadow:none;
   @include transition(all 0.15s linear .01s);
-  background:linear-gradient(#f8f8f8, #fefefe);
-  background:-webkit-linear-gradient(#f8f8f8, #fefefe);
-  background:-moz-linear-gradient(#f8f8f8, #fefefe);
-  background:-ms-linear-gradient(#f8f8f8, #fefefe);
+  @include linear-gradient-cbx(#f8f8f8, #fefefe);
 }
 .pos-bl
 {
@@ -249,7 +267,6 @@ body
   color:#656565;
   @include transition(all 0.15s linear .01s);
 }
-
 /*Navigation*/
 .navbar-toggleable-md
 {
@@ -287,7 +304,6 @@ body
 .fa-sign-out:hover {
   color:$red-hover;
 }
-
 /*Navigation Left*/
 .slider-fix
 {
@@ -318,14 +334,14 @@ body
   opacity:0;
   z-index:-100;
   background:rgba(0,0,0,0.7);
-  position: fixed;
-  width: 100%;
-  height: 100%;
+  position:fixed;
+  width:100%;
+  height:100%;
 }
 .black-shadow.active
 {
-  opacity: 1;
-  z-index: 1030;
+  opacity:1;
+  z-index:1030;
 }
 .frame
 {
@@ -337,20 +353,19 @@ body
 }
 .slider-fix a.nav-link
 {
-  border-top:3px solid #fff;
-  border-bottom:1px solid #ccc;
+  border-bottom:1px solid #eee;
   @include transition(all 0.15s linear .01s);
+  box-shadow:0px 1px 0px #fff inset;
   color:$text-color-darkset3;
   padding:1em;
   text-transform:capitalize; 
 }
 .slider-fix a.nav-link:hover
 {
-  border-top:2px solid #fff;
-  border-bottom:2px solid #ccc;
+  border-bottom:1px solid #d8d8d8;
   @include transition( all 0.15s linear .01s );
-  color:$primary-color;
-  background: rgba(0,0,0,0.02);
+  //color:$primary-color;
+  background: rgba(0,0,0,0.020);
 }
 .fa-6 
 {
@@ -372,8 +387,6 @@ body
   right: 0;
   @include transition(all 0.15s linear .01s);
 }
-
-
 /*Dashboard project css*/
 .homeDivStyle
 {
@@ -407,7 +420,7 @@ body
 }
 .crdHvr:hover
 {
-  cursor: pointer;
+  cursor:pointer;
   border:$bt-second-clr;
   box-shadow:2px 2px 5px 0px #ccc;
   @include transition( all 0.15s linear .01s );
@@ -432,15 +445,15 @@ body
 }*/
 .crdHvr h3 small
 {
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  line-height: 18px;
-  max-height: 60px;
-  font-size: 16px;
-  color: #3c3c3c;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  overflow:hidden;
+  -webkit-box-orient:vertical;
+  line-height:18px;
+  max-height:60px;
+  font-size:16px;
+  color:#3c3c3c;
 }
 .crdHvr h3 span
 {
@@ -483,11 +496,7 @@ body
 } .fn .bbot a.strt:hover{
   //color: #ffd741;
   /* Is Sass module applicable on this transition */
-  -webkit-transition:color 0.25s ease-in-out 0.05s;
-  -moz-transition:color 0.25s ease-in-out 0.05s;
-  -ms-transition:color 0.25s ease-in-out 0.05s;
-  -o-transition:color 0.25s ease-in-out 0.05s;
-  transition:color 0.25s ease-in-out 0.05s;
+  @include transition(color 0.25s ease-in-out 0.05s);
 } .fn .bbot a.strt:hover:after {
   -o-animation:widen 0.3s 1;
   -ms-animation:widen 0.3s 1;
@@ -544,11 +553,72 @@ body
   text-indent: 3px;
 }
 // main table
+table.dataTable thead th,
+  table.dataTable thead td
+{
+  border-bottom:1px solid #ccc;
+  background:#f5f5f5;
+}
 table.dataTable tfoot th,
   table.dataTable tfoot td
 {
   border-top: 1px solid #aaa;
-}/*
+}
+// 26dec-2017
+.table-striped tbody tr:nth-of-type(odd)
+{
+  background:transparent;
+}
+table.dataTable tbody th,
+  table.dataTable tbody td
+  {
+    line-height: 38px;
+  }
+
+ //pagination
+ .dataTables_wrapper .dataTables_paginate .paginate_button,
+ {
+  font-size:16px;
+  padding:2px 10px;
+  margin:5px;
+  text-shadow:1px 1px 0px #fff !important;
+  border:1px solid #ccc;
+  background:#eaeaea;
+  box-shadow:1px 1px 0px #fff inset;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+{
+ font-size:16px;
+ padding:2px 10px;
+ margin:5px;
+ text-shadow:1px 1px 0px #fff !important;
+ border:1px solid #ccc;
+ background: #fff;
+ box-shadow:1px 2px 0px #fff inset;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover,
+  .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover
+{
+  background:$body-bg-white;
+  border:1px solid #ccc;
+  color: $text-color-darkset3-hover;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
+  .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover,
+    .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active
+{
+  background: $body-bg-trans;
+  cursor: not-allowed;
+}
+
+
+
+
+
+
+
+
+/*
 table.dataTable thead th,
   table.dataTable thead td
 {
@@ -587,7 +657,7 @@ tbody tr td input:focus
   .row td
 {
   //width:100% !important;
-  padding:4px 3px !important;
+  //padding:4px 3px !important;
   //font-size: 90%; 
 }/*
 .row td
@@ -670,13 +740,13 @@ table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.
 //bootstrap changed css
   //pagination
   .page-link{
-    background: transparent;
-    box-shadow: 1px 1px 0px #fff inset;
+    background:transparent;
+    box-shadow:1px 1px 0px #fff inset;
   }
   .bg-sc .page-link
   {
     background:$secondary-color;
-    color: $text-color-darkset3;
+    color:$text-color-darkset3;
   }
   .page-link:hover
   {
@@ -796,25 +866,32 @@ h5
 .fa-arrow-down,
   .fa-trash-o
   {
-    opacity: 0.2;
+    opacity:0.2;
     @include transition( all 0.15s linear .01s );
   }
   .fa:hover
-      {
-        opacity: 1;
-        @include transition( all 0.15s linear .01s );
-      }
+    {
+      opacity:1;
+      @include transition( all 0.15s linear .01s );
+    }
+  .fa-ellipsis-v:hover
+    {
+      background:$rgba-white;
+      @include transition( all 0.15s linear .01s );
+    }
   
+  /*
   .fa.cbx
-      {
-        color: inherit;
-        @include transition( all 0.15s linear .01s );
-      }
+    {
+      color: inherit;
+      @include transition( all 0.15s linear .01s );
+    }
   .fa.cbx:hover
-  {
-    color: $secondary-color;
-    @include transition( all 0.15s linear .01s );
-  }
+    {
+      color: $secondary-color;
+      @include transition( all 0.15s linear .01s );
+    }
+  */
 
 
 
