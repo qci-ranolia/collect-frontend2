@@ -7,6 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'rxjs/add/operator/map';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import {ToastOptions} from 'ng2-toastr';
+import {NgPipesModule} from 'ngx-pipes';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -79,6 +80,7 @@ import { CustomOption } from './home/dashboard/ng2-toastr-custom-option';
     ToastModule.forRoot(),
     FormsModule,
     HttpModule,
+    NgPipesModule,
     RouterModule.forRoot(routes, { useHash: true }),
   ],
   providers: [

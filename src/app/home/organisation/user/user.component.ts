@@ -8,7 +8,7 @@ import 'datatables.net';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
 
@@ -17,6 +17,10 @@ export class UserComponent implements OnInit {
   projectArray: any = [];
   userName: any;
   projectAssociate: any;
+  userProjectName : any;
+  userProjectArray : any =[];
+  projectAs: any;
+  userCid: any;
   sub: any;
   sub1: any;
   sub2: any;
@@ -55,7 +59,7 @@ export class UserComponent implements OnInit {
         t.on( 'order.dt search.dt', function () {
             t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
                 cell.innerHTML = i+1;
-            } );
+            });
         }).draw();
       });
     }
@@ -68,9 +72,67 @@ export class UserComponent implements OnInit {
 
   saveUser() {
 
-    this.projectService.addProjectUser(this.userName,this.projectAssociate);
+    this.projectService.addUserArray(this.userName,this.projectAssociate);
     this.userName = '';
     $("#newUserModal").modal('hide');
+    this.router.navigate(['dash/org'], { queryParams: { id: '1' } });
+    this.projectAssociate = "";
+  }
+
+  calProject(project) {
+    let j = 0;
+    for(let i of project) {
+      j++;
+    }
+    return ""+j;
+  }
+
+  showProjectModal( userName, userCid, projectArray) {
+    this.projectService.getProject();
+    let n = 0;
+    let temp = [];
+    this.userProjectName = userName;
+    this.userCid = userCid;
+    this.userProjectArray = projectArray;
+
+    for(let i =0; i< this.userProjectArray.length; i++) {
+      for(let j = 0; j<this.projectArray.length; j++) {
+        if(this.userProjectArray[i].cid == this.projectArray[j].cid ) {
+          temp.push(j);
+        }
+      }
+    }
+    // for(let i = 0; i<temp.length; i++) {
+    //   this.projectArray.splice([temp[i]],1);
+    // }
+    $("#userProjectModal").modal('show');
+
+  }
+
+  assignNewProject() {
+    this.projectService.assignNewProjectToUser(this.userCid,this.projectAs);
+    $("#userProjectModal").modal('hide');
+    this.projectArray = [];
+    this.userProjectArray= [];
+    this.projectAs = "";
+  }
+
+  deleteProjectUserArray(projCid) {
+    this.projectService.deleteProjectUserArray(this.userCid, projCid);
+    // console.log(this.userCid);
+    $("#userProjectModal").modal('hide');
+    this.projectArray = [];
+    this.userProjectArray= [];
+
+  }
+
+  projectName(project) {
+    let name = "";
+    for(let n of project) {
+      name += n.name + " ,";
+    }
+    // console.log(name);
+    return name;
 
   }
 
