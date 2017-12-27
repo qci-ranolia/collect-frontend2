@@ -21,40 +21,43 @@ export class ProjectService {
   emitResponse = new EventEmitter<any>();
   emitResTable = new EventEmitter<any>();
   emitUsers = new EventEmitter<any>();
+  emitAssessors = new EventEmitter<any>();
+  emitFormResponse = new EventEmitter<any>();
+  emitTableHeader = new EventEmitter<any>();
 
   formArray = [
-                { Details: { name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },
-                  Elements:  [{type: "text", required: false, name: "Name", value:"", cid:"a1", hepltext: ""},
-                                  {type: "email", required: false, hepltext: "", name: "Email ID", value:"", cid:"b1"},
-                                  {type: "number", required: false, hepltext: "", name: "Number Input", value:"", cid:"c1"},],
-                  Rules: [{cid:"211", name: 'Rule 1', elementName:'Name', elementType: "text", elementValue:"sam",elementCid:"a1", tempCid: '2332b', tempName: 'template1', satisfyAll:false},],
-                },
-                { Details: { name: 'Form2', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121',  status:'Online', cid:'a2121' },
-                  Elements:  [{type: "text", required: false, name: "Name2", value:"", cid:"a11", hepltext: ""},
-                                  {type: "email", required: false, value:"", cid:"a12", hepltext: "", name: "Email ID2"},
-                                  {type: "number", required: false, value:"", cid:"a13", hepltext: "", name: "Number Input2"},],
-                  Rules: [],
-                }
-              ];
+    { Details: { name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },
+      Elements:  [{type: "text", required: false, name: "Name", value:"", cid:"a1", hepltext: ""},
+                      {type: "email", required: false, hepltext: "", name: "Email ID", value:"", cid:"b1"},
+                      {type: "number", required: false, hepltext: "", name: "Number Input", value:"", cid:"c1"},],
+      Rules: [{cid:"211", name: 'Rule 1', elementName:'Name', elementType: "text", elementValue:"sam",elementCid:"a1", tempCid: '2332b', tempName: 'template1', satisfyAll:false},],
+    },
+    { Details: { name: 'Form2', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121',  status:'Online', cid:'a2121' },
+      Elements:  [{type: "text", required: false, name: "Name2", value:"", cid:"a11", hepltext: ""},
+                      {type: "email", required: false, value:"", cid:"a12", hepltext: "", name: "Email ID2"},
+                      {type: "number", required: false, value:"", cid:"a13", hepltext: "", name: "Number Input2"},],
+      Rules: [],
+    }
+  ];
 
   templateArray = [
-                { Details:   { name: 'template1', rule: 'None', project:"N/A", cid:'2332b'},
-                  Elements:  [{type: "text", required: false, name: "Name", value:"", cid:"a1q", hepltext: ""},
-                                  {type: "email", required: false, value:"", cid:"a1b", hepltext: "", name: "Email ID"},
-                                  {type: "number", required: false, value:"", cid:"a1c", hepltext: "", name: "Number Input"},],
+    { Details:   { name: 'template1', rule: 'None', project:"N/A", cid:'2332b'},
+    Elements:  [{type: "text", required: false, name: "Name", value:"", cid:"a1q", hepltext: ""},
+                    {type: "email", required: false, value:"", cid:"a1b", hepltext: "", name: "Email ID"},
+                    {type: "number", required: false, value:"", cid:"a1c", hepltext: "", name: "Number Input"},],
 
-                },
-                { Details:   { name: 'template2', rule: 'None', project:"N/A", cid:'2323b' },
-                  Elements:  [{type: "text", required: false, name: "Name2", value:"", cid:"aa1", hepltext: ""},
-                                {type: "email", required: false, value:"", cid:"ba1", hepltext: "", name: "Email ID2"},
-                                {type: "number", required: false, value:"", cid:"ca1", hepltext: "", name: "Number Input2"},],
-                }
-              ];
+    },
+    { Details:   { name: 'template2', rule: 'None', project:"N/A", cid:'2323b' },
+    Elements:  [{type: "text", required: false, name: "Name2", value:"", cid:"aa1", hepltext: ""},
+                  {type: "email", required: false, value:"", cid:"ba1", hepltext: "", name: "Email ID2"},
+                  {type: "number", required: false, value:"", cid:"ca1", hepltext: "", name: "Number Input2"},],
+    }
+    ];
 
   projectArray = [
-    {cid:"p121", cdate:"26/11/2017 10:14", name: 'Project Name Here11 1', form: 2, user: 3, assessor: 0, desc:'This is a test project about different design concepts we can adopt to show a card design. Lorem iThis is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kilpsum doler sit kil This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil'},
-    {cid:"p122", cdate:"26/11/2017 10:22", name: 'Project Name Here22 2', form: 0, user: 0, assessor: 0,  desc:'This is again a test project about different design concepts we can adopt to show a card design. sit amet chip c This is a test project about different design concepts we can adopt to show a card designThis is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil. Lorem ipsum doler sit   kil'},
-    {cid:"p123", cdate:"26/11/2017 10:25", name: 'Project Name Here33 3', form: 0, user: 0, assessor: 0,  desc:'This is again  a test project about different design concepts we can adopt to show a card design. Lorem ipsum dole il This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil  kil'},
+    {cid:"p121", cdate:"26/11/2017 10:14", name: 'Project Name Here 1', form: 2, user: 3, assessor: 5, desc:'This is a test project about different design concepts we can adopt to show a card design. Lorem iThis is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kilpsum doler sit kil This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil'},
+    {cid:"p122", cdate:"26/11/2017 10:22", name: 'Project Name Here 2', form: 0, user: 0, assessor: 0,  desc:'This is again a test project about different design concepts we can adopt to show a card design. sit amet chip c This is a test project about different design concepts we can adopt to show a card designThis is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil. Lorem ipsum doler sit   kil'},
+    {cid:"p123", cdate:"26/11/2017 10:25", name: 'Project Name Here 3', form: 0, user: 0, assessor: 0,  desc:'This is again  a test project about different design concepts we can adopt to show a card design. Lorem ipsum dole il This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil  kil'},
   ];
 
   responseArray1 = [
@@ -76,12 +79,131 @@ export class ProjectService {
     {name:'Gimmy ', position:'pos UP', office: 'New-Delhi', age: '31', startDate:'09/01/2015', salary: '$2500'},
   ];
 
-  userArray = [
-    {cid:"p121", cdate:"26/11/2017 10:14", name: 'Sam', project:[{cid:'p121', name:'Project Name Here11 1'}], details:'Details'},
-    {cid:"p122", cdate:"26/11/2017 10:13", name: 'Tom', project:[{cid:'p121', name:'Project Name Here11 1'}], details:'Details'},
-    {cid:"p123", cdate:"26/11/2017 10:20", name: 'Rony', project:[{cid:'p121', name:'Project Name Here11 1'}], details:'Details'},
+  responseArray = [
+    {
+      ResCid:'1',
+      ResDetails:{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },
+      ResElements:[
+        {type: "text", required: false, name: "Name", value:"sammy", cid:"a1", hepltext: "", alias:" Username "},
+        {type: "password", required: false, name: "SecretKey", value:"sammy_password", cid:"a2", hepltext: "", alias:" Password "}
+      ],
+      ResExtra:{}
+    },
+    {
+      ResCid:'2',
+      ResDetails:{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },
+      ResElements:[
+        {type: "text", required: false, name: "Name", value:"sammy@dd.cc", cid:"a1", hepltext: "", alias:" Username "},
+        {type: "password", required: false, name: "SecretKey", value:"sammy_dd.cc", cid:"a2", hepltext: "", alias:" Password "}
+      ],
+      ResExtra:{}
+    },
+    {
+      ResCid:'3',
+      ResDetails:{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },
+      ResElements:[
+        {type: "text", required: false, name: "Name", value:"Tom_21", cid:"a1", hepltext: "", alias:" Username "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password "}
+      ],
+      ResExtra:{}
+    },
+    {
+      ResCid:'4',
+      ResDetails:{ name: 'Form2', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121',  status:'Online', cid:'a2121' },
+      ResElements:[
+        {type: "text", required: false, name: "Name", value:"Tom_21", cid:"a1", hepltext: "", alias:" Username2 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password2 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password21 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password22 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password23 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password24 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password25 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password26 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password27 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password28 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password29 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password210 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password211 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password212 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password213 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password265 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password276 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password286 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password296 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password2106 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password2116 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password2126 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password2136 "},
+      ],
+      ResExtra:{}
+    },
+    {
+      ResCid:'5',
+      ResDetails:{ name: 'Form2', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121',  status:'Online', cid:'a2121' },
+      ResElements:[
+        {type: "text", required: false, name: "Name", value:"Tom_21", cid:"a1", hepltext: "", alias:" Username2 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password2 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password21 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password22 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password23 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password24 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password25 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password26 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password27 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password28 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password29 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password210 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password211 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password212 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password213 "},
 
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password265 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password276 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password286 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password296 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password2106 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password2116 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password2126 "},
+        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password2136 "},
+      ],
+      ResExtra:{}
+    }
   ];
+
+  userArray = [
+      {cid:"p121", cdate:"26/11/2017 10:14", name: 'Sam', project:[{cid:'p121', name:'Project Name Here 1'}], details:'Details'},
+      {cid:"p122", cdate:"26/11/2017 10:13", name: 'Tom', project:[{cid:'p121', name:'Project Name Here 1'}], details:'Details'},
+      {cid:"p123", cdate:"26/11/2017 10:20", name: 'Rony', project:[{cid:'p121', name:'Project Name Here 1'}], details:'Details'},
+  ];
+
+  assessorArray = [
+      {cid:"p120", cdate:"26/11/2017 10:14", name: 'Ram', phone:'8998671234', form:[{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },], details:'Details'},
+      {cid:"p121", cdate:"26/11/2017 10:14", name: 'Sam', phone:'9238672331', form:[{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },], details:'Details'},
+      {cid:"p122", cdate:"26/11/2017 10:14", name: 'Sammy', phone:'8965766734', form:[{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },], details:'Details'},
+      {cid:"p123", cdate:"26/11/2017 10:14", name: 'Tom', phone:'9796631232', form:[{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },], details:'Details'},
+      {cid:"p124", cdate:"26/11/2017 10:14", name: 'Rick', phone:'8894810231', form:[{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' }, { name: 'Form2', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121',  status:'Online', cid:'a2121' }], details:'Details'},
+  ];
+
+  getResponseArray(formId) {
+    let formResponse = [];
+    let tableHeader = [];
+    for(let i = 0; i< this.responseArray.length; i++) {
+      if(this.responseArray[i].ResDetails.cid == formId) {
+        formResponse.push({ ResElements: this.responseArray[i].ResElements, ResCid: this.responseArray[i].ResCid, ResFormId: this.responseArray[i].ResDetails.cid});
+
+        for(let j=0; j< this.responseArray[i].ResElements.length; j++) {
+          tableHeader.push(this.responseArray[i].ResElements[j].alias);
+        }
+
+      }
+    }
+    tableHeader = Array.from(new Set(tableHeader));
+    // console.log(formResponse);
+    // console.log(tableHeader);
+
+    this.emitFormResponse.emit(formResponse);
+    this.emitTableHeader.emit(tableHeader);
+  }
 
   addNewProject(pname: string, pdesc: string) {
     let d = new Date();
@@ -102,6 +224,21 @@ export class ProjectService {
     this.incUserCount(project.cid);
   }
 
+  addAssessorArray(name, phone, details) {
+    let d = new Date();
+    let cid = d.getTime() +""+ Math.floor(1000 + Math.random() * 9000);
+    let cdate = d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear()+" "+d.getHours()+":"+d.getMinutes();
+    // let temp = { 'formCid':details.cid, 'formName':details.name, 'projCid':details.projectcdi, 'projName': details.project };
+
+    let formObj = [];
+    formObj.push(details);
+    if(name =="" || name == undefined) {
+      name = 'N/A';
+    }
+    this.assessorArray.push({cid:cid, cdate:cdate, name: name, phone: phone, form:formObj, details:'Details'});
+    this.incAssessorCount(details.projectcdi);
+  }
+
   assignNewProjectToUser(cid,project) {
     let array = {cid:project.cid, name: project.name};
     for(let user of this.userArray) {
@@ -111,6 +248,18 @@ export class ProjectService {
       }
     }
     this.incUserCount(project.cid);
+  }
+
+  assignNewFormToAssessor(cid,form) {
+    console.log(form.Details);
+    console.log(cid);
+    for(let assr of this.assessorArray) {
+      if(assr.cid == cid) {
+        assr.form.push(form.Details);
+        break;
+      }
+    }
+    this.incAssessorCount(form.Details.projectcdi);
   }
 
   incUserCount(cid) {
@@ -126,6 +275,15 @@ export class ProjectService {
     for(let proj of this.projectArray) {
       if(proj.cid === cid) {
         proj.user--;
+        break;
+      }
+    }
+  }
+
+  descAsrCount(cid) {
+    for(let proj of this.projectArray) {
+      if(proj.cid === cid) {
+        proj.assessor--;
         break;
       }
     }
@@ -153,8 +311,12 @@ export class ProjectService {
       this.emitUsers.emit(this.userArray);
   }
 
-  getResponce() {
-    this.emitResponse.emit(this.responseArray1);
+  getAssessors() {
+      this.emitAssessors.emit(this.assessorArray);
+  }
+
+  getResponse() {
+    this.emitResponse.emit(this.responseArray);
   }
 
   getProject() {
@@ -170,10 +332,8 @@ export class ProjectService {
   }
 
   deleteProjectUserArray(uCid,pCid) {
-    // console.log(uCid +" "+pCid);
     let ipos: any;
     let jpos: any;
-
     for(let i = 0; i< this.userArray.length; i++) {
         if(uCid == this.userArray[i].cid) {
             ipos = i;
@@ -187,10 +347,28 @@ export class ProjectService {
         break;
       }
     }
-    // console.log(ipos +" "+jpos);
     this.userArray[ipos].project.splice(jpos,1);
-    // console.log(this.userArray[ipos]);
     this.descUserCount(pCid);
+  }
+
+  deleteFormAssessorArray(cid, fCid, pCid) {
+    let ipos: any;
+    let jpos: any;
+    for(let i = 0; i< this.assessorArray.length; i++) {
+        if(cid == this.assessorArray[i].cid) {
+            ipos = i;
+            break;
+      }
+    }
+
+    for(let j = 0; j< this.assessorArray[ipos].form.length; j++) {
+      if(fCid == this.assessorArray[ipos].form[j].cid) {
+        jpos = j;
+        break;
+      }
+    }
+    this.assessorArray[ipos].form.splice(jpos,1);
+    this.descAsrCount(pCid);
   }
 
   getFormArrayWithID(cid) {

@@ -1,27 +1,33 @@
 <div class="container-fluid mt-4 pb-3 text-center" style="background:#fff;">
-    <br />
-    <h2>This is a demo table, Actual response interface will be same as social-cops collect Data</h2>
-    <br />
+    <h2>Response Table</h2>
     <table *ngIf='flag' id="example" class="table table-striped " cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th></th>
                 <th>From</th>
-                <th>Description</th>
+                <th>Project</th>
                 <th>Responces</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor='let res of response; let i = index'>
                 <td></td>
-                <td>{{res.name}}</td>
-                <td>{{res.position}}</td>
                 <td>
-                  <button type="button" class="btn btn-primary col-sm-3 col-md-2" (click)='getData(res.office)'>  {{res.office}}  </button>
+                  <span class="tt1" > {{res.formName | shorten: 15: '...'}}
+                    <span class="tt2" > &nbsp; {{res.formName}} &nbsp; </span>
+                  </span>
+                </td>
+                <td>
+                  <span class="tt1" > {{res.projectName | shorten: 15: '...'}}
+                    <span class="tt2" > &nbsp; {{res.projectName}} &nbsp; </span>
+                  </span>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-primary" (click)='getData(res.formId)'> {{res.count}} Responses  </button>
                 </td>
             </tr>
     </tbody>
     </table>
 
-    <button type="button" class="btn btn-primary col-sm-3 col-md-2 pt-3 pb-3 mt-4" (click)='reload()'>Reload</button>
+    <!-- <button type="button" class="btn btn-primary col-sm-3 col-md-2 pt-3 pb-3 mt-4" (click)='reload()'>Reload</button> -->
 </div>

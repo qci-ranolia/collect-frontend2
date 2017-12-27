@@ -16,7 +16,7 @@ export const routes: Routes = [
   { path: 'forms', component:  FormComponent},
   { path: 'formBuilder', component:  FormBuilderComponent},
   { path: 'dash', component:  DashboardComponent, children: [
-    { path: '', component: OrganisationComponent},
+    { path: '', component: ResponseComponent},
     { path: 'form', component: FormComponent},
     { path: 'formBuilder', component:  FormBuilderComponent},
     { path: 'response', component: ResponseComponent},

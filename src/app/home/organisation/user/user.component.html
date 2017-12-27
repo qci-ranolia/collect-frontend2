@@ -1,7 +1,7 @@
 <div class="container-fluid mt-4 pb-3 text-center" style="background:#fff;">
 
   <button type="button" class="btn btn-primary col-sm-3 col-md-2 pt-3 pb-3 mt-4" (click)='user()'>+ User</button>
-  
+
     <table *ngIf='flag' id="example" class="table table-striped " cellspacing="0" width="100%">
         <thead>
             <tr>
@@ -72,7 +72,7 @@
       <div class="modal-body text-center" style="height:300px; overflow-y: auto">
           <div class="row justify-content-center" >
 
-            {{userProjectName}} is  assigned project/s :  <br>
+            {{userProjectName}} is  assigned with  project/s :  <br>
 
             <div  class="col-12" *ngFor="let pro of userProjectArray; let i = index">{{i+1}}. {{pro.name}} <i class="fa fa-trash-o" aria-hidden="true" (click)='deleteProjectUserArray(pro.cid)' ></i> <br> </div>
             <br>
