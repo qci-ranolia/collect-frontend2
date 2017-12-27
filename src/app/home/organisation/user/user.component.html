@@ -1,37 +1,28 @@
 <div class="container-fluid mt-4 pb-3 text-center">
-
   <button type="button" class="btn btn-primary col-sm-3 col-md-2 pt-3 pb-3 mt-4" (click)='user()'>+ User</button>
-  
     <table *ngIf='flag' id="example" class="table table-striped bg-white mt-5 brd-def" cellspacing="0" width="100%">
         <thead>
-            <tr>
-                <th></th>
-                <th>User</th>
-                <th>Project</th>
-                <th>Created Date</th>
-                <th>Details</th>
-            </tr>
+          <tr>
+            <th></th>
+            <th>User</th>
+            <th>Project</th>
+            <th>Created Date</th>
+            <th>Details</th>
+          </tr>
         </thead>
         <tbody>
-            <tr *ngFor='let res of users; let i = index'>
-                <td>{{i+1}}</td>
-                <td>{{res.name}}</td>
-                <td>
-
-                    <button type="button" class="btn btn-primary " (click)='showProjectModal(res.name, res.cid, res.project)' >
-                      {{calProject(res.project)}} Project/s
-                    </button>
-
-                    <span class="tt1" > {{projectName(res.project) | shorten: 5: '...'}}
-                      <span class="tt2" > {{projectName(res.project)}} </span>
-                    </span>
-
-                </td>
-                <td>{{res.cdate}}</td>
-                <td>
-                  <button type="button" class="btn btn-primary bg-white">  {{res.details}}  </button>
-                </td>
-            </tr>
+          <tr *ngFor='let res of users; let i = index'>
+            <td>{{i+1}}</td>
+            <td>{{res.name}}</td>
+            <td>
+              <button type="button" class="btn btn-primary bg-white" (click)='showProjectModal(res.name, res.cid, res.project)' >{{calProject(res.project)}} Project/s</button>
+              <span class="tt1">{{projectName(res.project) | shorten: 70: '...'}}<span class="tt2">{{projectName(res.project)}} </span></span>
+            </td>
+            <td>{{res.cdate}}</td>
+            <td>
+              <button type="button" class="btn btn-primary">{{res.details}}</button>
+            </td>
+          </tr>
     </tbody>
   </table>
 </div>

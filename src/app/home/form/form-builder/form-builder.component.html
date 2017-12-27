@@ -1,8 +1,8 @@
 <div class="col-sm-12 row m-0">
   <div class="col-sm-6 pl-0 pr-0 pt-5">
     <ol class="breadcrumb mb-0 bg-trans p-0">
-      <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-      <li class="breadcrumb-item"><a href="javascript:void(0)">Forms</a></li>
+      <li class="breadcrumb-item"><a>Dashboard</a></li><!-- Do no add anyy class to this anchor element OR any sibling -->
+      <li class="breadcrumb-item"><a>Forms</a></li><!-- Do no add anyy class to this anchor element OR any sibling -->
       <li class="breadcrumb-item active">Form Builder</li>
     </ol>
   </div>
@@ -20,50 +20,50 @@
       <div *ngIf='!displayPublish' style="font-size:4rem;margin-top:30px;color:#b1b1b1">
         <p>Form elements will be displayed here!</p>
       </div>
-      <div *ngFor='let json of jsonArray; let i = index' style="max-height:750px;overflow-y:auto;overflow-x:hidden;">
-        <div *ngIf="json.type == 'location'" >
+      <div class="form-build-design pl-4 pr-4" *ngFor='let json of jsonArray; let i = index' style="max-height:750px;overflow-y:auto;overflow-x:hidden;">
+        <div class="bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'location'" >
           <input type="checkbox" name="checkbox" checked disabled>&nbsp; Form submition location will be shared by default &nbsp; <i class="fa fa-trash-o" aria-hidden="true" (click)='deleteElement(i)' ></i>
         </div>
-        <div *ngIf="json.type == 'text'">
+        <div class="bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'text'">
           <app-input-text name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} >  </app-input-text>
         </div>
-        <div *ngIf="json.type == 'password'" >
+        <div class="bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'password'" >
           <app-input-password name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} >  </app-input-password>
         </div>
-        <div *ngIf="json.type == 'email'">
+        <div class="bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'email'">
           <app-input-email name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} >  </app-input-email>
         </div>
-        <div *ngIf="json.type == 'number'">
+        <div class="bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'number'">
           <app-input-number name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} rangeFrom={{json.rangeFrom}} rangeTo={{json.rangeTo}} >  </app-input-number>
         </div>
-        <div *ngIf="json.type == 'phone'">
+        <div class="bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'phone'">
           <app-input-phone name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} >  </app-input-phone>
         </div>
-        <div *ngIf="json.type == 'textarea'">
+        <div class="bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'textarea'">
           <app-input-textarea name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} >  </app-input-textarea>
         </div>
-        <div *ngIf="json.type == 'date'">
+        <div class="bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'date'">
           <app-input-date name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} rangeFrom={{json.rangeFrom}} rangeTo={{json.rangeTo}} >  </app-input-date>
         </div>
-        <div *ngIf="json.type == 'time'">
+        <div class="bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'time'">
           <app-input-time name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} rangeFrom={{json.rangeFrom}} rangeTo={{json.rangeTo}} >  </app-input-time>
         </div>
-        <div *ngIf="json.type == 'radio'">
+        <div class="bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'radio'">
           <app-input-radio name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [option]=json.option >  </app-input-radio>
         </div>
-        <div *ngIf="json.type == 'checkbox'" >
+        <div class="bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'checkbox'" >
           <app-input-checkbox name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [option]=json.option [values]=json.values>  </app-input-checkbox>
         </div>
-        <div *ngIf="json.type == 'dropdown'" >
+        <div class="bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'dropdown'" >
           <app-input-dropdown name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [option]=json.option >  </app-input-dropdown>
         </div>
-        <div *ngIf="json.type == 'slider'" >
+        <div class="bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'slider'" >
           <app-input-slider name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} rangeFrom={{json.rangeFrom}} rangeTo={{json.rangeTo}} >  </app-input-slider>
         </div>
-        <div *ngIf="json.type == 'file'" >
+        <div class="bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'file'" >
           <app-input-file name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [fileTypes]=json.fileTypes >  </app-input-file>
         </div>
-        <div *ngIf="json.type == 'break'" >
+        <div class="bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'break'" >
           <app-input-break name={{json.name}} id={{i}}>  </app-input-break>
         </div>
       </div>
@@ -94,21 +94,18 @@
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">+ New Form</h5>
       </div>
-      <div class="modal-body" style="height:200px;  ">Form Name:
+      <div class="modal-body" style="height:200px;">Form Name:
         <input type="text" name="Form Name" id="" [(ngModel)]=newFormName>
         <br />
         Project:
-
         <select [(ngModel)]="projectAssociate" class="col-4 form-control">
           <option *ngFor='let opt of projectArray; let i=i' [ngValue]=opt  >{{opt.name}}</option>
         </select>
-
         <!-- <input type="text" name="" id="" [(ngModel)]=newFormProjectName> -->
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary col-sm-5 pt-3 pb-3" (click)='conformForm()'  data-dismiss="modal" >Publish new Form</button>
+        <button type="button" class="btn btn-primary col-sm-5 pt-3 pb-3" (click)='conformForm()' data-dismiss="modal">Publish new Form</button>
       </div>
     </div>
   </div>

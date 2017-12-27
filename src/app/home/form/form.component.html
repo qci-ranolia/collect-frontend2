@@ -9,6 +9,8 @@
     <button type="button" class="btn btn-primary mt-3 mb-0 col-sm-6 col-md-5 col-lg-3 pt-3 pb-3" (click)='new()'>+ New</button>
   </div>
 </div>
+
+
 <div class="container-fluid text-center" style="min-height:85vh"><!--background:#fff; box-shadow:0 1px 1px #a9a8a9;-->
     <ul class="nav nav-tabs justify-content-center">
       <li class="nav-item"><a class="nav-link active" data-toggle="tab" role="tab" href="#form">Forms</a></li>
@@ -27,36 +29,51 @@
           <div *ngFor='let form of formArray; let i = index' class="col-sm-6" style="margin-bottom:15px">
             <div class="card cbx">
               <div class="card-block p-0">
-                <div class="col-sm-12 p-3 mt-2">
-                  <h4 class="card-title col-sm-12">{{form.Details.name}}</h4>
-                  <h6 class="card-subtitle col-sm-12 mb-2 text-muted">{{form.Details.project}}</h6>
+                <div class="col-sm-12 pl-4 pt-3 mt-2 pb-2 bb">
+                  <h5 class="card-title">{{form.Details.name}}</h5>
+                  <h4 class="card-subtitle mb-2 text-muted">{{form.Details.project}}</h4>
                 </div>
-                <div class="col-sm-12 p-3 row m-0">
+                <div class="col-sm-12 pl-2 pr-2 pt-5 pb-5 row m-0">
                   <p class="card-text col-sm-12">Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                   <!-- <a href="#" class="card-link">Rule: {{form.Details.rule}}</a> -->
-                  <a href="#" class="card-link col-6 d-inline-block">{{form.Details.status}}</a>
-                  <a href="#" class="card-link col-6 d-inline-block ml-0" [routerLink]="['../formBuilder']" [queryParams]="{formID : form.Details.cid }" >View form</a>
                 </div>
-                <div class="col-11 pl-3 pt-3 pr-1 pb-4 mt-4 ml-3 mb-3">
-                  <button (click)='rule(form.Rules, form.Details.cid, form.Elements)' type="button" class="btn btn-primary col-sm-11 col-md-4 col-lg-2 pt-3 pb-3" data-toggle="modal" data-target="#rules">Rule/s</button>
+                <div class="col-sm-12 row ml-0 mr-0 mb-3 p-1">
+                  <div class="col-5 pr-0">
+                    <button (click)='rule(form.Rules, form.Details.cid, form.Elements)' type="button" class="btn btn-primary col-sm-12 col-md-9 col-lg-7 pt-3 pb-3" data-toggle="modal" data-target="#rules">Rule/s</button>
+                  </div>
+                  <div class="col-7 pr-0 pt-1 fs-sm">
+                    <a href="#" class="card-link col-sm-6 d-inline-block p-0">{{form.Details.status}}</a>
+                    <a href="#" class="card-link col-sm-6 d-inline-block p-0  ml-0" [routerLink]="['../formBuilder']" [queryParams]="{formID : form.Details.cid }" >View form</a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <br />
+          <!--<button type="button" class="btn btn-primary mb-5 col-sm-5 col-md-4 col-lg-2 pt-3 pb-3" (click)='sync()'><i class="fa fa-refresh" aria-hidden="true"></i> Sync</button>-->
         </div>
-      <br>
-      <button type="button" class="btn btn-primary mb-5 col-sm-5 col-md-4 col-lg-2 pt-3 pb-3" (click)='sync()'><i class="fa fa-refresh" aria-hidden="true"></i> Sync</button>
       </div>
       <div class="tab-pane " id="template" role="tabpanel" >
         <br>
         <div class="row justify-content-center" >
           <div *ngFor='let temp of templateArray; let i = index' class="col-sm-6"  style="margin-bottom:15px">
             <div class="card cbx">
-              <div class="card-block">
-                <h4 class="card-title">{{temp.Details.name}}</h4>
-                <h6 class="card-subtitle mb-2 text-muted">{{temp.Details.project}}</h6>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a class="card-link" [routerLink]="['../formBuilder']" [queryParams]="{templateID : temp.Details.cid }" >View template</a>
+              <div class="card-block p-0 text-left">
+                <div class="col-sm-12 pl-4 pt-3 mt-2 pb-2 bb">
+                  <h5 class="card-title">{{temp.Details.name}}</h5>
+                  <h4 class="card-subtitle mb-2 text-muted">{{temp.Details.project}}</h4>
+                </div>
+                <div class="col-sm-12 pl-2 pr-2 pt-5 pb-5 row m-0">
+                  <p class="card-text col-sm-12">Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                <div class="col-sm-12 row ml-0 mr-0 mb-3 p-1">
+                  <div class="col-8 pr-0">
+                      <a class="card-link" [routerLink]="['../formBuilder']" [queryParams]="{templateID : temp.Details.cid }" >View template</a>
+                  </div>
+                  <!--<div class="col-7 pr-0 pt-1 fs-sm">
+
+                  </div>-->
+                </div>
               </div>
             </div>
           </div>
