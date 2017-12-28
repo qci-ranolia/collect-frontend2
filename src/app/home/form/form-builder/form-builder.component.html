@@ -12,7 +12,7 @@
       </div>
       <div *ngFor='let json of jsonArray; let i = index' style=" max-height:750px; overflow-y:auto; overflow-x:hidden;">
         <div *ngIf="json.type == 'location'" >
-            <input type="checkbox" name="checkbox" checked disabled> &nbsp; Form submition location will be shared by default &nbsp; <i class="fa fa-trash-o" aria-hidden="true" (click)='deleteElement(i)' ></i>
+          <input type="checkbox" name="checkbox" checked disabled> &nbsp; Form submition location will be shared by default &nbsp; <i class="fa fa-trash-o" aria-hidden="true" (click)='deleteElement(i)' ></i>
         </div>
         <div *ngIf="json.type == 'text'" >
           <app-input-text name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} >  </app-input-text>
@@ -52,6 +52,12 @@
         </div>
         <div *ngIf="json.type == 'file'" >
           <app-input-file name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [fileTypes]=json.fileTypes >  </app-input-file>
+        </div>
+        <div *ngIf="json.type == 'camera'" >
+          <app-input-camera name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [fileTypes]=json.fileTypes >  </app-input-camera>
+        </div>
+        <div *ngIf="json.type == 'video'" >
+          <app-input-video name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [fileTypes]=json.fileTypes >  </app-input-video>
         </div>
         <div *ngIf="json.type == 'break'" >
           <app-input-break name={{json.name}} id={{i}}>  </app-input-break>
