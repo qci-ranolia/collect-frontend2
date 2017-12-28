@@ -5,15 +5,15 @@
             <li class="breadcrumb-item active">Response</li>
         </ol>
     </div>
-    <div class="col-sm-6 pl-0 pr-0 pt-1">
+    <!--<div class="col-sm-6 pl-0 pr-0 pt-1">
         &nbsp;
-    </div>
+    </div>-->
 </div>
-<div class="container-fluid mt-4 pb-3 text-center">
+<div class="container-fluid mt-3 pb-3 text-left">
     <table *ngIf='flag' id="example" class="table table-striped bg-white mt-5 brd-def" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th></th>
+                <th class="header-1"></th>
                 <th>From</th>
                 <th>Project</th>
                 <th>Responces</th>
@@ -21,7 +21,7 @@
         </thead>
         <tbody>
             <tr *ngFor='let res of response; let i = index'>
-                <td></td>
+                <td class="text-center"></td>
                 <td>
                   <span class="tt1" > {{res.formName | shorten: 15: '...'}}
                     <span class="tt2" > &nbsp; {{res.formName}} &nbsp; </span>
@@ -33,12 +33,11 @@
                   </span>
                 </td>
                 <td>
-                  <button type="button" class="btn btn-primary" (click)='getData(res.formId)'> {{res.count}} Responses  </button>
+                  <button type="button" class="btn btn-primary bg-white" (click)='getData(res.formId)'> {{res.count}} Responses  </button>
                 </td>
             </tr>
         </tbody>
     <!--<p class="cted col-sm-12 p-0 text-center bg-primary text-white">Click on fields to edit data</p>-->
     </table>
-
     <!-- <button type="button" class="btn btn-primary col-sm-3 col-md-2 pt-3 pb-3 mt-4" (click)='reload()'>Reload</button> -->
 </div>

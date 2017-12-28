@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-//@import "~bootstrap/scss/_functions.scss";
+@import "~bootstrap/scss/_functions.scss";
 @import "~bootstrap/scss/_variables.scss";
 
 /*transitions mixins*/
@@ -10,7 +10,6 @@
 @mixin transition-delay($delay...) { -moz-transition-delay:$delay; -o-transition-delay:$delay; -webkit-transition-delay:$delay; transition-delay:$delay; }
 @mixin linear-gradient-cbx($shade...) {background-image:-o-linear-gradient($shade);background-image:-moz-linear-gradient($shade);background-image:-webkit-linear-gradient($shade);background-image:linear-gradient($shade);}
 
-
 @mixin rotate($degrees) {-webkit-transform:rotate($degrees);-moz-transform:rotate($degrees);-ms-transform:rotate($degrees);-o-transform:rotate($degrees);transform:rotate($degrees);}
 
 /*variables*/
@@ -20,16 +19,35 @@ $brand-primary:red;
 $text-color-darkset3:#525351 !important;
 $text-color-darkset3-hover:#424341 !important;
 $red-hover: #c9433f !important;
+$text-color-on-dark-bg:#fff;
+
+
+
+
 
 // primary colors
-$primary-color-light:#2295f8;
-$primary-color:#0275d8;
-$primary-color-dark:#0265c8;
-$primary-color-dark-hover:#0255b8;
+$primary-color-light:rgba(3,169,244,0.9);
+$primary-color:rgba(3,169,244,1) !important;
+$primary-color-dark:rgba(3,150,230,1) !important;
+$primary-color-dark-hover:rgba(3,130,210,1) !important;
+.bg-primary
+{
+  background:$primary-color;
+}
+
+
+//overflows
+.ofy
+{
+  overflow:hidden;
+  overflow-y:scroll;
+}
+
+
 
 // secondary colors
 $secondary-color:#ffd741;
-$secondary-color-border:#efc731;
+$secondary-color-border:#efc731 !important;
 $secondary-color-hover:#efc731;
 $secondary-color-border-hover:#dfb721;
 
@@ -62,23 +80,16 @@ $h:100%;
 {
   background: transparent;
   border: none;
-  border-bottom: 3px solid royalblue;
-  color: royalblue;
-}
-//body background classes
-
-.bg-white
-{
-  background: $body-bg-white;
-}
-.bg-trans
-{
-  background: $body-bg-trans;
+  border-bottom: 3px solid $primary-color;
+  color:$primary-color;
 }
 
+a {
+  color: $primary-color;
+}
 // col-width usage
 $col-1:8.33%;
-$col-2:16.67%;
+$col-2:16.65%;
 $col-3:25%;
 $col-4:33.33%;
 $col-5:41.67%;
@@ -95,13 +106,14 @@ $float-left:float-left;
 
 //border scss
 
-$bt-light:1px solid #ddd;
-$br-light:1px solid #ddd;
-$bl-light:1px solid #ddd;
-$bb-light:1px solid #ddd;
+$brd-ddd:1px solid #ddd;
 .bb
 {
- border-bottom:$bb-light;  
+ border-bottom:$brd-ddd;  
+}
+.br
+{
+ border-right:$brd-ddd;  
 }
 
 $brd-light:1px solid #ddd !important;
@@ -113,9 +125,34 @@ $brd-light:1px solid #ddd !important;
 $bt-second-clr:1px solid #ffd741;
 
 
+//positions classes
+.pos-fix-bl
+{
+  position:fixed;
+  bottom:0;
+  left:0;
+}
+.pos-rel
+{
+  position:relative;
+}
+.pos-abso-tl
+{
+  position:absolute;
+  top:0;
+  left:0;
+}
+.pos-abso-tr
+{
+  position:absolute;
+  top:0;
+  right:0;
+}
 
-
-
+.navbar-toggleable-md .navbar-brand
+{
+  color:$text-color-on-dark-bg !important;
+}
 
 // hovers 
 $prim-hvr: 1px solid #ffd741 !important;
@@ -131,14 +168,22 @@ $prim-hvr: 1px solid #ffd741 !important;
 /*Common css*/
 a:focus,
   a:hover,
-    input:focus,
-      button:hover,
-        .fa:hover
+    button:hover,
+      .fa:hover
 {
   cursor:pointer;
   outline:none;
 }
-input:hover
+input:focus, 
+  .form-control:focus
+{
+  outline: none;
+  box-shadow: none;
+  border-color: #bbb;
+  //text-indent: 15px;
+}
+input[type="text"]:hover,
+  input[type="password"]:hover
 {
   cursor:text;
   outline:none;
@@ -238,7 +283,7 @@ body
 .btn-primary,
   .btn-primary:active
 {
-  background:$secondary-color;
+  background:$secondary-color !important;
   border-color:$secondary-color-border;
   color:$text-color-darkset3;
 }
@@ -253,6 +298,12 @@ body
   -webkit-transform: scale(0.95);
   transform: scale(0.95);
   transition-duration:0.15s;
+}
+.btn-secondary
+{
+  background:$body-bg-white;
+  border-color:$brd-ddd;
+  color:$text-color-darkset3-hover;
 }
 .cbx
 {
@@ -323,7 +374,7 @@ body
 .slider-fix
 {
   background-color:$body-bg-white;
-  //border-right:$br-light;
+  //border-right:$brd-ddd;
   position:fixed;
   top:$top-menu-height;
   left:0;
@@ -423,7 +474,7 @@ body
 }
 .bt
 {
-  border-top:$bt-light;
+  border-top:$brd-ddd;
 }
 .crdHvr{
   //height:180px;
@@ -626,6 +677,16 @@ table.dataTable tbody th,
   cursor: not-allowed;
 }
 
+.header-1
+{
+  width: 20px !important;
+}
+table.dataTable thead th,
+  table.dataTable tbody td
+  {
+    border-right: $brd-ddd;
+    border-color: #eee;
+  }
 
 
 
@@ -724,10 +785,12 @@ table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.
 }
 .modal-title
 {
-   text-shadow:-1px 3px 1px #0245a8;
+   //text-shadow:0px 0px 0px $primary-color-dark;
+   color:$text-color-on-dark-bg;
 }
 .modal-header
 {
+  border-radius:0;
   background:$primary-color;
   box-shadow:0px 20px 15px -15px #aaa;
   border-bottom:transparent;
@@ -848,38 +911,43 @@ h5
 }
 .adf .modal-body .nav-tabs a
 {
-  color: $primary-color;
-  position: relative;
+  color:$primary-color;
+  position:relative;
 }
 .adf .modal-body .nav-tabs a.active
 {
-  color: $primary-color;
+  color:$primary-color;
   border-color:transparent;
   border-radius:0 !important;
 }
 .adf .modal-body .nav-tabs .nav-link:focus,
   .adf .modal-body .nav-tabs .nav-link:hover
 {
-  border-color: transparent;
-  border-radius: 0;
+  border-color:transparent;
+  border-radius:0;
+  color:$primary-color-dark-hover;
 }
 .adf .modal-body .nav-tabs .nav-link:after
 {
   content:" ";
-  border:20px solid $primary-color;
+  border-style:solid;
   display:none;
-  border-color:$primary-color transparent transparent transparent;
+  border-top-color:$primary-color;
+  border-right-color:transparent;
+  border-bottom-color:transparent;
+  border-left-color:transparent;
   position:absolute;
   top:41px;
-  border-width:5px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  width: fit-content;
+  border-width:10px;
+  left:0;
+  right:0;
+  margin:0 auto;
+  width:fit-content;
   @include transition( all 0.15s linear .01s );
+  //@include rotate(45deg);
 }
-.adf .modal-body .nav-tabs .nav-link.active:after,
-  .adf .modal-body .nav-tabs .nav-link:hover:after
+.adf .modal-body .nav-tabs .nav-link.active:after
+  //.adf .modal-body .nav-tabs .nav-link:hover:after
 {
   display:block;
   //border-color:transparent;
@@ -1137,4 +1205,18 @@ input.form-control:focus ~ .after {
   position: absolute;
   top: -11px;
   right: 0px; 
+}
+
+
+
+// important classes
+//body background classes
+
+.bg-white
+{
+  background: $body-bg-white;
+}
+.bg-trans
+{
+  background: $body-bg-trans;
 }

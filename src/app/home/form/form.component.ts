@@ -46,7 +46,8 @@ export class FormComponent implements OnInit {
   new() {
     this.router.navigate(['dash/formBuilder']);
   }
-
+  
+  
   ngOnInit() {
 
     this.projectService.getFormArray();

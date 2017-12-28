@@ -44,30 +44,45 @@
     </ul>
   </div>
   <div class="col-lg-10 col-sm-12 wrap-cont">
-      <router-outlet></router-outlet>
+    <div class="pos-rel">
+    <router-outlet></router-outlet>
       <div class="modal fade" id="userprofile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog" role="document" style="max-width:500px;">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">User Profile</h5>
             </div>
             <div class="modal-body text-center">
                 <form class="col-sm-12">
-                  <fieldset class="form-group row">
-                    <input class="form-control pl-0" id="op" type="password" name="" value="" required />
-                    <label class="col-form-label" for="op">Old Password:</label>
+                    <label class="row ml-0 mr-0 mb-3">
+                      <span class="col-4 text-left pt-2 pl-0">Old Password:</span>
+                      <input type="password" name="" value="" class="col-7 form-control pt-2 pb-2" />
+                    </label>
+                    <label class="row ml-0 mr-0 mb-3">
+                      <span class="col-4 text-left pt-2 pl-0">New Password:</span>
+                      <input type="password" name="" value="" class="col-7 form-control pt-2 pb-2" />
+                    </label>
+                    <label class="row ml-0 mr-0 mb-3">
+                      <span class="col-4 text-left pt-2 pl-0">Match Password:</span>
+                      <input type="password" name="" value="" class="col-7 form-control pt-2 pb-2" />
+                    </label>
+                  <!--
+                    <fieldset class="form-group row m-0 col-sm-12">
+                    <label class="col-form-label col-sm-3" for="op">Old Password :</label>
+                    <input class="form-control col-sm-6 pl-0" id="op" type="password" name="" value="" required />
                     <div class="after"></div>
                   </fieldset>
-                  <fieldset class="form-group row">
-                    <input class="form-control pl-0" id="np" type="password" name="" value="" required />
-                    <label class="col-form-label" for="np">New Password:</label>
+                  <fieldset class="form-group row m-0">
+                    <label class="col-form-label col-sm-3" for="np">New Password :</label>
+                    <input class="form-control col-sm-6 pl-0" id="np" type="password" name="" value="" required />
                     <div class="after"></div>
                   </fieldset>
-                  <fieldset class="form-group row">
-                    <input class="form-control pl-0" id="mnp" type="password" name="" value="" required />
-                    <label class="col-form-label" for="mnp">Match New Password:</label>
+                  <fieldset class="form-group row m-0">
+                    <label class="col-form-label col-sm-3" for="mnp">Match New Password :</label>
+                    <input class="form-control col-sm-6 pl-0" id="mnp" type="password" name="" value="" required />
                     <div class="after"></div>
                   </fieldset>
+                -->
                 </form>
             </div>
             <div class="modal-footer">
@@ -78,5 +93,6 @@
           </div>
         </div>
       </div>
+    </div>
   </div>
 </div>

@@ -5,9 +5,12 @@
       <li class="breadcrumb-item active">Home</li>
     </ol>
   </div>
-  <div class="col-sm-6 pl-0 pr-0 pt-1">&nbsp;</div>
+  <!--<div class="col-sm-6 pl-0 pr-0 pt-1">&nbsp;</div>-->
 </div>
-<div class="container-fluid p-0">
+<div class="pos-abso-tr col-sm-9 text-right">
+    <button type="button" class="btn btn-primary col-sm-3 col-md-2 pt-3 pb-3 mt-4" data-toggle="modal" data-target="#projectModal">+ Project</button>
+</div>
+<div class="container-fluid p-0 mt-3">
     <div class="row ml-0 mr-0 mb-5">
       <div class="col-md-6 col-sm-12 p-0 mt-0">
         <div class="col-md-12 p-3"><!--background:#3399ff-->
@@ -16,11 +19,10 @@
           </div>
         </div>
         <div class="col-md-12 p-3">
-          <div class="col-sm-12 p-2 homeDivStyle bg-white">
+          <div class="col-sm-12 p-2 homeDivStyle bg-white" style="height:257px;">
             <!--Project Summary Blocks-->Project Summary Block<br /><br /><br /><br /><br /><br /><br /><br /><!--Project Summary Blocks Ends-->
-            <div class="text-center p-3">
-              <button type="button" class="btn btn-primary col-lg-3 col-md-4 pt-3 pb-3" data-toggle="modal" data-target="#projectModal">+ Project</button>
-            </div>
+            <!--<div class="text-center p-3">
+            </div>-->
           </div>
         </div>
       </div>
@@ -78,14 +80,22 @@
     </div>
   </div>
   <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document" style="max-width:500px;">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">+ New Project</h5>
         </div>
         <div class="modal-body text-center">
             <form class="col-sm-12">
-              <fieldset class="form-group row">
+              <label class="row ml-0 mr-0 mb-3">
+                <span class="col-4 text-left pt-2 pl-0">Project Name :</span>
+                <input type="password" name="Project Name" value="" class="col-7 form-control pt-2 pb-2" [(ngModel)]='pname' required />
+              </label>
+              <label class="row ml-0 mr-0 mb-3">
+                <span class="col-4 text-left pt-2 pl-0">Project Description :</span>
+                <input type="password" name="Project Desc" value="" class="col-7 form-control pt-2 pb-2" [(ngModel)]='pdesc' required />
+              </label>
+              <!--<fieldset class="form-group row">
                   <input class="form-control pl-0" id="pn" type="text" name="Project name" value="" [(ngModel)]='pname' required />
                   <label class="col-form-label" for="pn">Project Name:</label>
                   <div class="after"></div>
@@ -94,7 +104,7 @@
                   <input class="form-control pl-0" id="pd" type="text" name="Project Desc" value="" [(ngModel)]='pdesc' required />
                   <label class="col-form-label" for="pd">Project Desc:</label>
                   <div class="after"></div>
-              </fieldset>
+              </fieldset>-->
             </form>
         </div>
         <div class="modal-footer">
