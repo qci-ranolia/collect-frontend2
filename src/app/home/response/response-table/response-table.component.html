@@ -15,19 +15,21 @@
         <thead>
             <tr>
                 <th></th>
-                <th>From</th>
-                <th>Description</th>
-                <th>Responces</th>
+                <th *ngFor="let head of header">
+                  {{head}}
+                </th>
+                <th>Details</th>
+
             </tr>
         </thead>
         <tbody>
             <tr *ngFor='let res of response; let i = index'>
-
-                <td> {{i+1}} </td>
-                <td>{{res.name}}</td>
-                <td>{{res.position}}</td>
+                <td>{{i+1}}</td>
+                <td *ngFor = 'let temp of res.ResElements' >
+                  {{temp.value}}
+                </td>
                 <td>
-                  <button type="button" class="btn btn-primary col-sm-3 col-md-2 bg-trans" >  {{res.office}}  </button>
+                  <button type="button" class="btn btn-primary " >  Details  </button>
                 </td>
             </tr>
     </tbody>

@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import {ProjectService} from '../../../service/ProjectService';
+declare var $: any;
+import 'datatables.net';
 
 @Component({
   selector: 'app-assessor',
@@ -7,9 +12,126 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssessorComponent implements OnInit {
 
-  constructor() { }
+  users: any = [];
+  flag = false;
+  formArray: any = [];
+  assessorName: any;
+  assessorPhone: any;
+  formAssociate: any;
+  userProjectName : any;
+  assessorFormArray : any =[];
+  projectAs: any;
+  userCid: any;
+  sub: any;
+  sub1: any;
+  sub2: any;
+  sub3: any;
+  sub4: any;
+
+  constructor(private projectService: ProjectService, private router: Router) {
+    this.sub = this.projectService.emitAssessors.subscribe(res=>{
+      this.users = res;
+      this.flag = true;
+      this.display();
+    });
+
+    this.sub1 = this.projectService.emitFormArray.subscribe(res=>{
+      this.formArray = res;
+    });
+  }
 
   ngOnInit() {
+    this.projectService.getAssessors();
   }
+
+  display() {
+    if(this.flag) {
+       $(document).ready(function() {
+        var t = $('#example1').DataTable({
+          "columnDefs": [ {
+            "searchable": false,
+            "orderable": false,
+            "targets": 0
+        } ],
+        "order": [[ 1, 'asc' ]]
+        });
+        t.on( 'order.dt search.dt', function () {
+            t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                cell.innerHTML = i+1;
+            });
+        }).draw();
+      });
+    }
+  }
+
+  assessor() {
+    this.projectService.getFormArray();
+    $("#newAssessorModal").modal('show');
+  }
+
+  saveAssessor() {
+    // console.log(this.formAssociate);
+    this.projectService.addAssessorArray(this.assessorName, this.assessorPhone, this.formAssociate);
+    this.assessorName = '';
+    $("#newAssessorModal").modal('hide');
+    this.router.navigate(['dash/org'], { queryParams: { id: ""+ Math.floor(1000 + Math.random() * 9000) } });
+    this.formAssociate = "";
+  }
+
+  calForms(project) {
+    let j = 0;
+    for(let i of project) {
+      j++;
+    }
+    return ""+j;
+  }
+
+  showProjectModal( assessorName, assessorCid, formArray) {
+    this.projectService.getFormArray();
+    let n = 0;
+    let temp = [];
+    this.userProjectName = assessorName;
+    this.userCid = assessorCid;
+    this.assessorFormArray = formArray;
+
+    $("#assessorFormModal").modal('show');
+
+  }
+
+  assignNewProject() {
+    // this.projectService.assignNewProjectToUser(this.userCid,this.projectAs);
+    this.projectService.assignNewFormToAssessor(this.userCid,this.projectAs);
+    $("#assessorFormModal").modal('hide');
+    this.formArray = [];
+    this.assessorFormArray= [];
+    this.projectAs = "";
+  }
+
+  deleteFormAssessorArray(formCid, projCid) {
+    this.projectService.deleteFormAssessorArray(this.userCid, formCid, projCid);
+
+    $("#assessorFormModal").modal('hide');
+    this.formArray = [];
+    this.assessorFormArray= [];
+
+  }
+
+  projectForm(project) {
+    //{ name: 'Form2', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121',  status:'Online', cid:'a2121' }
+    let name = "";
+    for(let n of project) {
+      name += n.name + " " + n.project + ",  ";
+    }
+    // console.log(name);
+    return name;
+
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+    this.sub1.unsubscribe();
+  }
+
+
 
 }
