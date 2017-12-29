@@ -1,12 +1,12 @@
 <div class="container form-container text-center col-sm-8 mt-4 cbx" style="background:#fff;">
-  <br />
+  <br/>
   <h3>QCI Form Builder &reg;</h3>
   <div class="row justify-content-center">
     <div class="col-md-12"  >
       <h5>{{name}}</h5>
       <p>{{project_name}}</p>
       <button type="button" class="btn btn-primary col-sm-4 col-md-3 pt-3 pb-3" data-toggle="modal" data-target="#exampleModal">Add element</button>
-      <br /><br />
+      <br/><br/>
       <div *ngIf='!displayPublish' style="font-size:4rem;margin-top:30px;color:#b1b1b1" >
         <p>Form elements will be displayed here!</p>
       </div>
@@ -63,15 +63,15 @@
           <app-input-break name={{json.name}} id={{i}}>  </app-input-break>
         </div>
       </div>
-      <br />
+      <br/>
       <div *ngIf='displayPublish' >
           <button *ngIf='displayPublishForm' type="button" class="btn btn-success" (click)='publishForm()'> {{sumbitForm}} </button>
       </div>
-      <br />
+      <br/>
       <div *ngIf='displayPublish' >
           <button *ngIf='displayPublishTemp' type="button" class="btn btn-success" (click)='publishTemplate()'> {{sumbitTemp}} </button>
       </div>
-      <br />
+      <br/>
     </div>
   </div>
 </div>
@@ -93,15 +93,12 @@
       </div>
       <div class="modal-body" style="height:200px;  ">Form Name:
         <input type="text" name="" id="" [(ngModel)]=newFormName>
-        <br />
+        <br/>
         Project:
-
         <select [(ngModel)]="projectAssociate" class="col-4 form-control">
           <option *ngFor='let opt of projectArray; let i=i' [ngValue]=opt  >{{opt.name}}</option>
         </select>
-
         <!-- <input type="text" name="" id="" [(ngModel)]=newFormProjectName> -->
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

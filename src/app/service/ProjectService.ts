@@ -6,7 +6,27 @@ import { APIService } from './APIService';
 @Injectable()
 export class ProjectService {
 
-  constructor(private apiService: APIService) {}
+  constructor(private apiService: APIService, private router: Router ) {}
+
+  cid() {
+    let d = new Date();
+    let cid = d.getTime() +""+ Math.floor(1000 + Math.random() * 8999);
+    return cid;
+  }
+
+  cdate() {
+    let d = new Date();
+    let cdate = d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear()+" "+d.getHours();
+    let min  = d.getMinutes();
+    let min2 = "";
+    if(min<10) {
+      min2 = "0"+min;
+    } else{
+      min2 = ""+min;
+    }
+    cdate += ":"+min2;
+    return cdate;
+  }
 
   emitFormElement = new EventEmitter<any>();
   emitFormElementTemp = new EventEmitter<any>();
@@ -24,6 +44,10 @@ export class ProjectService {
   emitAssessors = new EventEmitter<any>();
   emitFormResponse = new EventEmitter<any>();
   emitTableHeader = new EventEmitter<any>();
+  emitSuccessRes = new EventEmitter<any>();
+  emitWarningRes = new EventEmitter<any>();
+  emitErrorRes = new EventEmitter<any>();
+  emitInfoRes = new EventEmitter<any>();
 
   formArray = [
     { Details: { name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },
@@ -55,9 +79,9 @@ export class ProjectService {
     ];
 
   projectArray = [
-    {cid:"p121", cdate:"26/11/2017 10:14", name: 'Project Name Here 1', form: 2, user: 3, assessor: 5, desc:'This is a test project about different design concepts we can adopt to show a card design. Lorem iThis is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kilpsum doler sit kil This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil'},
-    {cid:"p122", cdate:"26/11/2017 10:22", name: 'Project Name Here 2', form: 0, user: 0, assessor: 0,  desc:'This is again a test project about different design concepts we can adopt to show a card design. sit amet chip c This is a test project about different design concepts we can adopt to show a card designThis is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil. Lorem ipsum doler sit   kil'},
-    {cid:"p123", cdate:"26/11/2017 10:25", name: 'Project Name Here 3', form: 0, user: 0, assessor: 0,  desc:'This is again  a test project about different design concepts we can adopt to show a card design. Lorem ipsum dole il This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil  kil'},
+    // {cid:"p121", cdate:"26/11/2017 10:14", name: 'Project Name Here 1', form: 2, user: 3, assesor: 5, desc:'This is a test project about different design concepts we can adopt to show a card design. Lorem iThis is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kilpsum doler sit kil This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil'},
+    // {cid:"p122", cdate:"26/11/2017 10:22", name: 'Project Name Here 2', form: 0, user: 0, assesor: 0,  desc:'This is again a test project about different design concepts we can adopt to show a card design. sit amet chip c This is a test project about different design concepts we can adopt to show a card designThis is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil. Lorem ipsum doler sit   kil'},
+    // {cid:"p123", cdate:"26/11/2017 10:25", name: 'Project Name Here 3', form: 0, user: 0, assesor: 0,  desc:'This is again  a test project about different design concepts we can adopt to show a card design. Lorem ipsum dole il This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil  kil'},
   ];
 
   responseArray1 = [
@@ -184,6 +208,87 @@ export class ProjectService {
       {cid:"p124", cdate:"26/11/2017 10:14", name: 'Rick', phone:'8894810231', form:[{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' }, { name: 'Form2', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121',  status:'Online', cid:'a2121' }], details:'Details'},
   ];
 
+  getProject() {
+    let data = '';
+    this.apiService.GetAllProjects(data).subscribe(res=> {
+      if(res){
+        console.log(res);
+        this.projectArray = res.data;
+        console.log(this.projectArray);
+        this.emitProject.emit(this.projectArray);
+
+      } else {}
+    },err=> {
+      console.log(err);
+    });
+
+  }
+
+  addNewProject(pname: string, pdesc: string) {
+
+    let tempData : any;
+    let cid = this.cid();
+    let cdate = this.cdate();
+    tempData = { cid:cid, cdate:cdate, name: pname, desc: pdesc, form:0, user: 0, assesor: 0};
+    this.apiService.AddNewProject(tempData).subscribe(res=>{
+      // console.log(res);
+      if(res.success) {
+        this.emitSuccessRes.emit(res.message);
+        this.projectArray.push(tempData);
+      } else {
+        this.emitErrorRes.emit(res.message);
+      }
+    },err=>{
+      console.log(err);
+      this.emitErrorRes.emit("Somethisng went wrong");
+    });
+
+    // this.getProject();
+  }
+
+  getFormArray() {
+    // this.apiService.PushIntoForm(data).subscribe(res=>{
+    //   console.log(res);
+    //   if(res.success) {
+    //     this.emitSuccessRes.emit(res.message);
+    //     this.formArray.push(data);
+    //   }else {}
+    // }, err=>{
+    //   console.log(err);
+    // });
+    this.emitFormArray.emit(this.formArray);
+  }
+
+  pushIntoForm(data: any) {
+
+    this.apiService.PushIntoForm(data).subscribe(res=>{
+      console.log(res);
+      if(res.success) {
+        this.emitSuccessRes.emit(res.message);
+        this.formArray.push(data);
+        this.router.navigate(['dash/form']);
+      }else {}
+    }, err=>{
+      console.log(err);
+    });
+
+  }
+
+  pushIntoTemplate(data: any) {
+    this.apiService.PushIntoTemplate(data).subscribe(res=>{
+      console.log(res);
+      if(res.success) {
+        this.emitSuccessRes.emit(res.message);
+        this.templateArray.push(data);
+        this.router.navigate(['dash/form']);
+      }else {}
+    }, err=>{
+      console.log(err);
+    });
+    // this.templateArray.push(data);
+
+  }
+
   getResponseArray(formId) {
     let formResponse = [];
     let tableHeader = [];
@@ -203,14 +308,6 @@ export class ProjectService {
 
     this.emitFormResponse.emit(formResponse);
     this.emitTableHeader.emit(tableHeader);
-  }
-
-  addNewProject(pname: string, pdesc: string) {
-    let d = new Date();
-    let cid = d.getTime() +""+ Math.floor(1000 + Math.random() * 9000);
-    let cdate = d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear()+" "+d.getHours()+":"+d.getMinutes();
-    this.projectArray.push({cid:cid, cdate:cdate, name: pname, desc: pdesc, form:0, user: 0, assessor: 0});
-    this.getProject();
   }
 
   addUserArray(name, project) {
@@ -283,7 +380,7 @@ export class ProjectService {
   descAsrCount(cid) {
     for(let proj of this.projectArray) {
       if(proj.cid === cid) {
-        proj.assessor--;
+        proj.assesor--;
         break;
       }
     }
@@ -292,7 +389,7 @@ export class ProjectService {
   incAssessorCount(cid) {
     for(let proj of this.projectArray) {
       if(proj.cid === cid) {
-        proj.assessor++;
+        proj.assesor++;
         break;
       }
     }
@@ -317,14 +414,6 @@ export class ProjectService {
 
   getResponse() {
     this.emitResponse.emit(this.responseArray);
-  }
-
-  getProject() {
-    this.emitProject.emit(this.projectArray);
-  }
-
-  getFormArray() {
-    this.emitFormArray.emit(this.formArray);
   }
 
   getTemplateArray() {
@@ -482,16 +571,6 @@ export class ProjectService {
       this.formArray[temp].Rules.push(newRule);
     }
     console.log(newRule);
-  }
-
-  pushIntoForm(data: any) {
-    this.formArray.push(data);
-
-  }
-
-  pushIntoTemplate(data: any) {
-    this.templateArray.push(data);
-
   }
 
   calFormArrayLength() {

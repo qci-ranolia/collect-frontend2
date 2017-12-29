@@ -17,7 +17,7 @@ export class ProjectComponent implements OnInit {
 
     this.projectService.emitProject.subscribe(res=>{
       this.projects = res;
-      //console.log(this.projects);
+      // console.log(this.projects);
     });
   }
 

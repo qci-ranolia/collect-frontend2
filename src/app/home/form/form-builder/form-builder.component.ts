@@ -168,10 +168,8 @@ export class FormBuilderComponent implements OnInit {
 
       let updatedData = this.jsonArray
       this.projectService.updateTempArray(this.tempID,updatedData);
-
     } else {
       $("#newTempModal").modal('show');
-
     }
     // console.log(this.projectService.templateArray);
   }
@@ -179,19 +177,17 @@ export class FormBuilderComponent implements OnInit {
   conformForm() {
 
     let id = this.projectService.calFormArrayLength();
-    let now = new Date();
-    let cid = now.getTime() + id +""+ Math.floor(1000 + Math.random() * 9000);
+    let cid = this.projectService.cid();
     let dataToPush = {Details: {name: this.newFormName, rule: 'None', project: this.projectAssociate.name, projectcid: this.projectAssociate.cid, status:'Offline', cid: cid }, Elements:this.jsonArray,  Rules:[]}
     this.projectService.incFromCount(this.projectAssociate.cid);
     this.projectService.pushIntoForm(dataToPush);
-
+    
   }
 
   conformTemp() {
 
     let id = this.projectService.calTemplateArrayLength();
-    let now = new Date();
-    let cid = now.getTime() + id +""+ Math.floor(1000 + Math.random() * 9000);
+    let cid = this.projectService.cid();
     let dataToPush = {Details: {name: this.newTempName, rule: 'None', project: 'N/A', cid: cid }, Elements:this.jsonArray};
     this.projectService.pushIntoTemplate(dataToPush);
 
