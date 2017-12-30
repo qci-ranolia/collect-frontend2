@@ -100,7 +100,7 @@ export class FormComponent implements OnInit {
     let newRule = {cid:cid, name: this.ruleName, elementName: this.ruleElement.name,elementCid: this.ruleElement.cid, elementType: this.ruleElement.type, elementValue: this.ruleTarget.trim(), condition: this.ruleCondition, tempCid: tempCid, tempName: tempName, ruleFormQuestion: this.ruleFormQuestion, satisfyAll: this.satisfyAll};
     this.projectService.addNewRule(this.formCIDWithRule, newRule);
 
-    
+
 
   }
 

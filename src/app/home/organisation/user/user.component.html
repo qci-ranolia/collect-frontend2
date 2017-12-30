@@ -7,8 +7,8 @@
             <tr>
                 <th></th>
                 <th>User</th>
+                <th>Email</th>
                 <th>Project</th>
-                <th>Created Date</th>
                 <th>Details</th>
             </tr>
         </thead>
@@ -16,18 +16,15 @@
             <tr *ngFor='let res of users; let i = index'>
                 <td>{{i+1}}</td>
                 <td>{{res.name}}</td>
+                <td>{{res.email}}</td>
                 <td>
 
-                    <button type="button" class="btn btn-primary " (click)='showProjectModal(res.name, res.cid, res.project)' >
+                    <button type="button" class="btn btn-primary tt1" (click)='showProjectModal(res.name, res.cid, res.project)' >
                       {{calProject(res.project)}} Project/s
+                      <span class="tt2" > {{ &nbsp; projectName(res.project) &nbsp; }} </span>
                     </button>
 
-                    <span class="tt1" > {{projectName(res.project) | shorten: 5: '...'}}
-                      <span class="tt2" > {{projectName(res.project)}} </span>
-                    </span>
-
                 </td>
-                <td>{{res.cdate}}</td>
                 <td>
                   <button type="button" class="btn btn-primary ">  {{res.details}}  </button>
                 </td>
@@ -47,6 +44,8 @@
       <div class="modal-body text-center" style="height:300px; overflow-y: auto">
           <div class="row justify-content-center" >
             <input type="text" name="" value="" [(ngModel)]='userName' placeholder="User Name" class="col-8 form-control mb-5" />
+            <br>
+            <input type="email" name="" value="" [(ngModel)]='userEmail' placeholder="User Email" class="col-8 form-control mb-5" />
             <br>
             <select [(ngModel)]="projectAssociate" class="col-8 form-control mb-5" >
               <option *ngFor='let opt of projectArray; let i=i' [ngValue]=opt  >{{opt.name}}</option>

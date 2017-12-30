@@ -49,11 +49,11 @@ export class AssessorComponent implements OnInit {
        $(document).ready(function() {
         var t = $('#example1').DataTable({
           "columnDefs": [ {
-            "searchable": false,
             "orderable": false,
-            "targets": 0
+            "targets": 0,
+            "bSort": false
         } ],
-        "order": [[ 1, 'asc' ]]
+        "bSort": false
         });
         t.on( 'order.dt search.dt', function () {
             t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
@@ -64,7 +64,7 @@ export class AssessorComponent implements OnInit {
     }
   }
 
-  assessor() {
+  assesor() {
     this.projectService.getFormArray();
     $("#newAssessorModal").modal('show');
   }
@@ -73,9 +73,11 @@ export class AssessorComponent implements OnInit {
     // console.log(this.formAssociate);
     this.projectService.addAssessorArray(this.assessorName, this.assessorPhone, this.formAssociate);
     this.assessorName = '';
+    this.assessorPhone = '';
     $("#newAssessorModal").modal('hide');
     this.router.navigate(['dash/org'], { queryParams: { id: ""+ Math.floor(1000 + Math.random() * 9000) } });
     this.formAssociate = "";
+    this.formArray=[];
   }
 
   calForms(project) {
@@ -105,6 +107,7 @@ export class AssessorComponent implements OnInit {
     this.formArray = [];
     this.assessorFormArray= [];
     this.projectAs = "";
+    this.formArray = [];
   }
 
   deleteFormAssessorArray(formCid, projCid) {

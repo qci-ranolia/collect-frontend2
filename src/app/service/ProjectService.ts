@@ -50,32 +50,32 @@ export class ProjectService {
   emitInfoRes = new EventEmitter<any>();
 
   formArray = [
-    { Details: { name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },
-      Elements:  [{type: "text", required: false, name: "Name", value:"", cid:"a1", hepltext: ""},
-                      {type: "email", required: false, hepltext: "", name: "Email ID", value:"", cid:"b1"},
-                      {type: "number", required: false, hepltext: "", name: "Number Input", value:"", cid:"c1"},],
-      Rules: [{cid:"211", name: 'Rule 1', elementName:'Name', elementType: "text", elementValue:"sam",elementCid:"a1", tempCid: '2332b', tempName: 'template1', satisfyAll:false},],
-    },
-    { Details: { name: 'Form2', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121',  status:'Online', cid:'a2121' },
-      Elements:  [{type: "text", required: false, name: "Name2", value:"", cid:"a11", hepltext: ""},
-                      {type: "email", required: false, value:"", cid:"a12", hepltext: "", name: "Email ID2"},
-                      {type: "number", required: false, value:"", cid:"a13", hepltext: "", name: "Number Input2"},],
-      Rules: [],
-    }
+    // { Details: { name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },
+    //   Elements:  [{type: "text", required: false, name: "Name", value:"", cid:"a1", hepltext: ""},
+    //                   {type: "email", required: false, hepltext: "", name: "Email ID", value:"", cid:"b1"},
+    //                   {type: "number", required: false, hepltext: "", name: "Number Input", value:"", cid:"c1"},],
+    //   Rules: [{cid:"211", name: 'Rule 1', elementName:'Name', elementType: "text", elementValue:"sam",elementCid:"a1", tempCid: '2332b', tempName: 'template1', satisfyAll:false},],
+    // },
+    // { Details: { name: 'Form2', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121',  status:'Online', cid:'a2121' },
+    //   Elements:  [{type: "text", required: false, name: "Name2", value:"", cid:"a11", hepltext: ""},
+    //                   {type: "email", required: false, value:"", cid:"a12", hepltext: "", name: "Email ID2"},
+    //                   {type: "number", required: false, value:"", cid:"a13", hepltext: "", name: "Number Input2"},],
+    //   Rules: [],
+    // }
   ];
 
   templateArray = [
-    { Details:   { name: 'template1', rule: 'None', project:"N/A", cid:'2332b'},
-    Elements:  [{type: "text", required: false, name: "Name", value:"", cid:"a1q", hepltext: ""},
-                    {type: "email", required: false, value:"", cid:"a1b", hepltext: "", name: "Email ID"},
-                    {type: "number", required: false, value:"", cid:"a1c", hepltext: "", name: "Number Input"},],
-
-    },
-    { Details:   { name: 'template2', rule: 'None', project:"N/A", cid:'2323b' },
-    Elements:  [{type: "text", required: false, name: "Name2", value:"", cid:"aa1", hepltext: ""},
-                  {type: "email", required: false, value:"", cid:"ba1", hepltext: "", name: "Email ID2"},
-                  {type: "number", required: false, value:"", cid:"ca1", hepltext: "", name: "Number Input2"},],
-    }
+    // { Details:   { name: 'template1', rule: 'None', project:"N/A", cid:'2332b'},
+    // Elements:  [{type: "text", required: false, name: "Name", value:"", cid:"a1q", hepltext: ""},
+    //                 {type: "email", required: false, value:"", cid:"a1b", hepltext: "", name: "Email ID"},
+    //                 {type: "number", required: false, value:"", cid:"a1c", hepltext: "", name: "Number Input"},],
+    //
+    // },
+    // { Details:   { name: 'template2', rule: 'None', project:"N/A", cid:'2323b' },
+    // Elements:  [{type: "text", required: false, name: "Name2", value:"", cid:"aa1", hepltext: ""},
+    //               {type: "email", required: false, value:"", cid:"ba1", hepltext: "", name: "Email ID2"},
+    //               {type: "number", required: false, value:"", cid:"ca1", hepltext: "", name: "Number Input2"},],
+    // }
     ];
 
   projectArray = [
@@ -195,9 +195,9 @@ export class ProjectService {
   ];
 
   userArray = [
-      {cid:"p121", cdate:"26/11/2017 10:14", name: 'Sam', project:[{cid:'p121', name:'Project Name Here 1'}], details:'Details'},
-      {cid:"p122", cdate:"26/11/2017 10:13", name: 'Tom', project:[{cid:'p121', name:'Project Name Here 1'}], details:'Details'},
-      {cid:"p123", cdate:"26/11/2017 10:20", name: 'Rony', project:[{cid:'p121', name:'Project Name Here 1'}], details:'Details'},
+      {cid:"p121", cdate:"26/11/2017 10:14", name: 'Sam', email:" test@tes.com", project:[{cid:'p121', name:'Project Name Here 1'}], details:'Details'},
+      {cid:"p122", cdate:"26/11/2017 10:13", name: 'Tom', email:" test@tes.com", project:[{cid:'p121', name:'Project Name Here 1'}], details:'Details'},
+      {cid:"p123", cdate:"26/11/2017 10:20", name: 'Rony', email:" test@tes.com", project:[{cid:'p121', name:'Project Name Here 1'}], details:'Details'},
   ];
 
   assessorArray = [
@@ -209,12 +209,11 @@ export class ProjectService {
   ];
 
   getProject() {
-    let data = '';
-    this.apiService.GetAllProjects(data).subscribe(res=> {
+    this.apiService.GetAllProjects().subscribe(res=> {
       if(res){
-        console.log(res);
+        // console.log(res);
         this.projectArray = res.data;
-        console.log(this.projectArray);
+        // console.log(this.projectArray);
         this.emitProject.emit(this.projectArray);
 
       } else {}
@@ -247,16 +246,64 @@ export class ProjectService {
   }
 
   getFormArray() {
-    // this.apiService.PushIntoForm(data).subscribe(res=>{
-    //   console.log(res);
-    //   if(res.success) {
-    //     this.emitSuccessRes.emit(res.message);
-    //     this.formArray.push(data);
-    //   }else {}
-    // }, err=>{
-    //   console.log(err);
-    // });
-    this.emitFormArray.emit(this.formArray);
+    this.apiService.GetFormArray().subscribe(res=>{
+      // console.log(res);
+
+      if(res.success) {
+        this.formArray = [];
+        if(res.formArray.length) {
+          for(let i = 0; i< res.formArray.length; i++) {
+            this.formArray.push(res.formArray[i].form_json);
+          }
+        }
+        this.emitFormArray.emit(this.formArray);
+      }else {}
+    }, err=>{
+      console.log(err);
+    });
+    // this.emitFormArray.emit(this.formArray);
+  }
+
+  getTemplateArray() {
+    this.apiService.GetTeplateArray().subscribe(res=>{
+      // console.log(res);
+
+      if(res.success) {
+        this.templateArray = [];
+        if(res.tempArray.length) {
+          for(let i = 0; i< res.tempArray.length; i++) {
+            this.templateArray.push(res.tempArray[i].temp_json);
+          }
+        }
+        this.emitTemplateArray.emit(this.templateArray);
+      }else {}
+    }, err=>{
+      console.log(err);
+    });
+
+    // this.emitTemplateArray.emit(this.templateArray);
+  }
+
+  updateFormJson(form: any){
+    this.apiService.UpdateFormJson(form).subscribe(res=>{
+      // console.log(res);
+      if(res.success) {
+        // this.emitSuccessRes.emit(res.message);
+      }else {}
+    }, err=>{
+      console.log(err);
+    });
+  }
+
+  updateTempJson(temp: any){
+    this.apiService.UpdateTempJson(temp).subscribe(res=>{
+      // console.log(res);
+      if(res.success) {
+        // this.emitSuccessRes.emit(res.message);
+      }else {}
+    }, err=>{
+      console.log(err);
+    });
   }
 
   pushIntoForm(data: any) {
@@ -289,6 +336,166 @@ export class ProjectService {
 
   }
 
+  addNewRule(fcid: any,newRule: any) {
+
+    if(newRule.ruleFormQuestion != undefined) {           // If Rule is a Form Question
+
+      let cid = this.cid();
+      let template: any = {Details:{},Elements:[]};       // generate new template
+      template.Details.name = 'Form question';            // generate template properties
+      template.Details.rule = '';
+      template.Details.project = '';
+      template.Details.cid = cid;
+      template.Elements.push(newRule.ruleFormQuestion);   // push elements
+
+      this.pushIntoTemplate(template);                    // update server template
+      this.templateArray.push(template);                  // push new generated template on the template array
+
+      for(let i = 0; i< this.formArray.length; i++) {
+        if(this.formArray[i].Details.cid == fcid) {
+          for(let j=0; j< this.formArray[i].Elements.length; j++) {
+            if(this.formArray[i].Elements[j].cid == newRule.ruleFormQuestion.cid) {
+              this.formArray[i].Elements.splice(j,1);     // remove form question from from to template
+              break;
+            }
+          }
+        }
+      }
+      newRule.tempCid = cid;                               // insert tempID on the rule list
+      newRule.tempName = template.Details.name;            // insert temp Name on the rule list
+      // console.log(newRule);
+
+    }
+
+    // this.apiService.RulesArray(fcid,newRule);
+
+    let i=0;
+    let temp: any;
+    for(i=0; i<this.formArray.length; i++) {
+      if(fcid == this.formArray[i].Details.cid) {
+        temp = i;
+        break;
+      }
+    }
+    if(temp != undefined) {
+      this.formArray[temp].Rules.push(newRule);            // update local formArray
+      this.apiService.UpdateFormJson(this.formArray[temp]);// update server formArray
+    }
+    console.log(newRule);
+  }
+
+  getAssessors() {
+    this.apiService.GetAllAssesors().subscribe(res=> {
+      console.log(res);
+      if(res){
+        this.assessorArray = res.data;
+        this.emitAssessors.emit(this.assessorArray);
+      } else {}
+    },err=> {
+      console.log(err);
+    });
+    // this.emitAssessors.emit(this.assessorArray);
+  }
+
+  addAssessorArray(name, phone, details) {
+    let cid = this.cid();
+    let cdate = this.cdate();
+
+    let formObj = [];
+    formObj.push(details);
+    if(name =="" || name == undefined) {
+      name = 'N/A';
+    }
+    let tempArray = {cid:cid, cdate:cdate, name: name, phone: phone, form:formObj, details:'Details'};
+    this.apiService.AddAssesorArray(tempArray).subscribe(res=>{
+      console.log(res);
+      if(res.success){
+        this.emitSuccessRes.emit(res.message);
+      } else {}
+    },err=> {
+      console.log(err);
+    });
+    this.assessorArray.push(tempArray);
+    this.incAssessorCount(details.projectcdi);
+  }
+
+  assignNewFormToAssessor(cid,form) {
+    let temp: any;
+    for(let i = 0;i<this.assessorArray.length;i++) {
+      if(cid == this.assessorArray[i].cid) {
+        temp = i;
+        break;
+      }
+    }
+
+    this.assessorArray[temp].form.push(form.Details);
+    this.apiService.AddAssesorArray(this.assessorArray[temp]).subscribe(res=>{
+      if(res.success){
+        this.emitSuccessRes.emit(res.message);
+      } else {}
+    },err=> {
+      console.log(err);
+    });
+
+    this.incAssessorCount(form.Details.projectcdi);
+  }
+
+  addUserArray(name, email, project) {
+    let cid = this.cid();
+    let cdate = this.cdate();
+    let temp = { 'cid':project.cid, 'name':project.name };
+    let projObj = [];
+    projObj.push(temp);
+    let tempObj = {cid:cid, cdate:cdate, name: name, email:email, project:projObj, details:'Details'};
+
+    this.apiService.AddUser(tempObj).subscribe(res=>{
+      // console.log(res);
+      if(res.success){
+        this.emitSuccessRes.emit(res.message);
+        this.userArray.push(tempObj);
+      } else {}
+    },err=> {
+      console.log(err);
+    });
+
+    this.incUserCount(project.cid);
+  }
+
+  getUsers() {
+    this.apiService.GetAllUsers().subscribe(res=> {
+      if(res){
+        this.userArray = res.data;
+        this.emitUsers.emit(this.userArray);
+      } else {}
+    },err=> {
+      console.log(err);
+    });
+    // this.emitUsers.emit(this.userArray);
+  }
+
+  assignNewProjectToUser(cid,project) {
+    let array = {cid:project.cid, name: project.name};
+    let temp : any;
+    for(let i=0; i<this.userArray.length; i++) {
+      if(cid == this.userArray[i].cid) {
+        temp = i;
+        break;
+      }
+    }
+
+    this.userArray[temp].project.push(array);
+    this.apiService.AddUser(this.userArray[temp]).subscribe(res=>{
+      // console.log(res);
+      if(res.success){
+        this.emitSuccessRes.emit(res.message);
+      } else {}
+    },err=> {
+      console.log(err);
+    });
+
+    this.incUserCount(project.cid);
+  }
+
   getResponseArray(formId) {
     let formResponse = [];
     let tableHeader = [];
@@ -308,55 +515,6 @@ export class ProjectService {
 
     this.emitFormResponse.emit(formResponse);
     this.emitTableHeader.emit(tableHeader);
-  }
-
-  addUserArray(name, project) {
-    let d = new Date();
-    let cid = d.getTime() +""+ Math.floor(1000 + Math.random() * 9000);
-    let cdate = d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear()+" "+d.getHours()+":"+d.getMinutes();
-    let temp = { 'cid':project.cid, 'name':project.name };
-    let projObj = [];
-    projObj.push(temp);
-    this.userArray.push({cid:cid, cdate:cdate, name: name, project:projObj, details:'Details'});
-    this.incUserCount(project.cid);
-  }
-
-  addAssessorArray(name, phone, details) {
-    let d = new Date();
-    let cid = d.getTime() +""+ Math.floor(1000 + Math.random() * 9000);
-    let cdate = d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear()+" "+d.getHours()+":"+d.getMinutes();
-    // let temp = { 'formCid':details.cid, 'formName':details.name, 'projCid':details.projectcdi, 'projName': details.project };
-
-    let formObj = [];
-    formObj.push(details);
-    if(name =="" || name == undefined) {
-      name = 'N/A';
-    }
-    this.assessorArray.push({cid:cid, cdate:cdate, name: name, phone: phone, form:formObj, details:'Details'});
-    this.incAssessorCount(details.projectcdi);
-  }
-
-  assignNewProjectToUser(cid,project) {
-    let array = {cid:project.cid, name: project.name};
-    for(let user of this.userArray) {
-      if(user.cid == cid) {
-        user.project.push(array);
-        break;
-      }
-    }
-    this.incUserCount(project.cid);
-  }
-
-  assignNewFormToAssessor(cid,form) {
-    console.log(form.Details);
-    console.log(cid);
-    for(let assr of this.assessorArray) {
-      if(assr.cid == cid) {
-        assr.form.push(form.Details);
-        break;
-      }
-    }
-    this.incAssessorCount(form.Details.projectcdi);
   }
 
   incUserCount(cid) {
@@ -404,20 +562,8 @@ export class ProjectService {
     }
   }
 
-  getUsers() {
-      this.emitUsers.emit(this.userArray);
-  }
-
-  getAssessors() {
-      this.emitAssessors.emit(this.assessorArray);
-  }
-
   getResponse() {
     this.emitResponse.emit(this.responseArray);
-  }
-
-  getTemplateArray() {
-    this.emitTemplateArray.emit(this.templateArray);
   }
 
   deleteProjectUserArray(uCid,pCid) {
@@ -517,60 +663,6 @@ export class ProjectService {
       this.templateArray[temp].Elements = data;
     }
 
-  }
-
-  addNewRule(fcid: any,newRule: any) {
-
-    if(newRule.ruleFormQuestion != undefined) {
-      let now = new Date();
-      let cid = now.getTime() +""+ Math.floor(1000 + Math.random() * 9000);
-
-      let template: any = {Details:{},Elements:[]};       // generate new template
-      template.Details.name = 'Form question';            // generate template properties
-      template.Details.rule = '';
-      template.Details.project = '';
-      template.Details.cid = cid;
-      template.Elements.push(newRule.ruleFormQuestion);   // push elements
-      console.log(template);
-      this.templateArray.push(template);                  // push new generated template on the template array
-
-      console.log("1");
-      for(let i = 0; i< this.formArray.length; i++) {
-        console.log(this.formArray[i]);
-        console.log(fcid);
-          if(this.formArray[i].Details.cid == fcid) {
-            console.log(this.formArray[i]);
-            for(let j=0; j< this.formArray[i].Elements.length; j++) {
-              console.log("4");
-              if(this.formArray[i].Elements[j].cid == newRule.ruleFormQuestion.cid) {
-                console.log("here");
-                this.formArray[i].Elements.splice(j,1);
-                console.log(this.formArray);
-                break;
-
-              }
-            }
-          }
-      }
-
-      newRule.tempCid = cid;                               // insert tempID on the rule list
-      newRule.tempName = template.Details.name;            // insert temp Name on the rule list
-      console.log(newRule);
-
-    }
-
-    let i=0;
-    let temp: any;
-    for(i=0; i<this.formArray.length; i++) {
-      if(fcid == this.formArray[i].Details.cid) {
-        temp = i;
-        break;
-      }
-    }
-    if(temp != undefined) {
-      this.formArray[temp].Rules.push(newRule);
-    }
-    console.log(newRule);
   }
 
   calFormArrayLength() {
