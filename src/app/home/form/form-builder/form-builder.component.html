@@ -63,18 +63,25 @@
         <div class="bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'file'" >
           <app-input-file name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [fileTypes]=json.fileTypes >  </app-input-file>
         </div>
-        <div class="bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'break'" >
+        <div *ngIf="json.type == 'camera'" >
+          <app-input-camera name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [fileTypes]=json.fileTypes >  </app-input-camera>
+        </div>
+        <div *ngIf="json.type == 'video'" >
+          <app-input-video name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [fileTypes]=json.fileTypes >  </app-input-video>
+        </div>
+        <div *ngIf="json.type == 'break'" >
           <app-input-break name={{json.name}} id={{i}}>  </app-input-break>
         </div>
       </div>
-      <div class="col-sm-12 row m-0">
-        <div class="col-sm-6 text-right" *ngIf='displayPublish' >
-            <button *ngIf='displayPublishForm' type="button" class="btn btn-success col-sm-3 pt-3 pb-3" (click)='publishForm()'> {{sumbitForm}} </button>
-        </div>
-        <div class="col-sm-6 text-left" *ngIf='displayPublish' >
-            <button *ngIf='displayPublishTemp' type="button" class="btn btn-success col-sm-3 pt-3 pb-3" (click)='publishTemplate()'> {{sumbitTemp}} </button>
-        </div>
+      <br/>
+      <div *ngIf='displayPublish' >
+          <button *ngIf='displayPublishForm' type="button" class="btn btn-success pb-3 pt-3" (click)='publishForm()'> {{sumbitForm}} </button>
       </div>
+      <br/>
+      <div *ngIf='displayPublish' >
+          <button *ngIf='displayPublishTemp' type="button" class="btn btn-success pb-3 pt-3" (click)='publishTemplate()'> {{sumbitTemp}} </button>
+      </div>
+      <br/>
     </div>
   </div>
 </div>

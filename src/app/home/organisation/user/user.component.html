@@ -5,27 +5,31 @@
 <div class="container-fluid mt-4 pb-3 text-left p-0">
     <table *ngIf='flag' id="example" class="table table-striped bg-white mt-5 brd-def" cellspacing="0" width="100%">
         <thead>
-          <tr>
-            <th class="header-1"></th>
-            <th>User</th>
-            <th>Project</th>
-            <th>Created Date</th>
-            <th>Details</th>
-          </tr>
+            <tr>
+                <th class="header-1"></th>
+                <th>User</th>
+                <th>Email</th>
+                <th>Project</th>
+                <th>Details</th>
+            </tr>
         </thead>
         <tbody>
-          <tr *ngFor='let res of users; let i = index'>
-            <td class="text-center">{{i+1}}</td>
-            <td><i class="fa fa-user fa-6 text-center" aria-hidden="true"></i>{{res.name}}</td>
-            <td>
-              <button type="button" class="btn btn-primary bg-white" (click)='showProjectModal(res.name, res.cid, res.project)' >{{calProject(res.project)}} Project/s</button>
-              <span class="tt1">{{projectName(res.project) | shorten: 70: '...'}}<span class="tt2">{{projectName(res.project)}} </span></span>
-            </td>
-            <td>{{res.cdate}}</td>
-            <td>
-              <button type="button" class="btn btn-primary bg-white"><i class="fa fa-eye p-1 text-center" aria-hidden="true"></i>{{res.details}}</button>
-            </td>
-          </tr>
+            <tr *ngFor='let res of users; let i = index'>
+                <td class="text-center">{{i+1}}</td>
+                <td><i class="fa fa-user fa-6 text-center" aria-hidden="true"></i>{{res.name}}</td>
+                <td>{{res.email}}</td>
+                <td>
+
+                    <button type="button" class="btn btn-primary bg-white tt1" (click)='showProjectModal(res.name, res.cid, res.project)' >
+                      {{calProject(res.project)}} Project/s
+                      <span class="tt2" > {{ &nbsp; projectName(res.project) &nbsp; }} </span>
+                    </button>
+
+                </td>
+                <td>
+                  <button type="button" class="btn btn-primary bg-white"><i class="fa fa-eye p-1 text-center" aria-hidden="true"></i>{{res.details}}</button>
+                </td>
+            </tr>
     </tbody>
   </table>
 </div>

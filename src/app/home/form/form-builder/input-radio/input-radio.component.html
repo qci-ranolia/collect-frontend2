@@ -2,7 +2,7 @@
   <label for="staticEmail" class="col-sm-3 col-form-label text-left pt-3"><span>{{funID(id)}}.</span>&nbsp;{{name}} </label>
   <div class="col-5 text-left">
     <div *ngFor='let opt of option; let i=i' >
-      <input type="radio" value={{opt}} name="radiogroup"  class="mt-3" [checked]='opt == value' >  {{opt}}
+      <input type="radio" value={{opt}} name="radiogroup{{funID(id)}}" class="mt-3" [checked]='opt == value' />  {{opt}}
     </div>
   </div>
   <div class="col-4 text-center">

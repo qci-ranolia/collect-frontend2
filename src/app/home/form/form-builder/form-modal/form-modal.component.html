@@ -545,9 +545,8 @@
               <ul class="nav flex-column text-left " role="tablist">
                 <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#f1" role="tab" (click)='inputType("file")'>File </a></li>
                 <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#f2" role="tab" (click)='inputType("location")'>Location </a></li>
-                <li class="nav-item"><a class="nav-link disabled" data-toggle="tab" href="#f3" role="tab" (click)='inputType("camera")'>Camera </a></li>
-                <li class="nav-item"><a class="nav-link disabled" data-toggle="tab" href="#f4" role="tab" (click)='inputType("audio")'>Audio </a></li>
-
+                <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#f3" role="tab" (click)='inputType("camera")'>Camera </a></li>
+                <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#f4" role="tab" (click)='inputType("video")'>Video </a></li>
               </ul>
             </div>
 
@@ -615,12 +614,70 @@
                 <div class="tab-pane " id="f3" role="tabpanel">
                   <h5>Camera input</h5>
                   <br>
+                  <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-10">
+                      <input class="form-control form-control-sm" type="text" [(ngModel)]='name'  placeholder="">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-4 col-form-label">Helping Text</label>
+                    <div class="col-8">
+                      <input class="form-control form-control-sm" type="text" [(ngModel)]='helptext' placeholder="">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Alias</label>
+                    <div class="col-10">
+                      <input class="form-control form-control-sm" type="text" placeholder="" [(ngModel)]='alias' >
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    * Captured image will be geo tagged
+                  </div>
+
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input"   [checked]="required" (change)='checked()'>
+                        &nbsp; Required
+                    </label>
+                  </div>
                 </div>
 
                 <!-- Audio Input f4 -->
-                <div class="tab-pane " id="f3" role="tabpanel">
-                  <h5>Audio input</h5>
+                <div class="tab-pane " id="f4" role="tabpanel">
+                  <h4>Video input</h4>
                   <br>
+                  <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-10">
+                      <input class="form-control form-control-sm" type="text" [(ngModel)]='name'  placeholder="">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-4 col-form-label">Helping Text</label>
+                    <div class="col-8">
+                      <input class="form-control form-control-sm" type="text" [(ngModel)]='helptext' placeholder="">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Alias</label>
+                    <div class="col-10">
+                      <input class="form-control form-control-sm" type="text" placeholder="" [(ngModel)]='alias' >
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    * Captured video will be geo tagged
+                  </div>
+
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input"   [checked]="required" (change)='checked()'>
+                        &nbsp; Required
+                    </label>
+                  </div>
                 </div>
 
               </div>

@@ -16,6 +16,7 @@ export class UserComponent implements OnInit {
   flag = false;
   projectArray: any = [];
   userName: any;
+  userEmail: any;
   projectAssociate: any;
   userProjectName : any;
   userProjectArray : any =[];
@@ -52,9 +53,9 @@ export class UserComponent implements OnInit {
           "columnDefs": [ {
             "searchable": false,
             "orderable": false,
-            "targets": 0
+            "bSort": false
         } ],
-        "order": [[ 1, 'asc' ]]
+        "bSort": false
         });
         t.on( 'order.dt search.dt', function () {
             t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
@@ -72,11 +73,13 @@ export class UserComponent implements OnInit {
 
   saveUser() {
 
-    this.projectService.addUserArray(this.userName,this.projectAssociate);
+    this.projectService.addUserArray(this.userName,this.userEmail,this.projectAssociate);
     this.userName = '';
+    this.userEmail = '';
     $("#newUserModal").modal('hide');
     this.router.navigate(['dash/org'], { queryParams: { id: '1' } });
     this.projectAssociate = "";
+    this.projectArray = [];
   }
 
   calProject(project) {

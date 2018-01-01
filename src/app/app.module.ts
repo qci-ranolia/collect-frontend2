@@ -42,6 +42,8 @@ import { OrganisationComponent } from './home/organisation/organisation.componen
 import { ResponseComponent } from './home/response/response.component';
 import { ResponseTableComponent } from './home/response/response-table/response-table.component';
 import { CustomOption } from './home/dashboard/ng2-toastr-custom-option';
+import { InputCameraComponent } from './home/form/form-builder/input-camera/input-camera.component';
+import { InputVideoComponent } from './home/form/form-builder/input-video/input-video.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +75,8 @@ import { CustomOption } from './home/dashboard/ng2-toastr-custom-option';
     OrganisationComponent,
     ResponseComponent,
     ResponseTableComponent,
+    InputCameraComponent,
+    InputVideoComponent,
   ],
   imports: [
     BrowserModule,
