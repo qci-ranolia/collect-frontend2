@@ -1,5 +1,16 @@
 <div class="container-fluid mt-4 pb-3 text-center" style="background:#fff;">
     <h2>Response Table</h2>
+    <div *ngIf='!flag'>
+      <br>
+      <br>
+      <br>
+      <br>
+      <h4>Seems like there is not data to display! Hang on while we check....</h4>
+      <br>
+      <br>
+      <br>
+
+    </div>
     <table *ngIf='flag' id="example" class="table table-striped " cellspacing="0" width="100%">
         <thead>
             <tr>

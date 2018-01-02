@@ -31,7 +31,7 @@ export class ResponseTableComponent implements OnInit {
       this.flag = true;
       this.display();
     });
-
+    
   }
 
   ngOnInit() {

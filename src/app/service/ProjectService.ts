@@ -111,7 +111,7 @@ export class ProjectService {
         {type: "text", required: false, name: "Name", value:"sammy", cid:"a1", hepltext: "", alias:" Username "},
         {type: "password", required: false, name: "SecretKey", value:"sammy_password", cid:"a2", hepltext: "", alias:" Password "}
       ],
-      ResExtra:{}
+      ResExtra:{asrName: "", asrID: "", resDate: ""}
     },
     {
       ResCid:'2',
@@ -120,7 +120,7 @@ export class ProjectService {
         {type: "text", required: false, name: "Name", value:"sammy@dd.cc", cid:"a1", hepltext: "", alias:" Username "},
         {type: "password", required: false, name: "SecretKey", value:"sammy_dd.cc", cid:"a2", hepltext: "", alias:" Password "}
       ],
-      ResExtra:{}
+      ResExtra:{asrName: "", asrID: "", resDate: ""}
     },
     {
       ResCid:'3',
@@ -129,7 +129,7 @@ export class ProjectService {
         {type: "text", required: false, name: "Name", value:"Tom_21", cid:"a1", hepltext: "", alias:" Username "},
         {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password "}
       ],
-      ResExtra:{}
+      ResExtra:{asrName: "", asrID: "", resDate: ""}
     },
     {
       ResCid:'4',
@@ -159,7 +159,7 @@ export class ProjectService {
         {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password2126 "},
         {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password2136 "},
       ],
-      ResExtra:{}
+      ResExtra:{asrName: "", asrID: "", resDate: ""}
     },
     {
       ResCid:'5',
@@ -190,7 +190,7 @@ export class ProjectService {
         {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password2126 "},
         {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password2136 "},
       ],
-      ResExtra:{}
+      ResExtra:{asrName: "", asrID: "", resDate: ""}
     }
   ];
 
@@ -318,7 +318,6 @@ export class ProjectService {
     }, err=>{
       console.log(err);
     });
-
   }
 
   pushIntoTemplate(data: any) {
@@ -496,25 +495,85 @@ export class ProjectService {
     this.incUserCount(project.cid);
   }
 
+  getResponse() {
+    this.apiService.GetAllResponse().subscribe(res=> {
+      console.log(res);
+      if(res){
+        this.responseArray = [];
+        for(let i=0; i<res.data.length; i++) {
+          this.responseArray.push(res.data[i].response_json);
+        }
+        console.log(this.responseArray);
+        this.emitResponse.emit(this.responseArray);
+      } else {}
+    },err=> {
+      console.log(err);
+      // this.emitResponse.emit(this.responseArray);
+    });
+    // this.emitResponse.emit(this.responseArray);
+  }
+
   getResponseArray(formId) {
     let formResponse = [];
     let tableHeader = [];
+    let finalResponse = [];
+    let finalResponse2 = [];
+    let resCidArray = [];
+
     for(let i = 0; i< this.responseArray.length; i++) {
       if(this.responseArray[i].ResDetails.cid == formId) {
         formResponse.push({ ResElements: this.responseArray[i].ResElements, ResCid: this.responseArray[i].ResCid, ResFormId: this.responseArray[i].ResDetails.cid});
 
         for(let j=0; j< this.responseArray[i].ResElements.length; j++) {
-          tableHeader.push(this.responseArray[i].ResElements[j].alias);
+          tableHeader.push({header: this.responseArray[i].ResElements[j].name, cid: this.responseArray[i].ResElements[j].cid});
         }
-
       }
     }
-    tableHeader = Array.from(new Set(tableHeader));
-    // console.log(formResponse);
-    // console.log(tableHeader);
+    // tableHeader = Array.from(new Set(tableHeader));
+    tableHeader = this.removeDuplicates(tableHeader,'cid');
 
+    console.log(formResponse);
+    console.log(tableHeader);
+
+    for(let i = 0; i< tableHeader.length; i++) {
+
+      finalResponse[i] = {Elements:[]};
+
+      for(let j=0; j< formResponse.length; j++) {
+        for(let k=0; k< formResponse[j].ResElements.length; k++) {
+          if(tableHeader[i].cid != formResponse[j].ResElements[k].cid) {
+
+            finalResponse[i].Elements.push({ cid: formResponse[j].ResElements[k].cid, name: formResponse[j].ResElements[k].name,  value: "", ResCid: formResponse[j].ResCid, ResFormId: formResponse[j].ResFormId});
+          } else {
+
+            finalResponse[i].Elements.push({ cid: formResponse[j].ResElements[k].cid, name: formResponse[j].ResElements[k].name, value: formResponse[j].ResElements[k].value , ResCid: formResponse[j].ResCid, ResFormId: formResponse[j].ResFormId});
+          }
+        }
+      }
+    }
+    console.log(finalResponse);
+
+    resCidArray = this.removeDuplicates(finalResponse, 'ResCid');
+
+    console.log(resCidArray);
+
+    for(let i = 0; i<resCidArray.length; i++ ) {
+      for(let j=0; j<finalResponse.length; j++) {
+        if(resCidArray[i].ResCid == finalResponse[j].ResCid) {
+        }
+      }
+    }
+
+    console.log(finalResponse2);
     this.emitFormResponse.emit(formResponse);
     this.emitTableHeader.emit(tableHeader);
+  }
+
+  removeDuplicates (myArr, prop) {
+    // resFormIdArray = Array.from(new Set(resFormIdArray));
+      return myArr.filter((obj, pos, arr) => {
+          return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos;
+      });
   }
 
   incUserCount(cid) {
@@ -560,10 +619,6 @@ export class ProjectService {
         break;
       }
     }
-  }
-
-  getResponse() {
-    this.emitResponse.emit(this.responseArray);
   }
 
   deleteProjectUserArray(uCid,pCid) {
