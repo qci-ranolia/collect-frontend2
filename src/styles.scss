@@ -145,7 +145,7 @@ $bt-second-clr:1px solid #ffd741;
 .pos-abso-tr
 {
   position:absolute;
-  top:0;
+  top:5px;
   right:0;
 }
 
@@ -478,6 +478,7 @@ body
 }
 .crdHvr{
   //height:180px;
+  min-height:260px;
   border:1px solid transparent;  
   background:#FFF;
   box-shadow:0px 14px 5px -11px #bbb;
@@ -619,6 +620,14 @@ body
   text-indent: 3px;
 }
 // main table
+
+/*
+.table{
+  display:block;
+  max-width:100%;
+  overflow-x:scroll;
+}
+*/
 table.dataTable thead th,
   table.dataTable thead td
 {
@@ -773,7 +782,7 @@ table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.
   .modal-dialog
 {
   max-width:50%;//by default max-width:500px;
-  min-width:500px;
+  min-width:414px;
 }
 .modal-dialog
 {
@@ -812,10 +821,10 @@ table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.
   border:none;
   z-index: 99;
 }
-//.modal-body input
-//{
-//  box-shadow:0px 0px 1px -1px #ccc;
-//}
+.modal-body input
+{
+  border-radius:0;
+}
 
 
 
@@ -1220,3 +1229,53 @@ input.form-control:focus ~ .after {
 {
   background: $body-bg-trans;
 }
+
+
+//ng2-toastr css
+.toast-top-center
+{
+    top:46px;
+    position:fixed;
+}
+#toast-container > .toast
+{
+    width:100% !important;
+    height:20px;
+    padding:0 !important;
+    line-height:20px;
+    text-align:center;
+    z-index:99;
+    box-shadow:0 10px 10px -5px #ccc !important;
+    border-radius:0 !important;
+    background-image:none !important;
+}
+.toast-success
+{
+  background:#4caf50 !important;
+}
+.toast-error
+{
+  background:#f44336 !important;
+}
+.toast-warning
+{
+  background:#ffd741 !important;
+  color: $text-color-darkset3;
+ .toast-close-button
+ {
+  color: $text-color-darkset3;
+  }
+}
+.toast-close-button
+{
+  right:10px;
+  top:-1px;
+}
+
+
+
+
+
+
+
+

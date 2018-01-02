@@ -77,7 +77,7 @@
             <h5 class="mb-3">Assigned :</h5>
             <div class="col-12 p-0" *ngFor="let pro of assessorFormArray; let i = index">
               <p>
-                <span class="d-inline-block pt-1">{{i+1}}. {{pro.name+" "+pro.project}}</span>
+                <span class="d-inline-block pt-1 col-sm-10">{{i+1}}. {{pro.name+" "+pro.project}}</span>
                 <i class="fa fa-trash-o fa-6 text-center text-danger float-right" aria-hidden="true" (click)='deleteFormAssessorArray(pro.cid, pro.projectcdi)' ></i>
               </p>
             </div>

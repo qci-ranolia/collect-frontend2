@@ -27,7 +27,7 @@
       <div class="tab-pane active" id="form" role="tabpanel">
         <br />
         <div class="row text-left">
-          <div *ngFor='let form of formArray; let i = index' class="col-sm-6" style="margin-bottom:15px">
+          <div *ngFor='let form of formArray; let i = index' class="col-sm-6" style="margin-bottom:30px">
             <div class="card cbx">
               <div class="card-block p-0">
                 <div class="col-sm-12 pl-4 pt-3 mt-2 pb-2 bb">
@@ -43,8 +43,8 @@
                     <button [routerLink]="['../formBuilder']" [queryParams]="{formID : form.Details.cid }" type="button" class="btn btn-primary col-sm-12 col-md-9 col-lg-7 pt-3 pb-3" >View Forms</button>
                   </div>
                   <div class="col-7 pr-0 fs-sm row m-0">
-                    <a href="#" class="card-link col-sm-6 d-inline-block pl-0 pr-0 pt-3" (click)='rule(form.Rules, form.Details.cid, form.Elements)' data-toggle="modal" data-target="#rules">Rules</a>
-                    <a href="#" class="card-link col-sm-6 d-inline-block pl-0 pr-0 pt-3 ml-0">{{form.Details.status}}</a>
+                    <a href="#" class="card-link col-6 d-inline-block pl-0 pr-0 pt-3" (click)='rule(form.Rules, form.Details.cid, form.Elements)' data-toggle="modal" data-target="#rules">Rules</a>
+                    <a href="#" class="card-link col-6 d-inline-block pl-0 pr-0 pt-3 ml-0">{{form.Details.status}}</a>
                   </div>
                 </div>
               </div>
@@ -58,7 +58,7 @@
       <div class="tab-pane " id="template" role="tabpanel" >
         <br />
         <div class="row justify-content-center" >
-          <div *ngFor='let temp of templateArray; let i = index' class="col-sm-6"  style="margin-bottom:15px">
+          <div *ngFor='let temp of templateArray; let i = index' class="col-sm-6"  style="margin-bottom:30px">
             <div class="card cbx">
               <div class="card-block p-0 text-left">
                 <div class="col-sm-12 pl-4 pt-3 mt-2 pb-2 bb">
@@ -90,19 +90,22 @@
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Rules</h5>
       </div>
-      <div class="modal-body text-center" style="height:300px; overflow-y: auto">
-          <div class="row justify-content-center m-0" >
+      <div class="modal-body text-center" style="height:500px; overflow-y: auto">
+          <div class="row justify-content-center m-0 text-left">
             <div class="p-5 m-5" *ngIf='rulesArray.length < 1' >
-              <h4> No Rule was created </h4>
+              <h4 class="pt-5 mt-5"> No Rule was created </h4>
             </div>
-            <div *ngFor='let rule of rulesArray; let i = index ' class="col-5 text-center p-3 m-1 brd-def" style="border-radius: 10px; height: 230px;" >
-                <h5>{{i+1}}. Rule Name: {{rule.name}} </h5>
-                <p>Element: {{rule.elementName}} </p>
-                <p>Condition: {{rule.elementValue}} </p>
-                <hr> Associated Template: <b>{{rule.tempName}}</b>
-                <hr>
-                <a class="card-link" href="#" >Edit</a>
-                <a class="card-link" href="#"  >Delete</a>
+            <div *ngFor='let rule of rulesArray; let i = index ' class="row col-sm-12 p-3 m-3 cbx brd-def" style="box-shadow:none;">
+                <div class="col-8 pl-0">
+                  <h5>{{i+1}}. Rule Name: {{rule.name}}</h5>
+                  <p>Element: {{rule.elementName}} </p>
+                  <p>Condition: <b>{{rule.elementValue}}</b></p>
+                  <p>Associated Template: <b>{{rule.tempName}}</b></p>
+                </div>
+                <div class="col-4 text-right pr-0">
+                  <a class="card-link btn btn-primary bg-white pt-2 pb-2 m-1" href="#" >Edit</a>
+                  <a class="card-link btn btn-danger bg-white pt-2 pb-2 m-1 text-danger" href="#"  >Delete</a>
+                </div>
               </div>
           </div>
         <!-- <a href="#"  class="text-center">Add Rule</a> -->
@@ -122,7 +125,7 @@
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">+ Add Rules</h5>
       </div>
-      <div class="modal-body text-center" style="height:300px;overflow-y: auto">
+      <div class="modal-body text-center" style="height:500px;overflow-y: auto">
         <div class="col-sm-12">
           <label class="row ml-0 mr-0 mb-4">
             <span class="col-4 text-left pt-2 pl-0">Rull Name :</span>
