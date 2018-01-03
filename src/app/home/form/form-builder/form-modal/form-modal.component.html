@@ -708,7 +708,7 @@
       </div>
 
       <!-- Template tab -->
-      <div class="tab-pane" id="m4" role="tabpanel">
+      <div class="tab-pane" id="m4" role="tabpanel" style="overflow:hidden;overflow-y:scroll;max-height:334px;">
         <app-template-tab-content></app-template-tab-content>
       </div>
 
@@ -717,6 +717,6 @@
   </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>
   <button type="button" class="btn btn-primary col-sm-4 pt-3 pb-3" (click)='addElement()'  data-dismiss="modal" >Add element</button>
+  <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>
 </div>

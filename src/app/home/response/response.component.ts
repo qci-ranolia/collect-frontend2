@@ -5,6 +5,7 @@ import {ProjectService} from '../../service/ProjectService';
 declare var $: any;
 import 'datatables.net';
 
+
 @Component({
   selector: 'app-response',
   templateUrl: './response.component.html',

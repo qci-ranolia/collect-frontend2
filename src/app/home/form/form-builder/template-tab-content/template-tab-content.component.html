@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-  <div *ngFor="let array of tArray; let i = index" class="col-sm-4 text-center p-3 ml-5 mr-5 mt-3 mb-3" style="border:2px solid #dcdcdc !important;border-radius:10px">
+  <div *ngFor="let array of tArray; let i = index" class="col-sm-3 text-center p-1 m-1" style="border:1px solid #dcdcdc !important;border-radius:10px;height:120px;">
     <p>{{array.Details.name}}</p>
     <button type="button" class="btn btn-primary" (click)='addTemplate(i)'  data-dismiss="modal" >+ Add template</button>
   </div>

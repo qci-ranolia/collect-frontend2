@@ -56,7 +56,7 @@ $body-bg-default:#eee;
 $body-bg-white:#fff !important;
 $body-bg-trans:transparent !important;
 $bcf5:#f5f5f5;
-$bg2:#dcdcdc;
+$bg2:#e2e2e2;
 $cont-bg1:#e4e5f1;
 $rgba-white:rgba(255,255,255,0.1);
 
@@ -148,6 +148,12 @@ $bt-second-clr:1px solid #ffd741;
   top:5px;
   right:0;
 }
+.pos-abso-bl
+{
+  position:absolute;
+  left:0px;
+  bottom:0;
+}
 
 .navbar-toggleable-md .navbar-brand
 {
@@ -186,6 +192,12 @@ input[type="text"]:hover,
   input[type="password"]:hover
 {
   cursor:text;
+  outline:none;
+}
+input[type="radio"]:hover,
+  input[type="checkbox"]:hover
+{
+  cursor:pointer;
   outline:none;
 }
 .dataTables_filter label input:focus,
@@ -1271,11 +1283,3 @@ input.form-control:focus ~ .after {
   right:10px;
   top:-1px;
 }
-
-
-
-
-
-
-
-
