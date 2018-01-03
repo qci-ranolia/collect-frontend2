@@ -136,13 +136,23 @@ export class APIService {
     tempObj = JSON.stringify(tempObj);
     let userObj = new FormData();
     userObj.append('tempObj',tempObj);
-    return this.http.post(this.projectURL+'/addUserInProject', userObj,{headers: headers}).map(res=>res.json());
+    return this.http.post(this.projectURL+'/addUserInProject', userObj, {headers: headers}).map(res=>res.json());
   }
 
-  GetAllResponse() {
+  GetResponseSummary() {
     let headers = new Headers();
     this.createAuthorizationHeader(headers);
-    return this.http.get(this.projectURL+'/getAllResponse',{headers: headers}).map(res=>res.json());
+    return this.http.get(this.projectURL+'/getResponseSummary', {headers: headers}).map(res=>res.json());
+  }
+
+  GetFormResponse(formID) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+
+    let fID = new FormData();
+    fID.append('formID',formID);
+
+    return this.http.post(this.projectURL+'/getFormResponse',fID, {headers: headers}).map(res=>res.json());
   }
 
 }

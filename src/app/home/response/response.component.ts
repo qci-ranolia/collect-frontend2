@@ -17,45 +17,12 @@ export class ResponseComponent implements OnInit {
   sub: any;
 
   constructor(private projectService: ProjectService, private router: Router) {
-    this.sub = this.projectService.emitResponse.subscribe(res=>{
-      // console.log(res);
-
-      let resFormIdArray = [];
-      let tempRes = []
-
-      for(let i=0; i<res.length; i++) {
-        resFormIdArray.push( {formId : res[i].ResDetails.cid, formName: res[i].ResDetails.name, projectName: res[i].ResDetails.project} );
-      }
-
-
-      resFormIdArray = this.removeDuplicates(resFormIdArray,'formId');
-      resFormIdArray = this.removeDuplicates(resFormIdArray,'formName');
-
-      // console.log(resFormIdArray);
-
-      for(let i=0; i<resFormIdArray.length; i++) {
-        let c = 0;
-        for(let j=0; j<res.length; j++) {
-          if(resFormIdArray[i].formId == res[j].ResDetails.cid) {
-            c++;
-            resFormIdArray[i].count = c;
-          }
-        }
-      }
-
-      // console.log(resFormIdArray);
-
-      this.response = resFormIdArray;
+    this.sub = this.projectService.emitResponseSummary.subscribe(res=>{
+      console.log(res);
+      this.response = res;
       this.flag = true;
       this.display();
     });
-  }
-
-  removeDuplicates (myArr, prop) {
-    // resFormIdArray = Array.from(new Set(resFormIdArray));
-      return myArr.filter((obj, pos, arr) => {
-          return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos;
-      });
   }
 
   ngOnInit() {
@@ -83,24 +50,16 @@ export class ResponseComponent implements OnInit {
     }
   }
 
-  formName(fname, pname) {
-    return fname +", "+pname;
-  }
-
-  calRes(res) {
-    let j = 0;
-    for(let i of res) {
-      j++;
-    }
-    return ""+j;
-  }
-
   getData(data) {
     this.router.navigate(['dash/resTable'], { queryParams: { id: data } });
   }
 
-  reload() {
-
+  resMoreThanZero(res) {
+    if(res>0){
+      return false;
+    } else {
+      return true;
+    }
   }
 
   ngOnDestroy() {

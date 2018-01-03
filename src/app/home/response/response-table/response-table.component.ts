@@ -21,31 +21,35 @@ export class ResponseTableComponent implements OnInit {
   constructor(private projectService:ProjectService, private activatedRoute: ActivatedRoute) {
 
     this.sub = this.projectService.emitFormResponse.subscribe(res=>{
-      // console.log(res);
+      console.log(res);
       this.response = res;
     });
 
     this.sub1 = this.projectService.emitTableHeader.subscribe(res=>{
-      // console.log(res);
+      console.log(res);
       this.header = res;
       this.flag = true;
       this.display();
     });
-    
+
   }
 
   ngOnInit() {
     this.sub = this.activatedRoute.queryParams.subscribe(params=>{
         this.formId = params.id;
-        this.projectService.getResponseArray(this.formId);
+        this.projectService.getFormResponseArray(this.formId);
     });
   }
 
   display() {
     if(this.flag) {
       $(document).ready(function() {
-        $("#example").DataTable({
-          responsive: true
+        $("#exampleFormResponse").DataTable({
+          responsive: true,
+          dom: 'Bfrtip',
+          buttons: [
+              'csv', 'pdf',
+          ]
         });
       });
     }

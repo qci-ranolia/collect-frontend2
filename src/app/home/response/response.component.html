@@ -9,8 +9,8 @@
       <br>
       <br>
       <br>
-
     </div>
+
     <table *ngIf='flag' id="example" class="table table-striped " cellspacing="0" width="100%">
         <thead>
             <tr>
@@ -18,26 +18,30 @@
                 <th>From</th>
                 <th>Project</th>
                 <th>Responces</th>
+                <th>Details</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor='let res of response; let i = index'>
                 <td></td>
                 <td>
-                  <span class="tt1" > {{res.formName | shorten: 15: '...'}}
-                    <span class="tt2" > &nbsp; {{res.formName}} &nbsp; </span>
+                  <span class="tt1" > {{res.fname | shorten: 35: '...'}}
+                    <span class="tt2" > &nbsp; {{res.fname}} &nbsp; </span>
                   </span>
                 </td>
                 <td>
-                  <span class="tt1" > {{res.projectName | shorten: 15: '...'}}
-                    <span class="tt2" > &nbsp; {{res.projectName}} &nbsp; </span>
+                  <span class="tt1" > {{res.pname | shorten: 35: '...'}}
+                    <span class="tt2" > &nbsp; {{res.pname}} &nbsp; </span>
                   </span>
                 </td>
                 <td>
-                  <button type="button" class="btn btn-primary" (click)='getData(res.formId)'> {{res.count}} Responses  </button>
+                  <button type="button" class="btn btn-primary" (click)='getData(res.fid)' [disabled]="resMoreThanZero(res.responses)" > {{res.responses}} Responses  </button>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-primary" >  Details  </button>
                 </td>
             </tr>
-    </tbody>
+      </tbody>
     </table>
 
     <!-- <button type="button" class="btn btn-primary col-sm-3 col-md-2 pt-3 pb-3 mt-4" (click)='reload()'>Reload</button> -->

@@ -38,7 +38,7 @@ export class ProjectService {
   emitUpElement = new EventEmitter<any>();
   emitDownElement = new EventEmitter<any>();
   emitProject = new EventEmitter<any>();
-  emitResponse = new EventEmitter<any>();
+  emitResponseSummary = new EventEmitter<any>();
   emitResTable = new EventEmitter<any>();
   emitUsers = new EventEmitter<any>();
   emitAssessors = new EventEmitter<any>();
@@ -378,7 +378,7 @@ export class ProjectService {
     }
     if(temp != undefined) {
       this.formArray[temp].Rules.push(newRule);            // update local formArray
-      this.apiService.UpdateFormJson(this.formArray[temp]);// update server formArray
+      this.updateFormJson(this.formArray[temp]);           // update server formArray
     }
     console.log(newRule);
   }
@@ -496,77 +496,47 @@ export class ProjectService {
   }
 
   getResponse() {
-    this.apiService.GetAllResponse().subscribe(res=> {
-      console.log(res);
-      if(res){
+
+    this.apiService.GetResponseSummary().subscribe(res=> {
+      // console.log(res);
+      if(res.data.length){
         this.responseArray = [];
-        for(let i=0; i<res.data.length; i++) {
-          this.responseArray.push(res.data[i].response_json);
-        }
-        console.log(this.responseArray);
-        this.emitResponse.emit(this.responseArray);
+        this.responseArray = res.data;
+        // console.log(this.responseArray);
+        this.emitResponseSummary.emit(this.responseArray);
       } else {}
     },err=> {
       console.log(err);
-      // this.emitResponse.emit(this.responseArray);
     });
-    // this.emitResponse.emit(this.responseArray);
   }
 
-  getResponseArray(formId) {
+  getFormResponseArray(formId) {
     let formResponse = [];
     let tableHeader = [];
-    let finalResponse = [];
-    let finalResponse2 = [];
-    let resCidArray = [];
+    let finalResponse= [];
 
-    for(let i = 0; i< this.responseArray.length; i++) {
-      if(this.responseArray[i].ResDetails.cid == formId) {
-        formResponse.push({ ResElements: this.responseArray[i].ResElements, ResCid: this.responseArray[i].ResCid, ResFormId: this.responseArray[i].ResDetails.cid});
-
-        for(let j=0; j< this.responseArray[i].ResElements.length; j++) {
-          tableHeader.push({header: this.responseArray[i].ResElements[j].name, cid: this.responseArray[i].ResElements[j].cid});
+    this.apiService.GetFormResponse(formId).subscribe(res=> {
+      console.log(res);
+      if(res){
+        if(res.header.length) {
+          tableHeader = res.header;
         }
-      }
-    }
-    // tableHeader = Array.from(new Set(tableHeader));
-    tableHeader = this.removeDuplicates(tableHeader,'cid');
-
-    console.log(formResponse);
-    console.log(tableHeader);
-
-    for(let i = 0; i< tableHeader.length; i++) {
-
-      finalResponse[i] = {Elements:[]};
-
-      for(let j=0; j< formResponse.length; j++) {
-        for(let k=0; k< formResponse[j].ResElements.length; k++) {
-          if(tableHeader[i].cid != formResponse[j].ResElements[k].cid) {
-
-            finalResponse[i].Elements.push({ cid: formResponse[j].ResElements[k].cid, name: formResponse[j].ResElements[k].name,  value: "", ResCid: formResponse[j].ResCid, ResFormId: formResponse[j].ResFormId});
-          } else {
-
-            finalResponse[i].Elements.push({ cid: formResponse[j].ResElements[k].cid, name: formResponse[j].ResElements[k].name, value: formResponse[j].ResElements[k].value , ResCid: formResponse[j].ResCid, ResFormId: formResponse[j].ResFormId});
+        if(res.data.length) {
+          formResponse = res.data;
+        }
+        for(let i = 0; i<formResponse.length; i++) {
+          for(let j=0; j<tableHeader.length; j++) {
+              // finalResponse[i].push();
           }
         }
-      }
-    }
-    console.log(finalResponse);
+        this.emitFormResponse.emit(formResponse);
+        this.emitTableHeader.emit(tableHeader);
+      } else {}
+    },err=> {
+      console.log(err);
+    });
 
-    resCidArray = this.removeDuplicates(finalResponse, 'ResCid');
 
-    console.log(resCidArray);
-
-    for(let i = 0; i<resCidArray.length; i++ ) {
-      for(let j=0; j<finalResponse.length; j++) {
-        if(resCidArray[i].ResCid == finalResponse[j].ResCid) {
-        }
-      }
-    }
-
-    console.log(finalResponse2);
-    this.emitFormResponse.emit(formResponse);
-    this.emitTableHeader.emit(tableHeader);
   }
 
   removeDuplicates (myArr, prop) {
