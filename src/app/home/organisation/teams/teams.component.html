@@ -1,30 +1,34 @@
 <div class="container-fluid mt-4 pb-3 text-center" style="background:#fff;">
 
-  <button type="button" class="btn btn-primary col-sm-3 col-md-2 pt-3 pb-3 mt-4" (click)='assesor()'>+ Assesor</button>
+  <button type="button" class="btn btn-primary col-sm-3 col-md-2 pt-3 pb-3 mt-4" (click)='team()'>+ Team</button>
 
-    <table *ngIf='flag' id="example01" class="table table-striped " cellspacing="0" width="100%">
+    <table *ngIf='flag' id="example2" class="table table-striped " cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th></th>
-                <th>assesor</th>
-                <th>Phone</th>
-                <th>Form</th>
+                <th>Name</th>
+                <th>T.L</th>
+                <th>Forms</th>
+                <th>Assesors</th>
                 <th>Details</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor='let res of users; let i = index'>
+            <tr *ngFor='let res of teams; let i = index'>
                 <td>{{i+1}}</td>
                 <td>{{res.name}}</td>
-                <td>{{res.phone}}</td>
+                <td>{{res.tl}}</td>
                 <td>
                     <button type="button" class="btn btn-primary tt1" (click)='showProjectModal(res.name, res.cid, res.form)' >
                       {{calForms(res.form)}} Forms
                       <span class="tt2" > &nbsp; {{projectForm(res.form)}}  &nbsp; </span>
                     </button>
-                    <!-- <span class="tt1" > {{projectForm(res.form) | shorten: 5: '...'}}
-                      <span class="tt2" > {{projectForm(res.form)}} </span>
-                    </span> -->
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary tt1" (click)='showAssesorModal()' >
+                      {{calForms(res.form)}} Assesors
+                      <span class="tt2" > &nbsp; {{projectForm(res.form)}}  &nbsp; </span>
+                    </button>
                 </td>
                 <td>
                   <button type="button" class="btn btn-primary ">  {{res.details}}  </button>
@@ -36,7 +40,7 @@
 </div>
 
 <!-- Add assesor model -->
-<div class="modal fade" id="newAssessorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="newTeamModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -44,9 +48,7 @@
       </div>
       <div class="modal-body text-center" style="height:300px; overflow-y: auto">
           <div class="row justify-content-center" >
-            <input type="text" name="" value="" [(ngModel)]='assessorName' placeholder="Name" class="col-8 form-control mb-5" />
-            <br>
-            <input type="text" name="" value="" [(ngModel)]='assessorPhone' placeholder="Phone no." class="col-8 form-control mb-5" />
+            <input type="text" name="" value="" [(ngModel)]='teamName' placeholder="Name" class="col-8 form-control mb-5" />
             <br>
             <select [(ngModel)]="formAssociate" class="col-8 form-control mb-5" >
               <option *ngFor='let opt of formArray; let i=i' [ngValue]=opt.Details  >{{opt.Details.name + " " + opt.Details.project}}</option>
@@ -54,7 +56,7 @@
           </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary col-sm-3 pt-3 pb-3" data-toggle="modal" data-target="#addRules" (click)='saveAssessor()'>Add user</button>
+        <button type="button" class="btn btn-primary col-sm-3 pt-3 pb-3" data-toggle="modal" data-target="#addRules" (click)='saveTeam()'>Add Team</button>
         <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>
       </div>
     </div>

@@ -6,22 +6,22 @@ declare var $: any;
 import 'datatables.net';
 
 @Component({
-  selector: 'app-assessor',
-  templateUrl: './assessor.component.html',
-  styleUrls: ['./assessor.component.css']
+  selector: 'app-teams',
+  templateUrl: './teams.component.html',
+  styleUrls: ['./teams.component.css']
 })
-export class AssessorComponent implements OnInit {
+export class TeamsComponent implements OnInit {
 
-  users: any = [];
+  teams: any = [];
   flag = false;
   formArray: any = [];
-  assessorName: any;
+  teamName: any;
   assessorPhone: any;
   formAssociate: any;
-  userProjectName : any;
-  assessorFormArray : any =[];
+  teamProjectName : any;
+  teamFormArray : any =[];
   projectAs: any;
-  userCid: any;
+  teamCid: any;
   sub: any;
   sub1: any;
   sub2: any;
@@ -29,8 +29,8 @@ export class AssessorComponent implements OnInit {
   sub4: any;
 
   constructor(private projectService: ProjectService, private router: Router) {
-    this.sub = this.projectService.emitAssessors.subscribe(res=>{
-      this.users = res;
+    this.sub = this.projectService.emitTeams.subscribe(res=>{
+      this.teams = res;
       this.flag = true;
       this.display();
     });
@@ -41,13 +41,13 @@ export class AssessorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.projectService.getAssessors();
+    this.projectService.getTeams();
   }
 
   display() {
     if(this.flag) {
        $(document).ready(function() {
-        var t = $('#example01').DataTable({
+        var t = $('#example2').DataTable({
           "columnDefs": [ {
             "orderable": false,
             "targets": 0,
@@ -64,17 +64,16 @@ export class AssessorComponent implements OnInit {
     }
   }
 
-  assesor() {
+  team() {
     this.projectService.getFormArray();
-    $("#newAssessorModal").modal('show');
+    $("#newTeamModal").modal('show');
   }
 
-  saveAssessor() {
+  saveTeam() {
     // console.log(this.formAssociate);
-    this.projectService.addAssessorArray(this.assessorName, this.assessorPhone, this.formAssociate);
-    this.assessorName = '';
-    this.assessorPhone = '';
-    $("#newAssessorModal").modal('hide');
+    this.projectService.addTeamArray(this.teamName,  this.formAssociate);
+    this.teamName = '';
+    $("#newTeamModal").modal('hide');
     this.router.navigate(['/org'], { queryParams: { id: ""+ Math.floor(1000 + Math.random() * 9000) } });
     this.formAssociate = "";
     this.formArray=[];
@@ -88,35 +87,34 @@ export class AssessorComponent implements OnInit {
     return ""+j;
   }
 
-  showProjectModal( assessorName, assessorCid, formArray) {
+  showProjectModal( teamName, teamCid, formArray) {
     this.projectService.getFormArray();
     let n = 0;
     let temp = [];
-    this.userProjectName = assessorName;
-    this.userCid = assessorCid;
-    this.assessorFormArray = formArray;
+    this.teamProjectName = teamName;
+    this.teamCid = teamCid;
+    this.teamFormArray = formArray;
 
-    $("#assessorFormModal").modal('show');
+    $("#teamFormModal").modal('show');
 
   }
 
   assignNewProject() {
     // this.projectService.assignNewProjectToUser(this.userCid,this.projectAs);
-    this.projectService.assignNewFormToAssessor(this.userCid,this.projectAs);
-    $("#assessorFormModal").modal('hide');
+    this.projectService.assignNewFormToTeam(this.teamCid,this.projectAs);
+    $("#teamFormModal").modal('hide');
     this.formArray = [];
-    this.assessorFormArray= [];
+    this.teamFormArray= [];
     this.projectAs = "";
     this.formArray = [];
   }
 
-  deleteFormAssessorArray(formCid, projCid) {
-    this.projectService.deleteFormAssessorArray(this.userCid, formCid, projCid);
+  deleteFormTeamArray(formCid, projCid) {
+    this.projectService.deleteFormTeamArray(this.teamCid, formCid, projCid);
 
-    $("#assessorFormModal").modal('hide');
+    $("#teamFormModal").modal('hide');
     this.formArray = [];
-    this.assessorFormArray= [];
-
+    this.teamFormArray= [];
   }
 
   projectForm(project) {
@@ -134,7 +132,6 @@ export class AssessorComponent implements OnInit {
     this.sub.unsubscribe();
     this.sub1.unsubscribe();
   }
-
 
 
 }
