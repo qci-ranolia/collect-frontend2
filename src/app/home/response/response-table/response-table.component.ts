@@ -45,8 +45,9 @@ export class ResponseTableComponent implements OnInit {
     if(this.flag) {
       $(document).ready(function() {
         $("#exampleFormResponse").DataTable({
+          aaSorting: [],
           responsive: true,
-          dom: 'Bfrtip',
+          dom: 'lBfrtip',
           buttons: [
               'csv', 'pdf',
           ]
@@ -55,9 +56,15 @@ export class ResponseTableComponent implements OnInit {
     }
   }
 
+  openImage(url) {
+    window.open(url, '_blank');
+  }
+
   ngOnDestroy() {
     this.sub.unsubscribe();
     this.sub1.unsubscribe();
   }
+
+
 
 }

@@ -12,10 +12,8 @@ import { ResponseComponent } from './home/response/response.component';
 import { ResponseTableComponent } from './home/response/response-table/response-table.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent},
-  { path: 'forms', component:  FormComponent},
-  { path: 'formBuilder', component:  FormBuilderComponent},
-  { path: 'dash', component:  DashboardComponent, children: [
+
+  { path: '', component:  DashboardComponent, children: [
     { path: '', component: ProjectComponent},
     { path: 'form', component: FormComponent},
     { path: 'formBuilder', component:  FormBuilderComponent},
@@ -24,4 +22,5 @@ export const routes: Routes = [
     { path: 'resTable', component: ResponseTableComponent},
     { path: 'proj', component: ProjectComponent},
   ]}
+  
 ];

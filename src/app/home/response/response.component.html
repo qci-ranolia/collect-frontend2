@@ -1,3 +1,16 @@
+<style >
+  .responseImg{
+    max-height: 60px;
+    border-radius: 2px;
+  }
+
+  table.dataTable thead .sorting,
+  table.dataTable thead .sorting_asc,
+  table.dataTable thead .sorting_desc {
+      background : none;
+  }
+</style>
+
 <div class="container-fluid mt-4 pb-3 text-center" style="background:#fff;">
     <h2>Response Table</h2>
     <div *ngIf='!flag'>
@@ -23,7 +36,7 @@
         </thead>
         <tbody>
             <tr *ngFor='let res of response; let i = index'>
-                <td></td>
+                <td>{{i+1}}</td>
                 <td>
                   <span class="tt1" > {{res.fname | shorten: 35: '...'}}
                     <span class="tt2" > &nbsp; {{res.fname}} &nbsp; </span>

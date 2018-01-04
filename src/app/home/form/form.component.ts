@@ -29,6 +29,7 @@ export class FormComponent implements OnInit {
   rulesArray: any=[];
   formCIDWithRule: any;
   satisfyAll = false;
+  files : any;
 
   constructor( private projectService: ProjectService, private router: Router ){
     this.fArray = this.projectService.emitFormArray.subscribe((res)=>{
@@ -44,7 +45,7 @@ export class FormComponent implements OnInit {
   }
 
   new() {
-    this.router.navigate(['dash/formBuilder']);
+    this.router.navigate(['/formBuilder']);
   }
 
   ngOnInit() {
@@ -104,8 +105,22 @@ export class FormComponent implements OnInit {
 
   }
 
-  sync() {
-    this.projectService.syncAll();
+  syncCollectFrom($event) {
+    let formData = new FormData();
+    this.files = $event.target.files || $event.srcElement.files;
+    let file = this.files[0];
+    formData = new FormData();
+    formData.append('form', file);
+    this.projectService.uploadCollectForm(formData);
+  }
+
+  syncCollectFromRule($event) {
+    let formData = new FormData();
+    this.files = $event.target.files || $event.srcElement.files;
+    let file = this.files[0];
+    formData = new FormData();
+    formData.append('rule', file);
+    this.projectService.uploadCollectRule(formData);
   }
 
 }

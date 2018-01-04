@@ -103,7 +103,8 @@ export class FormModalComponent implements OnInit {
     }
 
     if(this.json.type === "radio" || this.json.type === "dropdown" ) {
-      // console.log('type : radio');
+      console.log(this.option);
+      this.option = this.option;
       this.json.value = this.value;
       this.json.option = this.option.split(',');
     }

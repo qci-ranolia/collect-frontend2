@@ -37,8 +37,9 @@ export class ResponseComponent implements OnInit {
             "searchable": false,
             "orderable": false,
             "targets": 0
-        } ],
-        "order": [[ 1, 'asc' ]]
+        }], 
+        "order": [[ 1, 'asc' ]],
+        aaSorting: [],
         });
         t.on( 'order.dt search.dt', function () {
             t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
@@ -51,7 +52,7 @@ export class ResponseComponent implements OnInit {
   }
 
   getData(data) {
-    this.router.navigate(['dash/resTable'], { queryParams: { id: data } });
+    this.router.navigate(['/resTable'], { queryParams: { id: data } });
   }
 
   resMoreThanZero(res) {

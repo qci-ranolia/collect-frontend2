@@ -37,7 +37,9 @@
         </div>
 
       <br>
-      <button type="button" class="btn btn-primary mb-5 col-sm-5 col-md-4 col-lg-2 pt-3 pb-3" (click)='sync()'><i class="fa fa-refresh" aria-hidden="true"></i> Sync</button>
+      <button type="button" class="btn btn-primary mb-5 col-sm-5 col-md-4 col-lg-2 pt-3 pb-3" (click)='syncCollectFrom($event)'><i class="fa fa-refresh" aria-hidden="true"></i> 1. Sync Collect Form</button>
+      &nbsp;
+      <button type="button" class="btn btn-primary mb-5 col-sm-5 col-md-4 col-lg-2 pt-3 pb-3" (click)='syncCollectFromRule($event)'><i class="fa fa-refresh" aria-hidden="true"></i> 2. Sync Collect Rules</button>
 
       </div>
       <div class="tab-pane " id="template" role="tabpanel" >

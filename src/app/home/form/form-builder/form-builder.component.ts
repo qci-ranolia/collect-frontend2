@@ -42,7 +42,7 @@ export class FormBuilderComponent implements OnInit {
   sub8:any;
 
 
-  constructor (private projectService:ProjectService, private activatedRoute: ActivatedRoute) {
+  constructor (private projectService:ProjectService, private activatedRoute: ActivatedRoute , private router: Router) {
 
     this.sub1 = this.projectService.emitTemplateWithID.subscribe((res)=>{
       this.existingTemp = res;
@@ -189,6 +189,7 @@ export class FormBuilderComponent implements OnInit {
     let dataToPush = {Details: {name: this.newFormName, rule: 'None', project: this.projectAssociate.name, projectcid: this.projectAssociate.cid, status:'Offline', cid: cid }, Elements:this.jsonArray,  Rules:[]}
     this.projectService.incFromCount(this.projectAssociate.cid);
     this.projectService.pushIntoForm(dataToPush);
+    this.router.navigate(['/form']);
 
   }
 
@@ -198,6 +199,7 @@ export class FormBuilderComponent implements OnInit {
     let cid = this.projectService.cid();
     let dataToPush = {Details: {name: this.newTempName, rule: 'None', project: 'N/A', cid: cid }, Elements:this.jsonArray};
     this.projectService.pushIntoTemplate(dataToPush);
+    this.router.navigate(['/form']);
 
   }
 

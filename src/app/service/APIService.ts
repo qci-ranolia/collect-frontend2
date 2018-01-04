@@ -4,16 +4,16 @@ import { EventEmitter, Injectable } from '@angular/core';
 @Injectable()
 export class APIService {
 
-  projectURL: string = 'http://192.168.15.187:8000';
+  // projectURL: string = 'http://192.168.15.187:8000';
   // projectURL: string = 'http://192.168.15.221:8000';
-  // projectURL: string = 'http://qcitech.org:8083';
+  projectURL: string = 'http://qcitech.org:8083';
 
   userID : any = "";
 
   constructor( private http: Http) {}
 
   createAuthorizationHeader(headers: Headers) {
-    this.userID = "ca83bf0d67604cbd8fbc21e2af9a0d03";
+    this.userID = "319424f5b8524ebe8188c2d40217c48c";
     headers.append('Authorization', this.userID);
   }
 
@@ -155,4 +155,15 @@ export class APIService {
     return this.http.post(this.projectURL+'/getFormResponse',fID, {headers: headers}).map(res=>res.json());
   }
 
+  UploadCollectForm(form) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(this.projectURL+'/', form , {headers: headers}).map(res=>res.json());
+  }
+
+  UploadCollectRule(Rule) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(this.projectURL+'/', Rule , {headers: headers}).map(res=>res.json());
+  }
 }
