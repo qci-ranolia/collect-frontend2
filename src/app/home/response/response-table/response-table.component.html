@@ -10,8 +10,12 @@
         &nbsp;
     </div>
 </div>
-<div class="container-fluid mt-4 pb-3 text-center">
-    <table *ngIf='flag' id="example" class="table table-striped bg-white mt-5 brd-def" cellspacing="0" width="100%" style="max-width:100%;overflow-x:scroll;">
+<div class="container-fluid mt-4 pb-3 text-center">        
+  <div *ngIf='!flag' class="pt-5 mt-5">
+    <h4 class="pt-5 mt-5"> Just a moment please....</h4>
+  </div>
+  <div class="" style=" width:100%; overflow-x:auto;">
+    <table *ngIf='flag' id="exampleFormResponse" class="display table table-striped bg-white mt-5 brd-def" cellspacing="0" >
         <thead>
             <tr>
                 <th class="header-1"></th>
@@ -22,9 +26,12 @@
         <tbody>
             <tr *ngFor='let res of response; let i = index'>
                 <td>{{i+1}}</td>
-                <td *ngFor = 'let temp of res.ResElements'>{{temp.value}}</td>
-                <td><button type="button" class="btn btn-primary bg-white">Details</button></td>
+                <td *ngFor = 'let temp of res'>{{temp.value}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary bg-white" >  Details  </button>
+                </td>
             </tr>
     </tbody>
     </table>
   </div>
+</div>

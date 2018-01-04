@@ -5,7 +5,8 @@ import { EventEmitter, Injectable } from '@angular/core';
 export class APIService {
 
   projectURL: string = 'http://192.168.15.187:8000';
-  //projectURL: string = 'http://qcitech.org:8081';
+  // projectURL: string = 'http://192.168.15.221:8000';
+  // projectURL: string = 'http://qcitech.org:8083';
 
   userID : any = "";
 
@@ -135,6 +136,23 @@ export class APIService {
     tempObj = JSON.stringify(tempObj);
     let userObj = new FormData();
     userObj.append('tempObj',tempObj);
-    return this.http.post(this.projectURL+'/addUserInProject', userObj,{headers: headers}).map(res=>res.json());
+    return this.http.post(this.projectURL+'/addUserInProject', userObj, {headers: headers}).map(res=>res.json());
   }
+
+  GetResponseSummary() {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.get(this.projectURL+'/getResponseSummary', {headers: headers}).map(res=>res.json());
+  }
+
+  GetFormResponse(formID) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+
+    let fID = new FormData();
+    fID.append('formID',formID);
+
+    return this.http.post(this.projectURL+'/getFormResponse',fID, {headers: headers}).map(res=>res.json());
+  }
+
 }

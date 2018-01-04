@@ -10,6 +10,10 @@
     </div>-->
 </div>
 <div class="container-fluid mt-3 pb-3 text-left">
+    <h2>Response Table</h2>
+    <div *ngIf='!flag' class="mt-5 pt-5">
+        <h4 class="mt-5 pt-5">Seems like there is not data to display! Hang on while we check....</h4>
+    </div>
     <table *ngIf='flag' id="example" class="table table-striped bg-white mt-5 brd-def" cellspacing="0" width="100%">
         <thead>
             <tr>
@@ -17,27 +21,30 @@
                 <th>From</th>
                 <th>Project</th>
                 <th>Responces</th>
+                <th>Details</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor='let res of response; let i = index'>
                 <td class="text-center"></td>
                 <td>
-                  <span class="tt1" > {{res.formName | shorten: 15: '...'}}
-                    <span class="tt2" > &nbsp; {{res.formName}} &nbsp; </span>
+                  <span class="tt1" > {{res.fname | shorten: 35: '...'}}
+                    <span class="tt2" > &nbsp; {{res.fname}} &nbsp; </span>
                   </span>
                 </td>
                 <td>
-                  <span class="tt1" > {{res.projectName | shorten: 15: '...'}}
-                    <span class="tt2" > &nbsp; {{res.projectName}} &nbsp; </span>
+                  <span class="tt1" > {{res.pname | shorten: 35: '...'}}
+                    <span class="tt2" > &nbsp; {{res.pname}} &nbsp; </span>
                   </span>
                 </td>
                 <td>
-                  <button type="button" class="btn btn-primary bg-white b1" (click)='getData(res.formId)'> {{res.count}} Responses  </button>
+                  <button type="button" class="btn btn-primary bg-white" (click)='getData(res.fid)' [disabled]="resMoreThanZero(res.responses)" > {{res.responses}} Responses  </button>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-primary bg-white" >  Details  </button>
                 </td>
             </tr>
-        </tbody>
-    <!--<p class="cted col-sm-12 p-0 text-center bg-primary text-white">Click on fields to edit data</p>-->
+      </tbody>
     </table>
     <!-- <button type="button" class="btn btn-primary col-sm-3 col-md-2 pt-3 pb-3 mt-4" (click)='reload()'>Reload</button> -->
 </div>
