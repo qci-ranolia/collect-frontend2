@@ -97,7 +97,6 @@ export class AssessorComponent implements OnInit {
     this.assessorFormArray = formArray;
 
     $("#assessorFormModal").modal('show');
-
   }
 
   assignNewProject() {

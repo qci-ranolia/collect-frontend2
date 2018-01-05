@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ProjectService } from '../../service/ProjectService';
+declare var $: any;
 import "./dash.js";
 
 @Component({
@@ -56,6 +57,11 @@ export class DashboardComponent implements OnInit {
 
   showCustom() {
     this.toastr.custom('<span style="color: red">Message in red.</span>', 'null', {enableHTML: true});
+  }
+
+  logout() {
+    $("#userprofile").modal('hide');
+   this.projectService.logout();
   }
 
   ngOnDestroy() {

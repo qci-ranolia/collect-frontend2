@@ -28,6 +28,7 @@ export class ProjectService {
     return cdate;
   }
 
+  emitUserLogin = new EventEmitter<any>();
   emitFormElement = new EventEmitter<any>();
   emitFormElementTemp = new EventEmitter<any>();
   emitDeleteElement = new EventEmitter<any>();
@@ -50,6 +51,7 @@ export class ProjectService {
   emitInfoRes = new EventEmitter<any>();
   emitTeams = new EventEmitter<any>();
 
+
   formArray = [];
   // { Details: { name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },    Elements:  [{type: "text", required: false, name: "Name", value:"", cid:"a1", hepltext: ""},                    {type: "email", required: false, hepltext: "", name: "Email ID", value:"", cid:"b1"},                    {type: "number", required: false, hepltext: "", name: "Number Input", value:"", cid:"c1"},],    Rules: [{cid:"211", name: 'Rule1',elementName:'Name',elementType: "text", elementValue:"sam",elementCid:"a1", tempCid: '2332b', tempName: 'template1', satisfyAll:false},], },
 
@@ -69,9 +71,31 @@ export class ProjectService {
   //{cid:"p120", cdate:"26/11/2017 10:14", name: 'Ram', phone:'8998671234', form:[{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },], details:'Details'},
 
   teamArray = [
-    { cid:"t123", cdate:"26/11/2017 10:14", name: 'Team 1', form:[{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' }], assesor:[{cid:"p123"}], details:'Details'},
+    { cid:"t123", cdate:"26/11/2017 10:14", name: 'Team 1', tl:['a1233'], assesor:["a1233"], form:[{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' }],  details:'Details'},
   ];
 
+  login(data: any) {
+    this.apiService.Login(data).subscribe(res=>{
+      console.log(res);
+      if(res.success){
+        localStorage.setItem('token',res.token);
+        this.emitUserLogin.emit({success: true, msg: "logged in"});
+      } else {}
+    }, err=>{
+      console.log(err);
+    });
+  }
+
+  checkLogin() {
+    if(localStorage.getItem('token')) {
+      this.router.navigate(['./']);
+    }
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['./login']);
+  }
   uploadCollectForm(form) {
     this.apiService.UploadCollectForm(form).subscribe(res=> {
       console.log(res);
@@ -96,15 +120,23 @@ export class ProjectService {
 
   getProject() {
     this.apiService.GetAllProjects().subscribe(res=> {
-      if(res){
-        // console.log(res);
+      console.log(res);
+      if(res.success){
         this.projectArray = res.data;
         // console.log(this.projectArray);
         this.emitProject.emit(this.projectArray);
 
-      } else {}
+      } else {
+        console.log('else');
+        if(!res.header) {
+          this.logout();
+        }
+      }
     },err=> {
       console.log(err);
+      if(!err.header) {
+        this.logout();
+      }
     });
   }
 
@@ -115,16 +147,24 @@ export class ProjectService {
     let cdate = this.cdate();
     tempData = { cid:cid, cdate:cdate, name: pname, desc: pdesc, form:0, user: 0, assesor: 0};
     this.apiService.AddNewProject(tempData).subscribe(res=>{
-      // console.log(res);
+      console.log(res);
       if(res.success) {
         this.emitSuccessRes.emit(res.message);
         this.projectArray.push(tempData);
       } else {
+        if(!res.header) {
+          this.logout();
+        }
         this.emitErrorRes.emit(res.message);
+
       }
     },err=>{
+      if(!err.header) {
+        this.logout();
+      }
       console.log(err);
       this.emitErrorRes.emit("Somethisng went wrong");
+        this.logout();
     });
 
     // this.getProject();
@@ -304,6 +344,7 @@ export class ProjectService {
 
   assignNewFormToAssessor(cid,form) {
     let temp: any;
+    let flag = true;
     for(let i = 0;i<this.assessorArray.length;i++) {
       if(cid == this.assessorArray[i].cid) {
         temp = i;
@@ -311,29 +352,146 @@ export class ProjectService {
       }
     }
 
-    this.assessorArray[temp].form.push(form.Details);
-    this.apiService.AddAssesorArray(this.assessorArray[temp]).subscribe(res=>{
+    // check if form is already assigned to assesor or not
+
+    if(this.assessorArray[temp].form.length) {
+      for(let m = 0; m < this.assessorArray[temp].form; m++) {
+        if(form.Details.cid == this.assessorArray[temp].form[m].cid) {
+          flag = false;
+          break;
+        }
+      }
+    }
+
+    if(flag) {
+      this.assessorArray[temp].form.push(form.Details);
+      this.apiService.AddAssesorArray(this.assessorArray[temp]).subscribe(res=>{
+        if(res.success){
+          this.emitSuccessRes.emit(res.message);
+        } else {}
+      },err=> {
+        console.log(err);
+      });
+
+      this.incAssessorCount(form.Details.projectcdi);
+    }
+  }
+
+  getTeams() {
+    this.apiService.GetAllTeams().subscribe(res=> {
+      console.log(res);
+      if(res){
+        this.teamArray = res.data;
+        this.emitTeams.emit(this.teamArray);
+      } else {}
+    },err=> {
+      console.log(err);
+      this.emitTeams.emit(this.teamArray);
+    });
+    // this.emitAssessors.emit(this.assessorArray);
+  }
+
+  addTeamArray(name, tl, details) {
+    let cid = this.cid();
+    let cdate = this.cdate();
+    let asrObj = [];
+    let tlObj = [];
+    let formObj = [];
+
+    formObj.push(details);
+    if(name =="" || name == undefined) {
+      name = 'N/A';
+    }
+
+    tlObj.push(tl);
+    asrObj.push(tl);
+
+    let tempArray = {cid:cid, cdate:cdate, name: name, tl: tlObj, form:formObj, assesor:asrObj, details:'Details'};
+    this.apiService.AddTeamArray(tempArray).subscribe(res=>{
+      console.log(res);
       if(res.success){
         this.emitSuccessRes.emit(res.message);
       } else {}
     },err=> {
       console.log(err);
     });
-
-    this.incAssessorCount(form.Details.projectcdi);
-  }
-
-  getTeams() {
-
-  }
-
-  addTeamArray(name, details) {
+    this.teamArray.push(tempArray);
+    // this.incAssessorCount(details.projectcdi);
   }
 
   assignNewFormToTeam(cid,form) {
+    let temp: any;
+    for(let i = 0;i<this.teamArray.length;i++) {
+      if(cid == this.teamArray[i].cid) {
+        temp = i;
+        break;
+      }
+    }
+
+    this.teamArray[temp].form.push(form.Details);
+    this.apiService.AddTeamArray(this.teamArray[temp]).subscribe(res=>{
+      if(res.success){
+        this.emitSuccessRes.emit(res.message);
+      } else {}
+    },err=> {
+      console.log(err);
+    });
+  }
+
+  addNewAssesorInTeam(asrID, teamID) {
+    let temp : any;
+    for(let i = 0;i<this.teamArray.length;i++) {
+      if(teamID == this.teamArray[i].cid) {
+        temp = i;
+        break;
+      }
+    }
+    this.teamArray[temp].assesor.push(asrID);
+    this.apiService.AddTeamArray(this.teamArray[temp]).subscribe(res=>{
+      if(res.success){
+        this.emitSuccessRes.emit(res.message);
+      } else {}
+    },err=> {
+      console.log(err);
+    });
+  }
+
+  addNewManagerInTeam (mgrId, teamID) {
+    let temp : any;
+    for(let i = 0;i<this.teamArray.length;i++) {
+      if(teamID == this.teamArray[i].cid) {
+        temp = i;
+        break;
+      }
+    }
+    this.teamArray[temp].tl.push(mgrId);
+    this.teamArray[temp].assesor.push(mgrId);
+    this.apiService.AddTeamArray(this.teamArray[temp]).subscribe(res=>{
+      if(res.success){
+        this.emitSuccessRes.emit(res.message);
+      } else {}
+    },err=> {
+      console.log(err);
+    });
   }
 
   deleteFormTeamArray(cid, fCid, pCid) {
+    let ipos: any;
+    let jpos: any;
+    for(let i = 0; i< this.teamArray.length; i++) {
+        if(cid == this.teamArray[i].cid) {
+            ipos = i;
+            break;
+      }
+    }
+
+    for(let j = 0; j< this.teamArray[ipos].form.length; j++) {
+      if(fCid == this.teamArray[ipos].form[j].cid) {
+        jpos = j;
+        break;
+      }
+    }
+    this.teamArray[ipos].form.splice(jpos,1);
   }
 
   addUserArray(name, email, project) {

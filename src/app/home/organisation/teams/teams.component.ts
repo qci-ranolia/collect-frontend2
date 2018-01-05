@@ -15,13 +15,19 @@ export class TeamsComponent implements OnInit {
   teams: any = [];
   flag = false;
   formArray: any = [];
+  asrArray: any = [];
   teamName: any;
   assessorPhone: any;
   formAssociate: any;
   teamProjectName : any;
   teamFormArray : any =[];
-  projectAs: any;
+  extAsrArray : any = [];
+  extAsrNameArray : any = [];
+  extMgrNameArray : any = [];
+  newForm: any;
   teamCid: any;
+  tl: any;
+  asr: any;
   sub: any;
   sub1: any;
   sub2: any;
@@ -37,6 +43,10 @@ export class TeamsComponent implements OnInit {
 
     this.sub1 = this.projectService.emitFormArray.subscribe(res=>{
       this.formArray = res;
+    });
+
+    this.sub2 = this.projectService.emitAssessors.subscribe(res=>{
+      this.asrArray = res;
     });
   }
 
@@ -71,7 +81,7 @@ export class TeamsComponent implements OnInit {
 
   saveTeam() {
     // console.log(this.formAssociate);
-    this.projectService.addTeamArray(this.teamName,  this.formAssociate);
+    this.projectService.addTeamArray(this.teamName, this.tl, this.formAssociate);
     this.teamName = '';
     $("#newTeamModal").modal('hide');
     this.router.navigate(['/org'], { queryParams: { id: ""+ Math.floor(1000 + Math.random() * 9000) } });
@@ -87,25 +97,25 @@ export class TeamsComponent implements OnInit {
     return ""+j;
   }
 
-  showProjectModal( teamName, teamCid, formArray) {
+  showFormModal( teamName, teamCid, formArray) {
     this.projectService.getFormArray();
     let n = 0;
     let temp = [];
-    this.teamProjectName = teamName;
+    this.teamName = teamName;
     this.teamCid = teamCid;
     this.teamFormArray = formArray;
 
-    $("#teamFormModal").modal('show');
+    $("#showFormModal").modal('show');
 
   }
 
-  assignNewProject() {
-    // this.projectService.assignNewProjectToUser(this.userCid,this.projectAs);
-    this.projectService.assignNewFormToTeam(this.teamCid,this.projectAs);
-    $("#teamFormModal").modal('hide');
+  assignNewFrom() {
+    // this.projectService.assignNewProjectToUser(this.userCid,this.newForm);
+    this.projectService.assignNewFormToTeam(this.teamCid,this.newForm);
+    $("#showFormModal").modal('hide');
     this.formArray = [];
     this.teamFormArray= [];
-    this.projectAs = "";
+    this.newForm = "";
     this.formArray = [];
   }
 
@@ -131,6 +141,54 @@ export class TeamsComponent implements OnInit {
   ngOnDestroy() {
     this.sub.unsubscribe();
     this.sub1.unsubscribe();
+  }
+
+  showAssesorModal( teamName, teamCid, asrArray ) {
+    // this.projectService.getAssessors();
+    let n = 0;
+    let temp = [];
+    this.teamName = teamName;
+    this.teamCid = teamCid;
+    this.extAsrArray = asrArray;
+
+    for(let m of this.extAsrArray) {
+      for(let n of this.asrArray) {
+        if(m == n.cid) {
+          this.extAsrNameArray.push(n.name);
+        }
+      }
+    }
+    $("#showAssesorModal").modal('show');
+  }
+
+  addNewAssesor() {
+    this.projectService.addNewAssesorInTeam(this.tl, this.teamCid);
+    $("#showAssesorModal").modal('hide');
+
+  }
+
+  showManagerModal( teamName, teamCid, asrArray ) {
+    // this.projectService.getAssessors();
+    let n = 0;
+    let temp = [];
+    this.teamName = teamName;
+    this.teamCid = teamCid;
+    this.extAsrArray = asrArray;
+
+    for(let m of this.extAsrArray) {
+      for(let n of this.asrArray) {
+        if(m == n.cid) {
+          this.extMgrNameArray.push(n.name);
+        }
+      }
+    }
+    $("#showManagerModal").modal('show');
+  }
+
+  addNewManager() {
+    this.projectService.addNewManagerInTeam(this.tl, this.teamCid);
+    $("#showManagerModal").modal('hide');
+
   }
 
 

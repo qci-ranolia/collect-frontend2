@@ -4,17 +4,22 @@ import { EventEmitter, Injectable } from '@angular/core';
 @Injectable()
 export class APIService {
 
-  // projectURL: string = 'http://192.168.15.187:8000';
+  projectURL: string = 'http://192.168.15.187:8000';
   // projectURL: string = 'http://192.168.15.221:8000';
-  projectURL: string = 'http://qcitech.org:8083';
+  // projectURL: string = 'http://qcitech.org:8083';
 
   userID : any = "";
 
   constructor( private http: Http) {}
 
   createAuthorizationHeader(headers: Headers) {
-    this.userID = "319424f5b8524ebe8188c2d40217c48c";
+    this.userID = localStorage.getItem('token');
+    // console.log(this.userID);
     headers.append('Authorization', this.userID);
+  }
+
+  Login(data) {
+    return this.http.post(this.projectURL+'/login', data).map(res=>res.json());
   }
 
   SyncAll(formArray: any, tempArray: any) {
@@ -139,6 +144,24 @@ export class APIService {
     return this.http.post(this.projectURL+'/addUserInProject', userObj, {headers: headers}).map(res=>res.json());
   }
 
+  GetAllTeams(){
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.get(this.projectURL+'/getTeams',{headers: headers}).map(res=>res.json());
+  }
+
+  AddTeamArray(teamArray: any) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+
+    teamArray = JSON.stringify(teamArray);
+    teamArray = JSON.parse(teamArray);
+    teamArray = JSON.stringify(teamArray);
+    let tArray = new FormData();
+    tArray.append('teamArray',teamArray);
+    return this.http.post(this.projectURL+'/updateTeam', tArray,{headers: headers}).map(res=>res.json());
+  }
+
   GetResponseSummary() {
     let headers = new Headers();
     this.createAuthorizationHeader(headers);
@@ -166,4 +189,5 @@ export class APIService {
     this.createAuthorizationHeader(headers);
     return this.http.post(this.projectURL+'/', Rule , {headers: headers}).map(res=>res.json());
   }
+
 }

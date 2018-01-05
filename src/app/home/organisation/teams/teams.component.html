@@ -7,9 +7,9 @@
             <tr>
                 <th></th>
                 <th>Name</th>
-                <th>T.L</th>
                 <th>Forms</th>
-                <th>Assesors</th>
+                <th>Members</th>
+                <th>Manager</th>
                 <th>Details</th>
             </tr>
         </thead>
@@ -17,38 +17,47 @@
             <tr *ngFor='let res of teams; let i = index'>
                 <td>{{i+1}}</td>
                 <td>{{res.name}}</td>
-                <td>{{res.tl}}</td>
                 <td>
-                    <button type="button" class="btn btn-primary tt1" (click)='showProjectModal(res.name, res.cid, res.form)' >
-                      {{calForms(res.form)}} Forms
-                      <span class="tt2" > &nbsp; {{projectForm(res.form)}}  &nbsp; </span>
+                    <button type="button" class="btn btn-primary tt1" (click)='showFormModal(res.name, res.cid, res.form)' >
+                      {{calForms(res.form)}} Form/s
+                      <!-- <span class="tt2" > &nbsp; {{projectForm(res.form)}}  &nbsp; </span> -->
                     </button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-primary tt1" (click)='showAssesorModal()' >
-                      {{calForms(res.form)}} Assesors
-                      <span class="tt2" > &nbsp; {{projectForm(res.form)}}  &nbsp; </span>
+                    <button type="button" class="btn btn-primary tt1" (click)='showAssesorModal(res.name, res.cid, res.assesor)' >
+                      {{calForms(res.assesor)}} Assesor/s
                     </button>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-primary tt1" (click)='showManagerModal(res.name, res.cid, res.tl)' >
+                    {{calForms(res.tl)}} Manager/s
+                  </button>
                 </td>
                 <td>
                   <button type="button" class="btn btn-primary ">  {{res.details}}  </button>
                 </td>
             </tr>
-      </tbody>
+        </tbody>
     </table>
 
 </div>
 
-<!-- Add assesor model -->
+<!-- Add Team model -->
 <div class="modal fade" id="newTeamModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add new assesor</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add new team</h5>
       </div>
       <div class="modal-body text-center" style="height:300px; overflow-y: auto">
           <div class="row justify-content-center" >
-            <input type="text" name="" value="" [(ngModel)]='teamName' placeholder="Name" class="col-8 form-control mb-5" />
+            <input type="text" name="" value="" [(ngModel)]='teamName' placeholder="Team Name" class="col-8 form-control mb-5" />
+
+            <br>
+            <select [(ngModel)]="tl" class="col-8 form-control mb-5" >
+              <option *ngFor='let opt of asrArray; let i=i' [ngValue]=opt.cid>{{opt.name}}</option>
+            </select>
+
             <br>
             <select [(ngModel)]="formAssociate" class="col-8 form-control mb-5" >
               <option *ngFor='let opt of formArray; let i=i' [ngValue]=opt.Details  >{{opt.Details.name + " " + opt.Details.project}}</option>
@@ -62,30 +71,30 @@
     </div>
   </div>
 </div>
-<!-- Add assesor model -->
+<!-- Add Team model -->
 
 <!-- assesor form model -->
-<div class="modal fade" id="assessorFormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="showFormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Associated form for {{userProjectName}}</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Associated form for {{teamName}}</h5>
       </div>
       <div class="modal-body text-center" style="height:300px; overflow-y: auto">
           <div class="row justify-content-center" >
 
-            {{userProjectName}} is  assigned with  form/s :  <br>
+            {{teamName}} is  assigned with  form/s :  <br>
 
-            <div  class="col-12" *ngFor="let pro of assessorFormArray; let i = index">{{i+1}}. {{pro.name+" "+pro.project}} <i class="fa fa-trash-o" aria-hidden="true" (click)='deleteFormAssessorArray(pro.cid, pro.projectcdi)' ></i> <br> </div>
+            <div  class="col-12" *ngFor="let pro of teamFormArray; let i = index">{{i+1}}. {{pro.name+" "+pro.project}} <i class="fa fa-trash-o" aria-hidden="true" (click)='deleteFormAssessorArray(pro.cid, pro.projectcdi)' ></i> <br> </div>
             <br>
             <br>
             <br>
             <div class="col-12" >Assign new project : </div>
-            <select [(ngModel)]="projectAs" class="col-8 form-control mb-5" >
+            <select [(ngModel)]="newForm" class="col-8 form-control mb-5" >
               <option *ngFor='let opt of formArray; let i=i' [ngValue]=opt  >{{opt.Details.name + " " + opt.Details.project}}</option>
             </select>
             <div  class="col-12"></div>
-            <button type="button" class="btn btn-primary" data-toggle="modal"  (click)='assignNewProject()'>Assign</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal"  (click)='assignNewFrom()'>Assign</button>
 
           </div>
       </div>
@@ -97,3 +106,61 @@
   </div>
 </div>
 <!-- assesor form model -->
+
+<!-- Add Assesor model -->
+<div class="modal fade" id="showAssesorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add new Assesor</h5>
+      </div>
+      <div class="modal-body text-center" style="height:300px; overflow-y: auto">
+          <div class="row justify-content-center" >
+            <input type="text" name="" value="" [(ngModel)]='teamName' placeholder="Team Name" class="col-8 form-control mb-5" disabled/>
+
+            <div  style="height:130px; width:80% ; border: 2px solid gray; border-radius:3px; overflow:auto; margin-bottom:20px">
+                  <b *ngFor="let name of extAsrNameArray; let i=index" style="float : left"> {{i+1}} . {{name}} </b> <br>
+            </div>
+            <br>
+            <select [(ngModel)]="tl" class="col-8 form-control mb-5" >
+              <option *ngFor='let opt of asrArray; let i=i' [ngValue]=opt.cid>{{opt.name}}</option>
+            </select>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary col-sm-3 pt-3 pb-3" data-toggle="modal" data-target="#addRules" (click)='addNewAssesor()'>Add assesor</button>
+        <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Add Assesor model -->
+
+<!-- Add Manager model -->
+<div class="modal fade" id="showManagerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add new Manager</h5>
+      </div>
+      <div class="modal-body text-center" style="height:300px; overflow-y: auto">
+          <div class="row justify-content-center" >
+            <input type="text" name="" value="" [(ngModel)]='teamName' placeholder="Team Name" class="col-8 form-control mb-5" disabled/>
+
+            <div  style="height:130px; width:80% ; border: 2px solid gray; border-radius:3px; overflow:auto; margin-bottom:20px">
+                  <b *ngFor="let name of extMgrNameArray; let i=index" style="float : left"> {{i+1}} . {{name}} </b> <br>
+            </div>
+            <br>
+            <select [(ngModel)]="tl" class="col-8 form-control mb-5" >
+              <option *ngFor='let opt of asrArray; let i=i' [ngValue]=opt.cid>{{opt.name}}</option>
+            </select>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary col-sm-3 pt-3 pb-3" data-toggle="modal" data-target="#addRules" (click)='addNewManager()'>Add Manager</button>
+        <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Add Manager model -->

@@ -33,6 +33,7 @@ import { InputFileComponent } from './home/form/form-builder/input-file/input-fi
 import { InputBreakComponent } from './home/form/form-builder/input-break/input-break.component';
 
 import { routes } from './app.routes';
+import { AuthGuard } from './service/ZAuthGuard';
 import { TemplateTabContentComponent } from './home/form/form-builder/template-tab-content/template-tab-content.component';
 import { AssessorComponent } from './home/organisation/assessor/assessor.component';
 import { UserComponent } from './home/organisation/user/user.component';
@@ -90,6 +91,7 @@ import { TeamsComponent } from './home/organisation/teams/teams.component';
     RouterModule.forRoot(routes, { useHash: true }),
   ],
   providers: [
+    AuthGuard,
     ProjectService,
     APIService,
     {provide: ToastOptions, useClass: CustomOption},
