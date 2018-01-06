@@ -15,22 +15,27 @@
       <div class="tab-pane active" id="form" role="tabpanel" >
         <br>
         <div class="row text-left" >
-          <div *ngFor='let form of formArray; let i = index' class="col-sm-6" style="margin-bottom:15px">
+          <div *ngFor='let form of formArray; let i = index' class="col-lg-4 col-md-5 col-sm-6" style="margin-bottom:15px">
             <div class="card cbx">
               <div class="card-block p-0">
-                <div class="col-sm-12 p-3 mt-2">
-                  <h4 class="card-title col-sm-12">{{form.Details.name}}</h4>
-                  <h6 class="card-subtitle col-sm-12 mb-2 text-muted">{{form.Details.project}}</h6>
+                <div class="col-sm-12  mt-2">
+                  <h5 class="card-title col-sm-12">{{form.Details.name | shorten: 24: '...'}}</h5>
+                  <h5 class="card-subtitle col-sm-12 mb-2 text-muted"> <b> {{form.Details.project | shorten: 24: '...'}} </b> </h5>
                 </div>
-                <div class="col-sm-12 p-3 row m-0">
-                  <p class="card-text col-sm-12">Some quick example text to build on the card title and make...</p>
-                  <!-- <a href="#" class="card-link">Rule: {{form.Details.rule}}</a> -->
-                  <a href="#" class="card-link col-6 d-inline-block">{{form.Details.status}}</a>
+                <div class="col-sm-12 row m-0">
+                  <p class="card-text col-sm-12">Some text here...</p>
+                  <br>
+                  <a class="card-link col-6 d-inline-block" >
+                    <input type="checkbox" class="form-check-input" [checked]=checkStatus(form.Details.cid) (change)='changeStatus(form.Details.cid)'>
+                    {{form.Details.status}}
+                  </a>
                   <a href="#" class="card-link col-6 d-inline-block ml-0" [routerLink]="['../formBuilder']" [queryParams]="{formID : form.Details.cid }" >View form</a>
                 </div>
-                <div class="col-11 pl-3 pt-3 pr-1 pb-4 mt-4 ml-3 mb-3">
-                  <button (click)='rule(form.Rules, form.Details.cid, form.Elements)' type="button" class="btn btn-primary col-sm-11 col-md-4 col-lg-2 pt-3 pb-3" data-toggle="modal" data-target="#rules">Rule/s</button>
+                <div class="col-12 pl-3  pr-1 pb-4 mt-4 ml-3 mb-3">
+                  <button style="float: left" (click)='rule(form.Rules, form.Details.cid, form.Elements)' type="button" class="btn btn-primary " data-toggle="modal" data-target="#rules">Rule/s</button>
+                  <button style="margin-left:40px; float: left" (click)='getResponse(form.Details.cid)' type="button" class="btn btn-primary " data-toggle="modal" data-target="#rules">{{form.Details.responses}}  Responses </button>
                 </div>
+                <br>
               </div>
             </div>
           </div>
@@ -45,12 +50,12 @@
       <div class="tab-pane " id="template" role="tabpanel" >
         <br>
         <div class="row justify-content-center" >
-          <div *ngFor='let temp of templateArray; let i = index' class="col-sm-6"  style="margin-bottom:15px">
+          <div *ngFor='let temp of templateArray; let i = index' class="col-4 "  style="margin-bottom:15px">
             <div class="card cbx">
               <div class="card-block">
                 <h4 class="card-title">{{temp.Details.name}}</h4>
-                <h6 class="card-subtitle mb-2 text-muted">{{temp.Details.project}}</h6>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <h6 class="card-subtitle mb-2 text-muted">Some text here...</h6>
+                <p class="card-text">{{temp.Details.desc}}</p>
                 <a class="card-link" [routerLink]="['../formBuilder']" [queryParams]="{templateID : temp.Details.cid }" >View template</a>
               </div>
             </div>

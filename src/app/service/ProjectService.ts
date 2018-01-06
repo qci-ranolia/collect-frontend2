@@ -70,9 +70,8 @@ export class ProjectService {
   assessorArray = [];
   //{cid:"p120", cdate:"26/11/2017 10:14", name: 'Ram', phone:'8998671234', form:[{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },], details:'Details'},
 
-  teamArray = [
-    { cid:"t123", cdate:"26/11/2017 10:14", name: 'Team 1', tl:['a1233'], assesor:["a1233"], form:[{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' }],  details:'Details'},
-  ];
+  teamArray = [];
+  //{ cid:"t123", cdate:"26/11/2017 10:14", name: 'Team 1', tl:['a1233'], assesor:["a1233"], form:[{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' }],  details:'Details'},
 
   login(data: any) {
     this.apiService.Login(data).subscribe(res=>{
@@ -96,6 +95,7 @@ export class ProjectService {
     localStorage.removeItem('token');
     this.router.navigate(['./login']);
   }
+
   uploadCollectForm(form) {
     this.apiService.UploadCollectForm(form).subscribe(res=> {
       console.log(res);
@@ -123,11 +123,9 @@ export class ProjectService {
       console.log(res);
       if(res.success){
         this.projectArray = res.data;
-        // console.log(this.projectArray);
         this.emitProject.emit(this.projectArray);
 
       } else {
-        console.log('else');
         if(!res.header) {
           this.logout();
         }
@@ -147,7 +145,7 @@ export class ProjectService {
     let cdate = this.cdate();
     tempData = { cid:cid, cdate:cdate, name: pname, desc: pdesc, form:0, user: 0, assesor: 0};
     this.apiService.AddNewProject(tempData).subscribe(res=>{
-      console.log(res);
+      // console.log(res);
       if(res.success) {
         this.emitSuccessRes.emit(res.message);
         this.projectArray.push(tempData);
@@ -155,8 +153,6 @@ export class ProjectService {
         if(!res.header) {
           this.logout();
         }
-        this.emitErrorRes.emit(res.message);
-
       }
     },err=>{
       if(!err.header) {
@@ -182,7 +178,7 @@ export class ProjectService {
           }
         }
         this.emitFormArray.emit(this.formArray);
-      }else {}
+      }else {if(!res.header){ this.logout();}}
     }, err=>{
       console.log(err);
     });
@@ -203,7 +199,7 @@ export class ProjectService {
           }
         }
         this.emitTemplateArray.emit(this.templateArray);
-      }else {}
+      }else {if(!res.header){ this.logout();}}
     }, err=>{
       console.log(err);
     });
@@ -309,7 +305,7 @@ export class ProjectService {
 
   getAssessors() {
     this.apiService.GetAllAssesors().subscribe(res=> {
-      console.log(res);
+      // console.log(res);
       if(res){
         this.assessorArray = res.data;
         this.emitAssessors.emit(this.assessorArray);
@@ -331,7 +327,7 @@ export class ProjectService {
     }
     let tempArray = {cid:cid, cdate:cdate, name: name, phone: phone, form:formObj, details:'Details'};
     this.apiService.AddAssesorArray(tempArray).subscribe(res=>{
-      console.log(res);
+      // console.log(res);
       if(res.success){
         this.emitSuccessRes.emit(res.message);
       } else {}
@@ -379,7 +375,7 @@ export class ProjectService {
 
   getTeams() {
     this.apiService.GetAllTeams().subscribe(res=> {
-      console.log(res);
+      // console.log(res);
       if(res){
         this.teamArray = res.data;
         this.emitTeams.emit(this.teamArray);
@@ -408,7 +404,7 @@ export class ProjectService {
 
     let tempArray = {cid:cid, cdate:cdate, name: name, tl: tlObj, form:formObj, assesor:asrObj, details:'Details'};
     this.apiService.AddTeamArray(tempArray).subscribe(res=>{
-      console.log(res);
+      // console.log(res);
       if(res.success){
         this.emitSuccessRes.emit(res.message);
       } else {}
@@ -475,23 +471,101 @@ export class ProjectService {
     });
   }
 
-  deleteFormTeamArray(cid, fCid, pCid) {
+  deleteFormTeamArray(tCid, fCid) {
     let ipos: any;
     let jpos: any;
-    for(let i = 0; i< this.teamArray.length; i++) {
-        if(cid == this.teamArray[i].cid) {
+    let formData = new FormData();
+    formData.append('tID', tCid);
+    formData.append('fID', fCid);
+    console.log(formData);
+    this.apiService.DeleteFormTeamArray(formData).subscribe(res=>{
+      console.log(res);
+      if(res.success) {
+
+        for(let i = 0; i< this.teamArray.length; i++) {
+          if(tCid == this.teamArray[i].cid) {
             ipos = i;
             break;
-      }
-    }
+          }
+        }
 
-    for(let j = 0; j< this.teamArray[ipos].form.length; j++) {
-      if(fCid == this.teamArray[ipos].form[j].cid) {
-        jpos = j;
-        break;
+        for(let j = 0; j< this.teamArray[ipos].form.length; j++) {
+          if(fCid == this.teamArray[ipos].form[j].cid) {
+            jpos = j;
+            break;
+          }
+        }
+        this.teamArray[ipos].form.splice(jpos,1);
       }
-    }
-    this.teamArray[ipos].form.splice(jpos,1);
+    },err =>{
+      console.log(err);
+    });
+  }
+
+  deleteAsrTeamArray(tCid, aCid) {
+    let ipos: any;
+    let jpos: any;
+
+    let formData = new FormData();
+    formData.append('tID', tCid);
+    formData.append('aID', aCid);
+    console.log(formData);
+
+    this.apiService.DeleteAsrTeamArray(formData).subscribe(res=>{
+      console.log(res);
+      if(res.success) {
+
+        for(let i = 0; i< this.teamArray.length; i++) {
+          if(tCid == this.teamArray[i].cid) {
+            ipos = i;
+            break;
+          }
+        }
+
+        for(let j = 0; j< this.teamArray[ipos].assesor.length; j++) {
+          if(aCid == this.teamArray[ipos].assesor[j]) {
+            jpos = j;
+            break;
+          }
+        }
+        this.teamArray[ipos].assesor.splice(jpos,1);
+      }
+    },err =>{
+      console.log(err);
+    });
+  }
+
+  deleteMgrTeamArray(tCid, mCid) {
+    let ipos: any;
+    let jpos: any;
+
+    let formData = new FormData();
+    formData.append('tID', tCid);
+    formData.append('aID', mCid);
+    console.log(formData);
+
+    this.apiService.DeleteAsrTeamArray(formData).subscribe(res=>{
+      console.log(res);
+      if(res.success) {
+
+        for(let i = 0; i< this.teamArray.length; i++) {
+          if(tCid == this.teamArray[i].cid) {
+            ipos = i;
+            break;
+          }
+        }
+
+        for(let j = 0; j< this.teamArray[ipos].tl.length; j++) {
+          if(mCid == this.teamArray[ipos].tl[j]) {
+            jpos = j;
+            break;
+          }
+        }
+        this.teamArray[ipos].tl.splice(jpos,1);
+      }
+    },err =>{
+      console.log(err);
+    });
   }
 
   addUserArray(name, email, project) {
@@ -553,7 +627,7 @@ export class ProjectService {
   getResponse() {
 
     this.apiService.GetResponseSummary().subscribe(res=> {
-      // console.log(res);
+      console.log(res);
       if(res.data.length){
         this.responseArray = [];
         this.responseArray = res.data;
@@ -647,43 +721,72 @@ export class ProjectService {
   }
 
   deleteProjectUserArray(uCid,pCid) {
+
     let ipos: any;
     let jpos: any;
-    for(let i = 0; i< this.userArray.length; i++) {
-        if(uCid == this.userArray[i].cid) {
-            ipos = i;
-            break;
-      }
-    }
+    let formData = new FormData();
+    formData.append('userID', uCid);
+    formData.append('pID', pCid);
+    console.log(formData);
+    this.apiService.DeleteProjectUserArray(formData).subscribe(res=>{
+      console.log(res);
+      if(res.success){
 
-    for(let j = 0; j< this.userArray[ipos].project.length; j++) {
-      if(pCid == this.userArray[ipos].project[j].cid) {
-        jpos = j;
-        break;
-      }
-    }
-    this.userArray[ipos].project.splice(jpos,1);
-    this.descUserCount(pCid);
+        for(let i = 0; i< this.userArray.length; i++) {
+            if(uCid == this.userArray[i].cid) {
+                ipos = i;
+                break;
+          }
+        }
+
+        for(let j = 0; j< this.userArray[ipos].project.length; j++) {
+          if(pCid == this.userArray[ipos].project[j].cid) {
+            jpos = j;
+            break;
+          }
+        }
+        this.userArray[ipos].project.splice(jpos,1);
+        this.descUserCount(pCid);
+        this.emitSuccessRes.emit(res.message);
+
+      } else {}
+    },err=> {
+      console.log(err);
+    });
+
   }
 
   deleteFormAssessorArray(cid, fCid, pCid) {
     let ipos: any;
     let jpos: any;
-    for(let i = 0; i< this.assessorArray.length; i++) {
-        if(cid == this.assessorArray[i].cid) {
-            ipos = i;
-            break;
-      }
-    }
 
-    for(let j = 0; j< this.assessorArray[ipos].form.length; j++) {
-      if(fCid == this.assessorArray[ipos].form[j].cid) {
-        jpos = j;
-        break;
-      }
-    }
-    this.assessorArray[ipos].form.splice(jpos,1);
-    this.descAsrCount(pCid);
+    let formData = new FormData();
+    formData.append('asrID', cid);
+    formData.append('fID', fCid);
+
+    this.apiService.DeleteFormAssessorArray(formData).subscribe(res=> {
+      console.log(res);
+      if(res.success){
+        for(let i = 0; i< this.assessorArray.length; i++) {
+            if(cid == this.assessorArray[i].cid) {
+                ipos = i;
+                break;
+          }
+        }
+
+        for(let j = 0; j< this.assessorArray[ipos].form.length; j++) {
+          if(fCid == this.assessorArray[ipos].form[j].cid) {
+            jpos = j;
+            break;
+          }
+        }
+        this.assessorArray[ipos].form.splice(jpos,1);
+        this.descAsrCount(pCid);
+
+      } else {}
+    },err=> {
+      console.log(err);
+    });
   }
 
   getFormArrayWithID(cid) {
@@ -767,6 +870,26 @@ export class ProjectService {
     //     }
     // }
     // this.emitResTable.emit(tempArray);
+  }
+
+  changeFormStatus(fid, status) {
+    let formData = new FormData();
+
+    for(let m of this.formArray) {
+      if(fid == m.Details.cid) {
+        m.Details.status = status;
+        formData.append('formID', fid);
+        this.apiService.ChangeFormStatus(formData).subscribe(res=>{
+          if(res.success) {
+
+          } else {}
+        }, err =>{
+          console.log(err);
+
+        });
+        break;
+      }
+    }
   }
 
 }

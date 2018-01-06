@@ -18,7 +18,7 @@ export class ResponseComponent implements OnInit {
 
   constructor(private projectService: ProjectService, private router: Router) {
     this.sub = this.projectService.emitResponseSummary.subscribe(res=>{
-      console.log(res);
+      // console.log(res);
       this.response = res;
       this.flag = true;
       this.display();
@@ -37,7 +37,7 @@ export class ResponseComponent implements OnInit {
             "searchable": false,
             "orderable": false,
             "targets": 0
-        }], 
+        }],
         "order": [[ 1, 'asc' ]],
         aaSorting: [],
         });

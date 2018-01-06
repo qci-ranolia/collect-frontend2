@@ -35,6 +35,7 @@ export class FormComponent implements OnInit {
     this.fArray = this.projectService.emitFormArray.subscribe((res)=>{
       // console.log(res);
       this.formArray = res;
+
     });
 
     this.tArray = this.projectService.emitTemplateArray.subscribe((res)=>{
@@ -121,6 +122,37 @@ export class FormComponent implements OnInit {
     formData = new FormData();
     formData.append('rule', file);
     this.projectService.uploadCollectRule(formData);
+  }
+
+  checkStatus(fid) {
+    for(let m of this.formArray) {
+      if(m.Details.cid == fid) {
+        if(m.Details.status == 'Offline'){
+          return false;
+        } else {
+          return true;
+        }
+      }
+    }
+  }
+
+  changeStatus(fid) {
+    for(let m of this.formArray) {
+      if(m.Details.cid == fid) {
+        if(m.Details.status == 'Offline'){
+          m.Details.status = 'Online';
+        } else {
+          m.Details.status = 'Offline';
+        }
+        this.projectService.changeFormStatus(fid, m.Details.status);
+        break;
+      }
+    }
+
+  }
+
+  getResponse(fid) {
+    this.router.navigate(['/resTable'], { queryParams: { id: fid } });
   }
 
 }

@@ -4,9 +4,9 @@ import { EventEmitter, Injectable } from '@angular/core';
 @Injectable()
 export class APIService {
 
-  projectURL: string = 'http://192.168.15.187:8000';
+  // projectURL: string = 'http://192.168.15.187:8000';
   // projectURL: string = 'http://192.168.15.221:8000';
-  // projectURL: string = 'http://qcitech.org:8083';
+  projectURL: string = 'http://qcitech.org:8083';
 
   userID : any = "";
 
@@ -14,7 +14,7 @@ export class APIService {
 
   createAuthorizationHeader(headers: Headers) {
     this.userID = localStorage.getItem('token');
-    // console.log(this.userID);
+    // this.userID = "319424f5b8524ebe8188c2d40217c48c";
     headers.append('Authorization', this.userID);
   }
 
@@ -190,4 +190,33 @@ export class APIService {
     return this.http.post(this.projectURL+'/', Rule , {headers: headers}).map(res=>res.json());
   }
 
+  ChangeFormStatus(fid) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(this.projectURL+'/changeFormStatus', fid , {headers: headers}).map(res=>res.json());
+  }
+
+  DeleteProjectUserArray(data) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(this.projectURL+'/removeUserFromProject', data , {headers: headers}).map(res=>res.json());
+  }
+
+  DeleteFormAssessorArray(data) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(this.projectURL+'/removeAssesorFromForm', data , {headers: headers}).map(res=>res.json());
+  }
+
+  DeleteFormTeamArray(data) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(this.projectURL+'/removeFormFromTeam', data , {headers: headers}).map(res=>res.json());
+  }
+
+  DeleteAsrTeamArray(data) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(this.projectURL+'/removeAssesorFromTeam', data , {headers: headers}).map(res=>res.json());
+  }
 }

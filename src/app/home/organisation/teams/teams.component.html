@@ -85,7 +85,7 @@
 
             {{teamName}} is  assigned with  form/s :  <br>
 
-            <div  class="col-12" *ngFor="let pro of teamFormArray; let i = index">{{i+1}}. {{pro.name+" "+pro.project}} <i class="fa fa-trash-o" aria-hidden="true" (click)='deleteFormAssessorArray(pro.cid, pro.projectcdi)' ></i> <br> </div>
+            <div  class="col-12" *ngFor="let pro of teamFormArray; let i = index">{{i+1}}. {{pro.name+" "+pro.project}} <i class="fa fa-trash-o" aria-hidden="true" (click)='deleteFormTeamArray(pro.cid)' ></i> <br> </div>
             <br>
             <br>
             <br>
@@ -116,11 +116,13 @@
       </div>
       <div class="modal-body text-center" style="height:300px; overflow-y: auto">
           <div class="row justify-content-center" >
-            <input type="text" name="" value="" [(ngModel)]='teamName' placeholder="Team Name" class="col-8 form-control mb-5" disabled/>
 
-            <div  style="height:130px; width:80% ; border: 2px solid gray; border-radius:3px; overflow:auto; margin-bottom:20px">
-                  <b *ngFor="let name of extAsrNameArray; let i=index" style="float : left"> {{i+1}} . {{name}} </b> <br>
-            </div>
+            {{teamName}} assesor/s :  <br>
+
+            <div  class="col-12" *ngFor="let name of extAsrNameArray; let i=index">{{i+1}} . {{name.name}} <i class="fa fa-trash-o" aria-hidden="true" (click)='deleteAsrTeamArray(name.cid)' ></i> <br> </div>
+            <br>
+            <br>
+
             <br>
             <select [(ngModel)]="tl" class="col-8 form-control mb-5" >
               <option *ngFor='let opt of asrArray; let i=i' [ngValue]=opt.cid>{{opt.name}}</option>
@@ -145,11 +147,18 @@
       </div>
       <div class="modal-body text-center" style="height:300px; overflow-y: auto">
           <div class="row justify-content-center" >
-            <input type="text" name="" value="" [(ngModel)]='teamName' placeholder="Team Name" class="col-8 form-control mb-5" disabled/>
+            <!-- <input type="text" name="" value="" [(ngModel)]='teamName' placeholder="Team Name" class="col-8 form-control mb-5" disabled/>
 
             <div  style="height:130px; width:80% ; border: 2px solid gray; border-radius:3px; overflow:auto; margin-bottom:20px">
                   <b *ngFor="let name of extMgrNameArray; let i=index" style="float : left"> {{i+1}} . {{name}} </b> <br>
-            </div>
+            </div> -->
+
+            {{teamName}} Manager/s :  <br>
+
+            <div  class="col-12" *ngFor="let name of extMgrNameArray; let i=index">{{i+1}} . {{name.name}} <i class="fa fa-trash-o" aria-hidden="true" (click)='deleteMgrTeamArray(name.cid)' ></i> <br> </div>
+            <br>
+            <br>
+
             <br>
             <select [(ngModel)]="tl" class="col-8 form-control mb-5" >
               <option *ngFor='let opt of asrArray; let i=i' [ngValue]=opt.cid>{{opt.name}}</option>

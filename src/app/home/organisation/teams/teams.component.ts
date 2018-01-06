@@ -106,7 +106,6 @@ export class TeamsComponent implements OnInit {
     this.teamFormArray = formArray;
 
     $("#showFormModal").modal('show');
-
   }
 
   assignNewFrom() {
@@ -119,12 +118,13 @@ export class TeamsComponent implements OnInit {
     this.formArray = [];
   }
 
-  deleteFormTeamArray(formCid, projCid) {
-    this.projectService.deleteFormTeamArray(this.teamCid, formCid, projCid);
+  deleteFormTeamArray(formCid) {
+    this.projectService.deleteFormTeamArray(this.teamCid, formCid);
 
     $("#teamFormModal").modal('hide');
     this.formArray = [];
     this.teamFormArray= [];
+    this.teamCid = "";
   }
 
   projectForm(project) {
@@ -145,6 +145,7 @@ export class TeamsComponent implements OnInit {
 
   showAssesorModal( teamName, teamCid, asrArray ) {
     // this.projectService.getAssessors();
+    this.extAsrNameArray = [];
     let n = 0;
     let temp = [];
     this.teamName = teamName;
@@ -154,11 +155,19 @@ export class TeamsComponent implements OnInit {
     for(let m of this.extAsrArray) {
       for(let n of this.asrArray) {
         if(m == n.cid) {
-          this.extAsrNameArray.push(n.name);
+          this.extAsrNameArray.push({ cid:n.cid, name: n.name});
         }
       }
     }
     $("#showAssesorModal").modal('show');
+  }
+
+  deleteAsrTeamArray(aCid) {
+    this.projectService.deleteAsrTeamArray(this.teamCid, aCid);
+
+    $("#showAssesorModal").modal('hide');
+    this.extAsrNameArray = [];
+    this.teamCid = "";
   }
 
   addNewAssesor() {
@@ -169,6 +178,7 @@ export class TeamsComponent implements OnInit {
 
   showManagerModal( teamName, teamCid, asrArray ) {
     // this.projectService.getAssessors();
+    this.extMgrNameArray = [];
     let n = 0;
     let temp = [];
     this.teamName = teamName;
@@ -178,12 +188,21 @@ export class TeamsComponent implements OnInit {
     for(let m of this.extAsrArray) {
       for(let n of this.asrArray) {
         if(m == n.cid) {
-          this.extMgrNameArray.push(n.name);
+          this.extMgrNameArray.push({cid : n.cid, name:n.name});
         }
       }
     }
     $("#showManagerModal").modal('show');
   }
+
+  deleteMgrTeamArray(mCid) {
+    this.projectService.deleteMgrTeamArray(this.teamCid, mCid);
+
+    $("#showManagerModal").modal('hide');
+    this.extMgrNameArray = [];
+    this.teamCid = "";
+  }
+
 
   addNewManager() {
     this.projectService.addNewManagerInTeam(this.tl, this.teamCid);
