@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 
+import { AuthGuard } from './service/ZAuthGuard';
 import { HomeComponent } from './home/home.component';
 import { FormComponent } from './home/form/form.component';
 import { FormBuilderComponent } from './home/form/form-builder/form-builder.component';
@@ -10,18 +11,20 @@ import { DashboardComponent } from './home/dashboard/dashboard.component';
 import { OrganisationComponent } from './home/organisation/organisation.component';
 import { ResponseComponent } from './home/response/response.component';
 import { ResponseTableComponent } from './home/response/response-table/response-table.component';
+import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent},
-  { path: 'forms', component:  FormComponent},
-  { path: 'formBuilder', component:  FormBuilderComponent},
-  { path: 'dash', component:  DashboardComponent, children: [
-    { path: '', component: ProjectComponent},
-    { path: 'form', component: FormComponent},
-    { path: 'formBuilder', component:  FormBuilderComponent},
-    { path: 'response', component: ResponseComponent},
-    { path: 'org', component: OrganisationComponent},
-    { path: 'resTable', component: ResponseTableComponent},
-    { path: 'proj', component: ProjectComponent},
-  ]}
+
+  { path: '', component:  DashboardComponent, children: [
+    { path: '', component: ProjectComponent, canActivate: [AuthGuard]},
+    { path: 'form', component: FormComponent, canActivate: [AuthGuard]},
+    { path: 'formBuilder', component:  FormBuilderComponent, canActivate: [AuthGuard]},
+    { path: 'response', component: ResponseComponent, canActivate: [AuthGuard]},
+    { path: 'org', component: OrganisationComponent, canActivate: [AuthGuard]},
+    { path: 'resTable', component: ResponseTableComponent, canActivate: [AuthGuard]},
+    { path: 'proj', component: ProjectComponent, canActivate: [AuthGuard]},
+  ]},
+  { path: 'login', component:  LoginComponent },
+  { path: '**', redirectTo:'/login' }
+
 ];

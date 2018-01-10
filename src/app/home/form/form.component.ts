@@ -29,11 +29,13 @@ export class FormComponent implements OnInit {
   rulesArray: any=[];
   formCIDWithRule: any;
   satisfyAll = false;
+  files : any;
 
   constructor( private projectService: ProjectService, private router: Router ){
     this.fArray = this.projectService.emitFormArray.subscribe((res)=>{
       // console.log(res);
       this.formArray = res;
+
     });
 
     this.tArray = this.projectService.emitTemplateArray.subscribe((res)=>{
@@ -44,7 +46,7 @@ export class FormComponent implements OnInit {
   }
 
   new() {
-    this.router.navigate(['dash/formBuilder']);
+    this.router.navigate(['/formBuilder']);
   }
   
   
@@ -105,8 +107,53 @@ export class FormComponent implements OnInit {
 
   }
 
-  sync() {
-    this.projectService.syncAll();
+  syncCollectFrom($event) {
+    let formData = new FormData();
+    this.files = $event.target.files || $event.srcElement.files;
+    let file = this.files[0];
+    formData = new FormData();
+    formData.append('form', file);
+    this.projectService.uploadCollectForm(formData);
+  }
+
+  syncCollectFromRule($event) {
+    let formData = new FormData();
+    this.files = $event.target.files || $event.srcElement.files;
+    let file = this.files[0];
+    formData = new FormData();
+    formData.append('rule', file);
+    this.projectService.uploadCollectRule(formData);
+  }
+
+  checkStatus(fid) {
+    for(let m of this.formArray) {
+      if(m.Details.cid == fid) {
+        if(m.Details.status == 'Offline'){
+          return false;
+        } else {
+          return true;
+        }
+      }
+    }
+  }
+
+  changeStatus(fid) {
+    for(let m of this.formArray) {
+      if(m.Details.cid == fid) {
+        if(m.Details.status == 'Offline'){
+          m.Details.status = 'Online';
+        } else {
+          m.Details.status = 'Offline';
+        }
+        this.projectService.changeFormStatus(fid, m.Details.status);
+        break;
+      }
+    }
+
+  }
+
+  getResponse(fid) {
+    this.router.navigate(['/resTable'], { queryParams: { id: fid } });
   }
 
 }

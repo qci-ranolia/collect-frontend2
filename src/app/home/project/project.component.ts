@@ -32,4 +32,6 @@ export class ProjectComponent implements OnInit {
     this.projectService.addNewProject(this.pname,this.pdesc);
     $('#projectModal').modal('hide');
   }
+
+  
 }

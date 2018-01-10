@@ -47,7 +47,7 @@ export class AssessorComponent implements OnInit {
   display() {
     if(this.flag) {
        $(document).ready(function() {
-        var t = $('#example1').DataTable({
+        var t = $('#example01').DataTable({
           "columnDefs": [ {
             "orderable": false,
             "targets": 0,
@@ -75,7 +75,7 @@ export class AssessorComponent implements OnInit {
     this.assessorName = '';
     this.assessorPhone = '';
     $("#newAssessorModal").modal('hide');
-    this.router.navigate(['dash/org'], { queryParams: { id: ""+ Math.floor(1000 + Math.random() * 9000) } });
+    this.router.navigate(['/org'], { queryParams: { id: ""+ Math.floor(1000 + Math.random() * 9000) } });
     this.formAssociate = "";
     this.formArray=[];
   }
@@ -97,7 +97,6 @@ export class AssessorComponent implements OnInit {
     this.assessorFormArray = formArray;
 
     $("#assessorFormModal").modal('show');
-
   }
 
   assignNewProject() {

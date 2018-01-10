@@ -16,7 +16,7 @@ export class ProjectService {
 
   cdate() {
     let d = new Date();
-    let cdate = d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear()+" "+d.getHours();
+    let cdate = d.getDate()+"/"+ (d.getMonth()+1)+ "/"+d.getFullYear()+" "+d.getHours();
     let min  = d.getMinutes();
     let min2 = "";
     if(min<10) {
@@ -28,6 +28,7 @@ export class ProjectService {
     return cdate;
   }
 
+  emitUserLogin = new EventEmitter<any>();
   emitFormElement = new EventEmitter<any>();
   emitFormElementTemp = new EventEmitter<any>();
   emitDeleteElement = new EventEmitter<any>();
@@ -48,179 +49,93 @@ export class ProjectService {
   emitWarningRes = new EventEmitter<any>();
   emitErrorRes = new EventEmitter<any>();
   emitInfoRes = new EventEmitter<any>();
+  emitTeams = new EventEmitter<any>();
 
-  formArray = [
-    // { Details: { name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },
-    //   Elements:  [{type: "text", required: false, name: "Name", value:"", cid:"a1", hepltext: ""},
-    //                   {type: "email", required: false, hepltext: "", name: "Email ID", value:"", cid:"b1"},
-    //                   {type: "number", required: false, hepltext: "", name: "Number Input", value:"", cid:"c1"},],
-    //   Rules: [{cid:"211", name: 'Rule 1', elementName:'Name', elementType: "text", elementValue:"sam",elementCid:"a1", tempCid: '2332b', tempName: 'template1', satisfyAll:false},],
-    // },
-    // { Details: { name: 'Form2', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121',  status:'Online', cid:'a2121' },
-    //   Elements:  [{type: "text", required: false, name: "Name2", value:"", cid:"a11", hepltext: ""},
-    //                   {type: "email", required: false, value:"", cid:"a12", hepltext: "", name: "Email ID2"},
-    //                   {type: "number", required: false, value:"", cid:"a13", hepltext: "", name: "Number Input2"},],
-    //   Rules: [],
-    // }
-  ];
 
-  templateArray = [
-    // { Details:   { name: 'template1', rule: 'None', project:"N/A", cid:'2332b'},
-    // Elements:  [{type: "text", required: false, name: "Name", value:"", cid:"a1q", hepltext: ""},
-    //                 {type: "email", required: false, value:"", cid:"a1b", hepltext: "", name: "Email ID"},
-    //                 {type: "number", required: false, value:"", cid:"a1c", hepltext: "", name: "Number Input"},],
-    //
-    // },
-    // { Details:   { name: 'template2', rule: 'None', project:"N/A", cid:'2323b' },
-    // Elements:  [{type: "text", required: false, name: "Name2", value:"", cid:"aa1", hepltext: ""},
-    //               {type: "email", required: false, value:"", cid:"ba1", hepltext: "", name: "Email ID2"},
-    //               {type: "number", required: false, value:"", cid:"ca1", hepltext: "", name: "Number Input2"},],
-    // }
-    ];
+  formArray = [];
+  // { Details: { name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },    Elements:  [{type: "text", required: false, name: "Name", value:"", cid:"a1", hepltext: ""},                    {type: "email", required: false, hepltext: "", name: "Email ID", value:"", cid:"b1"},                    {type: "number", required: false, hepltext: "", name: "Number Input", value:"", cid:"c1"},],    Rules: [{cid:"211", name: 'Rule1',elementName:'Name',elementType: "text", elementValue:"sam",elementCid:"a1", tempCid: '2332b', tempName: 'template1', satisfyAll:false},], },
 
-  projectArray = [
-    // {cid:"p121", cdate:"26/11/2017 10:14", name: 'Project Name Here 1', form: 2, user: 3, assesor: 5, desc:'This is a test project about different design concepts we can adopt to show a card design. Lorem iThis is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kilpsum doler sit kil This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil'},
-    // {cid:"p122", cdate:"26/11/2017 10:22", name: 'Project Name Here 2', form: 0, user: 0, assesor: 0,  desc:'This is again a test project about different design concepts we can adopt to show a card design. sit amet chip c This is a test project about different design concepts we can adopt to show a card designThis is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil. Lorem ipsum doler sit   kil'},
-    // {cid:"p123", cdate:"26/11/2017 10:25", name: 'Project Name Here 3', form: 0, user: 0, assesor: 0,  desc:'This is again  a test project about different design concepts we can adopt to show a card design. Lorem ipsum dole il This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil  kil'},
-  ];
+  templateArray = [];
+  // { Details:   { name: 'template1', rule: 'None', project:"N/A", cid:'2332b'},  Elements:  [{type: "text", required: false, name: "Name", value:"", cid:"a1q", hepltext: ""},                  {type: "email", required: false, value:"", cid:"a1b", hepltext: "", name: "Email ID"},                  {type: "number", required: false, value:"", cid:"a1c", hepltext: "", name: "Number Input"},],    },
 
-  responseArray1 = [
-    {name:'sam ', position:'position status', office: 'noida', age: '22', startDate:'21/3/2010', salary: '$1500'},
-    {name:'tom ', position:'position N/A', office: 'Delhi', age: '19', startDate:'01/11/2014', salary: '$3500'},
-    {name:'gimmy ', position:'pos UP', office: 'New-Delhi', age: '31', startDate:'09/01/2015', salary: '$2500'},
-    {name:'sam ', position:'position status', office: 'noida', age: '22', startDate:'21/3/2010', salary: '$1500'},
-    {name:'tom ', position:'position N/A', office: 'Delhi', age: '19', startDate:'01/11/2014', salary: '$3500'},
-    {name:'Gimmy ', position:'pos UP', office: 'New-Delhi', age: '31', startDate:'09/01/2015', salary: '$2500'},
-    {name:'sam ', position:'position status', office: 'noida', age: '22', startDate:'21/3/2010', salary: '$1500'},
-    {name:'Gimmy ', position:'pos UP', office: 'New-Delhi', age: '31', startDate:'09/01/2015', salary: '$2500'},
-    {name:'tom ', position:'position N/A', office: 'Delhi', age: '19', startDate:'01/11/2014', salary: '$3500'},
-    {name:'Gimmy ', position:'pos UP', office: 'New-Delhi', age: '31', startDate:'09/01/2015', salary: '$2500'},
-    {name:'sam ', position:'position status', office: 'noida', age: '22', startDate:'21/3/2010', salary: '$1500'},
-    {name:'tom ', position:'position N/A', office: 'Delhi', age: '19', startDate:'01/11/2014', salary: '$3500'},
-    {name:'Gimmy ', position:'pos UP', office: 'New-Delhi', age: '31', startDate:'09/01/2015', salary: '$2500'},
-    {name:'sam ', position:'position status', office: 'noida', age: '22', startDate:'21/3/2010', salary: '$1500'},
-    {name:'tom ', position:'position N/A', office: 'Delhi', age: '19', startDate:'01/11/2014', salary: '$3500'},
-    {name:'Gimmy ', position:'pos UP', office: 'New-Delhi', age: '31', startDate:'09/01/2015', salary: '$2500'},
-  ];
+  projectArray = [];
+  //{cid:"p121", cdate:"26/11/2017 10:14", name: 'Project Name Here 1', form: 2, user: 3, assesor: 5, desc:'This is a test project about different design concepts we can adopt to show a card design. Lorem iThis is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kilpsum doler sit kil This is a test project about different design concepts we can adopt to show a card design. Lorem ipsum doler sit   kil'},
 
-  responseArray = [
-    {
-      ResCid:'1',
-      ResDetails:{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },
-      ResElements:[
-        {type: "text", required: false, name: "Name", value:"sammy", cid:"a1", hepltext: "", alias:" Username "},
-        {type: "password", required: false, name: "SecretKey", value:"sammy_password", cid:"a2", hepltext: "", alias:" Password "}
-      ],
-      ResExtra:{asrName: "", asrID: "", resDate: ""}
-    },
-    {
-      ResCid:'2',
-      ResDetails:{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },
-      ResElements:[
-        {type: "text", required: false, name: "Name", value:"sammy@dd.cc", cid:"a1", hepltext: "", alias:" Username "},
-        {type: "password", required: false, name: "SecretKey", value:"sammy_dd.cc", cid:"a2", hepltext: "", alias:" Password "}
-      ],
-      ResExtra:{asrName: "", asrID: "", resDate: ""}
-    },
-    {
-      ResCid:'3',
-      ResDetails:{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },
-      ResElements:[
-        {type: "text", required: false, name: "Name", value:"Tom_21", cid:"a1", hepltext: "", alias:" Username "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password "}
-      ],
-      ResExtra:{asrName: "", asrID: "", resDate: ""}
-    },
-    {
-      ResCid:'4',
-      ResDetails:{ name: 'Form2', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121',  status:'Online', cid:'a2121' },
-      ResElements:[
-        {type: "text", required: false, name: "Name", value:"Tom_21", cid:"a1", hepltext: "", alias:" Username2 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password2 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password21 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password22 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password23 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password24 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password25 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password26 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password27 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password28 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password29 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password210 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password211 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password212 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password213 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password265 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password276 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password286 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password296 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password2106 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password2116 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password2126 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password2136 "},
-      ],
-      ResExtra:{asrName: "", asrID: "", resDate: ""}
-    },
-    {
-      ResCid:'5',
-      ResDetails:{ name: 'Form2', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121',  status:'Online', cid:'a2121' },
-      ResElements:[
-        {type: "text", required: false, name: "Name", value:"Tom_21", cid:"a1", hepltext: "", alias:" Username2 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password2 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password21 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password22 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password23 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password24 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password25 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password26 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password27 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password28 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password29 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password210 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password211 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password212 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password213 "},
+  responseArray = [];
+  //{ResCid:'1',    ResDetails:{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },    ResElements:[      {type: "text", required: false, name: "Name", value:"sammy", cid:"a1", hepltext: "", alias:" Username "},      {type: "password", required: false, name: "SecretKey", value:"sammy_password", cid:"a2", hepltext: "", alias:" Password "}    ],    ResExtra:{asrName: "", asrID: "", resDate: ""}  },
 
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password265 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password276 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password286 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password296 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password2106 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password2116 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password2126 "},
-        {type: "password", required: false, name: "SecretKey", value:"tom_pass_21", cid:"a2", hepltext: "", alias:" Password2136 "},
-      ],
-      ResExtra:{asrName: "", asrID: "", resDate: ""}
+  userArray = [];
+  //{cid:"p123", cdate:"26/11/2017 10:20", name: 'Rony', email:" test@tes.com", project:[{cid:'p121', name:'Project Name Here 1'}], details:'Details'},
+
+  assessorArray = [];
+  //{cid:"p120", cdate:"26/11/2017 10:14", name: 'Ram', phone:'8998671234', form:[{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },], details:'Details'},
+
+  teamArray = [];
+  //{ cid:"t123", cdate:"26/11/2017 10:14", name: 'Team 1', tl:['a1233'], assesor:["a1233"], form:[{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' }],  details:'Details'},
+
+  login(data: any) {
+    this.apiService.Login(data).subscribe(res=>{
+      console.log(res);
+      if(res.success){
+        localStorage.setItem('token',res.token);
+        this.emitUserLogin.emit({success: true, msg: "logged in"});
+      } else {}
+    }, err=>{
+      console.log(err);
+    });
+  }
+
+  checkLogin() {
+    if(localStorage.getItem('token')) {
+      this.router.navigate(['./']);
     }
-  ];
+  }
 
-  userArray = [
-      {cid:"p121", cdate:"26/11/2017 10:14", name: 'Sam', email:" test@tes.com", project:[{cid:'p121', name:'Project Name Here 1'}], details:'Details'},
-      {cid:"p122", cdate:"26/11/2017 10:13", name: 'Tom', email:" test@tes.com", project:[{cid:'p121', name:'Project Name Here 1'}], details:'Details'},
-      {cid:"p123", cdate:"26/11/2017 10:20", name: 'Rony', email:" test@tes.com", project:[{cid:'p121', name:'Project Name Here 1'}], details:'Details'},
-  ];
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['./login']);
+  }
 
-  assessorArray = [
-      {cid:"p120", cdate:"26/11/2017 10:14", name: 'Ram', phone:'8998671234', form:[{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },], details:'Details'},
-      {cid:"p121", cdate:"26/11/2017 10:14", name: 'Sam', phone:'9238672331', form:[{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },], details:'Details'},
-      {cid:"p122", cdate:"26/11/2017 10:14", name: 'Sammy', phone:'8965766734', form:[{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },], details:'Details'},
-      {cid:"p123", cdate:"26/11/2017 10:14", name: 'Tom', phone:'9796631232', form:[{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },], details:'Details'},
-      {cid:"p124", cdate:"26/11/2017 10:14", name: 'Rick', phone:'8894810231', form:[{ name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' }, { name: 'Form2', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121',  status:'Online', cid:'a2121' }], details:'Details'},
-  ];
-
-  getProject() {
-    this.apiService.GetAllProjects().subscribe(res=> {
-      if(res){
-        // console.log(res);
-        this.projectArray = res.data;
-        // console.log(this.projectArray);
-        this.emitProject.emit(this.projectArray);
-
+  uploadCollectForm(form) {
+    this.apiService.UploadCollectForm(form).subscribe(res=> {
+      console.log(res);
+      if(res.success){
+        this.emitSuccessRes.emit(res.message);
       } else {}
     },err=> {
       console.log(err);
     });
+  }
 
+  uploadCollectRule(rule) {
+    this.apiService.UploadCollectRule(rule).subscribe(res=> {
+      console.log(res);
+      if(res.success){
+        this.emitSuccessRes.emit(res.message);
+      } else {}
+    },err=> {
+      console.log(err);
+    });
+  }
+
+  getProject() {
+    this.apiService.GetAllProjects().subscribe(res=> {
+      console.log(res);
+      if(res.success){
+        this.projectArray = res.data;
+        this.emitProject.emit(this.projectArray);
+
+      } else {
+        if(!res.header) {
+          this.logout();
+        }
+      }
+    },err=> {
+      console.log(err);
+      if(!err.header) {
+        this.logout();
+      }
+    });
   }
 
   addNewProject(pname: string, pdesc: string) {
@@ -235,11 +150,17 @@ export class ProjectService {
         this.emitSuccessRes.emit(res.message);
         this.projectArray.push(tempData);
       } else {
-        this.emitErrorRes.emit(res.message);
+        if(!res.header) {
+          this.logout();
+        }
       }
     },err=>{
+      if(!err.header) {
+        this.logout();
+      }
       console.log(err);
       this.emitErrorRes.emit("Somethisng went wrong");
+        this.logout();
     });
 
     // this.getProject();
@@ -257,7 +178,7 @@ export class ProjectService {
           }
         }
         this.emitFormArray.emit(this.formArray);
-      }else {}
+      }else {if(!res.header){ this.logout();}}
     }, err=>{
       console.log(err);
     });
@@ -272,15 +193,16 @@ export class ProjectService {
         this.templateArray = [];
         if(res.tempArray.length) {
           for(let i = 0; i< res.tempArray.length; i++) {
-            this.templateArray.push(res.tempArray[i].temp_json);
+            if(res.tempArray[i].temp_json.Details.name != "Form question") {
+              this.templateArray.push(res.tempArray[i].temp_json);
+            }
           }
         }
         this.emitTemplateArray.emit(this.templateArray);
-      }else {}
+      }else {if(!res.header){ this.logout();}}
     }, err=>{
       console.log(err);
     });
-
     // this.emitTemplateArray.emit(this.templateArray);
   }
 
@@ -332,7 +254,6 @@ export class ProjectService {
       console.log(err);
     });
     // this.templateArray.push(data);
-
   }
 
   addNewRule(fcid: any,newRule: any) {
@@ -363,7 +284,6 @@ export class ProjectService {
       newRule.tempCid = cid;                               // insert tempID on the rule list
       newRule.tempName = template.Details.name;            // insert temp Name on the rule list
       // console.log(newRule);
-
     }
 
     // this.apiService.RulesArray(fcid,newRule);
@@ -385,7 +305,7 @@ export class ProjectService {
 
   getAssessors() {
     this.apiService.GetAllAssesors().subscribe(res=> {
-      console.log(res);
+      // console.log(res);
       if(res){
         this.assessorArray = res.data;
         this.emitAssessors.emit(this.assessorArray);
@@ -407,7 +327,7 @@ export class ProjectService {
     }
     let tempArray = {cid:cid, cdate:cdate, name: name, phone: phone, form:formObj, details:'Details'};
     this.apiService.AddAssesorArray(tempArray).subscribe(res=>{
-      console.log(res);
+      // console.log(res);
       if(res.success){
         this.emitSuccessRes.emit(res.message);
       } else {}
@@ -420,6 +340,7 @@ export class ProjectService {
 
   assignNewFormToAssessor(cid,form) {
     let temp: any;
+    let flag = true;
     for(let i = 0;i<this.assessorArray.length;i++) {
       if(cid == this.assessorArray[i].cid) {
         temp = i;
@@ -427,16 +348,224 @@ export class ProjectService {
       }
     }
 
-    this.assessorArray[temp].form.push(form.Details);
-    this.apiService.AddAssesorArray(this.assessorArray[temp]).subscribe(res=>{
+    // check if form is already assigned to assesor or not
+
+    if(this.assessorArray[temp].form.length) {
+      for(let m = 0; m < this.assessorArray[temp].form; m++) {
+        if(form.Details.cid == this.assessorArray[temp].form[m].cid) {
+          flag = false;
+          break;
+        }
+      }
+    }
+
+    if(flag) {
+      this.assessorArray[temp].form.push(form.Details);
+      this.apiService.AddAssesorArray(this.assessorArray[temp]).subscribe(res=>{
+        if(res.success){
+          this.emitSuccessRes.emit(res.message);
+        } else {}
+      },err=> {
+        console.log(err);
+      });
+
+      this.incAssessorCount(form.Details.projectcdi);
+    }
+  }
+
+  getTeams() {
+    this.apiService.GetAllTeams().subscribe(res=> {
+      // console.log(res);
+      if(res){
+        this.teamArray = res.data;
+        this.emitTeams.emit(this.teamArray);
+      } else {}
+    },err=> {
+      console.log(err);
+      this.emitTeams.emit(this.teamArray);
+    });
+    // this.emitAssessors.emit(this.assessorArray);
+  }
+
+  addTeamArray(name, tl, details) {
+    let cid = this.cid();
+    let cdate = this.cdate();
+    let asrObj = [];
+    let tlObj = [];
+    let formObj = [];
+
+    formObj.push(details);
+    if(name =="" || name == undefined) {
+      name = 'N/A';
+    }
+
+    tlObj.push(tl);
+    asrObj.push(tl);
+
+    let tempArray = {cid:cid, cdate:cdate, name: name, tl: tlObj, form:formObj, assesor:asrObj, details:'Details'};
+    this.apiService.AddTeamArray(tempArray).subscribe(res=>{
+      // console.log(res);
       if(res.success){
         this.emitSuccessRes.emit(res.message);
       } else {}
     },err=> {
       console.log(err);
     });
+    this.teamArray.push(tempArray);
+    // this.incAssessorCount(details.projectcdi);
+  }
 
-    this.incAssessorCount(form.Details.projectcdi);
+  assignNewFormToTeam(cid,form) {
+    let temp: any;
+    for(let i = 0;i<this.teamArray.length;i++) {
+      if(cid == this.teamArray[i].cid) {
+        temp = i;
+        break;
+      }
+    }
+
+    this.teamArray[temp].form.push(form.Details);
+    this.apiService.AddTeamArray(this.teamArray[temp]).subscribe(res=>{
+      if(res.success){
+        this.emitSuccessRes.emit(res.message);
+      } else {}
+    },err=> {
+      console.log(err);
+    });
+  }
+
+  addNewAssesorInTeam(asrID, teamID) {
+    let temp : any;
+    for(let i = 0;i<this.teamArray.length;i++) {
+      if(teamID == this.teamArray[i].cid) {
+        temp = i;
+        break;
+      }
+    }
+    this.teamArray[temp].assesor.push(asrID);
+    this.apiService.AddTeamArray(this.teamArray[temp]).subscribe(res=>{
+      if(res.success){
+        this.emitSuccessRes.emit(res.message);
+      } else {}
+    },err=> {
+      console.log(err);
+    });
+  }
+
+  addNewManagerInTeam (mgrId, teamID) {
+    let temp : any;
+    for(let i = 0;i<this.teamArray.length;i++) {
+      if(teamID == this.teamArray[i].cid) {
+        temp = i;
+        break;
+      }
+    }
+    this.teamArray[temp].tl.push(mgrId);
+    this.teamArray[temp].assesor.push(mgrId);
+    this.apiService.AddTeamArray(this.teamArray[temp]).subscribe(res=>{
+      if(res.success){
+        this.emitSuccessRes.emit(res.message);
+      } else {}
+    },err=> {
+      console.log(err);
+    });
+  }
+
+  deleteFormTeamArray(tCid, fCid) {
+    let ipos: any;
+    let jpos: any;
+    let formData = new FormData();
+    formData.append('tID', tCid);
+    formData.append('fID', fCid);
+    console.log(formData);
+    this.apiService.DeleteFormTeamArray(formData).subscribe(res=>{
+      console.log(res);
+      if(res.success) {
+
+        for(let i = 0; i< this.teamArray.length; i++) {
+          if(tCid == this.teamArray[i].cid) {
+            ipos = i;
+            break;
+          }
+        }
+
+        for(let j = 0; j< this.teamArray[ipos].form.length; j++) {
+          if(fCid == this.teamArray[ipos].form[j].cid) {
+            jpos = j;
+            break;
+          }
+        }
+        this.teamArray[ipos].form.splice(jpos,1);
+      }
+    },err =>{
+      console.log(err);
+    });
+  }
+
+  deleteAsrTeamArray(tCid, aCid) {
+    let ipos: any;
+    let jpos: any;
+
+    let formData = new FormData();
+    formData.append('tID', tCid);
+    formData.append('aID', aCid);
+    console.log(formData);
+
+    this.apiService.DeleteAsrTeamArray(formData).subscribe(res=>{
+      console.log(res);
+      if(res.success) {
+
+        for(let i = 0; i< this.teamArray.length; i++) {
+          if(tCid == this.teamArray[i].cid) {
+            ipos = i;
+            break;
+          }
+        }
+
+        for(let j = 0; j< this.teamArray[ipos].assesor.length; j++) {
+          if(aCid == this.teamArray[ipos].assesor[j]) {
+            jpos = j;
+            break;
+          }
+        }
+        this.teamArray[ipos].assesor.splice(jpos,1);
+      }
+    },err =>{
+      console.log(err);
+    });
+  }
+
+  deleteMgrTeamArray(tCid, mCid) {
+    let ipos: any;
+    let jpos: any;
+
+    let formData = new FormData();
+    formData.append('tID', tCid);
+    formData.append('aID', mCid);
+    console.log(formData);
+
+    this.apiService.DeleteAsrTeamArray(formData).subscribe(res=>{
+      console.log(res);
+      if(res.success) {
+
+        for(let i = 0; i< this.teamArray.length; i++) {
+          if(tCid == this.teamArray[i].cid) {
+            ipos = i;
+            break;
+          }
+        }
+
+        for(let j = 0; j< this.teamArray[ipos].tl.length; j++) {
+          if(mCid == this.teamArray[ipos].tl[j]) {
+            jpos = j;
+            break;
+          }
+        }
+        this.teamArray[ipos].tl.splice(jpos,1);
+      }
+    },err =>{
+      console.log(err);
+    });
   }
 
   addUserArray(name, email, project) {
@@ -498,7 +627,7 @@ export class ProjectService {
   getResponse() {
 
     this.apiService.GetResponseSummary().subscribe(res=> {
-      // console.log(res);
+      console.log(res);
       if(res.data.length){
         this.responseArray = [];
         this.responseArray = res.data;
@@ -592,43 +721,72 @@ export class ProjectService {
   }
 
   deleteProjectUserArray(uCid,pCid) {
+
     let ipos: any;
     let jpos: any;
-    for(let i = 0; i< this.userArray.length; i++) {
-        if(uCid == this.userArray[i].cid) {
-            ipos = i;
-            break;
-      }
-    }
+    let formData = new FormData();
+    formData.append('userID', uCid);
+    formData.append('pID', pCid);
+    console.log(formData);
+    this.apiService.DeleteProjectUserArray(formData).subscribe(res=>{
+      console.log(res);
+      if(res.success){
 
-    for(let j = 0; j< this.userArray[ipos].project.length; j++) {
-      if(pCid == this.userArray[ipos].project[j].cid) {
-        jpos = j;
-        break;
-      }
-    }
-    this.userArray[ipos].project.splice(jpos,1);
-    this.descUserCount(pCid);
+        for(let i = 0; i< this.userArray.length; i++) {
+            if(uCid == this.userArray[i].cid) {
+                ipos = i;
+                break;
+          }
+        }
+
+        for(let j = 0; j< this.userArray[ipos].project.length; j++) {
+          if(pCid == this.userArray[ipos].project[j].cid) {
+            jpos = j;
+            break;
+          }
+        }
+        this.userArray[ipos].project.splice(jpos,1);
+        this.descUserCount(pCid);
+        this.emitSuccessRes.emit(res.message);
+
+      } else {}
+    },err=> {
+      console.log(err);
+    });
+
   }
 
   deleteFormAssessorArray(cid, fCid, pCid) {
     let ipos: any;
     let jpos: any;
-    for(let i = 0; i< this.assessorArray.length; i++) {
-        if(cid == this.assessorArray[i].cid) {
-            ipos = i;
-            break;
-      }
-    }
 
-    for(let j = 0; j< this.assessorArray[ipos].form.length; j++) {
-      if(fCid == this.assessorArray[ipos].form[j].cid) {
-        jpos = j;
-        break;
-      }
-    }
-    this.assessorArray[ipos].form.splice(jpos,1);
-    this.descAsrCount(pCid);
+    let formData = new FormData();
+    formData.append('asrID', cid);
+    formData.append('fID', fCid);
+
+    this.apiService.DeleteFormAssessorArray(formData).subscribe(res=> {
+      console.log(res);
+      if(res.success){
+        for(let i = 0; i< this.assessorArray.length; i++) {
+            if(cid == this.assessorArray[i].cid) {
+                ipos = i;
+                break;
+          }
+        }
+
+        for(let j = 0; j< this.assessorArray[ipos].form.length; j++) {
+          if(fCid == this.assessorArray[ipos].form[j].cid) {
+            jpos = j;
+            break;
+          }
+        }
+        this.assessorArray[ipos].form.splice(jpos,1);
+        this.descAsrCount(pCid);
+
+      } else {}
+    },err=> {
+      console.log(err);
+    });
   }
 
   getFormArrayWithID(cid) {
@@ -705,13 +863,33 @@ export class ProjectService {
   }
 
   emitResponseForResTable(data) {
-    let tempArray :any = [];
-    for(let m of this.responseArray1) {
-        if(m.office == data) {
-          tempArray.push(m);
-        }
+    // let tempArray :any = [];
+    // for(let m of this.responseArray1) {
+    //     if(m.office == data) {
+    //       tempArray.push(m);
+    //     }
+    // }
+    // this.emitResTable.emit(tempArray);
+  }
+
+  changeFormStatus(fid, status) {
+    let formData = new FormData();
+
+    for(let m of this.formArray) {
+      if(fid == m.Details.cid) {
+        m.Details.status = status;
+        formData.append('formID', fid);
+        this.apiService.ChangeFormStatus(formData).subscribe(res=>{
+          if(res.success) {
+
+          } else {}
+        }, err =>{
+          console.log(err);
+
+        });
+        break;
+      }
     }
-    this.emitResTable.emit(tempArray);
   }
 
 }

@@ -9,78 +9,78 @@
   </div>-->
 </div>
 <div class="pos-abso-tr col-sm-9 text-right">
-  <button type="button" class="btn btn-primary mt-4 mb-0 col-sm-5 col-md-4 col-lg-2 pt-3 pb-3" (click)='new()'>+ New</button>
+  <button type="button" class="btn btn-primary mb-0 col-sm-5 col-md-4 col-lg-2 pt-3 pb-3 float-right mt-4" (click)='new()'>+ New</button>
+  <input type="text" class="form-control col-sm-9 col-md-9 col-lg-9 mr-4 mt-4 float-right pt-3 pb-3" placeholder="Search" />
 </div>
-
 <div class="container-fluid text-center mt-3" style="min-height:85vh"><!--background:#fff; box-shadow:0 1px 1px #a9a8a9;-->
-    <ul class="nav nav-tabs justify-content-center">
-      <li class="nav-item"><a class="nav-link active" data-toggle="tab" role="tab" href="#form">Forms</a></li>
-      <li class="nav-item"><a class="nav-link " data-toggle="tab" role="tab" href="#template">Templates</a></li>
-    </ul>
-    <div class="col-lg-12 col-md-12 row col-sm-12 ml-0 mt-5 mb-3 justify-content-md-center fn" style="display:none;">
-      <div class="row col-lg-9 col-md-12 text-center bbot">
-        <a class="col-lg-2 col-md-2 col-sm-2 col-xs-2 active">Forms</a>
-        <a class="col-lg-2 col-md-2 col-sm-2 col-xs-2 strt">Templates</a>
+  <ul class="nav nav-tabs justify-content-center">
+    <li class="nav-item"><a class="nav-link active" data-toggle="tab" role="tab" href="#form">Forms</a></li>
+    <li class="nav-item"><a class="nav-link " data-toggle="tab" role="tab" href="#template">Templates</a></li>
+  </ul>
+  <div class="col-lg-12 col-md-12 row col-sm-12 ml-0 mt-5 mb-3 justify-content-md-center fn" style="display:none;">
+    <div class="row col-lg-9 col-md-12 text-center bbot">
+      <a class="col-lg-2 col-md-2 col-sm-2 col-xs-2 active">Forms</a>
+      <a class="col-lg-2 col-md-2 col-sm-2 col-xs-2 strt">Templates</a>
+    </div>
+  </div>
+  <div class="tab-content">
+    <div class="tab-pane active" id="form" role="tabpanel" >
+      <br />
+      <div class="row text-left">
+        <div *ngFor='let form of formArray; let i = index' class="col-sm-6" style="margin-bottom:30px">
+          <div class="card cbx">
+            <div class="card-block p-0">
+              <div class="col-sm-12 pl-4 pt-3 mt-2 pb-2 bb">
+                <h5 class="card-title">{{form.Details.name | shorten: 24: '...'}}</h5>
+                <h4 class="card-subtitle mb-2 text-muted"> {{form.Details.project | shorten: 24: '...'}} </h4>
+              </div>
+              <div class="col-sm-12 pl-2 pr-2 pt-3 pb-3 row m-0">
+                <p class="card-text col-sm-12">Some text here...Some text here...Some text here...Some text here...Some text here...Some text here...</p>
+              </div>
+              <!--<div class="col-sm-12 row ml-0 mr-0 mb-3 pl-4 pr-4"></div>-->
+              <div class="col-12 pb-0 mt-3 ml-2 mb-0">
+                <button class="btn btn-primary mr-2 mb-2" type="button" [routerLink]="['../formBuilder']" [queryParams]="{formID : form.Details.cid }" >View form</button>
+                <button class="btn btn-primary bg-white mr-2 mb-2" (click)='rule(form.Rules, form.Details.cid, form.Elements)' type="button" data-toggle="modal" data-target="#rules">Rule/s</button>
+                <button class="btn btn-primary bg-white mr-2 mb-2" (click)='getResponse(form.Details.cid)' type="button" data-toggle="modal" data-target="#rules">{{form.Details.responses}}  Responses </button>
+                <a class="card-link col-6 d-inline-block pt-2 float-right text-right">
+                    <input type="checkbox" class="form-check-input" [checked]=checkStatus(form.Details.cid) (change)='changeStatus(form.Details.cid)' />{{form.Details.status}}
+                </a>
+              </div>
+              <br>
+            </div>
+          </div>
+        </div>
+        <br />
+        <!--<button type="button" class="btn btn-primary mb-5 col-sm-5 col-md-4 col-lg-2 pt-3 pb-3" (click)='sync()'><i class="fa fa-refresh" aria-hidden="true"></i> Sync</button>-->
+      </div>
+      <br />
+      <button type="button" class="btn btn-primary mb-5 col-sm-5 col-md-4 col-lg-2 pt-3 pb-3" (click)='syncCollectFrom($event)'><i class="fa fa-refresh" aria-hidden="true"></i> 1. Sync Collect Form</button>
+      &nbsp;
+      <button type="button" class="btn btn-primary mb-5 col-sm-5 col-md-4 col-lg-2 pt-3 pb-3" (click)='syncCollectFromRule($event)'><i class="fa fa-refresh" aria-hidden="true"></i> 2. Sync Collect Rules</button>
+    </div>
+    <div class="tab-pane" id="template" role="tabpanel">
+      <br />
+      <div class="row justify-content-center" >
+        <div *ngFor='let temp of templateArray; let i = index' class="col-sm-6 "  style="margin-bottom:30px">
+          <div class="card cbx">
+            <div class="card-block p-0 text-left">
+              <div class="col-sm-12 pl-4 pt-3 mt-2 pb-2 bb">
+                <h5 class="card-title">{{temp.Details.name}}</h5>
+                <h4 class="card-subtitle mb-2 text-muted">Some text here...</h4>
+              </div>
+              <div class="col-sm-12 pl-2 pr-2 pt-5 pb-5 row m-0">
+                <p class="card-text col-sm-12">{{temp.Details.desc}}</p>
+              </div>
+              <div class="col-sm-12 row ml-0 mr-0 mb-3 p-1">
+                <div class="col-8 pr-0">
+                  <a class="card-link" [routerLink]="['../formBuilder']" [queryParams]="{templateID : temp.Details.cid }">View template</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  <div class="tab-content">
-      <div class="tab-pane active" id="form" role="tabpanel">
-        <br />
-        <div class="row text-left">
-          <div *ngFor='let form of formArray; let i = index' class="col-sm-6" style="margin-bottom:30px">
-            <div class="card cbx">
-              <div class="card-block p-0">
-                <div class="col-sm-12 pl-4 pt-3 mt-2 pb-2 bb">
-                  <h5 class="card-title">{{form.Details.name}}</h5>
-                  <h4 class="card-subtitle mb-2 text-muted">{{form.Details.project}}</h4>
-                </div>
-                <div class="col-sm-12 pl-2 pr-2 pt-5 pb-5 row m-0">
-                  <p class="card-text col-sm-12">Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <!-- <a href="#" class="card-link">Rule: {{form.Details.rule}}</a> -->
-                </div>
-                <div class="col-sm-12 row ml-0 mr-0 mb-3 p-1">
-                  <div class="col-5 pr-0">
-                    <button [routerLink]="['../formBuilder']" [queryParams]="{formID : form.Details.cid }" type="button" class="btn btn-primary col-sm-12 col-md-9 col-lg-7 pt-3 pb-3" >View Forms</button>
-                  </div>
-                  <div class="col-7 pr-0 fs-sm row m-0">
-                    <a href="#" class="card-link col-6 d-inline-block pl-0 pr-0 pt-3" (click)='rule(form.Rules, form.Details.cid, form.Elements)' data-toggle="modal" data-target="#rules">Rules</a>
-                    <a href="#" class="card-link col-6 d-inline-block pl-0 pr-0 pt-3 ml-0">{{form.Details.status}}</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br />
-          <!--<button type="button" class="btn btn-primary mb-5 col-sm-5 col-md-4 col-lg-2 pt-3 pb-3" (click)='sync()'><i class="fa fa-refresh" aria-hidden="true"></i> Sync</button>-->
-        </div>
-        <br />
-      </div>
-      <div class="tab-pane " id="template" role="tabpanel" >
-        <br />
-        <div class="row justify-content-center" >
-          <div *ngFor='let temp of templateArray; let i = index' class="col-sm-6"  style="margin-bottom:30px">
-            <div class="card cbx">
-              <div class="card-block p-0 text-left">
-                <div class="col-sm-12 pl-4 pt-3 mt-2 pb-2 bb">
-                  <h5 class="card-title">{{temp.Details.name}}</h5>
-                  <h4 class="card-subtitle mb-2 text-muted">{{temp.Details.project}}</h4>
-                </div>
-                <div class="col-sm-12 pl-2 pr-2 pt-5 pb-5 row m-0">
-                  <p class="card-text col-sm-12">Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-                <div class="col-sm-12 row ml-0 mr-0 mb-3 p-1">
-                  <div class="col-8 pr-0">
-                      <a class="card-link" [routerLink]="['../formBuilder']" [queryParams]="{templateID : temp.Details.cid }" >View template</a>
-                  </div>
-                  <!--
-                    <div class="col-7 pr-0 pt-1 fs-sm"></div>
-                  -->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
   </div>
 </div>
 <!-- rule modal starts here-->
@@ -90,24 +90,24 @@
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Rules</h5>
       </div>
-      <div class="modal-body text-center" style="height:500px; overflow-y: auto">
-          <div class="row justify-content-center m-0 text-left">
-            <div class="p-5 m-5" *ngIf='rulesArray.length < 1' >
-              <h4 class="pt-5 mt-5"> No Rule was created </h4>
-            </div>
-            <div *ngFor='let rule of rulesArray; let i = index ' class="row col-sm-12 p-3 m-3 cbx brd-def" style="box-shadow:none;">
-                <div class="col-8 pl-0">
-                  <h5>{{i+1}}. Rule Name: {{rule.name}}</h5>
-                  <p>Element: {{rule.elementName}} </p>
-                  <p>Condition: <b>{{rule.elementValue}}</b></p>
-                  <p>Associated Template: <b>{{rule.tempName}}</b></p>
-                </div>
-                <div class="col-4 text-right pr-0">
-                  <a class="card-link btn btn-primary bg-white pt-2 pb-2 m-1" href="#" >Edit</a>
-                  <a class="card-link btn btn-danger bg-white pt-2 pb-2 m-1 text-danger" href="#"  >Delete</a>
-                </div>
-              </div>
+      <div class="modal-body text-center" style="height:500px;overflow-y:auto;">
+        <div class="row justify-content-center m-0 text-left">
+          <div class="p-5 m-5" *ngIf='rulesArray.length < 1' >
+            <h4 class="pt-5 mt-5">No Rule was created</h4>
           </div>
+          <div *ngFor='let rule of rulesArray; let i = index' class="row col-sm-12 p-3 m-3 cbx brd-def" style="box-shadow:none;">
+            <div class="col-8 pl-0">
+              <h5>{{i+1}}. Rule Name: {{rule.name}}</h5>
+              <p>Element: {{rule.elementName}}</p>
+              <p>Condition: <b>{{rule.elementValue}}</b></p>
+              <p>Associated Template: <b>{{rule.tempName}}</b></p>
+            </div>
+            <div class="col-4 text-right pr-0">
+              <a class="card-link btn btn-primary bg-white pt-2 pb-2 m-1" href="#" >Edit</a>
+              <a class="card-link btn btn-danger bg-white pt-2 pb-2 m-1 text-danger" href="#">Delete</a>
+            </div>
+          </div>
+        </div>
         <!-- <a href="#"  class="text-center">Add Rule</a> -->
       </div>
       <div class="modal-footer">
@@ -146,7 +146,8 @@
             <i *ngIf='hint' > hint: {{hint}}</i><!--css not Defined yet-->
             <i>(* If multiple, saparated by commas)</i>
           </label>
-          <input type="checkbox" class="form-check-input" [checked]="satisfyAll" (change)='satisfyAllCondition()' />Satisfy all conditions (Only if multiple!)
+          <input type="checkbox" class="form-check-input" [checked]="satisfyAll" (change)='satisfyAllCondition()' />
+          Satisfy all conditions (Only if multiple!)
           <label class="row ml-0 mr-0 mb-4">
             <span class="col-4 text-left pt-2 pl-0">4. Associate template :</span>
             <select [(ngModel)]="ruleTempTail" class="col-7 form-control">

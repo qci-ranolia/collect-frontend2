@@ -77,7 +77,7 @@ export class UserComponent implements OnInit {
     this.userName = '';
     this.userEmail = '';
     $("#newUserModal").modal('hide');
-    this.router.navigate(['dash/org'], { queryParams: { id: '1' } });
+    this.router.navigate(['/org'], { queryParams: { id: '1' } });
     this.projectAssociate = "";
     this.projectArray = [];
   }

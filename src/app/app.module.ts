@@ -33,6 +33,7 @@ import { InputFileComponent } from './home/form/form-builder/input-file/input-fi
 import { InputBreakComponent } from './home/form/form-builder/input-break/input-break.component';
 
 import { routes } from './app.routes';
+import { AuthGuard } from './service/ZAuthGuard';
 import { TemplateTabContentComponent } from './home/form/form-builder/template-tab-content/template-tab-content.component';
 import { AssessorComponent } from './home/organisation/assessor/assessor.component';
 import { UserComponent } from './home/organisation/user/user.component';
@@ -44,6 +45,7 @@ import { ResponseTableComponent } from './home/response/response-table/response-
 import { CustomOption } from './home/dashboard/ng2-toastr-custom-option';
 import { InputCameraComponent } from './home/form/form-builder/input-camera/input-camera.component';
 import { InputVideoComponent } from './home/form/form-builder/input-video/input-video.component';
+import { TeamsComponent } from './home/organisation/teams/teams.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,7 @@ import { InputVideoComponent } from './home/form/form-builder/input-video/input-
     ResponseTableComponent,
     InputCameraComponent,
     InputVideoComponent,
+    TeamsComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,6 +91,7 @@ import { InputVideoComponent } from './home/form/form-builder/input-video/input-
     RouterModule.forRoot(routes, { useHash: true }),
   ],
   providers: [
+    AuthGuard,
     ProjectService,
     APIService,
     {provide: ToastOptions, useClass: CustomOption},

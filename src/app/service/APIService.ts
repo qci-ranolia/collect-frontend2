@@ -4,17 +4,22 @@ import { EventEmitter, Injectable } from '@angular/core';
 @Injectable()
 export class APIService {
 
-  projectURL: string = 'http://192.168.15.187:8000';
+  // projectURL: string = 'http://192.168.15.187:8000';
   // projectURL: string = 'http://192.168.15.221:8000';
-  // projectURL: string = 'http://qcitech.org:8083';
+  projectURL: string = 'http://qcitech.org:8083';
 
   userID : any = "";
 
   constructor( private http: Http) {}
 
   createAuthorizationHeader(headers: Headers) {
-    this.userID = "ca83bf0d67604cbd8fbc21e2af9a0d03";
+    this.userID = localStorage.getItem('token');
+    // this.userID = "319424f5b8524ebe8188c2d40217c48c";
     headers.append('Authorization', this.userID);
+  }
+
+  Login(data) {
+    return this.http.post(this.projectURL+'/login', data).map(res=>res.json());
   }
 
   SyncAll(formArray: any, tempArray: any) {
@@ -139,6 +144,24 @@ export class APIService {
     return this.http.post(this.projectURL+'/addUserInProject', userObj, {headers: headers}).map(res=>res.json());
   }
 
+  GetAllTeams(){
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.get(this.projectURL+'/getTeams',{headers: headers}).map(res=>res.json());
+  }
+
+  AddTeamArray(teamArray: any) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+
+    teamArray = JSON.stringify(teamArray);
+    teamArray = JSON.parse(teamArray);
+    teamArray = JSON.stringify(teamArray);
+    let tArray = new FormData();
+    tArray.append('teamArray',teamArray);
+    return this.http.post(this.projectURL+'/updateTeam', tArray,{headers: headers}).map(res=>res.json());
+  }
+
   GetResponseSummary() {
     let headers = new Headers();
     this.createAuthorizationHeader(headers);
@@ -155,4 +178,45 @@ export class APIService {
     return this.http.post(this.projectURL+'/getFormResponse',fID, {headers: headers}).map(res=>res.json());
   }
 
+  UploadCollectForm(form) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(this.projectURL+'/', form , {headers: headers}).map(res=>res.json());
+  }
+
+  UploadCollectRule(Rule) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(this.projectURL+'/', Rule , {headers: headers}).map(res=>res.json());
+  }
+
+  ChangeFormStatus(fid) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(this.projectURL+'/changeFormStatus', fid , {headers: headers}).map(res=>res.json());
+  }
+
+  DeleteProjectUserArray(data) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(this.projectURL+'/removeUserFromProject', data , {headers: headers}).map(res=>res.json());
+  }
+
+  DeleteFormAssessorArray(data) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(this.projectURL+'/removeAssesorFromForm', data , {headers: headers}).map(res=>res.json());
+  }
+
+  DeleteFormTeamArray(data) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(this.projectURL+'/removeFormFromTeam', data , {headers: headers}).map(res=>res.json());
+  }
+
+  DeleteAsrTeamArray(data) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(this.projectURL+'/removeAssesorFromTeam', data , {headers: headers}).map(res=>res.json());
+  }
 }
