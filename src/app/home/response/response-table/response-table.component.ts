@@ -17,6 +17,13 @@ export class ResponseTableComponent implements OnInit {
   response: any=[];
   header: any=[];
   flag = false;
+  detailPos: any;
+  detailRes: any;
+  saveFlag: any = false;
+  arrayPos :any;
+  resId: any;
+  flaggedMsg : any ='';
+  elementCid: any;
 
   constructor(private projectService:ProjectService, private activatedRoute: ActivatedRoute) {
 
@@ -60,11 +67,58 @@ export class ResponseTableComponent implements OnInit {
     window.open(url, '_blank');
   }
 
+  getDetails(i,res) {
+    console.log(i);
+    console.log(res);
+    this.detailPos = i;
+    this.detailRes = res;
+    this.saveFlag = false;
+    $('#getDetails').modal("show");
+  }
+
+  flagCommentModal( arrayPos, resId, cid) {
+
+    this.elementCid = cid
+    this.resId = resId;
+    this.arrayPos = arrayPos;
+
+    if(this.response[this.detailPos][this.arrayPos].flagged){
+      this.response[this.detailPos][this.arrayPos].flagged = false;
+      this.flaggedMsg = '';
+      this.saveFlag = true;
+      if(this.response[this.detailPos][this.arrayPos].flagMsg) {
+        this.flaggedMsg = this.response[this.detailPos][this.arrayPos].flagMsg;
+      }
+    } else {
+      this.response[this.detailPos][this.arrayPos].flagged = true;
+      this.flaggedMsg = '';
+      this.saveFlag = true;
+      if(this.response[this.detailPos][this.arrayPos].flagMsg) {
+        this.flaggedMsg = this.response[this.detailPos][this.arrayPos].flagMsg;
+      }
+      $('#flagComment').modal("show");
+    }
+  }
+
+  flagMsg() {
+    // console.log(this.flaggedMsg);
+    this.response[this.detailPos][this.arrayPos].flagMsg = this.flaggedMsg+"";
+
+  }
+
+  saveFlagFun(){
+    console.log(this.response[this.detailPos]);
+    console.log(this.resId);
+    this.projectService.flagResponse(this.resId, this.response[this.detailPos]);
+    this.resId = "";
+    this.detailPos = "";
+    this.flaggedMsg = "";
+    $('#getDetails').modal("hide");
+  }
+
   ngOnDestroy() {
     this.sub.unsubscribe();
     this.sub1.unsubscribe();
   }
-
-
 
 }

@@ -51,7 +51,6 @@ export class ProjectService {
   emitInfoRes = new EventEmitter<any>();
   emitTeams = new EventEmitter<any>();
 
-
   formArray = [];
   // { Details: { name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },    Elements:  [{type: "text", required: false, name: "Name", value:"", cid:"a1", hepltext: ""},                    {type: "email", required: false, hepltext: "", name: "Email ID", value:"", cid:"b1"},                    {type: "number", required: false, hepltext: "", name: "Number Input", value:"", cid:"c1"},],    Rules: [{cid:"211", name: 'Rule1',elementName:'Name',elementType: "text", elementValue:"sam",elementCid:"a1", tempCid: '2332b', tempName: 'template1', satisfyAll:false},], },
 
@@ -78,8 +77,10 @@ export class ProjectService {
       console.log(res);
       if(res.success){
         localStorage.setItem('token',res.token);
-        this.emitUserLogin.emit({success: true, msg: "logged in"});
-      } else {}
+        this.emitUserLogin.emit("Invalid credentials!");
+      } else {
+        this.emitErrorRes.emit();
+      }
     }, err=>{
       console.log(err);
     });
@@ -787,6 +788,18 @@ export class ProjectService {
     },err=> {
       console.log(err);
     });
+  }
+
+  flagResponse(rID, array) {
+
+    this.apiService.FlagResponse(rID,array).subscribe((res)=>{
+      console.log(res);
+      if(res.success) {
+        this.emitSuccessRes.emit("Flag Updated!");
+      }else {}
+    }, err=>{
+      console.log(err);
+    })
   }
 
   getFormArrayWithID(cid) {

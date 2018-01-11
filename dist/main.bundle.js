@@ -3683,7 +3683,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "th{\n  text-align: center;\n}\n", ""]);
+exports.push([module.i, "th{\n  text-align: center;\n}\n.noTag{\n  font-weight: 600;\n  color: #c5c5c5;\n  background-color: #eaeaea;\n  border : 2px solid #c5c5c5;\n  border-radius: 4px;\n}\n.flaggedTag{\n  font-weight: bold;\n  background-color: #ffd27f;\n  border : 3px solid orange;\n  border-radius: 4px;\n}\n.pendingTag{\n  font-weight: bold;\n  background-color: #7ff0ff;\n  border : 3px solid #2196F3;\n  border-radius: 4px;\n}\n.verifiedTag{\n  font-weight: bold;\n  background-color: #cffd9a;\n  border : 3px solid #8BC34A;\n  border-radius: 4px;\n}\n.archivedTag{\n  font-weight: bold;\n  background-color: #ffd9d7;\n  border : 3px solid #ff796f;\n  border-radius: 4px;\n}\n", ""]);
 
 // exports
 
@@ -3696,7 +3696,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/home/response/response-table/response-table.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<style >\n  .responseImg{\n    max-height: 60px;\n    border-radius: 3px;\n  }\n\n  table.dataTable thead .sorting,\n  table.dataTable thead .sorting_asc,\n  table.dataTable thead .sorting_desc {\n      background : none;\n  }\n</style>\n\n<div class=\"container-fluid mt-4 pb-3 text-center\" style=\"background:#fff;\">\n  <div *ngIf='!flag'>\n    <br>\n    <br>\n    <br>\n    <br>\n    <h4> Just a moment please....</h4>\n    <br>\n    <br>\n    <br>\n  </div>\n\n  <div class=\"\" style=\" width:100%;   overflow-x: auto\">\n    <table *ngIf='flag' id=\"exampleFormResponse\" class=\" display table table-striped  table-responsive-md\" cellspacing=\"0\" >\n        <thead>\n            <tr>\n                <th></th>\n                <th *ngFor=\"let head of header\" style=\"white-space: nowrap; text-overflow: ellipsis;\">\n                  &nbsp;  {{head}} &nbsp;\n                </th>\n                <th>Details</th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr *ngFor='let res of response; let i = index'>\n                <td>{{i+1}}</td>\n                <td *ngFor = 'let temp of res; let j = index' >\n\n                  <span *ngIf='temp.type != \"camera\" &&  temp.type != \"file\" && temp.type != \"video\" ' >{{temp.value}}</span>  <!-- normal T E X T   V A L U E  -->\n\n                  <span *ngIf='temp.type == \"camera\" ' > <img *ngIf='temp.value'  class=\"responseImg\" src={{temp.value}} (click)='openImage(temp.value)' style=\"max-width:60px\" /> <span style=\"display: none\" >{{temp.value}}</span> </span>  <!-- I M A G E   V A L U E  -->\n\n                  <span *ngIf='temp.type == \"video\" ' > <video *ngIf='temp.value' class=\"responseImg\" style=\"width:200px !important\" controls> <source src={{temp.value}}> </video> <span style=\"display: none\" >{{temp.value}}</span> </span>  <!-- V I D E O   V A L U E  -->\n\n                  <span *ngIf='temp.type == \"file\" ' >\n                    <button  *ngIf='temp.value' type=\"button\" class=\"btn btn-primary\" (click)='openImage(temp.value)'>  <i class=\"fa fa-download\" aria-hidden=\"true\"></i>  </button>   <!-- F I L E   V A L U E  -->\n                    <span style=\"display: none\" >{{temp.value}}</span>\n                  </span>  <!-- F I L E   V A L U E  -->\n\n                </td>\n                <td>\n                  <button type=\"button\" class=\"btn btn-primary \" >  Details  </button>\n                </td>\n            </tr>\n    </tbody>\n    </table>\n  </div>\n</div>\n"
+module.exports = "<style >\n  .responseImg{\n    max-height: 60px;\n    border-radius: 3px;\n  }\n\n  table.dataTable thead .sorting,\n  table.dataTable thead .sorting_asc,\n  table.dataTable thead .sorting_desc {\n      background : none;\n  }\n</style>\n\n<div class=\"container-fluid mt-4 pb-3 text-center\" style=\"background:#fff;\">\n  <div *ngIf='!flag'>\n    <br>\n    <br>\n    <br>\n    <br>\n    <h4> Just a moment please....</h4>\n    <br>\n    <br>\n    <br>\n  </div>\n\n  <div class=\"\" style=\" width:100%;   overflow-x: auto\">\n    <table *ngIf='flag' id=\"exampleFormResponse\" class=\" display table table-striped  table-responsive-md\" cellspacing=\"0\" >\n      <thead>\n          <tr>\n              <th></th>\n              <th>Details</th>\n              <th *ngFor=\"let head of header\" style=\"white-space: nowrap; text-overflow: ellipsis;\">\n                &nbsp;  {{head}} &nbsp;\n              </th>\n          </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor='let res of response; let i = index'>\n              <td>{{i+1}}</td>\n              <td>\n                <button type=\"button\" class=\"btn btn-primary\" (click)='getDetails(i,res)' >  Details  </button>\n              </td>\n              <td *ngFor = 'let temp of res; let j = index' >\n\n                <span *ngIf='temp.type != \"camera\" &&  temp.type != \"file\" && temp.type != \"video\" && temp.type!= \"tag\"' >{{temp.value}}</span>  <!-- normal T E X T   V A L U E  -->\n\n                <span *ngIf='temp.type == \"tag\" ' >                                                                                              <!-- T A G G E D  V A L U E  -->\n\n                  <span *ngIf='temp.value == \"\"' class=\"noTag\" (click)=\"changeTag(i, temp)\" > &nbsp; No-Tag &nbsp; </span>\n                  <span *ngIf='temp.value == \"Flagged\"'  class=\"flaggedTag\" > &nbsp; {{temp.value}} &nbsp; </span>\n                  <span *ngIf='temp.value == \"Pending\"'  class=\"pendingTag\" > &nbsp; {{temp.value}} &nbsp; </span>\n                  <span *ngIf='temp.value == \"Verified\"' class=\"verifiedTag\"> &nbsp; {{temp.value}} &nbsp; </span>\n                  <span *ngIf='temp.value == \"Archived\"' class=\"archivedTag\"> &nbsp; {{temp.value}} &nbsp; </span>\n\n                </span>\n\n                <span *ngIf='temp.type == \"camera\" ' > <img *ngIf='temp.value'  class=\"responseImg\" src={{temp.value}} (click)='openImage(temp.value)' style=\"max-width:60px\" /> <span style=\"display: none\" >{{temp.value}}</span> </span>  <!-- I M A G E   V A L U E  -->\n\n                <span *ngIf='temp.type == \"video\" ' > <video *ngIf='temp.value' class=\"responseImg\" style=\"width:200px !important\" controls> <source src={{temp.value}}> </video> <span style=\"display: none\" >{{temp.value}}</span> </span>  <!-- V I D E O   V A L U E  -->\n\n                <span *ngIf='temp.type == \"file\" ' >\n                  <button  *ngIf='temp.value' type=\"button\" class=\"btn btn-primary\" (click)='openImage(temp.value)'>  <i class=\"fa fa-download\" aria-hidden=\"true\"></i>  </button>   <!-- F I L E   V A L U E  -->\n                  <span style=\"display: none\" >{{temp.value}}</span>\n                </span>  <!-- F I L E   V A L U E  -->\n\n              </td>\n          </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n\n<!-- Details modal starts here-->\n<div class=\"modal fade\" id=\"getDetails\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\" style=\"width:600px; height:650px;\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">Details</h5>\n      </div>\n      <div class=\"modal-body text-center\" style=\"  height:640px;  overflow-y: auto\">\n        <div *ngFor=\"let temp of detailRes; let i = index\">\n          <hr>\n\n          <div class=\"row\" style=\"padding-left:20px\">\n            <b>{{header[i]}} : </b> &nbsp; &nbsp;\n          </div>\n\n          <div class=\"row\" style=\"padding-left:20px\">\n\n            <div class=\"col-10\" >\n              <span *ngIf='temp.type != \"camera\" &&  temp.type != \"file\" && temp.type != \"video\" && temp.type !=\"tag\" ' >{{temp.value}}</span>  <!-- normal T E X T   V A L U E  -->\n\n\n                <span *ngIf='temp.type == \"tag\" ' >                                                                                              <!-- T A G G E D  V A L U E  -->\n\n                  <span *ngIf='temp.value == \"\"' > &nbsp; {{temp.value}} &nbsp; </span>\n                  <span *ngIf='temp.value == \"Flagged\"'  class=\"flaggedTag\" > &nbsp; {{temp.value}} &nbsp; </span>\n                  <span *ngIf='temp.value == \"Pending\"'  class=\"pendingTag\" > &nbsp; {{temp.value}} &nbsp; </span>\n                  <span *ngIf='temp.value == \"Verified\"' class=\"verifiedTag\"> &nbsp; {{temp.value}} &nbsp; </span>\n                  <span *ngIf='temp.value == \"Archived\"' class=\"archivedTag\"> &nbsp; {{temp.value}} &nbsp; </span>\n\n                </span>\n\n              <span *ngIf='temp.type == \"camera\" ' > <img *ngIf='temp.value'  class=\"\" src={{temp.value}} (click)='openImage(temp.value)' style=\"max-width:230px\" /> <span style=\"display: none\" >{{temp.value}}</span> </span>  <!-- I M A G E   V A L U E  -->\n\n              <span *ngIf='temp.type == \"video\" ' > <video *ngIf='temp.value' class=\"\" style=\"width:200px !important\" controls> <source src={{temp.value}}> </video> <span style=\"display: none\" >{{temp.value}}</span> </span>  <!-- V I D E O   V A L U E  -->\n\n              <span *ngIf='temp.type == \"file\" ' >\n                <button  *ngIf='temp.value' type=\"button\" class=\"btn btn-primary\" (click)='openImage(temp.value)'>  <i class=\"fa fa-download\" aria-hidden=\"true\"></i>  </button>   <!-- F I L E   V A L U E  -->\n                <span style=\"display: none\" >{{temp.value}}</span>\n              </span>  <!-- F I L E   V A L U E  -->\n            </div>\n            <div class=\"col-1\" >\n              <div *ngIf='i>3' >\n                <i *ngIf=\"temp.flagged\" class=\"fa fa-flag\" aria-hidden=\"true\" (click)=\"flagCommentModal( i, detailRes[1].value, temp.cid)\"></i>\n                <i *ngIf=\"!temp.flagged\" class=\"fa fa-flag-o\" aria-hidden=\"true\" (click)=\"flagCommentModal( i, detailRes[1].value, temp.cid)\" ></i>\n              </div>\n            </div>\n\n          </div>\n        </div>\n\n      </div>\n      <div class=\"modal-footer\">\n        <button *ngIf=\"saveFlag\" type=\"button\" class=\"btn btn-primary col-sm-3 pt-3 pb-3\" data-toggle=\"modal\" (click)=\"saveFlagFun()\" >Save Flag</button>\n        <button type=\"button\" class=\"btn btn-secondary col-sm-3 pt-3 pb-3\" data-dismiss=\"modal\">Close</button>\n      </div>\n    </div>\n  </div>\n</div>\n<!-- Details modal ends here-->\n\n<!-- Flag comment modal starts here-->\n<div class=\"modal fade\" id=\"flagComment\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\" style=\"margin-top:200px; margin-left:100px\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">Flag Comments </h5>\n        <h5> ( Optional ) </h5>\n      </div>\n      <div class=\"modal-body text-center\" style=\"   overflow-y: auto\">\n        <input type=\"text\" class=\"form-control\" [(ngModel)]='flaggedMsg' (change)='flagMsg()'>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary col-sm-3 pt-3 pb-3\" data-dismiss=\"modal\" (click)='flagMsg()'>Close</button>\n        <!-- <button type=\"button\" class=\"btn btn-primary col-sm-3 pt-3 pb-3\" data-toggle=\"modal\" (click)=\"saveFlagFun()\">Save Flag</button>\n        <button type=\"button\" class=\"btn btn-secondary col-sm-3 pt-3 pb-3\" data-dismiss=\"modal\" (click)=\"cancelFlag()\">Close</button> -->\n      </div>\n    </div>\n  </div>\n</div>\n<!-- Response comment modal endss here-->\n\n<!-- Flag comment modal starts here-->\n<div class=\"modal fade\" id=\"unflagConform\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\" style=\"margin-top:200px; margin-left:100px\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">Un-Flag Conform </h5>\n      </div>\n      <div class=\"modal-body text-center\" style=\"   overflow-y: auto\">\n        <h4> Are you Sure to Un-Flag this element?</h4>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-primary col-sm-3 pt-3 pb-3\" data-toggle=\"modal\" (click)=\"unFlagFun()\">Un-Flag</button>\n        <button type=\"button\" class=\"btn btn-secondary col-sm-3 pt-3 pb-3\" data-dismiss=\"modal\"  (click)=\"cancelFlag()\">Close</button>\n      </div>\n    </div>\n  </div>\n</div>\n<!-- Response comment modal endss here-->\n"
 
 /***/ }),
 
@@ -3728,6 +3728,8 @@ var ResponseTableComponent = (function () {
         this.response = [];
         this.header = [];
         this.flag = false;
+        this.saveFlag = false;
+        this.flaggedMsg = '';
         this.sub = this.projectService.emitFormResponse.subscribe(function (res) {
             console.log(res);
             _this.response = res;
@@ -3762,6 +3764,49 @@ var ResponseTableComponent = (function () {
     };
     ResponseTableComponent.prototype.openImage = function (url) {
         window.open(url, '_blank');
+    };
+    ResponseTableComponent.prototype.getDetails = function (i, res) {
+        console.log(i);
+        console.log(res);
+        this.detailPos = i;
+        this.detailRes = res;
+        this.saveFlag = false;
+        $('#getDetails').modal("show");
+    };
+    ResponseTableComponent.prototype.flagCommentModal = function (arrayPos, resId, cid) {
+        this.elementCid = cid;
+        this.resId = resId;
+        this.arrayPos = arrayPos;
+        if (this.response[this.detailPos][this.arrayPos].flagged) {
+            this.response[this.detailPos][this.arrayPos].flagged = false;
+            this.flaggedMsg = '';
+            this.saveFlag = true;
+            if (this.response[this.detailPos][this.arrayPos].flagMsg) {
+                this.flaggedMsg = this.response[this.detailPos][this.arrayPos].flagMsg;
+            }
+        }
+        else {
+            this.response[this.detailPos][this.arrayPos].flagged = true;
+            this.flaggedMsg = '';
+            this.saveFlag = true;
+            if (this.response[this.detailPos][this.arrayPos].flagMsg) {
+                this.flaggedMsg = this.response[this.detailPos][this.arrayPos].flagMsg;
+            }
+            $('#flagComment').modal("show");
+        }
+    };
+    ResponseTableComponent.prototype.flagMsg = function () {
+        // console.log(this.flaggedMsg);
+        this.response[this.detailPos][this.arrayPos].flagMsg = this.flaggedMsg + "";
+    };
+    ResponseTableComponent.prototype.saveFlagFun = function () {
+        console.log(this.response[this.detailPos]);
+        console.log(this.resId);
+        this.projectService.flagResponse(this.resId, this.response[this.detailPos]);
+        this.resId = "";
+        this.detailPos = "";
+        this.flaggedMsg = "";
+        $('#getDetails').modal("hide");
     };
     ResponseTableComponent.prototype.ngOnDestroy = function () {
         this.sub.unsubscribe();
@@ -4175,6 +4220,17 @@ var APIService = (function () {
         this.createAuthorizationHeader(headers);
         return this.http.post(this.projectURL + '/removeAssesorFromTeam', data, { headers: headers }).map(function (res) { return res.json(); });
     };
+    APIService.prototype.FlagResponse = function (rID, array) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Headers */]();
+        this.createAuthorizationHeader(headers);
+        array = JSON.stringify(array);
+        array = JSON.parse(array);
+        array = JSON.stringify(array);
+        var formData = new FormData();
+        formData.append('array', array);
+        formData.append('rID', rID);
+        return this.http.post(this.projectURL + '/flagResponse', formData, { headers: headers }).map(function (res) { return res.json(); });
+    };
     return APIService;
 }());
 APIService = __decorate([
@@ -4273,9 +4329,11 @@ var ProjectService = (function () {
             console.log(res);
             if (res.success) {
                 localStorage.setItem('token', res.token);
-                _this.emitUserLogin.emit({ success: true, msg: "logged in" });
+                _this.emitUserLogin.emit("Invalid credentials!");
             }
-            else { }
+            else {
+                _this.emitErrorRes.emit();
+            }
         }, function (err) {
             console.log(err);
         });
@@ -4957,6 +5015,18 @@ var ProjectService = (function () {
                 }
                 _this.assessorArray[ipos].form.splice(jpos, 1);
                 _this.descAsrCount(pCid);
+            }
+            else { }
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    ProjectService.prototype.flagResponse = function (rID, array) {
+        var _this = this;
+        this.apiService.FlagResponse(rID, array).subscribe(function (res) {
+            console.log(res);
+            if (res.success) {
+                _this.emitSuccessRes.emit("Flag Updated!");
             }
             else { }
         }, function (err) {

@@ -24,7 +24,7 @@
         "styles.scss"
       ],
       "scripts": [
-        "../node_modules/ng2-toastr/bundles/ng2-toastr.min.js"
+        
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
