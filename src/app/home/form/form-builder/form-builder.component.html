@@ -8,81 +8,83 @@
   </div>
   <div class="col-sm-6 pl-0 pr-0 pt-1">&nbsp;</div>
 </div>
-<div class="container form-container text-center col-sm-12 mt-4">
-  <br />
-  <h3>QCI Form Builder &reg;</h3>
-  <div class="row justify-content-center">
+<div class="pos-abso-tr col-sm-11 text-right">
+  <button type="button" class="btn btn-primary mb-0 col-sm-5 col-md-4 col-lg-2 pt-3 pb-3 float-right mt-4" data-toggle="modal" data-target="#exampleModal">Add element</button>
+  <h3 class="col-sm-7 col-md-8 col-lg-10 pt-3 pb-3 text-center float-right mt-4">QCI Form Builder &reg;</h3>
+</div>
+<div class="container form-container text-left col-sm-12 mt-0">
+  <div class="row justify-content-center mt-3">
     <div class="col-md-12">
       <h5>{{name}}</h5>
       <p>{{project_name}}</p>
-      <button type="button" class="btn btn-primary col-sm-4 col-md-3 pt-3 pb-3" data-toggle="modal" data-target="#exampleModal">Add element</button>
-      <br /><br />
-      <div *ngIf='!displayPublish' style="font-size:4rem;margin-top:30px;color:#b1b1b1">
-        <p>Form elements will be displayed here!</p>
+      <div *ngIf='!displayPublish' class="form-build-design col-sm-12 p-5 bg-white" style="height:72vh;">
+        <p class="text-center p-5 m-5">Form elements will be displayed here!</p>
       </div>
-      <div class="form-build-design" *ngFor='let json of jsonArray; let i = index' style="max-height:750px;overflow-y:auto;overflow-x:hidden;">
-        <div class="col-sm-5 bg-white pl-4 pb-3 pt-3 pr-3 brd-def mb-4 text-left" *ngIf="json.type == 'location'" >
-          <input type="checkbox" name="checkbox" checked disabled>&nbsp; Form submition location will be shared by default &nbsp; <i class="fa fa-trash-o text-danger pr-3 fa-6 pt-4 pl-2" aria-hidden="true" (click)='deleteElement(i)' ></i>
+      <div class="form-build-design col-sm-10 pl-0 ofy" style="max-height:72vh;">
+        <div class="" *ngFor='let json of jsonArray; let i = index'>
+          <div class="col-sm-5 bg-white pl-4 pb-3 pt-3 pr-3 brd-def mb-4 text-left" *ngIf="json.type == 'location'">
+            <input type="checkbox" name="checkbox" checked disabled>&nbsp; Form submition location will be shared by default &nbsp; <i class="fa fa-trash-o text-danger pr-3 fa-6 pt-4 pl-2" aria-hidden="true" (click)='deleteElement(i)' ></i>
+          </div>
+          <div class="col-sm-12 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'text'">
+            <app-input-text name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}}></app-input-text>
+          </div>
+          <div class="col-sm-12 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'password'">
+            <app-input-password name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}}></app-input-password>
+          </div>
+          <div class="col-sm-12 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'email'">
+            <app-input-email name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}}></app-input-email>
+          </div>
+          <div class="col-sm-12 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'number'">
+            <app-input-number name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} rangeFrom={{json.rangeFrom}} rangeTo={{json.rangeTo}}>  </app-input-number>
+          </div>
+          <div class="col-sm-12 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'phone'">
+            <app-input-phone name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}}></app-input-phone>
+          </div>
+          <div class="col-sm-12 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'textarea'">
+            <app-input-textarea name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}}>  </app-input-textarea>
+          </div>
+          <div class="col-sm-12 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'date'">
+            <app-input-date name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} rangeFrom={{json.rangeFrom}} rangeTo={{json.rangeTo}}></app-input-date>
+          </div>
+          <div class="col-sm-12 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'time'">
+            <app-input-time name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} rangeFrom={{json.rangeFrom}} rangeTo={{json.rangeTo}}></app-input-time>
+          </div>
+          <div class="col-sm-12 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'radio'">
+            <app-input-radio name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [option]=json.option >  </app-input-radio>
+          </div>
+          <div class="col-sm-12 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'checkbox'" >
+            <app-input-checkbox name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [option]=json.option [values]=json.values>  </app-input-checkbox>
+          </div>
+          <div class="col-sm-12 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'dropdown'" >
+            <app-input-dropdown name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [option]=json.option >  </app-input-dropdown>
+          </div>
+          <div class="col-sm-12 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'slider'" >
+            <app-input-slider name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} rangeFrom={{json.rangeFrom}} rangeTo={{json.rangeTo}} >  </app-input-slider>
+          </div>
+          <div class="col-sm-12 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'file'" >
+            <app-input-file name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [fileTypes]=json.fileTypes >  </app-input-file>
+          </div>
+          <div class="col-sm-12 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'camera'" >
+            <app-input-camera name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [fileTypes]=json.fileTypes >  </app-input-camera>
+          </div>
+          <div class="col-sm-12 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'video'" >
+            <app-input-video name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [fileTypes]=json.fileTypes >  </app-input-video>
+          </div>
+          <div *ngIf="json.type == 'break'" ><!-- class="bg-white p-3 brd-def mb-4 prim-hvr" -->
+            <app-input-break name={{json.name}} id={{i}}>  </app-input-break>
+          </div>
         </div>
-        <div class="col-sm-10 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'text'">
-          <app-input-text name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} >  </app-input-text>
-        </div>
-        <div class="col-sm-10 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'password'" >
-          <app-input-password name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} >  </app-input-password>
-        </div>
-        <div class="col-sm-10 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'email'">
-          <app-input-email name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} >  </app-input-email>
-        </div>
-        <div class="col-sm-10 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'number'">
-          <app-input-number name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} rangeFrom={{json.rangeFrom}} rangeTo={{json.rangeTo}} >  </app-input-number>
-        </div>
-        <div class="col-sm-10 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'phone'">
-          <app-input-phone name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} >  </app-input-phone>
-        </div>
-        <div class="col-sm-10 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'textarea'">
-          <app-input-textarea name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} >  </app-input-textarea>
-        </div>
-        <div class="col-sm-10 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'date'">
-          <app-input-date name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} rangeFrom={{json.rangeFrom}} rangeTo={{json.rangeTo}} >  </app-input-date>
-        </div>
-        <div class="col-sm-10 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'time'">
-          <app-input-time name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} rangeFrom={{json.rangeFrom}} rangeTo={{json.rangeTo}} >  </app-input-time>
-        </div>
-        <div class="col-sm-10 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'radio'">
-          <app-input-radio name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [option]=json.option >  </app-input-radio>
-        </div>
-        <div class="col-sm-10 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'checkbox'" >
-          <app-input-checkbox name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [option]=json.option [values]=json.values>  </app-input-checkbox>
-        </div>
-        <div class="col-sm-10 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'dropdown'" >
-          <app-input-dropdown name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [option]=json.option >  </app-input-dropdown>
-        </div>
-        <div class="col-sm-10 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'slider'" >
-          <app-input-slider name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} rangeFrom={{json.rangeFrom}} rangeTo={{json.rangeTo}} >  </app-input-slider>
-        </div>
-        <div class="col-sm-10 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'file'" >
-          <app-input-file name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [fileTypes]=json.fileTypes >  </app-input-file>
-        </div>
-        <div class="col-sm-10 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'camera'" >
-          <app-input-camera name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [fileTypes]=json.fileTypes >  </app-input-camera>
-        </div>
-        <div class="col-sm-10 bg-white p-3 brd-def mb-4 prim-hvr" *ngIf="json.type == 'video'" >
-          <app-input-video name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [fileTypes]=json.fileTypes >  </app-input-video>
-        </div>
-        <div *ngIf="json.type == 'break'" ><!-- class="bg-white p-3 brd-def mb-4 prim-hvr" -->
-          <app-input-break name={{json.name}} id={{i}}>  </app-input-break>
-        </div>
-      </div>
+      </div><!--form-build Design-->
     </div>
   </div>
 </div>
 <!--<div class="col-sm-12 pos-abso-bl" style="position:sticky">-->
-    <div class="d-inline-block p-2" *ngIf='displayPublish' >
-        <button *ngIf='displayPublishForm' type="button" class="btn btn-success pb-3 pt-3" (click)='publishForm()'> {{sumbitForm}} </button>
-    </div>
-    <div class="d-inline-block p-2" *ngIf='displayPublish' >
-        <button *ngIf='displayPublishTemp' type="button" class="btn btn-success pb-3 pt-3" (click)='publishTemplate()'> {{sumbitTemp}} </button>
-    </div>
+<div class="d-inline-block p-2 mt-2" *ngIf='displayPublish' >
+  <button *ngIf='displayPublishForm' type="button" class="btn btn-success pb-3 pt-3" (click)='publishForm()'>{{sumbitForm}}</button>
+</div>
+<div class="d-inline-block p-2 mt-2" *ngIf='displayPublish' >
+  <button *ngIf='displayPublishTemp' type="button" class="btn btn-success pb-3 pt-3" (click)='publishTemplate()'>{{sumbitTemp}}</button>
+</div>
   <!--</div>-->
 <!-- form element modal starts here -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

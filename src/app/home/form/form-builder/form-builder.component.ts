@@ -200,7 +200,6 @@ export class FormBuilderComponent implements OnInit {
     let dataToPush = {Details: {name: this.newTempName, rule: 'None', project: 'N/A', cid: cid }, Elements:this.jsonArray};
     this.projectService.pushIntoTemplate(dataToPush);
     this.router.navigate(['/form']);
-
   }
 
   ngOnDestroy() {

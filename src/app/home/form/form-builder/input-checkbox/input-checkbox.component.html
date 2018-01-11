@@ -8,8 +8,11 @@
     </div>
   </div>
   <div class="col-sm-12 row ml-0 mr-0 mt-3 text-left">
-    <div class="col-4 p-0" *ngFor='let opt of option; let i=i' >
-      <input #flag type="checkbox" value={{opt}} class="mt-3" name="checkbox" [checked]='checkVal(opt)'> {{opt}}
+    <div class="col-4 pl-0 pr-0 pt-2" *ngFor='let opt of option; let i=i' >
+      <label class="custom-control custom-control-lg custom-checkbox m-0">
+        <input #flag type="checkbox" value={{opt}} class="custom-control-input form-check-input mt-3" name="checkbox" [checked]='checkVal(opt)' />
+        <span class="custom-control-indicator"></span>&nbsp;&nbsp;{{opt}}
+      </label>
     </div>
   </div>
 </div>

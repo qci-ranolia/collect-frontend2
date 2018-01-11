@@ -8,7 +8,7 @@
   <!--<div class="col-sm-6 pl-0 pr-0 pt-1 text-right">
   </div>-->
 </div>
-<div class="pos-abso-tr col-sm-9 text-right">
+<div class="pos-abso-tr col-sm-11 text-right">
   <button type="button" class="btn btn-primary mb-0 col-sm-5 col-md-4 col-lg-2 pt-3 pb-3 float-right mt-4" (click)='new()'>+ New</button>
   <input type="text" class="form-control col-sm-9 col-md-9 col-lg-9 mr-4 mt-4 float-right pt-3 pb-3" placeholder="Search" />
 </div>
@@ -17,16 +17,10 @@
     <li class="nav-item"><a class="nav-link active" data-toggle="tab" role="tab" href="#form">Forms</a></li>
     <li class="nav-item"><a class="nav-link " data-toggle="tab" role="tab" href="#template">Templates</a></li>
   </ul>
-  <div class="col-lg-12 col-md-12 row col-sm-12 ml-0 mt-5 mb-3 justify-content-md-center fn" style="display:none;">
-    <div class="row col-lg-9 col-md-12 text-center bbot">
-      <a class="col-lg-2 col-md-2 col-sm-2 col-xs-2 active">Forms</a>
-      <a class="col-lg-2 col-md-2 col-sm-2 col-xs-2 strt">Templates</a>
-    </div>
-  </div>
   <div class="tab-content">
     <div class="tab-pane active" id="form" role="tabpanel" >
       <br />
-      <div class="row text-left">
+      <div class="row text-left ofy" style="height:73vh;">
         <div *ngFor='let form of formArray; let i = index' class="col-sm-6" style="margin-bottom:30px">
           <div class="card cbx">
             <div class="card-block p-0">
@@ -41,27 +35,32 @@
               <div class="col-12 pb-0 mt-3 ml-2 mb-0">
                 <button class="btn btn-primary mr-2 mb-2" type="button" [routerLink]="['../formBuilder']" [queryParams]="{formID : form.Details.cid }" >View form</button>
                 <button class="btn btn-primary bg-white mr-2 mb-2" (click)='rule(form.Rules, form.Details.cid, form.Elements)' type="button" data-toggle="modal" data-target="#rules">Rule/s</button>
-                <button class="btn btn-primary bg-white mr-2 mb-2" (click)='getResponse(form.Details.cid)' type="button" data-toggle="modal" data-target="#rules">{{form.Details.responses}}  Responses </button>
-                <a class="card-link col-6 d-inline-block pt-2 float-right text-right">
-                    <input type="checkbox" class="form-check-input" [checked]=checkStatus(form.Details.cid) (change)='changeStatus(form.Details.cid)' />{{form.Details.status}}
-                </a>
+                <button class="btn btn-primary bg-white mr-2 mb-2" (click)='getResponse(form.Details.cid)' type="button" data-toggle="modal" data-target="#rules">{{form.Details.responses}} Responses </button>
+                <!--<a class="card-link col-6 d-inline-block pt-2 float-right text-right">-->
+                    <!--<input type="checkbox" class="form-check-input" [checked]=checkStatus(form.Details.cid) (change)='changeStatus(form.Details.cid)' />{{form.Details.status}}-->
+                <div class="p-2 float-right mr-3">
+                  <label class="custom-control custom-control-lg custom-checkbox m-0 float-right">
+                    <input type="checkbox" class="custom-control-input form-check-input" name="checkbox-size" [checked]=checkStatus(form.Details.cid) (change)='changeStatus(form.Details.cid)' />
+                    <span class="custom-control-indicator"></span><span class="col-sm-12 pl-2 pr-2">{{form.Details.status}}</span>
+                  </label>
+                </div>
+                <!--</a>-->
               </div>
-              <br>
+              <br />
             </div>
           </div>
         </div>
         <br />
         <!--<button type="button" class="btn btn-primary mb-5 col-sm-5 col-md-4 col-lg-2 pt-3 pb-3" (click)='sync()'><i class="fa fa-refresh" aria-hidden="true"></i> Sync</button>-->
       </div>
-      <br />
-      <button type="button" class="btn btn-primary mb-5 col-sm-5 col-md-4 col-lg-2 pt-3 pb-3" (click)='syncCollectFrom($event)'><i class="fa fa-refresh" aria-hidden="true"></i> 1. Sync Collect Form</button>
+      <button type="button" class="btn btn-primary bg-white mb-0 mt-4 float-left" (click)='syncCollectFrom($event)'><i class="fa fa-refresh" aria-hidden="true"></i> 1. Sync Collect Form</button>
       &nbsp;
-      <button type="button" class="btn btn-primary mb-5 col-sm-5 col-md-4 col-lg-2 pt-3 pb-3" (click)='syncCollectFromRule($event)'><i class="fa fa-refresh" aria-hidden="true"></i> 2. Sync Collect Rules</button>
+      <button type="button" class="btn btn-primary bg-white mb-0 mt-4 ml-3 float-left" (click)='syncCollectFromRule($event)'><i class="fa fa-refresh" aria-hidden="true"></i> 2. Sync Collect Rules</button>
     </div>
     <div class="tab-pane" id="template" role="tabpanel">
       <br />
-      <div class="row justify-content-center" >
-        <div *ngFor='let temp of templateArray; let i = index' class="col-sm-6 "  style="margin-bottom:30px">
+      <div class="row justify-content-center ofy" style="height:72vh;">
+        <div *ngFor='let temp of templateArray; let i = index' class="col-sm-6" style="margin-bottom:30px;">
           <div class="card cbx">
             <div class="card-block p-0 text-left">
               <div class="col-sm-12 pl-4 pt-3 mt-2 pb-2 bb">

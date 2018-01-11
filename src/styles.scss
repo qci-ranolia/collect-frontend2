@@ -36,9 +36,13 @@ $primary-color-dark-hover:rgba(3,130,210,1) !important;
 }
 
 
+//toast 
+$toast-succ:#4caf50 !important;
+$toast-err:#f44336 !important;
+$toast-war:#ffd741 !important;
+
 //overflows
-.ofy
-{
+.ofy {
   overflow:hidden;
   overflow-y:scroll;
 }
@@ -52,7 +56,7 @@ $secondary-color-hover:#efc731;
 $secondary-color-border-hover:#dfb721;
 
 //backgrounds
-$body-bg-default:#eee;
+$body-bg-default:#fafafa;
 $body-bg-white:#fff !important;
 $body-bg-trans:transparent !important;
 $bcf5:#f5f5f5;
@@ -64,23 +68,19 @@ $rgba-white:rgba(255,255,255,0.1);
 $div-height:95vh;
 $top-menu-height:47px;
 $h:100%;
-.h
-{
+.h {
   height:$h;
 }
-
-.nav-tabs .nav-link, .nav-tabs .nav-item.show .nav-link
-{
-  background: transparent;
-  border: none;
+.nav-tabs .nav-link, .nav-tabs .nav-item.show .nav-link{
+  background:transparent;
+  border:none;
   //border-bottom: 3px solid royalblue;
   color:$text-color-darkset3;
 }
-.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link
-{
-  background: transparent;
-  border: none;
-  border-bottom: 3px solid $primary-color;
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{
+  background:transparent;
+  border:none;
+  border-bottom:3px solid $primary-color;
   color:$primary-color;
 }
 
@@ -104,59 +104,52 @@ $col-12:100%;
 // floats // float-left and float-right class of bootstrap can be used instead of using these float variables
 $float-left:float-left;
 
-//border scss
+//border and its color scss 
+$bwbc:#fff !important;
 
 $brd-ddd:1px solid #ddd;
-.bb
-{
+.bb {
  border-bottom:$brd-ddd;  
 }
-.br
-{
+.br {
  border-right:$brd-ddd;  
 }
 
 $brd-light:1px solid #ddd !important;
-.brd-def
-{
-  border: $brd-light;
+.brd-def {
+  border:$brd-light;
 }
-
 $bt-second-clr:1px solid #ffd741;
 
-
 //positions classes
-.pos-fix-bl
-{
+.pos-fix-bl {
   position:fixed;
   bottom:0;
   left:0;
+  z-index:9;
 }
-.pos-rel
-{
+.pos-rel {
   position:relative;
 }
-.pos-abso-tl
-{
+.pos-abso-tl {
   position:absolute;
   top:0;
   left:0;
+  z-index:9;
 }
-.pos-abso-tr
-{
+.pos-abso-tr {
   position:absolute;
   top:5px;
   right:0;
+  z-index: 9;
 }
-.pos-abso-bl
-{
+.pos-abso-bl {
   position:absolute;
   left:0px;
   bottom:0;
+  z-index: 9;
 }
-
-.navbar-toggleable-md .navbar-brand
-{
+.navbar-toggleable-md .navbar-brand {
   color:$text-color-on-dark-bg !important;
 }
 
@@ -286,7 +279,7 @@ body
 .btn
 {
   box-shadow:0px 15px 20px -10px #ddd;/* App Button Material Shadow Surface */
-  font-weight:bold;
+  //font-weight:bold;
 }
 .btn:hover, .btn:visited
 {
@@ -316,6 +309,9 @@ body
   background:$body-bg-white;
   border-color:$brd-ddd;
   color:$text-color-darkset3-hover;
+}
+.bwbc{
+  border-color:#fff !important;
 }
 .cbx
 {
@@ -612,24 +608,22 @@ body
   padding-top:1rem;
 }
 // select
-.dataTables_length label select
-{
-  background: #fff;
-  border-color: #ddd;
-  width: 60px;
-  height: 30px;
-  line-height: 30px;
-  padding: 3px;
-  text-indent: 3px;
-  margin: 0 5px;
+.dataTables_length label select {
+  background:$body-bg-white;
+  border-color:#ddd;
+  width:60px;
+  height:30px;
+  line-height:30px;
+  padding:3px;
+  text-indent:3px;
+  margin:0 5px;
 }
 // input
-.dataTables_filter label input
-{
-  border: 1px solid #ccc !important;
-  box-shadow: none !important;
-  padding: 3px;
-  text-indent: 3px;
+.dataTables_filter label input {
+  border:1px solid #ccc !important;
+  box-shadow:none !important;
+  padding:3px;
+  text-indent:3px;
 }
 // main table
 
@@ -1217,12 +1211,10 @@ input.form-control:focus ~ .after {
 
 
 // form-builder css
-.form-build-design .bg-white
-{
+.form-build-design .bg-white {
   position: relative;
 }
-.form-build-design .fa-trash-o 
-{
+.form-build-design .fa-trash-o {
   position: absolute;
   top: -11px;
   right: 0px; 
@@ -1233,24 +1225,20 @@ input.form-control:focus ~ .after {
 // important classes
 //body background classes
 
-.bg-white
-{
+.bg-white {
   background: $body-bg-white;
 }
-.bg-trans
-{
+.bg-trans {
   background: $body-bg-trans;
 }
 
 
 //ng2-toastr css
-.toast-top-center
-{
+.toast-top-center {
     top:46px;
     position:fixed;
 }
-#toast-container > .toast
-{
+#toast-container > .toast {
     width:100% !important;
     height:20px;
     padding:0 !important;
@@ -1261,25 +1249,215 @@ input.form-control:focus ~ .after {
     border-radius:0 !important;
     background-image:none !important;
 }
-.toast-success
-{
-  background:#4caf50 !important;
+.toast-success {
+  background:$toast-succ;
 }
-.toast-error
-{
-  background:#f44336 !important;
+.toast-error {
+  background:$toast-err;
 }
-.toast-warning
-{
-  background:#ffd741 !important;
-  color: $text-color-darkset3;
- .toast-close-button
- {
-  color: $text-color-darkset3;
+.toast-warning {
+  background:$toast-war;
+  color:$text-color-darkset3;
+ .toast-close-button {
+    color:$text-color-darkset3;
   }
 }
-.toast-close-button
-{
+.toast-close-button {
   right:10px;
   top:-1px;
+}
+
+
+
+
+// Radio CSS Current
+.custom-controls-stacked .custom-control + .custom-control {
+  margin-left:0;
+}
+.custom-controls-stacked .custom-control {
+  display:-webkit-inline-box;
+  display:inline-flex;
+  margin-bottom:0;
+}
+input[type=checkbox], input[type=radio] {
+  box-sizing:border-box;
+  padding:0;
+}
+[role=button], a, area, button, input:not([type=range]), label, select, summary, textarea {
+  -ms-touch-action:manipulation;
+  touch-action:manipulation;
+}
+.custom-control-input {
+  position:absolute;
+  z-index:-1;
+  opacity:0;
+}
+.custom-control-input:checked ~ .custom-control-indicator, .custom-control-input:active:not(:disabled) ~ .custom-control-indicator {
+  background-image:none !important;
+  background-color:$body-bg-white;
+}
+.custom-control-input:checked~.custom-control-indicator {
+  color:$rgba-white;
+}
+.custom-radio .custom-control-indicator {
+  border-radius:50%;
+}
+.custom-control-indicator {
+  border:1px solid #ccc;
+  position:static;
+  background-color:$body-bg-white;
+}
+.custom-control-description {
+  padding-left:8px;
+  -webkit-box-flex:1;
+  flex-grow:1
+}
+.custom-control-input:checked ~ .custom-control-indicator::before, .custom-control-input:checked ~ .custom-control-indicator::after {
+  -webkit-transform:scale(1);
+  transform:scale(1);
+}
+.custom-radio .custom-control-indicator::after {
+  border-radius:50%;
+  vertical-align:top;
+  margin-top:2px;
+  margin-left:0px !important;
+  display:inline-block;
+  width:16px;
+  height:16px;
+  background-color:$secondary-color-border;
+}
+.custom-control-lg .custom-control-indicator {
+  width:22px;
+  height:22px;
+  line-height:22px;
+}
+.custom-control-indicator::after {
+  content:'';
+  display:inline-block;
+  -webkit-transform:scale(0);
+  transform:scale(0);
+  -webkit-transition:-webkit-transform .3s;
+  transition:-webkit-transform .3s;
+  transition:transform .3s;
+  transition:transform .3s, -webkit-transform .3s;
+}.custom-control-input:focus ~ .custom-control-indicator {
+  box-shadow:none;
+}.custom-control{
+  cursor:pointer;
+}
+
+
+
+
+// checkbox css current
+.custom-control {
+  position:relative;
+  display:-ms-inline-flexbox;
+  display:inline-flex;
+  min-height:1.5rem;
+  padding-left:1.5rem;
+  margin-right:1rem;
+}
+.custom-control {
+  color:#4d5259;
+  font-weight:300;
+  letter-spacing:0;
+  margin-bottom:0;
+  outline:none !important;
+  display:-webkit-inline-box;
+  display:inline-flex;
+  -webkit-box-align:center;
+  align-items:center;
+  padding-left:0;
+  font-size: 12px;
+}
+.custom-checkbox {
+  cursor: pointer;
+}
+.custom-controls-stacked .custom-control {
+  display:-webkit-inline-box;
+  display:inline-flex;
+  margin-bottom:6px;
+}
+.custom-controls-stacked .custom-control+.custom-control {
+  margin-left:0;
+}
+input[type=checkbox]/*, input[type=radio]*/{
+  box-sizing: border-box;
+  padding:0;
+}
+input:not([type=range]) {
+  touch-action: manipulation;
+  -ms-touch-action: manipulation;
+}
+.custom-control-input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.custom-control-input:checked ~ .custom-control-indicator{
+  background-color: #fcfdfe;
+}
+.custom-control-input:checked~.custom-control-indicator {
+  color: #fff;
+}
+.custom-control-lg .custom-control-indicator {
+  width: 22px;
+  height: 22px;
+  line-height: 22px;
+}
+.custom-checkbox .custom-control-indicator {
+  border-radius: 0;
+}
+.custom-control-indicator {
+  border:1px solid #ccc;
+  position:static;
+  flex-shrink:0;
+  -webkit-box-flex:0;
+  flex-grow:0;
+  text-align:center;
+  background:$body-bg-white;
+}
+.custom-control-indicator {
+  top:.25rem;
+  left:0;
+  display:block;
+  pointer-events:none;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  background-repeat:no-repeat;
+  background-position:center center;
+  background-size:50% 50%;
+  background-color:$body-bg-white;
+}
+.custom-checkbox .custom-control-indicator::after {
+  content:"\2714";
+  font-size:17px;
+  font-weight:bold;
+  top:0;
+  left:0;
+  bottom:0;
+  width:100%;
+  text-align:center;
+  color:$secondary-color-border;
+}
+.custom-control-indicator::after {
+  content:'';
+  display:inline-block;
+  -webkit-transform:scale(0);
+  transform:scale(0);
+  -webkit-transition:-webkit-transform .3s;
+  transition:-webkit-transform .3s;
+  transition:transform .3s;
+  transition:transform .3s, -webkit-transform .3s
+}
+.custom-control-input:checked ~ .custom-control-indicator::before, .custom-control-input:checked ~ .custom-control-indicator::after {
+  -webkit-transform:scale(1);
+  transform:scale(1);
+}
+.custom-control-input:focus ~ .custom-control-indicator{
+  -webkit-box-shadow:none;
+  box-shadow:none;
 }
