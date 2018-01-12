@@ -214,6 +214,7 @@ export class FormBuilderComponent implements OnInit {
       this.projectService.updateFormJson(this.existingForm);
     }
 
+
     this.sub.unsubscribe();
     this.sub1.unsubscribe();
     this.sub2.unsubscribe();

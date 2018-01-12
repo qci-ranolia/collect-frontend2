@@ -1,13 +1,14 @@
 <div class="form-group row m-0">
   <div class="col-sm-12 row m-0 p-0">
-    <label class="col-sm-10 col-form-label text-left p-0" style="font-weight:bold;"><span>{{funID(id)}}.</span>&nbsp;{{name}} </label>
-    <div class="col-2 text-right pr-0">
+    <label class="col-sm-7 col-form-label text-left p-0"><span class="nmbr">{{funID(id)}}</span>&nbsp;{{name}}</label>
+    <div class="col-sm-5 text-right pr-0">
       <!--<i class="fa fa-arrow-up text-primary p-3" aria-hidden="true" (click)='upElement(id)'></i>
       <i class="fa fa-arrow-down text-primary p-3" aria-hidden="true" (click)='downElement(id)'></i>-->
-      <i class="fa fa-trash-o text-danger fa-6 pt-2" aria-hidden="true" (click)='deleteElement(id)'></i> 
+      <p class="d-block float-right text-center mb-0 p-2"><i class="fa fa-trash-o text-danger fa-6" aria-hidden="true" (click)='deleteElement(id)'></i></p>
+      <p class="d-block float-right text-center mb-0 p-2"><i class="fa fa-file-text-o pr-2" aria-hidden="true"></i>&nbsp;Textarea&nbsp;&nbsp;</p> 
     </div>
   </div>
-  <div class="col-sm-12 row ml-0 mr-0 mt-3 text-left">
-      <textarea class="form-control col-sm-7 rounded-0 h" [(ngModel)]='text' [disabled]=disabled rows="4" > </textarea>
+  <div class="col-sm-12 row ml-0 mr-0 mb-3 text-left">
+    <textarea class="form-control col-sm-7 rounded-0 h" [(ngModel)]='text' [disabled]=disabled rows="4" > </textarea>
   </div>
 </div>

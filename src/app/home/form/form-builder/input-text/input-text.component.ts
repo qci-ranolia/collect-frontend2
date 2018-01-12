@@ -19,7 +19,7 @@ export class InputTextComponent implements OnInit {
   @Output() jsonData = new EventEmitter<any>();
 
   constructor(private projectService:ProjectService) {}
-
+  
   ngOnInit() {
     this.text = this.value;
   }

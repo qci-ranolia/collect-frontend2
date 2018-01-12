@@ -8,7 +8,6 @@ import {ProjectService} from '../../service/ProjectService';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
-
   formArray = [];
   templateArray = [];
   fArray : any;
@@ -30,12 +29,11 @@ export class FormComponent implements OnInit {
   formCIDWithRule: any;
   satisfyAll = false;
   files : any;
-
+  
   constructor( private projectService: ProjectService, private router: Router ){
     this.fArray = this.projectService.emitFormArray.subscribe((res)=>{
       // console.log(res);
       this.formArray = res;
-
     });
 
     this.tArray = this.projectService.emitTemplateArray.subscribe((res)=>{

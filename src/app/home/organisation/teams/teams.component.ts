@@ -63,6 +63,8 @@ export class TeamsComponent implements OnInit {
             "targets": 0,
             "bSort": false
         } ],
+        "searching": false,
+        "paging": false,
         "bSort": false
         });
         t.on( 'order.dt search.dt', function () {

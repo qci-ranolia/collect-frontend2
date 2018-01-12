@@ -51,10 +51,12 @@ export class UserComponent implements OnInit {
        $(document).ready(function() {
         var t = $('#example').DataTable({
           "columnDefs": [ {
-            "searchable": false,
+            "searching": false,
             "orderable": false,
             "bSort": false
         } ],
+        "searching": false,
+        "paging": false,        
         "bSort": false
         });
         t.on( 'order.dt search.dt', function () {

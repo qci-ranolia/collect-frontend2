@@ -16,31 +16,43 @@
   <div class="black-shadow"></div><!-- active-->
   <div class="col-lg-2 slider-fix p-0">
     <ul class="nav flex-column text-left pt-3" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link " [routerLink]="['/']">
+      <li class="nav-item d-block">
+        <a class="nav-link collapsed" [routerLink]="['/']">
           <i class="fa fa-home fa-6" aria-hidden="true"></i>
           <span>Home</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link " [routerLink]="['/form']" >
+      <li class="nav-item d-block">
+        <a class="nav-link collapsed" data-toggle="collapse" href="#formchi" aria-expanded="false" aria-controls="collapseExample">
           <i class="fa fa-file-text fa-6" aria-hidden="true"></i>
           <span>Forms</span>
+          <i class="fa fa-chevron-right float-right f80" aria-hidden="true" style=""></i>
         </a>
+        <ul class="pt-3 pb-3 collapse pl-3" id="formchi">
+          <li class="nav-item d-block pl-4 pr-5"><a class="nav-link collapsed border-0 pr-0 pb-2 pt-2 pl-4" [routerLink]="['/form']">Forms</a></li>
+          <li class="nav-item d-block pl-4 pr-5"><a class="nav-link collapsed border-0 pr-0 pb-2 pt-2 pl-4">Templates</a></li>
+        </ul>
       </li>
-      <li class="nav-item">
-        <a class="nav-link " [routerLink]="['/response']" >
+      <li class="nav-item d-block">
+        <a class="nav-link collapsed" [routerLink]="['/response']" >
           <i class="fa fa-pencil-square-o fa-6" aria-hidden="true"></i>
           <span>Response</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link " [routerLink]="['/org']" >
+      <li class="nav-item d-block">
+        <a class="nav-link collapsed" data-toggle="collapse" href="#orga" aria-expanded="false" aria-controls="collapseExample">
           <i class="fa fa-users fa-6" aria-hidden="true"></i>
           <span>Organisation</span>
-        </a></li>
+          <i class="fa fa-chevron-right float-right f80" aria-hidden="true" style=""></i>
+        </a>
+        <ul class="pt-3 pb-3 collapse pl-3" id="orga">
+          <li class="nav-item d-block pl-4 pr-5"><a class="nav-link collapsed border-0 pr-0 pb-2 pt-2 pl-4" [routerLink]="['/org']">User</a></li>
+          <li class="nav-item d-block pl-4 pr-5"><a class="nav-link collapsed border-0 pr-0 pb-2 pt-2 pl-4">Assessor</a></li>
+          <li class="nav-item d-block pl-4 pr-5"><a class="nav-link collapsed border-0 pr-0 pb-2 pt-2 pl-4">Teams</a></li>
+        </ul>
+      </li>
       <!--<li class="nav-item"><a class="nav-link " style="border-bottom:none;"></a></li>-->
-      <li class="nav-item p-1 pos-bl text-center">@2018, Quality Quancil of India | All Rights Reserved</li>
+      <li class="nav-item d-block p-1 pos-bl text-center">@2018, Quality Quancil of India | All Rights Reserved</li>
     </ul>
   </div>
   <div class="col-lg-10 col-sm-12 wrap-cont">

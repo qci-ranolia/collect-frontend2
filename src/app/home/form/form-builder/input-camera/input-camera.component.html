@@ -1,17 +1,62 @@
 <div class="form-group row m-0">
-  <!--<label for="staticEmail" class="col-sm-5 col-form-label text-left pt-3">  &nbsp; {{funID(id)}}. {{name}} </label>
-  <div class="col-6">
-    <input type="file" accept="image/*" capture="camera" class="form-control rounded-0 h" />
-  </div>-->
   <div class="col-sm-12 row m-0 p-0">
-    <label class="col-sm-10 col-form-label text-left p-0" style="font-weight:bold;"><span>{{funID(id)}}.</span>&nbsp;{{name}} </label>
-    <div class="col-2 text-right pr-0">
+    <label class="col-sm-7 col-form-label text-left p-0"><span class="nmbr">{{funID(id)}}</span>&nbsp;{{name}}</label>
+    <div class="col-sm-5 text-right pr-0">
       <!--<i class="fa fa-arrow-up text-primary p-3" aria-hidden="true" (click)='upElement(id)'></i>
       <i class="fa fa-arrow-down text-primary p-3" aria-hidden="true" (click)='downElement(id)'></i>-->
-      <i class="fa fa-trash-o text-danger fa-6 pt-2" aria-hidden="true" (click)='deleteElement(id)'></i> 
+      <p class="d-block float-right text-center mb-0 p-2"><i class="fa fa-trash-o text-danger fa-6" aria-hidden="true" (click)='deleteElement(id)'></i></p>
+      <p class="d-block float-right text-center mb-0 p-2"><i class="fa fa-camera-retro pr-2" aria-hidden="true"></i>&nbsp;Camera&nbsp;&nbsp;</p> 
     </div>
   </div>
-  <div class="col-sm-12 row ml-0 mr-0 mt-3 text-left">
-    <input type="file" accept="image/*" capture="camera" class="form-control col-sm-7 rounded-0 h" />
+  <div class="col-sm-12 row ml-0 mr-0 mb-3 text-left">
+      <input type="file" accept="image/*" capture="camera" class="form-control col-sm-7 rounded-0 h" />
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<style>
+  .file-group {
+  position:relative;
+  overflow:hidden;
+} .input-group {
+  display:flex;
+  align-items:stretch;
+  width:100%;
+} .input-group .form-control:not(:last-child) {
+  border-top-right-radius:0;
+  border-bottom-right-radius:0;
+} .file-group input[type="file"] {
+  position:absolute;
+  opacity:0;
+  z-index:-1;
+  width:20px;
+} .input-group-btn {
+  position:relative;
+  align-items:stretch;
+  font-size:0;
+  white-space:nowrap;
+} .input-group-btn:not(:first-child)>.btn-group:first-child, .input-group-btn:not(:first-child)>.btn:first-child{
+  margin-left:-1px;
+} .input-group-btn:not(:first-child)>.btn{
+  z-index:2;
+}.form-control[readonly]{
+  background-color:#fff;
+}
+</style>
+<div class="input-group file-group">
+  <input type="text" class="form-control file-value" placeholder="Choose file..." readonly="" />
+  <input type="file" multiple="">
+  <span class="input-group-btn">
+    <button class="btn btn-light file-browser" type="button"><i class="fa fa-upload"></i></button>
+  </span>
+</div>-->

@@ -48,11 +48,14 @@ export class AssessorComponent implements OnInit {
     if(this.flag) {
        $(document).ready(function() {
         var t = $('#example01').DataTable({
+
           "columnDefs": [ {
             "orderable": false,
             "targets": 0,
             "bSort": false
         } ],
+        "searching": false,
+        "paging": false,
         "bSort": false
         });
         t.on( 'order.dt search.dt', function () {

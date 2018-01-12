@@ -40,6 +40,8 @@ export class ResponseComponent implements OnInit {
             "targets": 0
         }],
         "order": [[ 1, 'asc' ]],
+        "searching": false,
+        "paging": false,
         aaSorting: [],
         });
         t.on( 'order.dt search.dt', function () {
