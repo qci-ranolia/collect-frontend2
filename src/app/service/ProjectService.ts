@@ -374,6 +374,18 @@ export class ProjectService {
     }
   }
 
+  updateTag(rID, tag) {
+
+    let formData = new FormData();
+    formData.append("rID",rID);
+    formData.append("tag",tag);
+    this.apiService.UpdateTag(formData).subscribe((res)=>{
+      console.log(res);
+    },(err)=>{
+      console.log(err);
+    })
+  }
+
   getTeams() {
     this.apiService.GetAllTeams().subscribe(res=> {
       // console.log(res);

@@ -24,6 +24,9 @@ export class ResponseTableComponent implements OnInit {
   resId: any;
   flaggedMsg : any ='';
   elementCid: any;
+  tagPos: any;
+  resIdForTag: any;
+  verifyAll: any = false;;
 
   constructor(private projectService:ProjectService, private activatedRoute: ActivatedRoute) {
 
@@ -72,8 +75,24 @@ export class ResponseTableComponent implements OnInit {
     console.log(res);
     this.detailPos = i;
     this.detailRes = res;
+    this.tagPos = i;
     this.saveFlag = false;
     $('#getDetails').modal("show");
+  }
+
+  changeTag(i,res) {
+    this.resIdForTag = res[1].value;
+    this.tagPos = i;
+
+    $("#changeTag").modal("show");
+  }
+
+  newTag(tag) {
+    console.log(this.resIdForTag);
+    console.log(this.tagPos);
+    this.response[this.tagPos][3].value = tag;
+    $("#changeTag").modal("hide");
+    this.projectService.updateTag(this.resIdForTag,tag);
   }
 
   flagCommentModal( arrayPos, resId, cid) {
@@ -89,7 +108,9 @@ export class ResponseTableComponent implements OnInit {
       if(this.response[this.detailPos][this.arrayPos].flagMsg) {
         this.flaggedMsg = this.response[this.detailPos][this.arrayPos].flagMsg;
       }
+
     } else {
+
       this.response[this.detailPos][this.arrayPos].flagged = true;
       this.flaggedMsg = '';
       this.saveFlag = true;
@@ -98,6 +119,24 @@ export class ResponseTableComponent implements OnInit {
       }
       $('#flagComment').modal("show");
     }
+
+    // Check for any responce is flagged or not
+    let tag = '';
+    for(let m of this.response[this.detailPos]) {
+      if(m.flagged) {
+        tag = "Pending"
+        break;
+      }
+    }
+    // Update status od flag to VERIFIED
+    if(tag !="Pending" && this.response[this.detailPos][3].value == "Pending") {
+      this.verifyAll = true;
+      this.saveFlag = false;
+    } else {
+      this.verifyAll = false;
+      this.saveFlag = true;
+    }
+
   }
 
   flagMsg() {
@@ -107,6 +146,7 @@ export class ResponseTableComponent implements OnInit {
   }
 
   saveFlagFun(){
+    this.response[this.detailPos][3].value = "Flagged";
     console.log(this.response[this.detailPos]);
     console.log(this.resId);
     this.projectService.flagResponse(this.resId, this.response[this.detailPos]);
@@ -121,4 +161,9 @@ export class ResponseTableComponent implements OnInit {
     this.sub1.unsubscribe();
   }
 
+  verifyTag() {
+
+    this.response[this.detailPos][3].value = "Verified";
+    this.projectService.updateTag(this.response[this.detailPos][1].value,"Verified");
+  }
 }

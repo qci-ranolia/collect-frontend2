@@ -4,9 +4,9 @@ import { EventEmitter, Injectable } from '@angular/core';
 @Injectable()
 export class APIService {
 
-  // projectURL: string = 'http://192.168.15.187:8000';
+  projectURL: string = 'http://192.168.15.187:8000';
   // projectURL: string = 'http://192.168.15.221:8000';
-  projectURL: string = 'http://qcitech.org:8083';
+  // projectURL: string = 'http://qcitech.org:8083';
 
   userID : any = "";
 
@@ -220,10 +220,16 @@ export class APIService {
     return this.http.post(this.projectURL+'/removeAssesorFromTeam', data , {headers: headers}).map(res=>res.json());
   }
 
+  UpdateTag(data) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(this.projectURL+'/changeResponseTag', data , {headers: headers}).map(res=>res.json());
+  }
+
   FlagResponse(rID, array) {
     let headers = new Headers();
     this.createAuthorizationHeader(headers);
-
+    
     array = JSON.stringify(array);
     array = JSON.parse(array);
     array = JSON.stringify(array);

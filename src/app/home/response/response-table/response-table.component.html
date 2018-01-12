@@ -45,12 +45,12 @@
                 <span *ngIf='temp.type != "camera" &&  temp.type != "file" && temp.type != "video" && temp.type!= "tag"' >{{temp.value}}</span>  <!-- normal T E X T   V A L U E  -->
 
                 <span *ngIf='temp.type == "tag" ' >                                                                                              <!-- T A G G E D  V A L U E  -->
-
-                  <span *ngIf='temp.value == ""' class="noTag" (click)="changeTag(i, temp)" > &nbsp; No-Tag &nbsp; </span>
-                  <span *ngIf='temp.value == "Flagged"'  class="flaggedTag" > &nbsp; {{temp.value}} &nbsp; </span>
-                  <span *ngIf='temp.value == "Pending"'  class="pendingTag" > &nbsp; {{temp.value}} &nbsp; </span>
-                  <span *ngIf='temp.value == "Verified"' class="verifiedTag"> &nbsp; {{temp.value}} &nbsp; </span>
-                  <span *ngIf='temp.value == "Archived"' class="archivedTag"> &nbsp; {{temp.value}} &nbsp; </span>
+                  <span style="display: none" >{{temp.value}} </span>
+                  <button *ngIf='temp.value == ""' class="noTag" (click)="changeTag(i, res)" > &nbsp;&nbsp; No-Tag &nbsp;&nbsp; </button>
+                  <button *ngIf='temp.value == "Flagged"'  class="flaggedTag" (click)="changeTag(i, res)" disabled> &nbsp; {{temp.value}} &nbsp; </button>
+                  <button *ngIf='temp.value == "Pending"'  class="pendingTag" (click)="changeTag(i, res)" disabled> &nbsp; {{temp.value}} &nbsp; </button>
+                  <button *ngIf='temp.value == "Verified"' class="verifiedTag"(click)="changeTag(i, res)" > &nbsp; {{temp.value}} &nbsp; </button>
+                  <button *ngIf='temp.value == "Archived"' class="archivedTag"(click)="changeTag(i, res)" > &nbsp;{{temp.value}}&nbsp; </button>
 
                 </span>
 
@@ -91,13 +91,13 @@
               <span *ngIf='temp.type != "camera" &&  temp.type != "file" && temp.type != "video" && temp.type !="tag" ' >{{temp.value}}</span>  <!-- normal T E X T   V A L U E  -->
 
 
-                <span *ngIf='temp.type == "tag" ' >                                                                                              <!-- T A G G E D  V A L U E  -->
+                <span *ngIf='temp.type == "tag" ' >                             <!-- T A G G E D  V A L U E  -->
 
-                  <span *ngIf='temp.value == ""' > &nbsp; {{temp.value}} &nbsp; </span>
-                  <span *ngIf='temp.value == "Flagged"'  class="flaggedTag" > &nbsp; {{temp.value}} &nbsp; </span>
-                  <span *ngIf='temp.value == "Pending"'  class="pendingTag" > &nbsp; {{temp.value}} &nbsp; </span>
-                  <span *ngIf='temp.value == "Verified"' class="verifiedTag"> &nbsp; {{temp.value}} &nbsp; </span>
-                  <span *ngIf='temp.value == "Archived"' class="archivedTag"> &nbsp; {{temp.value}} &nbsp; </span>
+                  <button *ngIf='temp.value == ""' class="noTag" (click)="changeTag(i, detailRes)" disabled> &nbsp;&nbsp; No-Tag &nbsp;&nbsp; </button>
+                  <button *ngIf='temp.value == "Flagged"'  class="flaggedTag" (click)="changeTag(i, detailRes)"  disabled> &nbsp; {{temp.value}} &nbsp; </button>
+                  <button *ngIf='temp.value == "Pending"'  class="pendingTag" (click)="changeTag(i, detailRes)"  disabled> &nbsp; {{temp.value}} &nbsp; </button>
+                  <button *ngIf='temp.value == "Verified"' class="verifiedTag"(click)="changeTag(i, detailRes)"  disabled> &nbsp; {{temp.value}} &nbsp; </button>
+                  <button *ngIf='temp.value == "Archived"' class="archivedTag"(click)="changeTag(i, detailRes)"  disabled> &nbsp;{{temp.value}}&nbsp; </button>
 
                 </span>
 
@@ -122,6 +122,7 @@
 
       </div>
       <div class="modal-footer">
+        <button *ngIf="verifyAll" type="button" class="btn btn-primary col-sm-3 pt-3 pb-3 verifiedTag" data-toggle="modal" (click)="verifyTag()" >Accept</button>
         <button *ngIf="saveFlag" type="button" class="btn btn-primary col-sm-3 pt-3 pb-3" data-toggle="modal" (click)="saveFlagFun()" >Save Flag</button>
         <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>
       </div>
@@ -151,21 +152,29 @@
 </div>
 <!-- Response comment modal endss here-->
 
-<!-- Flag comment modal starts here-->
-<div class="modal fade" id="unflagConform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Change Tag modal starts here-->
+<div class="modal fade" id="changeTag" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content" style="margin-top:200px; margin-left:100px">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Un-Flag Conform </h5>
+        <h5 class="modal-title" id="exampleModalLabel">Change Flag </h5>
       </div>
-      <div class="modal-body text-center" style="   overflow-y: auto">
-        <h4> Are you Sure to Un-Flag this element?</h4>
+      <div class="modal-body text-center" style="overflow-y: auto">
+        <div class="row justify-content-md-center" >
+
+          <div class="col-12" > <button class="noTag" style="padding:5px; margin : 8px" (click)="newTag('')" > &nbsp;&nbsp; No-Tag &nbsp;&nbsp; </button> </div>
+
+          <div class="col-12" > <button class="verifiedTag" style="padding:5px; margin : 8px " (click)="newTag('Verified')"> &nbsp; Verified &nbsp; </button> </div>
+
+          <div class="col-12" > <button class="archivedTag" style="padding:5px;  margin : 8px" (click)="newTag('Archived')"> &nbsp;Archived&nbsp; </button> </div>
+
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary col-sm-3 pt-3 pb-3" data-toggle="modal" (click)="unFlagFun()">Un-Flag</button>
-        <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal"  (click)="cancelFlag()">Close</button>
+        <!-- <button type="button" class="btn btn-primary col-sm-3 pt-3 pb-3" data-toggle="modal" (click)="unFlagFun()">Update</button> -->
+        <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal" >Close</button>
       </div>
     </div>
   </div>
 </div>
-<!-- Response comment modal endss here-->
+<!-- Change Tag comment modal endss here-->
