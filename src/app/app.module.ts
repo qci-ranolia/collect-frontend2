@@ -80,6 +80,7 @@ import { TeamsComponent } from './home/organisation/teams/teams.component';
     InputCameraComponent,
     InputVideoComponent,
     TeamsComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -91,6 +92,7 @@ import { TeamsComponent } from './home/organisation/teams/teams.component';
     RouterModule.forRoot(routes, { useHash: true }),
   ],
   providers: [
+
     AuthGuard,
     ProjectService,
     APIService,

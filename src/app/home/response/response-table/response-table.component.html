@@ -54,12 +54,12 @@
 
                 </span>
 
-                <span *ngIf='temp.type == "camera" ' > <img *ngIf='temp.value'  class="responseImg" src={{temp.value}} (click)='openImage(temp.value)' style="max-width:60px" /> <span style="display: none" >{{temp.value}}</span> </span>  <!-- I M A G E   V A L U E  -->
+                <span *ngIf='temp.type == "camera" ' > <img *ngIf='temp.value'  class="responseImg" src={{temp.value}} (click)='imageModal(temp.value)' style="max-width:60px" /> <span style="display: none" >{{temp.value}}</span> </span>  <!-- I M A G E   V A L U E  -->
 
                 <span *ngIf='temp.type == "video" ' > <video *ngIf='temp.value' class="responseImg" style="width:200px !important" controls> <source src={{temp.value}}> </video> <span style="display: none" >{{temp.value}}</span> </span>  <!-- V I D E O   V A L U E  -->
 
                 <span *ngIf='temp.type == "file" ' >
-                  <button  *ngIf='temp.value' type="button" class="btn btn-primary" (click)='openImage(temp.value)'>  <i class="fa fa-download" aria-hidden="true"></i>  </button>   <!-- F I L E   V A L U E  -->
+                  <button  *ngIf='temp.value' type="button" class="btn btn-primary" (click)='openImageNewTab(temp.value)'>  <i class="fa fa-download" aria-hidden="true"></i>  </button>   <!-- F I L E   V A L U E  -->
                   <span style="display: none" >{{temp.value}}</span>
                 </span>  <!-- F I L E   V A L U E  -->
 
@@ -101,12 +101,12 @@
 
                 </span>
 
-              <span *ngIf='temp.type == "camera" ' > <img *ngIf='temp.value'  class="" src={{temp.value}} (click)='openImage(temp.value)' style="max-width:230px" /> <span style="display: none" >{{temp.value}}</span> </span>  <!-- I M A G E   V A L U E  -->
+              <span *ngIf='temp.type == "camera" ' > <img *ngIf='temp.value'  class="" src={{temp.value}} (click)='imageModal(temp.value)' style="max-width:230px" /> <span style="display: none" >{{temp.value}}</span> </span>  <!-- I M A G E   V A L U E  -->
 
               <span *ngIf='temp.type == "video" ' > <video *ngIf='temp.value' class="" style="width:200px !important" controls> <source src={{temp.value}}> </video> <span style="display: none" >{{temp.value}}</span> </span>  <!-- V I D E O   V A L U E  -->
 
               <span *ngIf='temp.type == "file" ' >
-                <button  *ngIf='temp.value' type="button" class="btn btn-primary" (click)='openImage(temp.value)'>  <i class="fa fa-download" aria-hidden="true"></i>  </button>   <!-- F I L E   V A L U E  -->
+                <button  *ngIf='temp.value' type="button" class="btn btn-primary" (click)='openImageNewTab(temp.value)'>  <i class="fa fa-download" aria-hidden="true"></i>  </button>   <!-- F I L E   V A L U E  -->
                 <span style="display: none" >{{temp.value}}</span>
               </span>  <!-- F I L E   V A L U E  -->
             </div>
@@ -178,3 +178,40 @@
   </div>
 </div>
 <!-- Change Tag comment modal endss here-->
+
+<!-- Image modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width:750px; height:700px;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Image View</h5>
+      </div>
+      <div class="modal-body text-center" style="overflow-y: auto">
+        <div class="row justify-content-md-center" >
+
+          <div class="col-7" >
+              <img class="north" src={{imgUrl}} style="max-width:100%"/>
+          </div>
+          <div class="col-5" >
+            <div class="row" >
+              <div class="col-12" style="height:200px">
+                <hr>
+                <button type="button" class="btn btn-primary"  (click)="openImageNewTab(imgUrl)">Open in new tab </button>
+              </div>
+              <div class="col-12" style="height:100%; width:100%">
+                <iframe frameborder="0" style="border:0" style="width:100%; height:100%"
+                [src]='sanitizer.bypassSecurityTrustResourceUrl(mapSrc)' allowfullscreen>
+              </iframe>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal" >Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Image modal -->

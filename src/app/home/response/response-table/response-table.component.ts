@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { DomSanitizer } from '@angular/platform-browser';
 import {ProjectService} from '../../../service/ProjectService';
 declare var $: any;
+
+// API KEY = AIzaSyA7ncvWAZbtaSujgwstq290g_Y1VskhlXE
 
 @Component({
   selector: 'app-response-table',
@@ -26,9 +28,13 @@ export class ResponseTableComponent implements OnInit {
   elementCid: any;
   tagPos: any;
   resIdForTag: any;
-  verifyAll: any = false;;
+  verifyAll: any = false;
+  imgUrl: any;
+  lat: any = 28.6226475;
+  lng: any = 77.24714399999999;
+  mapSrc: any;
 
-  constructor(private projectService:ProjectService, private activatedRoute: ActivatedRoute) {
+  constructor(private projectService:ProjectService, private activatedRoute: ActivatedRoute, public sanitizer: DomSanitizer) {
 
     this.sub = this.projectService.emitFormResponse.subscribe(res=>{
       console.log(res);
@@ -42,6 +48,7 @@ export class ResponseTableComponent implements OnInit {
       this.display();
     });
 
+    this.mapSrc = "https://www.google.com/maps/embed/v1/place?key=AIzaSyA7ncvWAZbtaSujgwstq290g_Y1VskhlXE&q="+this.lat+","+this.lng+"";
   }
 
   ngOnInit() {
@@ -49,6 +56,10 @@ export class ResponseTableComponent implements OnInit {
         this.formId = params.id;
         this.projectService.getFormResponseArray(this.formId);
     });
+  }
+
+  photoURL() {
+    return this.mapSrc;
   }
 
   display() {
@@ -62,12 +73,28 @@ export class ResponseTableComponent implements OnInit {
               'csv', 'pdf',
           ]
         });
+
+        // Image Roation
+        var rotation = 0;
+        $.fn.rotate = function(degrees) {
+            $(this).css({'transform' : 'rotate('+ degrees +'deg)'});
+        };
+        $('.north').click(function() {
+            rotation += 90;
+            $('.north').rotate(rotation);
+        });
+
       });
     }
   }
 
-  openImage(url) {
+  openImageNewTab(url) {
     window.open(url, '_blank');
+  }
+
+  imageModal(url) {
+    this.imgUrl = url;
+    $('#imageModal').modal('show');
   }
 
   getDetails(i,res) {
