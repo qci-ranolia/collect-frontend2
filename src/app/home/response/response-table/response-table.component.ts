@@ -156,7 +156,7 @@ export class ResponseTableComponent implements OnInit {
       }
     }
     // Update status od flag to VERIFIED
-    if(tag !="Pending" && this.response[this.detailPos][3].value == "Pending") {
+    if(tag !="Pending" && (this.response[this.detailPos][3].value == "Pending" || this.response[this.detailPos][3].value == "Flagged")) {
       this.verifyAll = true;
       this.saveFlag = false;
     } else {
@@ -169,7 +169,6 @@ export class ResponseTableComponent implements OnInit {
   flagMsg() {
     // console.log(this.flaggedMsg);
     this.response[this.detailPos][this.arrayPos].flagMsg = this.flaggedMsg+"";
-
   }
 
   saveFlagFun(){
@@ -189,8 +188,8 @@ export class ResponseTableComponent implements OnInit {
   }
 
   verifyTag() {
-
     this.response[this.detailPos][3].value = "Verified";
     this.projectService.updateTag(this.response[this.detailPos][1].value,"Verified");
+    $('#getDetails').modal("hide");
   }
 }

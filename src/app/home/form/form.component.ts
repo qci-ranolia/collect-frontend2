@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {ProjectService} from '../../service/ProjectService';
+import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
+declare var $: any;
 
 @Component({
   selector: 'app-form',
@@ -9,6 +11,7 @@ import {ProjectService} from '../../service/ProjectService';
 })
 export class FormComponent implements OnInit {
 
+  ruleOptions: IMultiSelectOption[];
   formArray = [];
   templateArray = [];
   fArray : any;
@@ -23,6 +26,7 @@ export class FormComponent implements OnInit {
   target: any;
   ruleTempTail: any;
   ruleTarget: any;
+  ruleTargetM: any;
   ruleID: any;
   ruleName: any;
   ruleFormQuestion: any;
@@ -30,6 +34,7 @@ export class FormComponent implements OnInit {
   formCIDWithRule: any;
   satisfyAll = false;
   files : any;
+  multiOption: any;
 
   constructor( private projectService: ProjectService, private router: Router ){
     this.fArray = this.projectService.emitFormArray.subscribe((res)=>{
@@ -69,7 +74,26 @@ export class FormComponent implements OnInit {
   }
 
   getVal() {
-    // console.log(this.ruleElement);
+
+    if(this.ruleElement.option) {
+      if(this.ruleElement.option.length){
+        this.ruleTarget = '';
+        this.multiOption = true;
+        this.ruleOptions = [];
+        for(let i = 0; i< this.ruleElement.option.length; i++) {
+            this.ruleOptions.push({id:(i+1), name:this.ruleElement.option[i]});
+        }
+      }
+    } else {
+      this.multiOption = false;
+      this.ruleTarget = '';
+    }
+
+    // console.log(this.ruleOptions);
+    //
+    // this.ruleOptions = [{ id: 1, name: 'Option 1' },
+    //         { id: 2, name: 'Option 2' },];
+
     if(this.ruleElement.option) {
       this.hint = this.ruleElement.option.toString();
     }
@@ -101,9 +125,23 @@ export class FormComponent implements OnInit {
     let cid = now.getTime() +""+ Math.floor(1000 + Math.random() * 9000);
     let newRule = {cid:cid, name: this.ruleName, elementName: this.ruleElement.name,elementCid: this.ruleElement.cid, elementType: this.ruleElement.type, elementValue: this.ruleTarget.trim(), condition: this.ruleCondition, tempCid: tempCid, tempName: tempName, ruleFormQuestion: this.ruleFormQuestion, satisfyAll: this.satisfyAll};
     this.projectService.addNewRule(this.formCIDWithRule, newRule);
+    $('#addRules').modal('hide');
+    $('#rules').modal('hide');
+  }
 
+  onChangeRuleOption() {
 
+    console.log(this.ruleOptions);
+    this.ruleTarget = "";
+    console.log(this.ruleTargetM);
 
+    for(let i = 0; i<this.ruleTargetM.length; i++) {
+      this.ruleTarget +=this.ruleOptions[(this.ruleTargetM[i]-1)].name+",";
+    }
+
+    console.log(this.ruleTarget);
+    this.ruleTarget = this.ruleTarget.slice(0, -1 );
+    console.log(this.ruleTarget);
   }
 
   syncCollectFrom($event) {

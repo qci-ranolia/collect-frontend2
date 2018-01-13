@@ -17,6 +17,8 @@ mv /var/lib/jenkins/workspace/collect-frontend/dist/ /home/ubuntu/dist_backups/c
 
 mv /var/lib/jenkins/workspace/collect-frontend-pipeline/dist /var/lib/jenkins/workspace/collect-frontend/
 
+docker stop $DOCKERNAME
+
 docker rm $DOCKERNAME
 
 docker rmi $IMAGENAME

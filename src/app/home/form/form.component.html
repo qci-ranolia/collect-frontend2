@@ -125,10 +125,15 @@
 
         <label class="row ml-0 mr-0 col-12 pl-0 pr-0">
           <span class="col-4 pl-0 pr-0 pt-2 text-left">3. Value :</span>
-          <input type="text" name="" value="" [(ngModel)]='ruleTarget' class="col-4 form-control" />
-        <br>
-        <i *ngIf='hint' > hint: {{hint}}</i><!--css not Defined yet-->
-        <i>(* If multiple, saparated by commas)</i>
+
+          <input *ngIf="!multiOption" type="text" name="" value="" [(ngModel)]='ruleTarget' class="col-4 form-control" />
+
+          <ss-multiselect-dropdown *ngIf="multiOption" [options]="ruleOptions" [(ngModel)]="ruleTargetM" (ngModelChange)="onChangeRuleOption($event)"></ss-multiselect-dropdown>
+
+          <br>
+          <!-- <i *ngIf='hint' > hint: {{hint}}</i>
+          <! css not Defined yet-->
+          <!-- <i>(* If multiple, saparated by commas)</i> -->
         </label>
 
         <input type="checkbox" class="form-check-input" [checked]="satisfyAll" (change)='satisfyAllCondition()'> Satisfy all conditions (Only if multiple!)
@@ -150,7 +155,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary col-sm-3 pt-3 pb-3" (click)='conformRule()'  data-dismiss="modal" >Create rule</button>
+        <button type="button" class="btn btn-primary col-sm-3 pt-3 pb-3" (click)='conformRule()'  >Create rule</button>
         <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>
       </div>
     </div>
