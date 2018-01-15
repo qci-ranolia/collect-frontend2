@@ -9,6 +9,7 @@ import "./dash.js";
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
+
 export class DashboardComponent implements OnInit {
 
   sub1: any;
@@ -34,7 +35,7 @@ export class DashboardComponent implements OnInit {
        this.showInfo(res);
      });
   }
-
+  
   ngOnInit() {
     // this.showCustom();
   }

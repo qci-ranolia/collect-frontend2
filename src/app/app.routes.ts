@@ -3,8 +3,10 @@ import { Routes } from '@angular/router';
 import { AuthGuard } from './service/ZAuthGuard';
 import { HomeComponent } from './home/home.component';
 import { FormComponent } from './home/form/form.component';
+import { TemplatesComponent } from './home/form/templates/templates.component';
 import { FormBuilderComponent } from './home/form/form-builder/form-builder.component';
 import { AssessorComponent } from './home/organisation/assessor/assessor.component';
+import { TeamsComponent } from './home/organisation/teams/teams.component';
 import { UserComponent } from './home/organisation/user/user.component';
 import { ProjectComponent } from './home/project/project.component';
 import { DashboardComponent } from './home/dashboard/dashboard.component';
@@ -18,9 +20,13 @@ export const routes: Routes = [
   { path: '', component:  DashboardComponent, children: [
     { path: '', component: ProjectComponent, canActivate: [AuthGuard]},
     { path: 'form', component: FormComponent, canActivate: [AuthGuard]},
+    { path: 'templates', component: TemplatesComponent, canActivate: [AuthGuard]},
     { path: 'formBuilder', component:  FormBuilderComponent, canActivate: [AuthGuard]},
     { path: 'response', component: ResponseComponent, canActivate: [AuthGuard]},
     { path: 'org', component: OrganisationComponent, canActivate: [AuthGuard]},
+    { path: 'user', component: UserComponent, canActivate: [AuthGuard]},
+    { path: 'teams', component: TeamsComponent, canActivate: [AuthGuard]},
+    { path: 'assessor', component: AssessorComponent, canActivate: [AuthGuard]},
     { path: 'resTable', component: ResponseTableComponent, canActivate: [AuthGuard]},
     { path: 'proj', component: ProjectComponent, canActivate: [AuthGuard]},
   ]},

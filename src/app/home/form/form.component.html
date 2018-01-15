@@ -1,17 +1,12 @@
-<div class="pos-abso-tr col-sm-11 text-right">
-  <button type="button" class="btn btn-primary mb-0 col-sm-5 col-md-4 col-lg-2 pt-3 pb-3 float-right mt-4" (click)='new()'>+ New</button>
-  <input type="text" class="form-control col-sm-9 col-md-9 col-lg-9 mr-4 mt-4 float-right pt-3 pb-3" placeholder="Search" />
+<div class="col-sm-12 text-right pt-3 pl-0 pr-0"><!--pos-abso-tr-->
+  <button type="button" class="btn btn-primary mb-0 col-sm-5 col-md-4 col-lg-2 pt-3 pb-3 float-right" (click)='new()'>+ New</button>
+  <input type="text" class="form-control col-sm-10 col-md-10 col-lg-10 float-right pt-3 pb-3" placeholder="Search Forms" />
 </div>
-<div class="container-fluid text-center mt-3" style="min-height:85vh"><!--background:#fff; box-shadow:0 1px 1px #a9a8a9;-->
-  <ul class="nav nav-tabs justify-content-center">
-    <li class="nav-item"><a class="nav-link active" data-toggle="tab" role="tab" href="#form">Forms</a></li>
-    <li class="nav-item"><a class="nav-link " data-toggle="tab" role="tab" href="#template">Templates</a></li>
-  </ul>
+<div class="container-fluid text-center mt-0 pr-0 pl-0" style="min-height:93vh"><!--background:#fff; box-shadow:0 1px 1px #a9a8a9;-->
   <div class="tab-content">
-    <div class="tab-pane active" id="form" role="tabpanel" >
-      <br />
-      <div class="row text-left ofy" style="height:73vh;">
-        <div *ngFor='let form of formArray; let i = index' class="col-sm-6" style="margin-bottom:30px">
+    <div class="tab-pane active" role="tabpanel"><br /><br /><br />
+      <div class="row text-left ofy col-sm-12 pl-0 pr-0 ml-0 mr-0" style="height:82vh;">
+        <div *ngFor='let form of formArray; let i = index' class="col-sm-6 p-2" style="margin-bottom:7px;">
           <div class="card cbx">
             <div class="card-block p-0">
               <div class="col-sm-12 pl-4 pt-3 mt-2 pb-2 bb">
@@ -23,7 +18,7 @@
               </div>
               <!--<div class="col-sm-12 row ml-0 mr-0 mb-3 pl-4 pr-4"></div>-->
               <div class="col-12 pb-0 mt-3 ml-2 mb-0">
-                <button class="btn btn-primary mr-2 mb-2" type="button" [routerLink]="['../formBuilder']" [queryParams]="{formID : form.Details.cid }" >View form</button>
+                <button class="btn btn-primary mr-2 mb-2" type="button" [routerLink]="['../formBuilder']" [queryParams]="{formID : form.Details.cid }">View form</button>
                 <button class="btn btn-primary bg-white mr-2 mb-2" (click)='rule(form.Rules, form.Details.cid, form.Elements)' type="button" data-toggle="modal" data-target="#rules">Rule/s</button>
                 <button class="btn btn-primary bg-white mr-2 mb-2" (click)='getResponse(form.Details.cid)' type="button" data-toggle="modal" data-target="#rules">{{form.Details.responses}} Responses </button>
                 <!--<a class="card-link col-6 d-inline-block pt-2 float-right text-right">-->
@@ -43,32 +38,9 @@
         <br />
         <!--<button type="button" class="btn btn-primary mb-5 col-sm-5 col-md-4 col-lg-2 pt-3 pb-3" (click)='sync()'><i class="fa fa-refresh" aria-hidden="true"></i> Sync</button>-->
       </div>
-      <button type="button" class="btn btn-primary bg-white mb-0 mt-4 float-left" (click)='syncCollectFrom($event)'><i class="fa fa-refresh" aria-hidden="true"></i> 1. Sync Collect Form</button>
+      <button type="button" class="btn btn-primary bg-white mb-0 mt-2 float-left ml-2" (click)='syncCollectFrom($event)'><i class="fa fa-refresh" aria-hidden="true"></i> 1. Sync Collect Form</button>
       &nbsp;
-      <button type="button" class="btn btn-primary bg-white mb-0 mt-4 ml-3 float-left" (click)='syncCollectFromRule($event)'><i class="fa fa-refresh" aria-hidden="true"></i> 2. Sync Collect Rules</button>
-    </div>
-    <div class="tab-pane" id="template" role="tabpanel">
-      <br />
-      <div class="row justify-content-center ofy" style="height:72vh;">
-        <div *ngFor='let temp of templateArray; let i = index' class="col-sm-6" style="margin-bottom:30px;">
-          <div class="card cbx">
-            <div class="card-block p-0 text-left">
-              <div class="col-sm-12 pl-4 pt-3 mt-2 pb-2 bb">
-                <h5 class="card-title">{{temp.Details.name}}</h5>
-                <h4 class="card-subtitle mb-2 text-muted">Some text here...</h4>
-              </div>
-              <div class="col-sm-12 pl-2 pr-2 pt-5 pb-5 row m-0">
-                <p class="card-text col-sm-12">{{temp.Details.desc}}</p>
-              </div>
-              <div class="col-sm-12 row ml-0 mr-0 mb-3 p-1">
-                <div class="col-8 pr-0">
-                  <a class="card-link" [routerLink]="['../formBuilder']" [queryParams]="{templateID : temp.Details.cid }">View template</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <button type="button" class="btn btn-primary bg-white mb-0 mt-2 ml-3 float-left" (click)='syncCollectFromRule($event)'><i class="fa fa-refresh" aria-hidden="true"></i> 2. Sync Collect Rules</button>
     </div>
   </div>
 </div>

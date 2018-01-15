@@ -1,16 +1,21 @@
 <div class="pos-abso-tr col-sm-11 text-right">
-  <button type="button" class="btn btn-primary mb-0 col-sm-5 col-md-4 col-lg-2 pt-3 pb-3 float-right mt-4" data-toggle="modal" data-target="#exampleModal">Add element</button>
+  
 </div>
 <div class="container form-container text-left col-sm-12 mt-0">
   <div class="row justify-content-center mt-3">
     <div class="col-md-12">
-      <h5>{{name}}</h5>
-      <p>{{project_name}}</p>
-      <p>project_desc</p>
-      <div *ngIf='!displayPublish' class="form-build-design col-sm-12 p-5 bg-white" style="height:72vh;">
+      <div class="d-inline">
+        <h5 class="d-inline-block pt-1">{{name}}</h5><br />
+        <p class="d-inline-block">{{project_name}}</p><br />
+        <p class="d-inline-block">project_desc</p>
+      </div>
+      <div class="d-inline ml-4">
+        <button type="button" class="btn btn-primary col-sm-4 col-md-3 col-lg-1 pt-2 pb-2 d-inline" data-toggle="modal" data-target="#exampleModal">Add element</button>
+      </div>
+      <div *ngIf='!displayPublish' class="form-build-design col-sm-12 p-5 bg-white mt-3" style="height:73vh;">
         <p class="text-center p-5 m-5">Form elements will be displayed here!</p>
       </div>
-      <div class="form-build-design col-sm-12 ofy" style="max-height:75vh;padding-left:1.8%">
+      <div class="form-build-design col-sm-12 ofy mt-3" style="max-height:73vh;padding-left:1.8%">
         <div class="" *ngFor='let json of jsonArray; let i = index'>
           <div class="col-sm-5 pl-3 mb-3 text-left" *ngIf="json.type == 'location'">
             <input type="checkbox" name="checkbox" checked disabled />&nbsp;Form submition location will be shared by default&nbsp;<i class="fa fa-trash-o text-danger fa-6 pt-2" style="position:static;" aria-hidden="true" (click)='deleteElement(i)' ></i>

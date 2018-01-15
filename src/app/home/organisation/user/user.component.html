@@ -1,98 +1,101 @@
-<div class="pos-abso-tr col-sm-9 text-right">
-  <button type="button" class="btn btn-primary col-sm-3 col-md-2 pt-3 pb-3 mt-4" (click)='user()'>+ User</button>
+<div class="col-sm-12 text-right pt-3 pl-0 pr-0"><!--pos-abso-tr-->
+  <button type="button" class="btn btn-primary col-sm-3 col-md-2 pt-3 pb-3 float-right" (click)='user()'>+ User</button>
+  <input type="text" class="form-control col-sm-10 col-md-10 col-lg-10 float-right pt-3 pb-3" placeholder="Search Users..." />
 </div>
-<div class="container-fluid mt-4 pb-3 text-left p-0">
-    <table *ngIf='flag' id="example" class="table table-striped bg-white mt-5 brd-def" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th class="header-1"></th>
-                <th>User</th>
-                <th>Email</th>
-                <th>Project</th>
-                <th>Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor='let res of users; let i = index'>
-                <td class="text-center">{{i+1}}</td>
-                <td><i class="fa fa-user fa-6 text-center" aria-hidden="true"></i>{{res.name}}</td>
-                <td>{{res.email}}</td>
-                <td>
-                  <button type="button" class="btn btn-primary bg-white tt1" (click)='showProjectModal(res.name, res.cid, res.project)' >
-                    {{calProject(res.project)}} Project/s
-                    <span class="tt2" > {{ &nbsp; projectName(res.project) &nbsp; }} </span>
-                  </button>
-                </td>
-                <td>
-                  <button type="button" class="btn btn-primary bg-white"><i class="fa fa-eye p-1 text-center" aria-hidden="true"></i>{{res.details}}</button>
-                </td>
-            </tr>
-    </tbody>
-  </table>
-</div>
+<div class="tab-pane active" role="tabpanel">
+  <div class="container-fluid mt-0 pb-3 text-left p-0">
+    <table *ngIf='flag' id="example" class="table table-striped bg-white mt-0 brd-def" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th class="header-1"></th>
+          <th>User</th>
+          <th>Email</th>
+          <th>Project</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let res of users; let i = index'>
+          <td class="text-center">{{i+1}}</td>
+          <td><i class="fa fa-user fa-6 text-center" aria-hidden="true"></i>{{res.name}}</td>
+          <td>{{res.email}}</td>
+          <td>
+            <button type="button" class="btn btn-primary bg-white tt1" (click)='showProjectModal(res.name, res.cid, res.project)' >
+              {{calProject(res.project)}} Project/s
+              <span class="tt2" > {{ &nbsp; projectName(res.project) &nbsp; }} </span>
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-primary bg-white"><i class="fa fa-eye p-1 text-center" aria-hidden="true"></i>{{res.details}}</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
 
-<!-- Add user model -->
-<div class="modal fade" id="newUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document" style="max-width:500px;">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add new User</h5>
-      </div>
-      <div class="modal-body text-center" style="height:300px;overflow-y:auto">
-        <div class="row justify-content-center">
-          <label class="row ml-0 mr-0 mb-3 col-sm-12">
-            <span class="col-4 text-left pt-2 pl-0">Assessor Name :</span>
-            <input type="text" name="" value="" [(ngModel)]='userName' placeholder="User Name" class="col-7 form-control pt-2 pb-2" />
-          </label>
-          <label class="row ml-0 mr-0 mb-3 col-sm-12">
-            <span class="col-4 text-left pt-2 pl-0">Assessor Name :</span>
-            <select [(ngModel)]="projectAssociate" class="col-7 form-control mb-5" >
-              <option *ngFor='let opt of projectArray; let i=i' [ngValue]=opt>{{opt.name}}</option>
-            </select>
-          </label>          
+  <!-- Add user model -->
+  <div class="modal fade" id="newUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="max-width:500px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add new User</h5>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary col-sm-3 pt-3 pb-3" data-toggle="modal" data-target="#addRules" (click)='saveUser()'>Add user</button>
-        <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>
+        <div class="modal-body text-center" style="height:300px;overflow-y:auto">
+          <div class="row justify-content-center">
+            <label class="row ml-0 mr-0 mb-3 col-sm-12">
+              <span class="col-4 text-left pt-2 pl-0">Assessor Name :</span>
+              <input type="text" name="" value="" [(ngModel)]='userName' placeholder="User Name" class="col-7 form-control pt-2 pb-2" />
+            </label>
+            <label class="row ml-0 mr-0 mb-3 col-sm-12">
+              <span class="col-4 text-left pt-2 pl-0">Assessor Name :</span>
+              <select [(ngModel)]="projectAssociate" class="col-7 form-control mb-5" >
+                <option *ngFor='let opt of projectArray; let i=i' [ngValue]=opt>{{opt.name}}</option>
+              </select>
+            </label>          
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary col-sm-3 pt-3 pb-3" data-toggle="modal" data-target="#addRules" (click)='saveUser()'>Add user</button>
+          <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<!-- Add user model -->
+  <!-- Add user model -->
 
-<!-- User Project model -->
-<div class="modal fade" id="userProjectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Associated projects for {{userProjectName}}</h5>
-      </div>
-      <div class="modal-body text-center" style="height:300px; overflow-y: auto">
-        <div class="row col-sm-12 m-0 text-left">
-          <div class="col-sm-6 ofy br" style="height:26vh;">
-            <h5 class="mb-3">{{userProjectName}} is  assigned with  project/s :</h5>
-            <div class="col-12 p-0" *ngFor="let pro of userProjectArray; let i = index">
-              <p>
-                <span class="d-inline-block pt-1 col-sm-10">{{i+1}}. {{pro.name}}</span>
-                <i class="fa fa-trash-o fa-6 text-center text-danger float-right" aria-hidden="true" (click)='deleteProjectUserArray(pro.cid)'></i>
-              </p>
+  <!-- User Project model -->
+  <div class="modal fade" id="userProjectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Associated projects for {{userProjectName}}</h5>
+        </div>
+        <div class="modal-body text-center" style="height:300px; overflow-y: auto">
+          <div class="row col-sm-12 m-0 text-left">
+            <div class="col-sm-6 ofy br" style="height:26vh;">
+              <h5 class="mb-3">{{userProjectName}} is  assigned with  project/s :</h5>
+              <div class="col-12 p-0" *ngFor="let pro of userProjectArray; let i = index">
+                <p>
+                  <span class="d-inline-block pt-1 col-sm-10">{{i+1}}. {{pro.name}}</span>
+                  <i class="fa fa-trash-o fa-6 text-center text-danger float-right" aria-hidden="true" (click)='deleteProjectUserArray(pro.cid)'></i>
+                </p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <h5 class="mb-3">Assign new project :</h5>
+              <select [(ngModel)]="projectAs" class="col-8 form-control mb-5 text-left" >
+                <option *ngFor='let opt of projectArray; let i=i' [ngValue]=opt  >{{opt.name}}</option>
+              </select>
             </div>
           </div>
-          <div class="col-sm-6">
-            <h5 class="mb-3">Assign new project :</h5>
-            <select [(ngModel)]="projectAs" class="col-8 form-control mb-5 text-left" >
-              <option *ngFor='let opt of projectArray; let i=i' [ngValue]=opt  >{{opt.name}}</option>
-            </select>
-          </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary col-sm-3 pt-3 pb-3" data-toggle="modal" (click)='assignNewProject()'>Assign</button>
-        <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary col-sm-3 pt-3 pb-3" data-toggle="modal" (click)='assignNewProject()'>Assign</button>
+          <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
+  <!--User Project model-->
 </div>
-<!--User Project model-->

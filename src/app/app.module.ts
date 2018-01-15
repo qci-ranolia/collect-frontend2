@@ -46,6 +46,7 @@ import { CustomOption } from './home/dashboard/ng2-toastr-custom-option';
 import { InputCameraComponent } from './home/form/form-builder/input-camera/input-camera.component';
 import { InputVideoComponent } from './home/form/form-builder/input-video/input-video.component';
 import { TeamsComponent } from './home/organisation/teams/teams.component';
+import { TemplatesComponent } from './home/form/templates/templates.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { TeamsComponent } from './home/organisation/teams/teams.component';
     InputCameraComponent,
     InputVideoComponent,
     TeamsComponent,
+    TemplatesComponent,
   ],
   imports: [
     BrowserModule,

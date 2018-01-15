@@ -190,7 +190,7 @@ export class FormBuilderComponent implements OnInit {
     this.projectService.incFromCount(this.projectAssociate.cid);
     this.projectService.pushIntoForm(dataToPush);
     this.router.navigate(['/form']);
-
+    
   }
 
   conformTemp() {
