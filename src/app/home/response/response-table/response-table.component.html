@@ -1,50 +1,41 @@
-<style >
-  .responseImg{
-    max-height: 60px;
-    border-radius: 3px;
-  }
-
-  table.dataTable thead .sorting,
-  table.dataTable thead .sorting_asc,
-  table.dataTable thead .sorting_desc {
-      background : none;
-  }
+<style> .responseImg{ max-height: 60px; border-radius: 3px; }
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc {
+  background : none; }
 </style>
-    <div class="container-fluid mt-4 pb-3 text-center">        
-      <div *ngIf='!flag' class="pt-5 mt-5">
-        <h4 class="pt-5 mt-5"> Just a moment please....</h4>
-      </div>
-      <div class="" style=" width:100%; overflow-x:auto;">
-        <table *ngIf='flag' id="exampleFormResponse" class="display table table-striped bg-white mt-5 brd-def" cellspacing="0" >
-        <thead>
-            <tr>
-                <th class="header-1"></th>
-                <th *ngFor="let head of header" style="white-space:nowrap;text-overflow:ellipsis;">&nbsp;  {{head}} &nbsp;</th>
-                <th>Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor='let res of response; let i = index'>
-                <td>{{i+1}}</td>
-                <td *ngFor = 'let temp of res; let j = index' >
-
-                  <span *ngIf='temp.type != "camera" &&  temp.type != "file" && temp.type != "video" ' >{{temp.value}}</span>  <!-- normal T E X T   V A L U E  -->
-
-                  <span *ngIf='temp.type == "camera" ' > <img *ngIf='temp.value'  class="responseImg" src={{temp.value}} (click)='openImage(temp.value)' style="max-width:60px" /> <span style="display: none" >{{temp.value}}</span> </span>  <!-- I M A G E   V A L U E  -->
-
-                  <span *ngIf='temp.type == "video" ' > <video *ngIf='temp.value' class="responseImg" style="width:200px !important" controls> <source src={{temp.value}}> </video> <span style="display: none" >{{temp.value}}</span> </span>  <!-- V I D E O   V A L U E  -->
-
-                  <span *ngIf='temp.type == "file" ' >
-                    <button  *ngIf='temp.value' type="button" class="btn btn-primary" (click)='openImage(temp.value)'>  <i class="fa fa-download" aria-hidden="true"></i>  </button>   <!-- F I L E   V A L U E  -->
-                    <span style="display: none" >{{temp.value}}</span>
-                  </span>  <!-- F I L E   V A L U E  -->
-
-                </td>
-                <td>
-                    <button type="button" class="btn btn-primary bg-white" >  Details  </button>
-                </td>
-            </tr>
-    </tbody>
+<div class="container-fluid mt-4 pb-3 text-center">        
+  <div *ngIf='!flag' class="pt-5 mt-5">
+    <h4 class="pt-5 mt-5"> Just a moment please....</h4>
+  </div>
+  <div class="" style=" width:100%; overflow-x:auto;">
+    <table *ngIf='flag' id="exampleFormResponse" class="display table table-striped bg-white mt-5 brd-def" cellspacing="0" >
+      <thead>
+        <tr>
+          <th class="header-1"></th>
+          <th *ngFor="let head of header" style="white-space:nowrap;text-overflow:ellipsis;">&nbsp;{{head}}&nbsp;</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let res of response; let i = index' class="toggle{{i+1}}">
+          <td>{{i+1}}</td>
+          <td *ngFor = 'let temp of res; let j = index'>
+            <span *ngIf='temp.type != "camera" &&  temp.type != "file" && temp.type != "video" '>{{temp.value}}</span>  <!-- normal T E X T   V A L U E  -->
+            <span *ngIf='temp.type == "camera" '><img *ngIf='temp.value'  class="responseImg" src={{temp.value}} (click)='openImage(temp.value)' style="max-width:60px" /> <span style="display: none" >{{temp.value}}</span> </span>  <!-- I M A G E   V A L U E  -->
+            <span *ngIf='temp.type == "video" '><video *ngIf='temp.value' class="responseImg" style="width:200px !important" controls> <source src={{temp.value}}> </video> <span style="display: none" >{{temp.value}}</span> </span>  <!-- V I D E O   V A L U E  -->
+            <div *ngIf='temp.type == "file" '>
+              <button *ngIf='temp.value' type="button" class="btn btn-primary" (click)='openImage(temp.value)'>
+                <i class="fa fa-download" aria-hidden="true"></i>
+              </button><!--FILE VALUE-->
+              <span style="display: none" >{{temp.value}}</span>
+            </div><!-- FILE VALUE-->
+          </td>
+          <td>
+            <button type="button" class="btn btn-primary bg-white">Details</button>
+          </td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </div>

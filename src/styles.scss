@@ -209,6 +209,16 @@ button:focus
   width:$col-2;
   float:$float-left;
 }
+.cl4
+{
+  width:$col-4;
+  float:$float-left;
+}
+.cl6
+{
+  width:$col-6;
+  float:$float-left;
+}
 .cl8
 {
   width:$col-8;
@@ -262,7 +272,8 @@ body
 }
 ::-webkit-scrollbar
 {
-	width: 7px;
+  width:7px;
+  height:7px;
 	background-color:$bcf5;
 }
 ::-webkit-scrollbar-thumb
