@@ -17,20 +17,40 @@ export class FormModalComponent implements OnInit {
   rangeFrom: any;
   rangeTo: any;
   option: any=[];
+  optionArray: any=[];
   value: any;
   values: any=[];
   resultArray = [];
   fileTypes= ['.png','.doc','.pdf','.mp3'];
+  opti: any ='';
   @Output() newElement = new EventEmitter<any>();
+
 
   constructor(private projectService: ProjectService) {}
 
   ngOnInit() {}
 
+  addInOptionArray() {
+    console.log(this.opti);
+    console.log(this.optionArray);
+    this.optionArray.push(this.opti);
+    this.opti = "";
+  }
+
+  truncate() {
+    this.opti = "";
+  }
+
+  spliceOptionArray(id: any) {
+    this.optionArray.splice(id,1);
+  }
+
   inputType(type:any) {
     this.required = false ;  // for resetting the checkbox
     this.json.type = type;
     this.value = "";
+    this.opti = "";
+    this.optionArray = [];
   }
 
   checked() {
@@ -106,20 +126,21 @@ export class FormModalComponent implements OnInit {
       console.log(this.option);
       this.option = this.option;
       this.json.value = this.value;
-      this.json.option = this.option.split(',');
+      this.json.option = this.optionArray;
+
     }
 
     if(this.json.type === "checkbox" ) {
-      // console.log('type : checkbox');
-      // console.log(this.values);
-      // console.log(this.option);
+
       if(this.values!=[] && this.values!=""){
         this.json.values = this.values.split(',');
         this.json.value = this.json.values;
       }
-      if(this.option!=[] && this.option!="") {
-        this.json.option = this.option.split(',');
-      }
+      // if(this.option!=[] && this.option!="") {
+      //   this.json.option = this.option.split(',');
+      // }
+      this.json.option = this.optionArray;
+
       if( this.json.value == undefined || this.json.value == "") {
         this.json.value = [];
       }
@@ -159,6 +180,8 @@ export class FormModalComponent implements OnInit {
       this.json.values = "";
       this.json.option = "";
 
+      this.opti="";
+      this.optionArray = [];
       this.value = "";
       this.values = [];
       this.option = [];

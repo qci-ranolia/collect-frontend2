@@ -1,0 +1,5 @@
+ss-multiselect-dropdown div ul li .dropdown-item.active, .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #acd8ff !important;
+}
