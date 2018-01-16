@@ -8,11 +8,11 @@
       <thead>
         <tr>
           <th class="header-1"></th>
-          <th>Name</th>
-          <th>Forms</th>
-          <th>Members</th>
-          <th>Manager</th>
-          <th>Details</th>
+          <th class="text-left">Name</th>
+          <th class="text-left">Forms</th>
+          <th class="text-left">Members</th>
+          <th class="text-left">Manager</th>
+          <th class="text-left">Details</th>
         </tr>
       </thead>
       <tbody>
@@ -29,7 +29,7 @@
             <button type="button" class="btn btn-primary tt1" (click)='showManagerModal(res.name, res.cid, res.tl)' >{{calForms(res.tl)}} Manager/s</button>
           </td>
           <td>
-            <button type="button" class="btn btn-primary ">  {{res.details}}  </button>
+            <button type="button" class="btn btn-primary ">{{res.details}}</button>
           </td>
         </tr>
       </tbody>
@@ -135,18 +135,14 @@
         </div>
         <div class="modal-body text-center" style="height:300px; overflow-y: auto">
             <div class="row justify-content-center" >
-              <!-- <input type="text" name="" value="" [(ngModel)]='teamName' placeholder="Team Name" class="col-8 form-control mb-5" disabled/>
-
-              <div  style="height:130px; width:80% ; border: 2px solid gray; border-radius:3px; overflow:auto; margin-bottom:20px">
-                    <b *ngFor="let name of extMgrNameArray; let i=index" style="float : left"> {{i+1}} . {{name}} </b> <br />
-              </div> -->
-
+              <!--<input type="text" name="" value="" [(ngModel)]='teamName' placeholder="Team Name" class="col-8 form-control mb-5" disabled />
+              <div style="height:130px;width:80%;border:2px solid gray;border-radius:3px;overflow:auto;margin-bottom:20px">
+                <b *ngFor="let name of extMgrNameArray; let i=index" style="float:left"> {{i+1}} . {{name}} </b> <br />
+              </div>-->
               {{teamName}} Manager/s :  <br />
-
               <div  class="col-12" *ngFor="let name of extMgrNameArray; let i=index">{{i+1}} . {{name.name}} <i class="fa fa-trash-o" aria-hidden="true" (click)='deleteMgrTeamArray(name.cid)' ></i> <br /> </div>
               <br />
               <br />
-
               <br />
               <select [(ngModel)]="tl" class="col-8 form-control mb-5" >
                 <option *ngFor='let opt of asrArray; let i=i' [ngValue]=opt.cid>{{opt.name}}</option>

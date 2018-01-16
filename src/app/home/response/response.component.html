@@ -1,4 +1,8 @@
-<div class="container-fluid mt-3 pb-3 text-left">
+<div class="col-sm-12 text-right pt-3 pl-0 pr-0"><!--pos-abso-tr-->
+  <button type="button" class="btn btn-primary col-sm-3 col-md-2 pt-3 pb-3 float-right">Search</button>
+  <input type="text" class="form-control col-sm-10 col-md-10 col-lg-10 float-right pt-3 pb-3" placeholder="Search..." />
+</div>
+<div class="container-fluid mt-3 pb-3 text-left pl-0 pr-0">
 <style>
   .responseImg {
     max-height: 60px;
@@ -11,38 +15,38 @@
   }
 </style>
     <div *ngIf='!flag' class="mt-5 pt-5">
-        <h4 class="mt-5 pt-5">Seems like there is not data to display! Hang on while we check....</h4>
+      <h4 class="mt-5 pt-5">Seems like there is not data to display! Hang on while we check....</h4>
     </div>
     <table *ngIf='flag' id="example" class="table table-striped bg-white mt-0 brd-def" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th class="header-1"></th>
-                <th>From</th>
-                <th>Project</th>
-                <th>Responces</th>
-                <th>Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor='let res of response; let i = index'>
-                <td class="text-center">{{i+1}}</td>
-                <td>
-                  <span class="tt1" > {{res.fname | shorten: 35: '...'}}
-                    <span class="tt2" > &nbsp; {{res.fname}} &nbsp; </span>
-                  </span>
-                </td>
-                <td>
-                  <span class="tt1" > {{res.pname | shorten: 35: '...'}}
-                    <span class="tt2" > &nbsp; {{res.pname}} &nbsp; </span>
-                  </span>
-                </td>
-                <td>
-                  <button type="button" class="btn btn-primary bg-white" (click)='getData(res.fid)' [disabled]="resMoreThanZero(res.responses)" > {{res.responses}} Responses  </button>
-                </td>
-                <td>
-                  <button type="button" class="btn btn-primary bg-white" >  Details  </button>
-                </td>
-            </tr>
+      <thead>
+        <tr>
+          <th class="header-1"></th>
+          <th class="text-left">From</th>
+          <th class="text-left">Project</th>
+          <th class="text-left">Responces</th>
+          <th class="text-left">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let res of response; let i = index'>
+          <td class="text-center">{{i+1}}</td>
+          <td>
+            <span class="tt1" > {{res.fname | shorten: 35: '...'}}
+              <span class="tt2" > &nbsp; {{res.fname}} &nbsp; </span>
+            </span>
+          </td>
+          <td>
+            <span class="tt1" > {{res.pname | shorten: 35: '...'}}
+              <span class="tt2" > &nbsp; {{res.pname}} &nbsp; </span>
+            </span>
+          </td>
+          <td>
+            <button type="button" class="btn btn-primary bg-white" (click)='getData(res.fid)' [disabled]="resMoreThanZero(res.responses)">{{res.responses}} Responses</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-primary bg-white">Details</button>
+          </td>
+        </tr>
       </tbody>
     </table>
     <!-- <button type="button" class="btn btn-primary col-sm-3 col-md-2 pt-3 pb-3 mt-4" (click)='reload()'>Reload</button> -->

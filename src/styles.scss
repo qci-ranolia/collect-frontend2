@@ -28,8 +28,8 @@ $text-color-on-dark-bg:#fff;
 // primary colors
 $primary-color-light:#3f4a59;
 $primary-color:#3f4a59 !important;
-$primary-color-dark:#2f3a49 !important;
-$primary-color-dark-hover:#1f2a39 !important;
+$primary-color-dark:#2f3a49;
+$primary-color-dark-hover:#1f2a39;
 .bg-primary
 {
   background:$primary-color;
@@ -336,7 +336,7 @@ body
 /*Navigation*/
 .navbar-toggleable-md
 {
-  box-shadow:0px 16px 15px -15px #aaa;/*App Top Menu Bar Material Shadow*/
+  box-shadow:0px 15px 10px -10px #ccc;/*App Top Menu Bar Material Shadow*/
   height:$top-menu-height;
 }
 .navbar-toggleable-md .fa.text-white
@@ -348,7 +348,7 @@ body
 }
 /*Hamburger Menu*/
 .navbar-toggleable-md .fa-bars.text-white,
-.navbar-toggleable-md .fa-times.text-white,
+.navbar-toggleable-md .fa-long-arrow-left.text-white,
 {
   background:$primary-color-dark;
   font-size:24px;
@@ -395,16 +395,18 @@ body
   max-width:100%;
   @include transition(all 0.15s linear .01s);
 }
-ul.collapsing {
+ul.collapsing{
   padding-top:0 !important;
   padding-bottom:0 !important;
 }
-.show, .collapse, .collapsing, a.nav-link .fa-chevron-right, a.collapsed .fa-chevron-right {
+.show, .collapse, .collapsing, a.nav-link .fa-chevron-right, a.collapsed .fa-chevron-right{
   transition:all linear 0.3s;
   -webkit-transition:all linear 0.3s;
 }
 .show.collapse{
-  border-bottom:1px solid #e0e0e0;
+  border-bottom:1px solid $primary-color-dark-hover;
+  //background:$primary-color-dark;
+  //box-shadow:0px 0px 5px 0px $primary-color-dark inset;
 }
 a.nav-link .fa-chevron-right {
   -webkit-transform:rotate(90deg);
@@ -439,7 +441,7 @@ a.collapsed .fa-chevron-right {
   color:$body-bg-white;
   padding:1em;
   text-transform:capitalize; 
-  background:rgba(0,0,0,0.03);
+  //background:$primary-color-dark;
 }
 // font-sizes 
 $f80:80%;
@@ -453,7 +455,7 @@ i.f80 {
 .slider-fix a.nav-link.collapsed{
   background:transparent;
 }
-.slider-fix a.nav-link:hover
+.slider-fix a.nav-link:hover, .slider-fix .nav-item a.nav-link.active
 {
   //border-bottom:1px solid #d8d8d8;
   @include transition( all 0.15s linear .01s );
@@ -669,9 +671,10 @@ table.dataTable tfoot th,
   background:transparent;
 }
 table.dataTable tbody th,
-  table.dataTable tbody td
-  {
-    line-height: 38px;
+  table.dataTable tbody td {
+    line-height:24px;
+    padding:6px 10px !important;
+    white-space:nowrap; 
   }
 
  //pagination
@@ -1277,7 +1280,7 @@ input.form-control:focus ~ .after {
 
 //ng2-toastr css
 .toast-top-center {
-    top:46px;
+    top:30px;
     position:fixed;
 }
 #toast-container > .toast {
@@ -1287,7 +1290,7 @@ input.form-control:focus ~ .after {
     line-height:20px;
     text-align:center;
     z-index:99;
-    box-shadow:0 10px 10px -5px #ccc !important;
+    //box-shadow:0 10px 10px -5px #ccc !important;
     border-radius:0 !important;
     background-image:none !important;
 }
