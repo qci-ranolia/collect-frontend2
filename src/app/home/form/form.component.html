@@ -67,33 +67,48 @@
 
 <!-- rule modal starts here-->
 <div class="modal fade" id="rules" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
+  <div class="modal-dialog" role="document" >
+    <div class="modal-content"  style="width:703px">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Rules</h5>
       </div>
-      <div class="modal-body text-center" style="height:300px; overflow-y: auto">
+      <div class="modal-body text-center" style="overflow-y: auto; height:700px; width:700px">
           <div class="row justify-content-center" >
             <div *ngIf='rulesArray.length < 1' >
               <h4> No Rule was created </h4>
             </div>
-            <div *ngFor='let rule of rulesArray; let i = index ' class="col-10 text-center p-3" style="border: 2px solid gray; border-radius: 10px; height: 230px; margin: 1px;  " >
+            <div *ngFor='let rule of rulesArray; let i = index ' class="col-5 text-center" style="overflow:auto; border: 2px solid gray; border-radius: 4px; height: 230px;  margin:6px" >
                 <h5>{{i+1}}. Rule Name: {{rule.name}} </h5>
-                <p>Element: {{rule.elementName}} </p>
-                <p>Condition: {{rule.elementValue}} </p>
 
                 <hr>
-                Associated Template: <b>{{rule.tempName}}</b>
+                Template: <b>{{rule.tempName}}</b>
                 <hr>
-                <a class="card-link" href="#" >Edit</a>
-                <a class="card-link" href="#"  >Delete</a>
+
+                <p>Q. {{rule.elementName}}</p>
+                <p>A. {{rule.elementValue}}</p>
+                <p> Match all (if multiple values): {{rule.satisfyAll}}</p>
+
+                <div *ngIf='rule.tempName == "Form question"'>
+                  Associate Q: {{rule.ruleFormQuestion.name}}
+                  <div *ngIf="rule.ruleFormQuestion.option" >
+                    <div *ngIf="rule.ruleFormQuestion.option.length" >
+                      <div *ngFor="let m of rule.ruleFormQuestion.option" >
+                        <p> <i class="fa fa-arrow-right" aria-hidden="true"></i> {{m}} </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <p>Condition: {{rule.elementValue}} </p> -->
+                <!-- <a class="card-link" href="#" >Edit</a> -->
+                <button type="button" class="btn btn-primary " (click)="deleteRule(rule.cid)"> <b>X</b> </button>
               </div>
           </div>
         <!-- <a href="#"  class="text-center">Add Rule</a> -->
+
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary col-sm-3 pt-3 pb-3" data-toggle="modal" data-target="#addRules" >Add rule</button>
-        <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>
+      <div class="modal-footer"  >
+        <button type="button" class="btn btn-primary col-sm-3 " data-toggle="modal" data-target="#addRules" >Add rule</button>
+        <button type="button" class="btn btn-secondary col-sm-3 " data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

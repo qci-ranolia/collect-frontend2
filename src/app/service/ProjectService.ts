@@ -209,7 +209,7 @@ export class ProjectService {
 
   updateFormJson(form: any){
     this.apiService.UpdateFormJson(form).subscribe(res=>{
-      // console.log(res);
+      console.log(res);
       if(res.success) {
         // this.emitSuccessRes.emit(res.message);
       }else {}
@@ -302,6 +302,29 @@ export class ProjectService {
       this.updateFormJson(this.formArray[temp]);           // update server formArray
     }
     console.log(newRule);
+  }
+
+  deleteRule(fCid, rCid){
+    let temp: any;
+    let rtemp: any;
+    console.log(fCid);
+    console.log(rCid);
+
+    for(let m = 0; m < this.formArray.length; m++) {
+      if(fCid == this.formArray[m].Details.cid) {
+        temp = m;
+        break;
+      }
+    }
+
+    for(let n = 0; n < this.formArray[temp].Rules.length; n++ ){
+      if(rCid == this.formArray[temp].Rules[n].cid) {
+        rtemp = n;
+      }
+    }
+
+      this.formArray[temp].Rules.splice(rtemp,1);
+      this.updateFormJson(this.formArray[temp]);
   }
 
   getAssessors() {

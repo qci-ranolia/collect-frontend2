@@ -35,6 +35,7 @@ export class FormComponent implements OnInit {
   satisfyAll = false;
   files : any;
   multiOption: any;
+  fCid: any;
 
   constructor( private projectService: ProjectService, private router: Router ){
     this.fArray = this.projectService.emitFormArray.subscribe((res)=>{
@@ -66,11 +67,36 @@ export class FormComponent implements OnInit {
     this.tArray.unsubscribe();
   }
 
+  deleteRule(rCid) {
+    this.projectService.deleteRule(this.fCid, rCid);
+  }
+
   rule(data, cid, formElement) {
 
+    // console.log(cid);
+    // console.log(data);
+    this.fCid = cid;
     this.rulesArray = data;
     this.formCIDWithRule = cid;
     this.rnameArray = formElement;
+
+  }
+
+  getFormQuestion(eCid){
+    let ques= "";
+    console.log(eCid);
+    // for(let m of this.formArray) {
+    //   if(this.fCid == m.Details.cid) {
+    //     for(let n of m.Elements) {
+    //       if(n.cid == eCid) {
+    //         ques = n.name;
+    //         break;
+    //       }
+    //     }
+    //     break;
+    //   }
+    // }
+    return ques;
   }
 
   getVal() {
