@@ -1,24 +1,23 @@
-<div class="pos-abso-tr col-sm-11 text-right">
-  
-</div>
 <div class="container form-container text-left col-sm-12 mt-0">
   <div class="row justify-content-center mt-3">
     <div class="col-md-12">
       <div class="d-inline">
-        <h5 class="d-inline-block pt-1">{{name}}</h5><br />
-        <p class="d-inline-block">{{project_name}}</p><br />
-        <p class="d-inline-block">project_desc</p>
+        <h5 class="{{name}}">{{name}} <i class="fa fa-pencil-square-o" aria-hidden="true"></i></h5>
+        <p>{{project_name}}</p>
+        <p>project_desc</p>
       </div>
-      <div class="d-inline ml-4">
-        <button type="button" class="btn btn-primary col-sm-4 col-md-3 col-lg-1 pt-2 pb-2 d-inline" data-toggle="modal" data-target="#exampleModal">Add element</button>
+      <div class="d-inline">
+        <button type="button" class="btn btn-primary pt-2 pb-2 d-inline" data-toggle="modal" data-target="#exampleModal">Add element</button>
       </div>
-      <div *ngIf='!displayPublish' class="form-build-design col-sm-12 p-5 bg-white mt-3" style="height:73vh;">
+      <div *ngIf='!displayPublish' class="form-build-design col-sm-12 p-5 bg-white mt-3" style="height:72vh;">
         <p class="text-center p-5 m-5">Form elements will be displayed here!</p>
       </div>
-      <div class="form-build-design col-sm-12 ofy mt-3" style="max-height:73vh;padding-left:1.8%">
+      <div class="form-build-design col-sm-12 ofy mt-3" style="max-height:72vh;padding-left:1.8%">
         <div class="" *ngFor='let json of jsonArray; let i = index'>
           <div class="col-sm-5 pl-3 mb-3 text-left" *ngIf="json.type == 'location'">
-            <input type="checkbox" name="checkbox" checked disabled />&nbsp;Form submition location will be shared by default&nbsp;<i class="fa fa-trash-o text-danger fa-6 pt-2" style="position:static;" aria-hidden="true" (click)='deleteElement(i)' ></i>
+            <input type="checkbox" name="checkbox" checked disabled />
+            &nbsp;Form submition location will be shared by default&nbsp;
+            <i class="fa fa-trash-o text-danger fa-6 pt-2" style="position:static;" aria-hidden="true" (click)='deleteElement(i)'></i>
           </div>
           <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-4 prim-hvr" *ngIf="json.type == 'text'" [class.active]="clicked === json" (click)="clicked = json">
             <app-input-text name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}}></app-input-text>
@@ -51,7 +50,7 @@
             <app-input-checkbox name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [option]=json.option [values]=json.values>  </app-input-checkbox>
           </div>
           <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-4 prim-hvr" *ngIf="json.type == 'dropdown'" [class.active]="clicked === json" (click)="clicked = json">
-            <app-input-dropdown name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [option]=json.option >  </app-input-dropdown>
+            <app-input-dropdown name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [option]=json.option ></app-input-dropdown>
           </div>
           <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-4 prim-hvr" *ngIf="json.type == 'slider'" [class.active]="clicked === json" (click)="clicked = json">
             <app-input-slider name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} rangeFrom={{json.rangeFrom}} rangeTo={{json.rangeTo}} >  </app-input-slider>

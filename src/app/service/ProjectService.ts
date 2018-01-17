@@ -160,7 +160,7 @@ export class ProjectService {
         this.logout();
       }
       console.log(err);
-      this.emitErrorRes.emit("Somethisng went wrong");
+      this.emitErrorRes.emit("Something went wrong");
         this.logout();
     });
 

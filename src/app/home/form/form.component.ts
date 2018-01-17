@@ -50,13 +50,11 @@ export class FormComponent implements OnInit {
       // console.log(res);
       this.templateArray = res;
     });
-
-  }
-
-  new() {
-    this.router.navigate(['/formBuilder']);
   }
   
+  new(){
+    this.router.navigate(['/formBuilder']);
+  }
   
   ngOnInit() {
 
