@@ -51,7 +51,6 @@ export class ProjectService {
   emitInfoRes = new EventEmitter<any>();
   emitTeams = new EventEmitter<any>();
 
-
   formArray = [];
   // { Details: { name: 'Form1', rule: 'None', project: 'Project Name Here 1', projectcdi:'p121', status:'Offline', cid:'a1221' },    Elements:  [{type: "text", required: false, name: "Name", value:"", cid:"a1", hepltext: ""},                    {type: "email", required: false, hepltext: "", name: "Email ID", value:"", cid:"b1"},                    {type: "number", required: false, hepltext: "", name: "Number Input", value:"", cid:"c1"},],    Rules: [{cid:"211", name: 'Rule1',elementName:'Name',elementType: "text", elementValue:"sam",elementCid:"a1", tempCid: '2332b', tempName: 'template1', satisfyAll:false},], },
 
@@ -78,8 +77,10 @@ export class ProjectService {
       console.log(res);
       if(res.success){
         localStorage.setItem('token',res.token);
-        this.emitUserLogin.emit({success: true, msg: "logged in"});
-      } else {}
+        this.emitUserLogin.emit("Invalid credentials!");
+      } else {
+        this.emitErrorRes.emit();
+      }
     }, err=>{
       console.log(err);
     });
@@ -208,7 +209,7 @@ export class ProjectService {
 
   updateFormJson(form: any){
     this.apiService.UpdateFormJson(form).subscribe(res=>{
-      // console.log(res);
+      console.log(res);
       if(res.success) {
         // this.emitSuccessRes.emit(res.message);
       }else {}
@@ -303,6 +304,29 @@ export class ProjectService {
     console.log(newRule);
   }
 
+  deleteRule(fCid, rCid){
+    let temp: any;
+    let rtemp: any;
+    console.log(fCid);
+    console.log(rCid);
+
+    for(let m = 0; m < this.formArray.length; m++) {
+      if(fCid == this.formArray[m].Details.cid) {
+        temp = m;
+        break;
+      }
+    }
+
+    for(let n = 0; n < this.formArray[temp].Rules.length; n++ ){
+      if(rCid == this.formArray[temp].Rules[n].cid) {
+        rtemp = n;
+      }
+    }
+
+      this.formArray[temp].Rules.splice(rtemp,1);
+      this.updateFormJson(this.formArray[temp]);
+  }
+
   getAssessors() {
     this.apiService.GetAllAssesors().subscribe(res=> {
       // console.log(res);
@@ -371,6 +395,18 @@ export class ProjectService {
 
       this.incAssessorCount(form.Details.projectcdi);
     }
+  }
+
+  updateTag(rID, tag) {
+
+    let formData = new FormData();
+    formData.append("rID",rID);
+    formData.append("tag",tag);
+    this.apiService.UpdateTag(formData).subscribe((res)=>{
+      console.log(res);
+    },(err)=>{
+      console.log(err);
+    })
   }
 
   getTeams() {
@@ -787,6 +823,18 @@ export class ProjectService {
     },err=> {
       console.log(err);
     });
+  }
+
+  flagResponse(rID, array) {
+
+    this.apiService.FlagResponse(rID,array).subscribe((res)=>{
+      console.log(res);
+      if(res.success) {
+        this.emitSuccessRes.emit("Flag Updated!");
+      }else {}
+    }, err=>{
+      console.log(err);
+    })
   }
 
   getFormArrayWithID(cid) {

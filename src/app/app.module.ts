@@ -8,6 +8,7 @@ import 'rxjs/add/operator/map';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import {ToastOptions} from 'ng2-toastr';
 import {NgPipesModule} from 'ngx-pipes';
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -84,6 +85,7 @@ import { TemplatesComponent } from './home/form/templates/templates.component';
     TemplatesComponent,
   ],
   imports: [
+    MultiselectDropdownModule,
     BrowserModule,
     BrowserAnimationsModule,
     ToastModule.forRoot(),
@@ -93,6 +95,7 @@ import { TemplatesComponent } from './home/form/templates/templates.component';
     RouterModule.forRoot(routes, { useHash: true }),
   ],
   providers: [
+
     AuthGuard,
     ProjectService,
     APIService,

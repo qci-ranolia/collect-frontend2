@@ -219,4 +219,26 @@ export class APIService {
     this.createAuthorizationHeader(headers);
     return this.http.post(this.projectURL+'/removeAssesorFromTeam', data , {headers: headers}).map(res=>res.json());
   }
+
+  UpdateTag(data) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.post(this.projectURL+'/changeResponseTag', data , {headers: headers}).map(res=>res.json());
+  }
+
+  FlagResponse(rID, array) {
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+
+    array = JSON.stringify(array);
+    array = JSON.parse(array);
+    array = JSON.stringify(array);
+    let formData = new FormData();
+
+    formData.append('array',array);
+    formData.append('rID',rID);
+
+    return this.http.post(this.projectURL+'/flagResponse', formData , {headers: headers}).map(res=>res.json());
+  }
+
 }

@@ -355,7 +355,7 @@
                 </div>
 
                 <!-- Radio Input s9 -->
-                <div class="tab-pane" id="s9" role="tabpanel">
+                <div class="tab-pane " id="s9" role="tabpanel">
                   <h5>Radio Input</h5>
                   <br>
                   <div class="form-group row">
@@ -377,13 +377,32 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-4 col-form-label">Inputs seperated by comas(,)</label>
-                    <div class="col-8">
-                      <textarea class="form-control form-control-sm" rows='3' placeholder="" [(ngModel)]='option' > </textarea>
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Inputs </label>
+
+                    <div class="col-7">
+                      <input class="form-control form-control-sm" type="text" [(ngModel)]='opti' placeholder="">
+
                     </div>
-                    <label for="staticEmail" class="col-sm-4 col-form-label">Selected </label>
-                    <div class="col-8 mt-2">
-                      <input class="form-control form-control-sm" type="text" placeholder="" [(ngModel)]='value' >
+
+                    <div class="col-3">
+                     <button type="button" (click)="addInOptionArray()">+</button>
+                     <button type="button" (click)="truncate()" >X</button>
+                    </div>
+
+                    <div *ngFor="let op of optionArray; let i = index"  class="col-12" >
+                      <div class="row" >
+                        <div class="col-10" >
+                          <i class="fa fa-arrow-right" aria-hidden="true"></i> {{i+1}}. <span style="background-color:#d2f5aa" > {{op}} </span>
+                        </div>
+                        <div class="col-2" >
+                          <button type="button" (click)="spliceOptionArray(i)" >X</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="staticEmail" class="col-sm-4 col-form-label"> Selected </label>
+                      <input class="form-control form-control-sm" type="text" placeholder="" [(ngModel)]='value'>
                     </div>
 
                   </div>
@@ -419,10 +438,30 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-4 col-form-label">Inputs seperated by comas ','</label>
-                    <div class="col-8">
-                      <textarea class="form-control form-control-sm" rows='3' placeholder="" [(ngModel)]='option' > </textarea>
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Inputs </label>
+
+                    <div class="col-7">
+                      <input class="form-control form-control-sm" type="text" [(ngModel)]='opti' placeholder="">
+
                     </div>
+
+                    <div class="col-3">
+                     <button type="button" (click)="addInOptionArray()">+</button>
+                     <button type="button" (click)="truncate()" >X</button>
+                    </div>
+
+                    <div *ngFor="let op of optionArray; let i = index"  class="col-12" >
+                      <div class="row" >
+                        <div class="col-10" >
+                          <i class="fa fa-arrow-right" aria-hidden="true"></i> {{i+1}}. <span style="background-color:#d2f5aa" > {{op}} </span>
+                        </div>
+                        <div class="col-2" >
+                          <button type="button" (click)="spliceOptionArray(i)" >X</button>
+                        </div>
+                      </div>
+                    </div>
+
+
                     <label for="staticEmail" class="col-sm-4 col-form-label">Checked seperated by comas ','</label>
                     <div class="col-8">
                       <textarea class="form-control form-control-sm mt-2" rows='2' placeholder="" [(ngModel)]='values' > </textarea>
@@ -460,11 +499,30 @@
                       <input class="form-control form-control-sm" type="text" placeholder="" [(ngModel)]='alias' >
                     </div>
                   </div>
+
                   <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-4 col-form-label">Inputs seperated by comas ','</label>
-                    <div class="col-8">
-                      <textarea class="form-control form-control-sm" rows='3' placeholder="" [(ngModel)]='option' > </textarea>
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Inputs </label>
+
+                    <div class="col-7">
+                      <input class="form-control form-control-sm" type="text" [(ngModel)]='opti' placeholder="">
                     </div>
+
+                    <div class="col-3">
+                     <button type="button" (click)="addInOptionArray()">+</button>
+                     <button type="button" (click)="truncate()" >X</button>
+                    </div>
+
+                    <div *ngFor="let op of optionArray; let i = index"  class="col-12" >
+                      <div class="row" >
+                        <div class="col-10" >
+                          <i class="fa fa-arrow-right" aria-hidden="true"></i> {{i+1}}. <span style="background-color:#d2f5aa" > {{op}} </span>
+                        </div>
+                        <div class="col-2" >
+                          <button type="button" (click)="spliceOptionArray(i)" >X</button>
+                        </div>
+                      </div>
+                    </div>
+
                     <label for="staticEmail" class="col-sm-4 col-form-label">Default value</label>
                     <div class="col-8">
                       <input class="form-control form-control-sm mt-2" type="text" placeholder="" [(ngModel)]='value' >
