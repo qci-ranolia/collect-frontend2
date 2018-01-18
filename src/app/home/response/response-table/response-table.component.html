@@ -1,98 +1,158 @@
-<style> .responseImg{ max-height: 60px; border-radius: 3px; }
+<style>
+.responseImg {
+  max-height:60px;
+  border-radius:3px;
+}
 table.dataTable thead .sorting,
 table.dataTable thead .sorting_asc,
 table.dataTable thead .sorting_desc {
-  background : none; }
+  background:none;
+}
 </style>
 <div class="container-fluid mt-4 pb-3 text-center">        
   <div *ngIf='!flag' class="pt-5 mt-5">
     <h4 class="pt-5 mt-5"> Just a moment please....</h4>
   </div>
-
   <div class="" style=" width:100%;   overflow-x: auto">
     <table *ngIf='flag' id="exampleFormResponse" class=" display table table-striped  table-responsive-md" cellspacing="0" >
       <thead>
           <tr>
-              <th></th>
-              <th>Details</th>
-              <th *ngFor="let head of header" style="white-space: nowrap; text-overflow: ellipsis;">
-                &nbsp;  {{head}} &nbsp;
-              </th>
+            <th></th>
+            <th>Details</th>
+            <th *ngFor="let head of header" style="white-space:nowrap;text-overflow:ellipsis;">
+              &nbsp;{{head}}&nbsp;
+            </th>
           </tr>
       </thead>
       <tbody>
-        <tr *ngFor='let res of response; let i = index'>
+        <tr *ngFor='let res of response; let i = index' [class.active]="clicked === res" (click)="clicked = res">
               <td>{{i+1}}</td>
               <td>
-                <button type="button" class="btn btn-primary" (click)='getDetails(i,res)' >  Details  </button>
+                <button type="button" class="btn btn-primary" (click)='getDetails(i,res); $event.stopPropagation()'>Details</button>
               </td>
-              <td *ngFor = 'let temp of res; let j = index' >
-
-                <span *ngIf='temp.type != "camera" &&  temp.type != "file" && temp.type != "video" && temp.type!= "tag"' >{{temp.value}}</span>  <!-- normal T E X T   V A L U E  -->
-
-                <span *ngIf='temp.type == "tag" ' >                                                                                              <!-- T A G G E D  V A L U E  -->
+              <td *ngFor='let temp of res; let j = index'>
+                <span *ngIf='temp.type != "camera" &&  temp.type != "file" && temp.type != "video" && temp.type!= "tag"'>{{temp.value}}</span> <!-- Normal TEXT VALUE -->
+                <span *ngIf='temp.type == "tag" '>                                                                                             <!-- TAGGED______VALUE -->
                   <span style="display: none" >{{temp.value}} </span>
-                  <button *ngIf='temp.value == ""' class="noTag" (click)="changeTag(i, res)" > &nbsp;&nbsp; No-Tag &nbsp;&nbsp; </button>
-                  <button *ngIf='temp.value == "Flagged"'  class="flaggedTag" (click)="changeTag(i, res)" disabled> &nbsp; {{temp.value}} &nbsp; </button>
-                  <button *ngIf='temp.value == "Pending"'  class="pendingTag" (click)="changeTag(i, res)" disabled> &nbsp; {{temp.value}} &nbsp; </button>
-                  <button *ngIf='temp.value == "Verified"' class="verifiedTag"(click)="changeTag(i, res)" > &nbsp; {{temp.value}} &nbsp; </button>
-                  <button *ngIf='temp.value == "Archived"' class="archivedTag"(click)="changeTag(i, res)" > &nbsp;{{temp.value}}&nbsp; </button>
-
+                  <button *ngIf='temp.value == ""' class="noTag" (click)="changeTag(i, res)">&nbsp;&nbsp;No-Tag&nbsp;&nbsp;</button>
+                  <button *ngIf='temp.value == "Flagged"' class="flaggedTag" (click)="changeTag(i, res)" disabled>&nbsp;{{temp.value}}&nbsp;</button>
+                  <button *ngIf='temp.value == "Pending"' class="pendingTag" (click)="changeTag(i, res)" disabled>&nbsp;{{temp.value}}&nbsp;</button>
+                  <button *ngIf='temp.value == "Verified"' class="verifiedTag"(click)="changeTag(i, res)">&nbsp;{{temp.value}}&nbsp;</button>
+                  <button *ngIf='temp.value == "Archived"' class="archivedTag"(click)="changeTag(i, res)">&nbsp;{{temp.value}}&nbsp;</button>
                 </span>
-
-                <span *ngIf='temp.type == "camera" ' > <img *ngIf='temp.value'  class="responseImg" src={{temp.value}} (click)='imageModal(temp.value)' style="max-width:60px" /> <span style="display: none" >{{temp.value}}</span> </span>  <!-- I M A G E   V A L U E  -->
-
-                <span *ngIf='temp.type == "video" ' > <video *ngIf='temp.value' class="responseImg" style="width:200px !important" controls> <source src={{temp.value}}> </video> <span style="display: none" >{{temp.value}}</span> </span>  <!-- V I D E O   V A L U E  -->
-
-                <span *ngIf='temp.type == "file" ' >
-                  <button  *ngIf='temp.value' type="button" class="btn btn-primary" (click)='openImageNewTab(temp.value)'>  <i class="fa fa-download" aria-hidden="true"></i>  </button>   <!-- F I L E   V A L U E  -->
+                <span *ngIf='temp.type == "camera" '><img *ngIf='temp.value' class="responseImg" src={{temp.value}} (click)='imageModal(temp.value)' style="max-width:60px" /><span style="display:none">{{temp.value}}</span> </span>  <!-- I M A G E   V A L U E  -->
+                <span *ngIf='temp.type == "video" '><video *ngIf='temp.value' class="responseImg" style="width:200px !important" controls><source src={{temp.value}}></video><span style="display:none">{{temp.value}}</span> </span>  <!-- V I D E O   V A L U E  -->
+                <span *ngIf='temp.type == "file" '>
+                  <button  *ngIf='temp.value' type="button" class="btn btn-primary" (click)='openImageNewTab(temp.value)'>  <i class="fa fa-download" aria-hidden="true"></i></button><!-- F I L E   V A L U E-->
                   <span style="display: none" >{{temp.value}}</span>
                 </span>  <!-- F I L E   V A L U E  -->
-
               </td>
           </tr>
       </tbody>
     </table>
   </div>
+<br />
+
+
+  <table id="exampleFormResponse" class="tb display table table-striped table-responsive-md text-left bg-white" cellspacing="0" cellpadding="0">
+    <thead>
+      <tr>
+        <th class="sr text-center">
+          <div class="col-sm-12 pl-0 pr-0 pt-2 pb-2 m-0 br bb bl bt f80">Sr No.</div>
+        </th>
+        <th class="text-center det">
+          <div class="col-sm-12 pt-1 pb-1 m-0 br bb bt">Details</div>
+        </th>
+        <th class="text-left">
+          <div class="col-sm-12 pt-1 pb-1 m-0 br bb bt">Assessor Info</div>
+        </th>
+        <th class="text-left">
+          <div class="col-sm-12 pt-1 pb-1 m-0 br bb bt">Details</div>
+        </th>
+        <th class="text-left">
+          <div class="col-sm-12 pt-1 pb-1 m-0 br bb bt">Details</div>
+        </th>
+        <th class="text-left">
+          <div class="col-sm-12 pt-1 pb-1 m-0 br bb bt">Details</div>
+        </th>
+        <th class="text-left">
+          <div class="col-sm-12 pt-1 pb-1 m-0 br bb bt">Details</div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let res of response; let i = index' [class.active]="clicked === res" (click)="clicked = res">
+        <td class="sr text-center">
+          <div class="col-sm-12 m-0 br bb bl">{{i+1}}</div>
+        </td>
+        <td class="det text-center">
+          <div class="col-sm-12 m-0 br bb">
+            <button type="button" class="btn btn-primary mt-2" (click)='$event.stopPropagation()'>Details</button>
+          </div>
+        </td>
+        <td class="assessor">
+          <div class="col-sm-12 m-0 br bb">
+            <p class="m-0 m">
+              <i class="fa fa-user-o f80 p-0 text-info" aria-hidden="true"></i>&nbsp;Mahesh Ganesh peter<br />
+              <button class="noTag">No-Tag</button>
+              <button class="flaggedTag f80 pl-1 pr-1" (click)='$event.stopPropagation()' disabled>Flagged</button>
+              <button class="pendingTag f80 pl-1 pr-1" (click)='$event.stopPropagation()' disabled>Pending</button>
+              <button class="verifiedTag f80 pl-1 pr-1" (click)='$event.stopPropagation()'>Verified</button>
+              <button class="archivedTag f80 pl-1 pr-1" (click)='$event.stopPropagation()'>Archived</button>
+            </p>
+            <p class="m-0"><i class="fa fa-phone f80 p-0 text-blue" aria-hidden="true"></i>&nbsp;95980-09082</p>
+            <p class="m-0"><i class="fa fa-envelope f80 p-0 text-danger" aria-hidden="true"></i>&nbsp;mahesh@ganesh.com</p>
+            <p class="m-0 f80 p-0">Response ID: &nbsp;<strong class="d-inline">kse3r465423v45rfd24</strong></p>
+            <p class="m-0 f80 p-0">Synced On:&nbsp;
+              <strong class="d-inline">18/01/2018</strong>
+              <strong class="float-right">V7/V7</strong>
+            </p>
+          </div>
+        </td>
+        <td>
+          <div class="col-sm-12 m-0 br bb">{{ 4 } }</div>
+        </td>
+        <td>
+          <div class="col-sm-12 m-0 br bb">{{ 5 } }</div>
+        </td>
+        <td>
+          <div class="col-sm-12 m-0 br bb">{{ 6 } }</div>
+        </td>
+        <td>
+          <div class="col-sm-12 m-0 br bb">{{ 6 } }</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <!-- Details modal starts here-->
 <div class="modal fade" id="getDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content" style="width:600px; height:650px;">
+    <div class="modal-content" style="height:600px;">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Details</h5>
       </div>
       <div class="modal-body text-center" style="  height:640px;  overflow-y: auto">
         <div *ngFor="let temp of detailRes; let i = index">
           <hr>
-
           <div class="row" style="padding-left:20px">
             <b>{{header[i]}} : </b> &nbsp; &nbsp;
           </div>
-
           <div class="row" style="padding-left:20px">
-
             <div class="col-10" >
               <span *ngIf='temp.type != "camera" &&  temp.type != "file" && temp.type != "video" && temp.type !="tag" ' >{{temp.value}}</span>  <!-- normal T E X T   V A L U E  -->
-
-
                 <span *ngIf='temp.type == "tag" ' >                             <!-- T A G G E D  V A L U E  -->
-
                   <button *ngIf='temp.value == ""' class="noTag" (click)="changeTag(i, detailRes)" disabled> &nbsp;&nbsp; No-Tag &nbsp;&nbsp; </button>
                   <button *ngIf='temp.value == "Flagged"'  class="flaggedTag" (click)="changeTag(i, detailRes)"  disabled> &nbsp; {{temp.value}} &nbsp; </button>
                   <button *ngIf='temp.value == "Pending"'  class="pendingTag" (click)="changeTag(i, detailRes)"  disabled> &nbsp; {{temp.value}} &nbsp; </button>
                   <button *ngIf='temp.value == "Verified"' class="verifiedTag"(click)="changeTag(i, detailRes)"  disabled> &nbsp; {{temp.value}} &nbsp; </button>
                   <button *ngIf='temp.value == "Archived"' class="archivedTag"(click)="changeTag(i, detailRes)"  disabled> &nbsp;{{temp.value}}&nbsp; </button>
-
                 </span>
-
-              <span *ngIf='temp.type == "camera" ' > <img *ngIf='temp.value'  class="" src={{temp.value}} (click)='imageModal(temp.value)' style="max-width:230px" /> <span style="display: none" >{{temp.value}}</span> </span>  <!-- I M A G E   V A L U E  -->
-
-              <span *ngIf='temp.type == "video" ' > <video *ngIf='temp.value' class="" style="width:200px !important" controls> <source src={{temp.value}}> </video> <span style="display: none" >{{temp.value}}</span> </span>  <!-- V I D E O   V A L U E  -->
-
-              <span *ngIf='temp.type == "file" ' >
-                <button  *ngIf='temp.value' type="button" class="btn btn-primary" (click)='openImageNewTab(temp.value)'>  <i class="fa fa-download" aria-hidden="true"></i>  </button>   <!-- F I L E   V A L U E  -->
+              <span *ngIf='temp.type == "camera" '><img *ngIf='temp.value'  class="" src={{temp.value}} (click)='imageModal(temp.value)' style="max-width:230px" /> <span style="display: none" >{{temp.value}}</span> </span>  <!-- I M A G E   V A L U E  -->
+              <span *ngIf='temp.type == "video" '><video *ngIf='temp.value' class="" style="width:200px !important" controls> <source src={{temp.value}}> </video> <span style="display: none" >{{temp.value}}</span> </span>  <!-- V I D E O   V A L U E  -->
+              <span *ngIf='temp.type == "file" '>
+                <button *ngIf='temp.value' type="button" class="btn btn-primary" (click)='openImageNewTab(temp.value)'><i class="fa fa-download" aria-hidden="true"></i></button><!-- F I L E   V A L U E  -->
                 <span style="display: none" >{{temp.value}}</span>
               </span>  <!-- F I L E   V A L U E  -->
             </div>
@@ -102,10 +162,8 @@ table.dataTable thead .sorting_desc {
                 <i *ngIf="!temp.flagged" class="fa fa-flag-o" aria-hidden="true" (click)="flagCommentModal( i, detailRes[1].value, temp.cid)" ></i>
               </div>
             </div>
-
           </div>
         </div>
-
       </div>
       <div class="modal-footer">
         <button *ngIf="verifyAll" type="button" class="btn btn-primary col-sm-3 pt-3 pb-3 verifiedTag" data-toggle="modal" (click)="verifyTag()" >Accept</button>
@@ -120,13 +178,13 @@ table.dataTable thead .sorting_desc {
 <!-- Flag comment modal starts here-->
 <div class="modal fade" id="flagComment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content" style="margin-top:200px; margin-left:100px">
+    <div class="modal-content" style="height:600px;">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Flag Comments </h5>
-        <h5> ( Optional ) </h5>
+        <h5>( Optional )</h5>
       </div>
-      <div class="modal-body text-center" style="   overflow-y: auto">
-        <input type="text" class="form-control" [(ngModel)]='flaggedMsg' (change)='flagMsg()'>
+      <div class="modal-body text-center" style="overflow-y:auto">
+        <textarea cols="10" rows="15" class="form-control mt-5" [(ngModel)]='flaggedMsg' (change)='flagMsg()'></textarea>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal" (click)='flagMsg()'>Close</button>
@@ -141,24 +199,20 @@ table.dataTable thead .sorting_desc {
 <!-- Change Tag modal starts here-->
 <div class="modal fade" id="changeTag" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content" style="margin-top:200px; margin-left:100px">
+    <div class="modal-content" style="max-width:30%;min-width:500px;margin:0 auto;">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Change Flag </h5>
       </div>
       <div class="modal-body text-center" style="overflow-y: auto">
-        <div class="row justify-content-md-center" >
-
-          <div class="col-12" > <button class="noTag" style="padding:5px; margin : 8px" (click)="newTag('')" > &nbsp;&nbsp; No-Tag &nbsp;&nbsp; </button> </div>
-
-          <div class="col-12" > <button class="verifiedTag" style="padding:5px; margin : 8px " (click)="newTag('Verified')"> &nbsp; Verified &nbsp; </button> </div>
-
-          <div class="col-12" > <button class="archivedTag" style="padding:5px;  margin : 8px" (click)="newTag('Archived')"> &nbsp;Archived&nbsp; </button> </div>
-
+        <div class="row justify-content-md-center pt-3" >
+          <div class="col-4"><button class="noTag" (click)="newTag('')">&nbsp;&nbsp;No-Tag&nbsp;&nbsp;</button></div>
+          <div class="col-4"><button class="verifiedTag" (click)="newTag('Verified')">&nbsp;Verified&nbsp;</button></div>
+          <div class="col-4"><button class="archivedTag" (click)="newTag('Archived')">&nbsp;Archived&nbsp;</button></div>
         </div>
       </div>
       <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-primary col-sm-3 pt-3 pb-3" data-toggle="modal" (click)="unFlagFun()">Update</button> -->
-        <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal" >Close</button>
+        <!--<button type="button" class="btn btn-primary col-sm-3 pt-3 pb-3" data-toggle="modal" (click)="unFlagFun()">Update</button>-->
+        <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -174,7 +228,6 @@ table.dataTable thead .sorting_desc {
       </div>
       <div class="modal-body text-center" style="overflow-y: auto">
         <div class="row justify-content-md-center" >
-
           <div class="col-7" >
               <img class="north" src={{imgUrl}} style="max-width:100%"/>
           </div>
@@ -185,16 +238,13 @@ table.dataTable thead .sorting_desc {
                 <button type="button" class="btn btn-primary"  (click)="openImageNewTab(imgUrl)">Open in new tab </button>
               </div>
               <div class="col-12" style="height:100%; width:100%">
-
-                 <!-- GOOGLE MAP -->
-                 
+                <!-- GOOGLE MAP -->
                 <!-- <iframe frameborder="0" style="border:0" style="width:100%; height:100%"
                 [src]='sanitizer.bypassSecurityTrustResourceUrl(mapSrc)' allowfullscreen>
               </iframe>-->
               </div>
             </div>
           </div>
-
         </div>
       </div>
       <div class="modal-footer">
