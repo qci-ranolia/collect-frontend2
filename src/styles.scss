@@ -1538,7 +1538,7 @@ input:not([type=range]) {
     border-bottom:1px solid #888 !important;
 }.tb thead th, .tb tbody td {
     display:inline-block;
-    width:17.8%;
+    width:22.25%;
     border:none !important;
     float:none;
     box-sizing:border-box;
@@ -1588,9 +1588,12 @@ input:not([type=range]) {
 }*/.tb tr:hover, .tb tr.active{
   cursor:pointer;
   background:#f7f7f7;
-  z-index: 9;
-  box-shadow:0px 0px 10px -10px #ccc;
-}.tb thead, .tb thead tr, .tb thead:hover{
+  //z-index: 9;
+  //box-shadow:0px 0px 10px -10px #ccc;
+}.tb thead tr:hover{
+  background:inherit;
+}
+.tb thead, .tb thead tr, .tb thead:hover{
   height:30px;
   background:#eaeaea;
 }

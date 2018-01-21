@@ -75,9 +75,6 @@ table.dataTable thead .sorting_desc {
         <th class="text-left">
           <div class="col-sm-12 pt-1 pb-1 m-0 br bb bt">Details</div>
         </th>
-        <th class="text-left">
-          <div class="col-sm-12 pt-1 pb-1 m-0 br bb bt">Details</div>
-        </th>
       </tr>
     </thead>
     <tbody>
@@ -118,9 +115,6 @@ table.dataTable thead .sorting_desc {
         <td>
           <div class="col-sm-12 m-0 br bb">{{ 6 } }</div>
         </td>
-        <td>
-          <div class="col-sm-12 m-0 br bb">{{ 6 } }</div>
-        </td>
       </tr>
     </tbody>
   </table>
@@ -134,20 +128,20 @@ table.dataTable thead .sorting_desc {
         <h5 class="modal-title" id="exampleModalLabel">Details</h5>
       </div>
       <div class="modal-body text-center" style="  height:640px;  overflow-y: auto">
-        <div *ngFor="let temp of detailRes; let i = index">
-          <hr>
-          <div class="row" style="padding-left:20px">
-            <b>{{header[i]}} : </b> &nbsp; &nbsp;
+        <div class="row m-0 text-left" *ngFor="let temp of detailRes; let i = index">
+          <hr class="col-sm-11" />
+          <div class="col-sm-4">
+            <b>{{header[i]}}:</b>&nbsp;&nbsp;
           </div>
-          <div class="row" style="padding-left:20px">
-            <div class="col-10" >
+          <div class="row m-0 col-sm-8">
+            <div class="col-10">
               <span *ngIf='temp.type != "camera" &&  temp.type != "file" && temp.type != "video" && temp.type !="tag" ' >{{temp.value}}</span>  <!-- normal T E X T   V A L U E  -->
-                <span *ngIf='temp.type == "tag" ' >                             <!-- T A G G E D  V A L U E  -->
+                <span *ngIf='temp.type == "tag" '>                             <!-- T A G G E D  V A L U E  -->
                   <button *ngIf='temp.value == ""' class="noTag" (click)="changeTag(i, detailRes)" disabled> &nbsp;&nbsp; No-Tag &nbsp;&nbsp; </button>
-                  <button *ngIf='temp.value == "Flagged"'  class="flaggedTag" (click)="changeTag(i, detailRes)"  disabled> &nbsp; {{temp.value}} &nbsp; </button>
-                  <button *ngIf='temp.value == "Pending"'  class="pendingTag" (click)="changeTag(i, detailRes)"  disabled> &nbsp; {{temp.value}} &nbsp; </button>
-                  <button *ngIf='temp.value == "Verified"' class="verifiedTag"(click)="changeTag(i, detailRes)"  disabled> &nbsp; {{temp.value}} &nbsp; </button>
-                  <button *ngIf='temp.value == "Archived"' class="archivedTag"(click)="changeTag(i, detailRes)"  disabled> &nbsp;{{temp.value}}&nbsp; </button>
+                  <button *ngIf='temp.value == "Flagged"' class="flaggedTag" (click)="changeTag(i, detailRes)" disabled> &nbsp; {{temp.value}} &nbsp; </button>
+                  <button *ngIf='temp.value == "Pending"' class="pendingTag" (click)="changeTag(i, detailRes)" disabled> &nbsp; {{temp.value}} &nbsp; </button>
+                  <button *ngIf='temp.value == "Verified"' class="verifiedTag" (click)="changeTag(i, detailRes)" disabled> &nbsp; {{temp.value}} &nbsp; </button>
+                  <button *ngIf='temp.value == "Archived"' class="archivedTag" (click)="changeTag(i, detailRes)" disabled> &nbsp;{{temp.value}}&nbsp; </button>
                 </span>
               <span *ngIf='temp.type == "camera" '><img *ngIf='temp.value'  class="" src={{temp.value}} (click)='imageModal(temp.value)' style="max-width:230px" /> <span style="display: none" >{{temp.value}}</span> </span>  <!-- I M A G E   V A L U E  -->
               <span *ngIf='temp.type == "video" '><video *ngIf='temp.value' class="" style="width:200px !important" controls> <source src={{temp.value}}> </video> <span style="display: none" >{{temp.value}}</span> </span>  <!-- V I D E O   V A L U E  -->
@@ -156,7 +150,7 @@ table.dataTable thead .sorting_desc {
                 <span style="display: none" >{{temp.value}}</span>
               </span>  <!-- F I L E   V A L U E  -->
             </div>
-            <div class="col-1" >
+            <div class="col-2" >
               <div *ngIf='i>3' >
                 <i *ngIf="temp.flagged" class="fa fa-flag" aria-hidden="true" (click)="flagCommentModal( i, detailRes[1].value, temp.cid)"></i>
                 <i *ngIf="!temp.flagged" class="fa fa-flag-o" aria-hidden="true" (click)="flagCommentModal( i, detailRes[1].value, temp.cid)" ></i>
