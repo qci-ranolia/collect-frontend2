@@ -54,7 +54,7 @@ table.dataTable thead .sorting_desc {
 <br />
 
 
-  <table id="exampleFormResponse" class="tb display table table-striped table-responsive-md text-left bg-white" cellspacing="0" cellpadding="0">
+  <table id="exampleFormResponse" class="tb display table table-striped table-responsive-md text-left" cellspacing="0" cellpadding="0">
     <thead>
       <tr>
         <th class="sr text-center">
@@ -63,18 +63,20 @@ table.dataTable thead .sorting_desc {
         <th class="text-center det">
           <div class="col-sm-12 pt-1 pb-1 m-0 br bb bt">Details</div>
         </th>
-        <th class="text-left">
-          <div class="col-sm-12 pt-1 pb-1 m-0 br bb bt">Assessor Info</div>
-        </th>
-        <th class="text-left">
-          <div class="col-sm-12 pt-1 pb-1 m-0 br bb bt">Toilet Info</div>
-        </th>
-        <th class="text-left">
-          <div class="col-sm-12 pt-1 pb-1 m-0 br bb bt">Photo</div>
-        </th>
-        <th class="text-left">
-          <div class="col-sm-12 pt-1 pb-1 m-0 br bb bt">Details</div>
-        </th>
+        <!--
+          <th class="text-left">
+            <div class="col-sm-12 pt-1 pb-1 m-0 br bb bt"></div>
+          </th>
+          <th class="text-left">
+            <div class="col-sm-12 pt-1 pb-1 m-0 br bb bt"></div>
+          </th>
+          <th class="text-left">
+            <div class="col-sm-12 pt-1 pb-1 m-0 br bb bt"></div>
+          </th>
+          <th class="text-left">
+            <div class="col-sm-12 pt-1 pb-1 m-0 br bb bt"></div>
+          </th>
+        -->
       </tr>
     </thead>
     <tbody>
@@ -83,8 +85,17 @@ table.dataTable thead .sorting_desc {
           <div class="col-sm-12 m-0 br bb bl">{{i+1}}</div>
         </td>
         <td class="det text-center">
-          <div class="col-sm-12 m-0 br bb">
+          <div class="col-sm-12 m-0 br bb pl-1 pr-1">
             <button type="button" class="btn btn-primary mt-2" (click)='$event.stopPropagation()'>Details</button>
+            <p class="mt-2 mb-0">
+              <strong class="text-center">V7/V7</strong>
+            </p>
+            <p class="m-0">Synced On:
+              <strong class="d-inline f80 p-0">18/01/2018 10:00AM</strong>              
+            </p>
+            <p class="m-0">Submitted On:
+              <strong class="d-inline f80 p-0">18/01/2018 10:01AM</strong>              
+            </p>
           </div>
         </td>
         <td class="assessor">
@@ -99,29 +110,56 @@ table.dataTable thead .sorting_desc {
             </p>
             <p class="m-0"><i class="fa fa-phone f80 p-0 text-blue" aria-hidden="true"></i>&nbsp;95980-09082</p>
             <p class="m-0"><i class="fa fa-envelope f80 p-0 text-danger" aria-hidden="true"></i>&nbsp;mahesh@ganesh.com</p>
-            <p class="m-0 f80 p-0">Response ID: &nbsp;<strong class="d-inline">kse3r465423v45rfd24</strong></p>
-            <p class="m-0 f80 p-0">Synced On:&nbsp;
-              <strong class="d-inline">18/01/2018</strong>
-              <strong class="float-right">V7/V7</strong>
-            </p>
+            <p class="m-0"><i aria-hidden="true" class="fa fa-pencil-square-o f80 p-0 text-info"></i>&nbsp;<span>Response ID:</span>    <strong class="float-right d-inline">Ks5sasa4a5s4a5sa     </strong></p>
+            <p class="m-0"><i class="fa fa-shower f80 p-0 text-success" aria-hidden="true"></i>&nbsp;<span>Toilet ID:</span>            <strong class="float-right d-inline">KMC/19/RSU/1         </strong></p>
+            <p class="m-0" style="display:none"><span>Ward:</span>                                                                      <strong class="float-right d-inline">19                   </strong></p>
+            <p class="m-0"><i class="fa fa-address-book f80 p-0 text-blue" aria-hidden="true"></i>&nbsp;<span>Address:</span>           <strong class="float-right d-inline">Railway Station      </strong></p>
+            <p class="m-0"><i class="fa fa-map-pin f80 p-0 text-success" aria-hidden="true"></i>&nbsp;<span>Pincode:</span>             <strong class="float-right d-inline">506002               </strong></p>
           </div>
         </td>
         <td class="location">
           <div class="col-sm-12 m-0 br bb">
-            <p class="m-0 f80"><strong class="d-inline">Toilet ID:</strong>KMC/19/RSU/1</p>
-            <p class="m-0 f80"><strong class="d-inline">Ward No:</strong>19</p>
-            <p class="m-0 p-0"><strong class="d-inline">Address:</strong>Railway Station</p>
-            <p class="m-0 p-0">Synced On:&nbsp;
-              <strong class="d-inline">18/01/2018</strong>
-              <strong class="float-right">V7/V7</strong>
-            </p>
+            <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i>&nbsp;&nbsp;&nbsp;<span>Care taker:</span>                <strong class="float-right d-inline">Shyam Lal bankey  </strong></p>
+            <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i>&nbsp;&nbsp;&nbsp;<span>Contact Number:</span>            <strong class="float-right d-inline"><i class="fa fa-phone f80 p-0 text-blue" aria-hidden="true"></i>&nbsp;&nbsp;8912054513        </strong></p>
+            <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i>&nbsp;&nbsp;&nbsp;<span>Category:</span>                  <strong class="float-right d-inline">Public Toilet     </strong></p>
+            <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i>&nbsp;&nbsp;&nbsp;<span>Belongs to other category:</span> <strong class="float-right d-inline">N/A               </strong></p>
+            <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i>&nbsp;&nbsp;&nbsp;<span>Type of Toilet:</span>            <strong class="float-right d-inline">Toilet & Urinal   </strong></p>
+            <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i>&nbsp;&nbsp;&nbsp;<span>Owner Authority:</span>           <strong class="float-right d-inline">Municipality      </strong></p>
+            <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i>&nbsp;&nbsp;&nbsp;<span>Maintainance Authority:</span>    <strong class="float-right d-inline">Sulabh            </strong></p>
           </div>
         </td>
         <td>
-          <div class="col-sm-12 m-0 br bb">{{ 5 } }</div>
+          <div class="col-sm-12 m-0 br bb">
+            <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i>&nbsp;&nbsp;&nbsp;<span>Toilet is open for use on which days:</span>             <strong class="float-right d-inline"><i class="fa fa-calendar text-info" aria-hidden="true"></i>&nbsp;&nbsp;Mon - Sat        </strong></p>
+            <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i>&nbsp;&nbsp;&nbsp;<span>Toilet Timings:</span>                                   <strong class="float-right d-inline"><i class="fa fa-clock-o text-info" aria-hidden="true"></i>&nbsp;&nbsp;6:00AM-6:00PM    </strong></p>
+            <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i>&nbsp;&nbsp;&nbsp;<span>Toilet Seats:</span>                                     <strong class="float-right d-inline">10               </strong></p>
+            <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i>&nbsp;&nbsp;&nbsp;<span>Toilet can be used by:</span>                            <strong class="float-right d-inline">Gents & Ladies   </strong></p>
+            <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i>&nbsp;&nbsp;&nbsp;<span>Is Child Friendly:</span>                                <strong class="float-right d-inline"><i class="fa fa-child text-info" aria-hidden="true"></i>&nbsp;&nbsp;Yes              </strong></p>
+            <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i>&nbsp;&nbsp;&nbsp;<span>Is Differently-abled friendly:</span>                    <strong class="float-right d-inline"><i class="fa fa-wheelchair text-info" aria-hidden="true"></i>&nbsp;&nbsp;Yes              </strong></p>
+          </div>
         </td>
-        <td>
-          <div class="col-sm-12 m-0 br bb">{{ 6 } }</div>
+        <td class="blw">
+          <div class="col-sm-12 m-0 br bb">
+            <img src="" style="max-width:96px;min-width:96px;min-height:96px;max-height:96px;background:#c0c0c0;margin:4px;" />
+            <img src="" style="max-width:96px;min-width:96px;min-height:96px;max-height:96px;background:#c0c0c0;margin:4px;" />
+            <img src="" style="max-width:96px;min-width:96px;min-height:96px;max-height:96px;background:#c0c0c0;margin:4px;" />
+            <img src="" style="max-width:96px;min-width:96px;min-height:96px;max-height:96px;background:#c0c0c0;margin:4px;" />
+          </div>
+        </td>
+        <td class="blw">
+          <div class="col-sm-12 m-0 br bb">
+            <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i>&nbsp;&nbsp;&nbsp;<span>Sanitary Napkin Machine:</span>                          <strong class="float-right d-inline">No       </strong></p>
+            <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i>&nbsp;&nbsp;&nbsp;<span>An Incinerator for Sanitary Pads:</span>                 <strong class="float-right d-inline">No       </strong></p>
+            <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i>&nbsp;&nbsp;&nbsp;<span>Water ATM available in the toilet compound:</span>       <strong class="float-right d-inline">No       </strong></p>
+            <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i>&nbsp;&nbsp;&nbsp;<span>Any other facility available:</span>                     <strong class="float-right d-inline">No       </strong></p>
+            <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i>&nbsp;&nbsp;&nbsp;<span>If Yes, please specify:</span>                           <strong class="float-right d-inline">Yes      </strong></p>
+            <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i>&nbsp;&nbsp;&nbsp;<span>Is there a fee applicable for using Toilet:</span>       <strong class="float-right d-inline">Pay & Use (RS.10)</strong></p>            
+          </div>
+        </td>
+        <td class="blw">
+          <div class="col-sm-12 m-0 br bb">
+            
+          </div>
         </td>
       </tr>
     </tbody>

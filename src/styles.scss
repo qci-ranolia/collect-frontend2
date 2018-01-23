@@ -1538,7 +1538,7 @@ input:not([type=range]) {
     border-bottom:1px solid #888 !important;
 }.tb thead th, .tb tbody td {
     display:inline-block;
-    width:22.25%;
+    width:33%;
     border:none !important;
     float:none;
     box-sizing:border-box;
@@ -1549,26 +1549,39 @@ input:not([type=range]) {
     width:3%;
 }.tb thead th.det, .tb tbody td.det {
     width:8%;
-}.tb tr, .tb td, .tb tbody td div {
+}.tb tr, .tb td {
     /*border:1px solid #ccc;*/
     @include transition(all 0.35s linear .01s);
     box-sizing:border-box;
     height:50px;
     overflow:hidden;
     display:block;
-}.tb tr.active td div{
+}/*.tb tr.active td div{
     @include transition(all 0.35s linear .01s);
     padding-top:10px;
     padding-bottom:10px; 
-}.tb tr.active, .tb tr.active td, .tb tr.active td div {
+}*/.tb tr.active td {
     @include transition(all 0.35s linear .01s);
-    height:140px;
+    height:170px;
     //height:auto; 
-}.tb tr.active{
+}.tb tr.active {
   @include transition(all 0.35s linear .01s);
-  box-shadow:0px 0px 5px 0px #aaa;
-  background:$body-bg-default !important;
-} .assessor{
+  height:auto;
+}.tb tr.active td div, .tb tr td div {
+  @include transition(all 0.35s linear .01s);
+  height:100%;
+}.tb tr.active td.blw div{
+  padding-top:10px;
+  padding-bottom:10px; 
+}
+.tb tr td.blw {
+  width:33.33%;
+}
+.tb tr.active{
+  @include transition(all 0.35s linear .01s);
+  box-shadow:0px 0px 10px 0px #555;
+  background:$body-bg-white;
+}.assessor{
   position:relative;
   -webkit-user-select:text;
   -moz-user-select:text;
@@ -1576,7 +1589,12 @@ input:not([type=range]) {
   -ms-user-select:text;
   user-select:text;
   -webkit-user-drag:auto;
+  width:23% !important;
   /*-webkit-user-modify:read-write;*/
+}.tb tr td p {
+  //line-height:16px;
+  font-size:13px;
+  //line-height:22px
 }
 /*.assessor p.s {
   transition:all 0.8s ease-in 0.1s;
@@ -1597,8 +1615,7 @@ input:not([type=range]) {
   //box-shadow:0px 0px 10px -10px #ccc;
 }.tb thead tr:hover{
   background:inherit;
-}
-.tb thead, .tb thead tr, .tb thead:hover{
+}.tb thead, .tb thead tr, .tb thead:hover{
   height:30px;
   background:#eaeaea;
 }
