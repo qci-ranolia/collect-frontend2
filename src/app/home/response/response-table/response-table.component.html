@@ -6,15 +6,15 @@
 table.dataTable thead .sorting,
 table.dataTable thead .sorting_asc,
 table.dataTable thead .sorting_desc {
-  background:none;
+  background:#fff;
 }
 </style>
-<div class="container-fluid mt-4 pb-3 text-center">        
+<div class="container-fluid mt-3 pb-3 text-center pl-0 pr-0">        
   <div *ngIf='!flag' class="pt-5 mt-5">
     <h4 class="pt-5 mt-5"> Just a moment please....</h4>
   </div>
   <div class="" style="width:100%;overflow-x: auto">
-    <!--<table *ngIf='flag' id="exampleFormResponse" class=" display table table-striped  table-responsive-md" cellspacing="0" style="display:none;">
+ <!--   <table *ngIf='flag' id="exampleFormResponse" class=" display table table-striped  table-responsive-md" cellspacing="0">
       <thead>
           <tr>
             <th></th>
@@ -28,25 +28,25 @@ table.dataTable thead .sorting_desc {
         <tr *ngFor='let res of response; let i = index'>
               <td>{{i+1}}</td>
               <td>
-                <button type="button" class="btn btn-primary" (click)='getDetails(i,res); $event.stopPropagation()'>Details</button>
+                <button type="button" class="btn btn-primary pt-0 pb-0" (click)='getDetails(i,res); $event.stopPropagation()'>Details</button>
               </td>
               <td *ngFor='let temp of res; let j = index'>
                 <span *ngIf='temp.type != "camera" &&  temp.type != "file" && temp.type != "video" && temp.type!= "tag"'>{{temp.value}}</span> <!-- Normal TEXT VALUE -->
-          <!--      <span *ngIf='temp.type == "tag" '>                                                                                             <!-- TAGGED______VALUE -->
-             <!--     <span style="display: none" >{{temp.value}} </span>
+    <!--            <span *ngIf='temp.type == "tag" '>                                                                                             <!-- TAGGED______VALUE -->
+    <!--              <span style="display: none" >{{temp.value}} </span>
                   <button *ngIf='temp.value == ""' class="noTag" (click)="changeTag(i, res)">&nbsp;&nbsp;No-Tag&nbsp;&nbsp;</button>
-                  <button *ngIf='temp.value == "Flagged"' class="flaggedTag" (click)="changeTag(i, res)" disabled>&nbsp;{{temp.value}}&nbsp;</button>
-                  <button *ngIf='temp.value == "Pending"' class="pendingTag" (click)="changeTag(i, res)" disabled>&nbsp;{{temp.value}}&nbsp;</button>
-                  <button *ngIf='temp.value == "Verified"' class="verifiedTag"(click)="changeTag(i, res)">&nbsp;{{temp.value}}&nbsp;</button>
-                  <button *ngIf='temp.value == "Archived"' class="archivedTag"(click)="changeTag(i, res)">&nbsp;{{temp.value}}&nbsp;</button>
+                  <button *ngIf='temp.value == "Flagged"' class="flaggedTag pt-0 pb-0" (click)="changeTag(i, res)" disabled>&nbsp;{{temp.value}}&nbsp;</button>
+                  <button *ngIf='temp.value == "Pending"' class="pendingTag pt-0 pb-0" (click)="changeTag(i, res)" disabled>&nbsp;{{temp.value}}&nbsp;</button>
+                  <button *ngIf='temp.value == "Verified"' class="verifiedTag pt-0 pb-0" (click)="changeTag(i, res)">&nbsp;{{temp.value}}&nbsp;</button>
+                  <button *ngIf='temp.value == "Archived"' class="archivedTag pt-0 pb-0" (click)="changeTag(i, res)">&nbsp;{{temp.value}}&nbsp;</button>
                 </span>
                 <span *ngIf='temp.type == "camera" '><img *ngIf='temp.value' class="responseImg" src={{temp.value}} (click)='imageModal(temp.value)' style="max-width:60px" /><span style="display:none">{{temp.value}}</span> </span>  <!-- I M A G E   V A L U E  -->
-            <!--    <span *ngIf='temp.type == "video" '><video *ngIf='temp.value' class="responseImg" style="width:200px !important" controls><source src={{temp.value}}></video><span style="display:none">{{temp.value}}</span> </span>  <!-- V I D E O   V A L U E  -->
-   <!--             <span *ngIf='temp.type == "file" '>
+       <!--         <span *ngIf='temp.type == "video" '><video *ngIf='temp.value' class="responseImg" style="width:200px !important" controls><source src={{temp.value}}></video><span style="display:none">{{temp.value}}</span> </span>  <!-- V I D E O   V A L U E  -->
+        <!--        <span *ngIf='temp.type == "file" '>
                   <button  *ngIf='temp.value' type="button" class="btn btn-primary" (click)='openImageNewTab(temp.value)'>  <i class="fa fa-download" aria-hidden="true"></i></button><!-- F I L E   V A L U E-->
-    <!--              <span style="display: none" >{{temp.value}}</span>
+       <!--           <span style="display: none" >{{temp.value}}</span>
                 </span>  <!-- F I L E   V A L U E  -->
-    <!--          </td>
+      <!--        </td>
           </tr>
       </tbody>
     </table>-->
@@ -116,23 +116,23 @@ table.dataTable thead .sorting_desc {
           </td>
           <td class="location">
             <div class="col-sm-12 m-0 br bb out">
-              <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Care taker:</span>                <strong class="float-right d-inline">Shyam Lal bankey  </strong></p>
-              <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Contact Number:</span>            <strong class="float-right d-inline"><i class="fa fa-phone f80 p-0 text-blue" aria-hidden="true"></i>&nbsp;&nbsp;8912054513        </strong></p>
-              <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Category:</span>                  <strong class="float-right d-inline">Public Toilet     </strong></p>
-              <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Belongs to other category:</span> <strong class="float-right d-inline">N/A               </strong></p>
-              <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Type of Toilet:</span>            <strong class="float-right d-inline">Toilet & Urinal   </strong></p>
-              <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Owner Authority:</span>           <strong class="float-right d-inline">Municipality      </strong></p>
-              <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Maintainance Authority:</span>    <strong class="float-right d-inline">Sulabh            </strong></p>
+              <p class="m-0"><span>Care taker:</span>                <strong class="float-right d-inline">Shyam Lal bankey  </strong></p>
+              <p class="m-0"><span>Contact Number:</span>            <strong class="float-right d-inline"><i class="fa fa-phone f80 p-0 text-blue" aria-hidden="true"></i>&nbsp;&nbsp;8912054513        </strong></p>
+              <p class="m-0"><span>Category:</span>                  <strong class="float-right d-inline">Public Toilet     </strong></p>
+              <p class="m-0"><span>Belongs to other category:</span> <strong class="float-right d-inline">N/A               </strong></p>
+              <p class="m-0"><span>Type of Toilet:</span>            <strong class="float-right d-inline">Toilet & Urinal   </strong></p>
+              <p class="m-0"><span>Owner Authority:</span>           <strong class="float-right d-inline">Municipality      </strong></p>
+              <p class="m-0"><span>Maintainance Authority:</span>    <strong class="float-right d-inline">Sulabh            </strong></p>
             </div>
           </td>
           <td>
             <div class="col-sm-12 m-0 br bb out">
-              <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Toilet is open for use on which days:</span>             <strong class="float-right d-inline"><i class="fa fa-calendar text-info" aria-hidden="true"></i>&nbsp;&nbsp;Mon - Sat        </strong></p>
-              <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Toilet Timings:</span>                                   <strong class="float-right d-inline"><i class="fa fa-clock-o text-info" aria-hidden="true"></i>&nbsp;&nbsp;6:00AM-6:00PM    </strong></p>
-              <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Toilet Seats:</span>                                     <strong class="float-right d-inline">10               </strong></p>
-              <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Toilet can be used by:</span>                            <strong class="float-right d-inline">Gents & Ladies   </strong></p>
-              <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Is Child Friendly:</span>                                <strong class="float-right d-inline"><i class="fa fa-child text-info" aria-hidden="true"></i>&nbsp;&nbsp;Yes              </strong></p>
-              <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Is Differently-abled friendly:</span>                    <strong class="float-right d-inline"><i class="fa fa-wheelchair text-info" aria-hidden="true"></i>&nbsp;&nbsp;Yes              </strong></p>
+              <p class="m-0"><span>Toilet is open for use on which days:</span>             <strong class="float-right d-inline"><i class="fa fa-calendar text-info" aria-hidden="true"></i>&nbsp;&nbsp;Mon - Sat        </strong></p>
+              <p class="m-0"><span>Toilet Timings:</span>                                   <strong class="float-right d-inline"><i class="fa fa-clock-o text-info" aria-hidden="true"></i>&nbsp;&nbsp;6:00AM-6:00PM    </strong></p>
+              <p class="m-0"><span>Toilet Seats:</span>                                     <strong class="float-right d-inline">10               </strong></p>
+              <p class="m-0"><span>Toilet can be used by:</span>                            <strong class="float-right d-inline">Gents & Ladies   </strong></p>
+              <p class="m-0"><span>Is Child Friendly:</span>                                <strong class="float-right d-inline"><i class="fa fa-child text-info" aria-hidden="true"></i>&nbsp;&nbsp;Yes              </strong></p>
+              <p class="m-0"><span>Is Differently-abled friendly:</span>                    <strong class="float-right d-inline"><i class="fa fa-wheelchair text-info" aria-hidden="true"></i>&nbsp;&nbsp;Yes              </strong></p>
             </div>
           </td>
           <td class="blwlft photo">
@@ -173,12 +173,12 @@ table.dataTable thead .sorting_desc {
           </td>
           <td class="blwrght">
             <div class="col-sm-12 m-0 br bb out">
-              <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Sanitary Napkin Machine:</span>                          <strong class="float-right d-inline">No       </strong></p>
-              <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>An Incinerator for Sanitary Pads:</span>                 <strong class="float-right d-inline">No       </strong></p>
-              <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Water ATM available in the toilet compound:</span>       <strong class="float-right d-inline">No       </strong></p>
-              <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Any other facility available:</span>                     <strong class="float-right d-inline">No       </strong></p>
-              <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>If Yes, please specify:</span>                           <strong class="float-right d-inline">Yes      </strong></p>
-              <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Is there a fee applicable for using Toilet:</span>       <strong class="float-right d-inline">Pay & Use (RS.10)</strong></p>            
+              <p class="m-0"><span>Sanitary Napkin Machine:</span>                          <strong class="float-right d-inline">No       </strong></p>
+              <p class="m-0"><span>An Incinerator for Sanitary Pads:</span>                 <strong class="float-right d-inline">No       </strong></p>
+              <p class="m-0"><span>Water ATM available in the toilet compound:</span>       <strong class="float-right d-inline">No       </strong></p>
+              <p class="m-0"><span>Any other facility available:</span>                     <strong class="float-right d-inline">No       </strong></p>
+              <p class="m-0"><span>If Yes, please specify:</span>                           <strong class="float-right d-inline">Yes      </strong></p>
+              <p class="m-0"><span>Is there a fee applicable for using Toilet:</span>       <strong class="float-right d-inline">Pay & Use (RS.10)</strong></p>            
             </div>
           </td>
           <td class="blwrght" style="display:none;">
@@ -198,13 +198,13 @@ table.dataTable thead .sorting_desc {
         </tr>
       </thead>
       <tbody class="d-inline-block col-sm-12 p-0">
-        <tr class="d-inline-block col-sm-12 p-0"  *ngFor='let res of response; let i = index' [class.active]="clicked === res" (click)="clicked = res">
+        <tr class="d-inline-block col-sm-12 p-0" *ngFor='let res of response; let i = index' [class.active]="clicked === res" (click)="clicked = res">
           <td class="sr f80 p-0">
             <div class="out">
               <table class="col-sm-12 p-0" cellspacing="0" cellpadding="0"><!--tb display table table-striped table-responsive-md text-left -->
                 <tbody class="d-inline-block col-sm-12 p-0">          
                   <tr class="d-inline-block col-sm-12 p-0">
-                    <td class="text-center col-sm-12 p-0">1</td>
+                    <td class="text-center col-sm-12 p-0">{{i+1}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -218,30 +218,64 @@ table.dataTable thead .sorting_desc {
                   <tr class="d-inline-block col-sm-12 row m-0 p-0 up bb">
                     <td class="details col-2 text-center">
                       <div class="col-sm-12 pl-0 pr-0 pt-3">
-                        <button type="button" class="btn btn-primary">Details</button>
+                        <button type="button" class="btn btn-primary pt-1 pb-1 pl-2 pr-2">Details</button>
+                        <p class="mt-3 f80">V7/7</p>
                       </div>
                     </td>
                     <td class="innrInfo col-10">
-                      <div class="col-sm-12" style="font-size:13px;">
-                        <p class="mt-1 mb-1"><i class="fa fa-user-o f80 p-0 text-info" aria-hidden="true"></i>&nbsp;Mahesh Ganesh peter</p>
-                        <p class="mt-1 mb-1"><i class="fa fa-phone f80 p-0 text-blue" aria-hidden="true"></i>&nbsp;95980-09082 || <i class="fa fa-envelope f80 p-0 text-danger" aria-hidden="true"></i>&nbsp;mahesh@ganesh.com</p>
-                        <p class="mt-1 mb-1"><i aria-hidden="true" class="fa fa-pencil-square-o f80 p-0 text-info"></i>&nbsp;<span>Response ID:</span>    <strong class="float-right d-inline">Ks5sasa4a5s4a5sa     </strong></p>
-                        <p class="m-0"><i class="fa fa-shower f80 p-0 text-success" aria-hidden="true"></i>&nbsp;<span>Toilet ID:</span>            <strong class="float-right d-inline">KMC/19/RSU/1         </strong></p>
-                        <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Care taker:</span>                <strong class="float-right d-inline">Shyam Lal bankey  </strong></p>
-                        <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Contact Number:</span>            <strong class="float-right d-inline"><i class="fa fa-phone f80 p-0 text-blue" aria-hidden="true"></i>&nbsp;&nbsp;8912054513        </strong></p>
-                        <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Category:</span>                  <strong class="float-right d-inline">Public Toilet     </strong></p>
-                        <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Belongs to other category:</span> <strong class="float-right d-inline">N/A               </strong></p>
-                        <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Type of Toilet:</span>            <strong class="float-right d-inline">Toilet & Urinal   </strong></p>
-                        <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Owner Authority:</span>           <strong class="float-right d-inline">Municipality      </strong></p>
-                        <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Maintainance Authority:</span>    <strong class="float-right d-inline">Sulabh            </strong></p>
+                      <div class="col-sm-12">
+                        <p class="m-0">
+                          <i class="fa fa-user-o f80 p-0 text-info" aria-hidden="true"></i>&nbsp;Mahesh Ganesh peter
+                          <button class="noTag">No-Tag</button>
+                          <button class="flaggedTag f80 pl-1 pr-1" (click)='$event.stopPropagation()' disabled>Flagged</button>
+                          <button class="pendingTag f80 pl-1 pr-1" (click)='$event.stopPropagation()' disabled>Pending</button>
+                          <button class="verifiedTag f80 pl-1 pr-1" (click)='$event.stopPropagation()'>Verified</button>
+                          <button class="archivedTag f80 pl-1 pr-1" (click)='$event.stopPropagation()'>Archived</button>
+                        </p>
+                        <p class="m-0">
+                          <i class="fa fa-phone f80 p-0 text-blue" aria-hidden="true"></i>&nbsp;95980-09082 || <i class="fa fa-envelope f80 p-0 text-danger" aria-hidden="true"></i>&nbsp;mahesh@ganesh.com</p>
+                        <hr class="m-1" />
+                          <p class="m-0">
+                            <span>Response ID:</span>
+                          <strong class="float-right d-inline">Ks5sasa4a5s4a5sa</strong>
+                        </p>
+                        <p class="m-0">
+                          <span>Toilet ID:</span>
+                          <strong class="float-right d-inline">KMC/19/RSU/1</strong>
+                        </p>
+                        <hr class="m-1" />
+                        <p class="m-0">
+                          <span>Care taker:</span>
+                          <strong class="float-right d-inline">Shyam Lal bankey || 8912054513</strong>
+                        </p>
+                        <p class="m-0"><span>Category:</span>                  <strong class="float-right d-inline">Public Toilet     </strong></p>
+                        <p class="m-0"><span>Belongs to other category:</span> <strong class="float-right d-inline">N/A               </strong></p>
+                        <p class="m-0"><span>Type of Toilet:</span>            <strong class="float-right d-inline">Toilet & Urinal   </strong></p>
+                        <p class="m-0"><span>Owner Authority:</span>           <strong class="float-right d-inline">Municipality      </strong></p>
+                        <p class="m-0"><span>Maintainance Authority:</span>    <strong class="float-right d-inline">Sulabh            </strong></p>
                       </div>
                     </td>
                   </tr>
                   <tr class="d-inline-block col-sm-12 p-0 below">
-                    <td>
-                      <table class="" cellspacing="0" cellpadding="0">
-                        <tr>
-                          <td><div class="col-sm-12">Photo and location here...</div></td>
+                    <td class="col-sm-12">
+                      <table class="col-sm-12 pl-0 pr-0" cellspacing="0" cellpadding="0">
+                        <tr class="col-sm-12 pl-0 pr-0">
+                          <td class="col-sm-12 pl-0 pr-0">
+                            <div class="col-sm-12 deaf">
+                              <div class="col-sm-9 float-left p-0">
+                                <span class="float-left mt-4">Toilet Photos:</span>
+                                <img class="img-fluid" src="https://s3.ap-south-1.amazonaws.com/qci-collect/responses/15153098433704833/15153098913019809/74ff08cf29dc42419c7022ede3995418/images/74ff-15153100459814370-thumbnail.jpeg" />
+                                <img class="img-fluid" src="https://s3.ap-south-1.amazonaws.com/qci-collect/responses/15153098433704833/15153098913019809/ba73d02db3ad42878da07a57efc8679c/images/ba73-15153100459814370-thumbnail.jpeg" />
+                                <img class="img-fluid" src="https://s3.ap-south-1.amazonaws.com/qci-collect/responses/15153098433704833/15153098913019809/74ff08cf29dc42419c7022ede3995418/images/74ff-15153100459814370-thumbnail.jpeg" />
+                                <img class="img-fluid" src="https://s3.ap-south-1.amazonaws.com/qci-collect/responses/15153098433704833/15153098913019809/ba73d02db3ad42878da07a57efc8679c/images/ba73-15153100459814370-thumbnail.jpeg" />
+                              </div>
+                              <div class="col-sm-3 float-left p-0">
+                                <p class="m-0">Toilet Locations:</p>
+                                <button class="btn btn-primary p-1 bg-white" type="button">Map 1</button>
+                                <button class="btn btn-primary p-1 bg-white" type="button">Map 2</button>
+                              </div>
+                            </div>
+                          </td>
                         </tr>
                       </table>
                     </td>
@@ -251,90 +285,90 @@ table.dataTable thead .sorting_desc {
             </div>
           </td>
           <!--info ends-->
-          <td class="main">
+          <td class="main float-right">
             <div class="out">
               <table class="col-sm-12 p-0 ques" cellspacing="0" cellpadding="0"><!--tb display table table-striped table-responsive-md text-left-->
                 <tbody class="d-inline-block col-sm-12 p-0">
                   <tr class="d-inline-block col-sm-12 p-0 questTR">
                     <td class="col-sm-12 quesTD">
                       <div class="col-sm-12">
-                        <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Toilet is open for use on which days:</span>             <strong class="float-right d-inline"><i class="fa fa-calendar text-info" aria-hidden="true"></i>&nbsp;&nbsp;Mon - Sat        </strong></p>
+                        <p class="m-0"><span>Toilet is open for use on which days:</span>             <strong class="float-right d-inline"><i class="fa fa-calendar text-info" aria-hidden="true"></i>&nbsp;&nbsp;Mon - Sat        </strong></p>
                       </div>
                     </td>
                   </tr>
                   <tr class="d-inline-block col-sm-12 p-0 questTR">
                     <td class="col-sm-12 quesTD">
                       <div class="col-sm-12">
-                        <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Toilet Timings:</span>                                   <strong class="float-right d-inline"><i class="fa fa-clock-o text-info" aria-hidden="true"></i>&nbsp;&nbsp;6:00AM-6:00PM    </strong></p></div>
+                        <p class="m-0"><span>Toilet Timings:</span>                                   <strong class="float-right d-inline"><i class="fa fa-clock-o text-info" aria-hidden="true"></i>&nbsp;&nbsp;6:00AM-6:00PM    </strong></p></div>
                     </td>
                   </tr>
                   <tr class="d-inline-block col-sm-12 p-0 questTR">
                     <td class="col-sm-12 quesTD">
                       <div class="col-sm-12">
-                        <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Toilet Seats:</span>                                     <strong class="float-right d-inline">10               </strong></p>
+                        <p class="m-0"><span>Toilet Seats:</span>                                     <strong class="float-right d-inline">10               </strong></p>
                       </div>
                     </td>
                   </tr>
                   <tr class="d-inline-block col-sm-12 p-0 questTR">
                     <td class="col-sm-12 quesTD">
                       <div class="col-sm-12">
-                        <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Toilet can be used by:</span>                            <strong class="float-right d-inline">Gents & Ladies   </strong></p>
+                        <p class="m-0"><span>Toilet can be used by:</span>                            <strong class="float-right d-inline">Gents & Ladies   </strong></p>
                       </div>
                     </td>
                   </tr>
                   <tr class="d-inline-block col-sm-12 p-0 questTR">
                     <td class="col-sm-12 quesTD">
                       <div class="col-sm-12">
-                        <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Is Child Friendly:</span>                                <strong class="float-right d-inline"><i class="fa fa-child text-info" aria-hidden="true"></i>&nbsp;&nbsp;Yes              </strong></p>
+                        <p class="m-0"><span>Is Child Friendly:</span>                                <strong class="float-right d-inline"><i class="fa fa-child text-info" aria-hidden="true"></i>&nbsp;&nbsp;Yes              </strong></p>
                       </div>
                     </td>
                   </tr>
                   <tr class="d-inline-block col-sm-12 p-0 questTR">
                     <td class="col-sm-12 quesTD">
                       <div class="col-sm-12">
-                        <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Is Differently-abled friendly:</span>                    <strong class="float-right d-inline"><i class="fa fa-wheelchair text-info" aria-hidden="true"></i>&nbsp;&nbsp;Yes              </strong></p>
+                        <p class="m-0"><span>Is Differently-abled friendly:</span>                    <strong class="float-right d-inline"><i class="fa fa-wheelchair text-info" aria-hidden="true"></i>&nbsp;&nbsp;Yes              </strong></p>
                       </div>
                     </td>
                   </tr>
                   <tr class="d-inline-block col-sm-12 p-0 questTR">
                     <td class="col-sm-12 quesTD">
                       <div class="col-sm-12">
-                        <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Sanitary Napkin Machine:</span>                          <strong class="float-right d-inline">No       </strong></p> 
+                        <p class="m-0"><span>Sanitary Napkin Machine:</span>                          <strong class="float-right d-inline">No       </strong></p> 
                       </div>
                     </td>
                   </tr>
                   <tr class="d-inline-block col-sm-12 p-0 questTR">
                     <td class="col-sm-12 quesTD">
                       <div class="col-sm-12">
-                        <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>An Incinerator for Sanitary Pads:</span>                 <strong class="float-right d-inline">No       </strong></p> 
+                        <p class="m-0"><span>An Incinerator for Sanitary Pads:</span>                 <strong class="float-right d-inline">No       </strong></p> 
                       </div>
                     </td>
                   </tr>
                   <tr class="d-inline-block col-sm-12 p-0 questTR">
                     <td class="col-sm-12 quesTD">
                       <div class="col-sm-12">
-                        <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Water ATM available in the toilet compound:</span>       <strong class="float-right d-inline">No       </strong></p> 
+                        <p class="m-0"><span>Water ATM available in the toilet compound:</span>       <strong class="float-right d-inline">No       </strong></p> 
                       </div>
                     </td>
                   </tr>
                   <tr class="d-inline-block col-sm-12 p-0 questTR">
                     <td class="col-sm-12 quesTD">
                       <div class="col-sm-12">
-                        <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Any other facility available:</span>                     <strong class="float-right d-inline">No       </strong></p> 
+                        <p class="m-0"><span>Any other facility available:</span>                     <strong class="float-right d-inline">No       </strong></p> 
                       </div>
                     </td>
                   </tr>
                   <tr class="d-inline-block col-sm-12 p-0 questTR">
                     <td class="col-sm-12 quesTD">
                       <div class="col-sm-12">
-                        <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>If Yes, please specify:</span>                           <strong class="float-right d-inline">Yes      </strong></p> 
+                        <p class="m-0"><span>If Yes, please specify:</span>                           <strong class="float-right d-inline">Yes      </strong></p> 
                       </div>
                     </td>
                   </tr>
                   <tr class="d-inline-block col-sm-12 p-0 questTR">
                     <td class="col-sm-12 quesTD">
                       <div class="col-sm-12">
-                        <p class="m-0"><i class="fa fa-flag-o" aria-hidden="true" style="display:none;"></i><span>Is there a fee applicable for using Toilet:</span>       <strong class="float-right d-inline">Pay & Use (RS.10)</strong></p> 
+                        <p class="m-0"><span>Is there a fee applicable for using Toilet:</span>       <strong class="float-right d-inline">Pay & Use ( &#8377;10)</strong></p> 
                       </div>
                     </td>
                   </tr>
@@ -357,7 +391,7 @@ table.dataTable thead .sorting_desc {
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Details</h5>
       </div>
-      <div class="modal-body text-center" style="  height:640px;  overflow-y: auto">
+      <div class="modal-body text-center" style="height:600px;overflow-y:auto;">
         <div class="row m-0 text-left" *ngFor="let temp of detailRes; let i = index">
           <hr class="col-sm-11" />
           <div class="col-sm-4">
@@ -382,7 +416,7 @@ table.dataTable thead .sorting_desc {
             </div>
             <div class="col-2" >
               <div *ngIf='i>3' >
-                <i *ngIf="temp.flagged" class="fa fa-flag" aria-hidden="true" (click)="flagCommentModal( i, detailRes[1].value, temp.cid)"></i>
+                <i *ngIf="temp.flagged" class="fa fa-flag text-danger" aria-hidden="true" (click)="flagCommentModal( i, detailRes[1].value, temp.cid)"></i>
                 <i *ngIf="!temp.flagged" class="fa fa-flag-o" aria-hidden="true" (click)="flagCommentModal( i, detailRes[1].value, temp.cid)" ></i>
               </div>
             </div>
@@ -445,13 +479,13 @@ table.dataTable thead .sorting_desc {
 <!-- Image modal -->
 <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content" style="width:750px; height:700px;">
+    <div class="modal-content pos-rel" style="height:600px;">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Image View</h5>
       </div>
       <div class="modal-body text-center" style="overflow-y: auto">
         <div class="row justify-content-md-center" >
-          <div class="col-7" >
+          <div class="col-7 bogu" >
               <img class="north" src={{imgUrl}} style="max-width:100%"/>
           </div>
           <div class="col-5" >

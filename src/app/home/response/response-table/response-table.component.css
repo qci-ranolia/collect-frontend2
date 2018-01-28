@@ -6,6 +6,7 @@ th{
   background-color:#fafafa;
   border:1px solid #e0e0e0;
   border-radius:2px;
+  height: 20px;line-height: 20px;
 }
 .flaggedTag, .tb .flaggedTag:hover {
   color:#525351;
@@ -13,6 +14,7 @@ th{
   background-color:#ffd27f;
   border:1px solid orange;
   border-radius:4px;
+  height: 20px;line-height: 20px;
 }
 .pendingTag, .tb .pendingTag:hover {
   color:#525351;
@@ -20,6 +22,7 @@ th{
   background-color:#7ff0ff;
   border:1px solid #2196F3;
   border-radius:4px;
+  height: 20px;line-height: 20px;
 }
 .verifiedTag, .tb .verifiedTag:hover {
   color:#525351;
@@ -27,6 +30,7 @@ th{
   background-color:#cffd9a;
   border:1px solid #8BC34A;
   border-radius:4px;
+  height: 20px;line-height: 20px;
 }
 .archivedTag, .tb .archivedTag:hover {
   color:#525351;
@@ -34,28 +38,29 @@ th{
   background-color:#ffd9d7;
   border:1px solid #ff796f;
   border-radius:4px;
+  height: 20px;line-height: 20px;
 }
 
 
 
 
 
-.tb .noTag, .tb .flaggedTag, .tb .pendingTag, .tb .verifiedTag{
+.tb .noTag, .tb .flaggedTag, .tb .pendingTag, .tb .verifiedTag, .tm .noTag, .tm .flaggedTag, .tm .pendingTag, .tm .verifiedTag{
   opacity: 0;
 }
-.tb .noTag, .tb .flaggedTag, .tb .archivedTag, .tb .pendingTag, .tb .verifiedTag{
+.tb .noTag, .tb .flaggedTag, .tb .archivedTag, .tb .pendingTag, .tb .verifiedTag, .tm .noTag, .tm .flaggedTag, .tm .archivedTag, .tm .pendingTag, .tm .verifiedTag{
   position:absolute;
   top:5px;
   background:transparent;
   border-color:transparent;
   right:5px;
 }
-.tb .flaggedTag{
+.tb .flaggedTag, .tm .flaggedTag{
   color:orange
-}.tb .archivedTag{
+}.tb .archivedTag, .tm .archivedTag{
   color:#ff796f;
-}.tb .pendingTag{
+}.tb .pendingTag, .tm .pendingTag{
   color:#2196F3;
-}.tb .verifiedTag{
+}.tb .verifiedTag, .tm .verifiedTag{
   color:#8BC34A;
 }

@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/scss/_functions.scss";
 @import "~bootstrap/scss/_variables.scss";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 /*transitions mixins*/
 @mixin transition($transition...) { -moz-transition:$transition; -o-transition:$transition; -webkit-transition:$transition; transition:$transition; }
@@ -13,7 +14,10 @@
 @mixin rotate($degrees) {-webkit-transform:rotate($degrees);-moz-transform:rotate($degrees);-ms-transform:rotate($degrees);-o-transform:rotate($degrees);transform:rotate($degrees);}
 
 /*variables*/
-
+body{
+  font-family: 'Open Sans', sans-serif;  
+  font-size:0.8rem;
+}
 // text colors
 $brand-primary:red;
 $text-color-darkset3:#525351 !important;
@@ -63,7 +67,7 @@ $secondary-color-hover:#efc731;
 $secondary-color-border-hover:#dfb721;
 
 //backgrounds
-$body-bg-default:#f2f2f2;
+$body-bg-default:#ededed;
 $body-bg-def2:#fafafa;
 $body-bg-white:#fff !important;
 $body-bg-trans:transparent !important;
@@ -702,7 +706,7 @@ table.dataTable tfoot th,
 table.dataTable tbody th,
   table.dataTable tbody td {
     line-height:24px;
-    padding:6px 10px !important;
+    padding:2px 7px !important;
     white-space:nowrap; 
   }
 
@@ -1667,9 +1671,9 @@ input:not([type=range]) {
       }th.sr{
         width:3%;
       }th.info{
-        width:45%;
+        width:50%;
       }th.main{
-        width:52%;
+        width:47%;
       }
     }
   }/* thead closes */
@@ -1714,11 +1718,11 @@ input:not([type=range]) {
       }td.sr{
         @include transition(all 0.35s linear .01s);
         width:3%;
-        height:60px;
+        height:52px;
       }td.info{
         @include transition(all 0.35s linear .01s);
-        width:35%;
-        height:60px;
+        width:50%;
+        height:52px;
         tr{
           @include transition(all 0.35s linear .01s);
           height:85%;
@@ -1741,8 +1745,8 @@ input:not([type=range]) {
         }
       }td.main{
         @include transition(all 0.35s linear .01s);
-        width:62%;
-        height:60px;
+        width:47%;
+        height:52px;
       }
     }//hover states
     tr:hover{
@@ -1793,11 +1797,28 @@ input:not([type=range]) {
   }/* thead closes */
 }
 .ques{
-  height:60px !important;
+  height:52px !important;
 }
 .questTR{
   height: 18% !important;
-  margin:2px 0 2px
+  margin:0
 }.quesTD{
   height:100% !important;
+}
+
+img.north {
+  transform-origin:50% 50%;
+}.bogu{
+  overflow:hidden;
+  border: 50px solid #fff;
+}
+p{font-size:12.8px;}
+.deaf
+img {
+  max-width:44px;
+  max-height:44px;
+  min-width:44px;
+  min-height:44px;
+  margin:7px;
+  float:left;
 }
