@@ -19,49 +19,49 @@
             &nbsp;Form submition location will be shared by default&nbsp;
             <i class="fa fa-trash-o text-danger fa-6 pt-2" style="position:static;" aria-hidden="true" (click)='deleteElement(i)'></i>
           </div>
-          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-4 prim-hvr" *ngIf="json.type == 'text'" [class.active]="clicked === json" (click)="clicked = json">
+          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-3 prim-hvr" *ngIf="json.type == 'text'" [class.active]="clicked === json" (click)="clicked = json">
             <app-input-text name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}}></app-input-text>
           </div>
-          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-4 prim-hvr" *ngIf="json.type == 'password'" [class.active]="clicked === json" (click)="clicked = json">
+          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-3 prim-hvr" *ngIf="json.type == 'password'" [class.active]="clicked === json" (click)="clicked = json">
             <app-input-password name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}}></app-input-password>
           </div>
-          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-4 prim-hvr" *ngIf="json.type == 'email'" [class.active]="clicked === json" (click)="clicked = json">
+          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-3 prim-hvr" *ngIf="json.type == 'email'" [class.active]="clicked === json" (click)="clicked = json">
             <app-input-email name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}}></app-input-email>
           </div>
-          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-4 prim-hvr" *ngIf="json.type == 'number'" [class.active]="clicked === json" (click)="clicked = json">
+          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-3 prim-hvr" *ngIf="json.type == 'number'" [class.active]="clicked === json" (click)="clicked = json">
             <app-input-number name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} rangeFrom={{json.rangeFrom}} rangeTo={{json.rangeTo}}>  </app-input-number>
           </div>
-          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-4 prim-hvr" *ngIf="json.type == 'phone'" [class.active]="clicked === json" (click)="clicked = json">
+          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-3 prim-hvr" *ngIf="json.type == 'phone'" [class.active]="clicked === json" (click)="clicked = json">
             <app-input-phone name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}}></app-input-phone>
           </div>
-          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-4 prim-hvr" *ngIf="json.type == 'textarea'" [class.active]="clicked === json" (click)="clicked = json">
+          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-3 prim-hvr" *ngIf="json.type == 'textarea'" [class.active]="clicked === json" (click)="clicked = json">
             <app-input-textarea name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}}>  </app-input-textarea>
           </div>
-          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-4 prim-hvr" *ngIf="json.type == 'date'" [class.active]="clicked === json" (click)="clicked = json">
+          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-3 prim-hvr" *ngIf="json.type == 'date'" [class.active]="clicked === json" (click)="clicked = json">
             <app-input-date name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} rangeFrom={{json.rangeFrom}} rangeTo={{json.rangeTo}}></app-input-date>
           </div>
-          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-4 prim-hvr" *ngIf="json.type == 'time'" [class.active]="clicked === json" (click)="clicked = json">
+          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-3 prim-hvr" *ngIf="json.type == 'time'" [class.active]="clicked === json" (click)="clicked = json">
             <app-input-time name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} rangeFrom={{json.rangeFrom}} rangeTo={{json.rangeTo}}></app-input-time>
           </div>
-          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-4 prim-hvr" *ngIf="json.type == 'radio'" [class.active]="clicked === json" (click)="clicked = json">
+          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-3 prim-hvr" *ngIf="json.type == 'radio'" [class.active]="clicked === json" (click)="clicked = json">
             <app-input-radio name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [option]=json.option >  </app-input-radio>
           </div>
-          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-4 prim-hvr" *ngIf="json.type == 'checkbox'" [class.active]="clicked === json" (click)="clicked = json">
+          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-3 prim-hvr" *ngIf="json.type == 'checkbox'" [class.active]="clicked === json" (click)="clicked = json">
             <app-input-checkbox name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [option]=json.option [values]=json.values>  </app-input-checkbox>
           </div>
-          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-4 prim-hvr" *ngIf="json.type == 'dropdown'" [class.active]="clicked === json" (click)="clicked = json">
+          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-3 prim-hvr" *ngIf="json.type == 'dropdown'" [class.active]="clicked === json" (click)="clicked = json">
             <app-input-dropdown name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [option]=json.option ></app-input-dropdown>
           </div>
-          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-4 prim-hvr" *ngIf="json.type == 'slider'" [class.active]="clicked === json" (click)="clicked = json">
+          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-3 prim-hvr" *ngIf="json.type == 'slider'" [class.active]="clicked === json" (click)="clicked = json">
             <app-input-slider name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} rangeFrom={{json.rangeFrom}} rangeTo={{json.rangeTo}} >  </app-input-slider>
           </div>
-          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-4 prim-hvr" *ngIf="json.type == 'file'" [class.active]="clicked === json" (click)="clicked = json">
+          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-3 prim-hvr" *ngIf="json.type == 'file'" [class.active]="clicked === json" (click)="clicked = json">
             <app-input-file name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [fileTypes]=json.fileTypes >  </app-input-file>
           </div>
-          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-4 prim-hvr" *ngIf="json.type == 'camera'" [class.active]="clicked === json" (click)="clicked = json">
+          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-3 prim-hvr" *ngIf="json.type == 'camera'" [class.active]="clicked === json" (click)="clicked = json">
             <app-input-camera name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [fileTypes]=json.fileTypes >  </app-input-camera>
           </div>
-          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-4 prim-hvr" *ngIf="json.type == 'video'" [class.active]="clicked === json" (click)="clicked = json">
+          <div class="col-sm-12 bg-white pl-3 pr-0 pb-0 pt-0 brd-def mb-3 prim-hvr" *ngIf="json.type == 'video'" [class.active]="clicked === json" (click)="clicked = json">
             <app-input-video name={{json.name}} id={{i}} value={{json.value}} disabled={{disabledAll}} [fileTypes]=json.fileTypes >  </app-input-video>
           </div>
           <div *ngIf="json.type == 'break'" ><!-- class="bg-white p-3 brd-def mb-4 prim-hvr" -->
