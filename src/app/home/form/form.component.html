@@ -5,7 +5,7 @@
 <div class="tab-pane active col-sm-12 pl-0 pr-0 mt-2" role="tabpanel">
   <div class="row text-left ofy col-sm-12 pl-0 pr-0 ml-0 mr-0" style="height:82vh;">
     <div *ngFor='let form of formArray; let i = index' class="col-sm-6 p-2" style="margin-bottom:-20px;">
-      <div class="card cbx pb-4">
+      <div class="card cbx">
         <div class="card-block p-0">
           <div class="col-sm-12 pt-2 mt-0 pb-1 bb">
             <h5 class="card-title">{{form.Details.name | shorten: 24: '...'}}</h5>
@@ -116,7 +116,7 @@
         <label class="row ml-0 mr-0 col-12 pl-0 pr-0">
           <span class="col-4 pl-0 pr-0 pt-2 text-left">4. Associate template:</span>
           <select [(ngModel)]="ruleTempTail" class="col-4 form-control">
-            <option *ngFor='let opt of templateArray; let i=i' [ngValue]=opt  >{{opt.Details.name}}</option>
+            <option *ngFor='let opt of templateArray; let i=i' [ngValue]=opt>{{opt.Details.name}}</option>
           </select>
         </label>- - OR - -
         <label class="row ml-0 mr-0 col-12 pl-0 pr-0">

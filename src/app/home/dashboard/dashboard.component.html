@@ -21,63 +21,82 @@
 <div class="row justify-content-center m-0 frame">
   <div class="black-shadow"></div><!-- active-->
   <div class="col-lg-2 slider-fix p-0">
-    <ul class="nav flex-column text-left pt-3" role="tablist">
-      <li class="nav-item d-block">
-        <a class="nav-link collapsed" [routerLink]="['/']">
-          <i class="fa fa-home fa-6" aria-hidden="true"></i>
-          <span>Home</span>
-        </a>
-      </li>
-      <li class="nav-item d-block">
-        <a class="nav-link collapsed" data-toggle="collapse" href="#formchi" aria-expanded="false" aria-controls="collapseExample">
-          <i class="fa fa-file-text fa-6" aria-hidden="true"></i>
-          <span>Forms</span>
-          <i class="fa fa-chevron-right float-right f80" aria-hidden="true" style=""></i>
-        </a>
-        <ul class="pt-3 pb-3 collapse pl-0" id="formchi">
+    <ul class="nav flex-column text-left pt-3" id="accordionNav" role="tablist" aria-multiselectable="true">
+      <div class="card bg-trans border-0 text-white" style="border-top:0 !important;">
+        <div class="card-header p-0 border-bottom-0 bg-trans" role="tab" id="navOne">
+          <li class="nav-item d-block" data-toggle="collapse" data-parent="#accordionNav" href="#navAnchOne" aria-expanded="true" aria-controls="navAnchOne" >
+            <a class="nav-link text-white"[routerLink]="['/']"><i class="fa fa-home fa-6" aria-hidden="true"></i><span>Home</span></a>
+          </li>
+        </div>
+        <div id="navAnchOne" class="collapse show" role="tabpanel" aria-labelledby="navOne">
+          <div class="card-block"></div>
+        </div>
+      </div>
+      <div class="card bg-trans border-0 text-white">
+        <div class="card-header p-0 border-bottom-0 bg-trans" role="tab" id="navTwo">
           <li class="nav-item d-block">
-            <a class="nav-link collapsed border-0 pr-0 pb-2 pt-2 pl-5" [routerLink]="['/form']"  routerLinkActive="active">
-              <i class="fa fa-wpforms pr-3 f80" aria-hidden="true"></i>Forms
+            <a class="nav-link collapsed text-white" data-toggle="collapse" data-parent="#accordionNav" href="#navAnchTwo" aria-expanded="false" aria-controls="navAnchTwo">
+              <i class="fa fa-file-text fa-6" aria-hidden="true"></i><span>Forms</span><i class="fa fa-chevron-right float-right f80" aria-hidden="true" style=""></i>
             </a>
           </li>
+        </div>
+        <div id="navAnchTwo" class="collapse" role="tabpanel" aria-labelledby="navTwo">
+          <div class="card-block">
+            <ul class="pt-3 pb-3 pl-0">
+              <li class="nav-item d-block">
+                <a class="nav-link border-0 pr-0 pb-2 pt-2 pl-4" [routerLink]="['/form']" routerLinkActive="active">
+                  <i class="fa fa-wpforms pr-3 f80" aria-hidden="true"></i>Forms
+                </a>
+              </li>
+              <li class="nav-item d-block">
+                <a class="nav-link border-0 pr-0 pb-2 pt-2 pl-4" [routerLink]="['/templates']" routerLinkActive="active">
+                  <i class="fa fa-columns pr-3 f80" aria-hidden="true"></i>Templates
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card bg-trans border-0 text-white">
+        <div class="card-header p-0 border-bottom-0 bg-trans" role="tab" id="navThree">
+          <li class="nav-item d-block" data-toggle="collapse" data-parent="#accordionNav" href="#navAnchThree" aria-expanded="false" aria-controls="navAnchThree" >
+            <a class="nav-link collapsed text-white"[routerLink]="['/response']" routerLinkActive="active"><i class="fa fa-pencil-square-o fa-6" aria-hidden="true"></i><span>Response</span></a>
+          </li>
+        </div>
+        <div id="navAnchThree" class="collapse" role="tabpanel" aria-labelledby="navThree">
+          <div class="card-block"></div>
+        </div>
+      </div>
+      <div class="card bg-trans border-0 text-white" style="border-bottom:0 !important;">
+        <div class="card-header p-0 border-bottom-0 bg-trans" role="tab" id="navFour">
           <li class="nav-item d-block">
-            <a class="nav-link collapsed border-0 pr-0 pb-2 pt-2 pl-5" [routerLink]="['/templates']" routerLinkActive="active">
-              <i class="fa fa-columns pr-3 f80" aria-hidden="true"></i>Templates
+            <a class="nav-link collapsed text-white" data-toggle="collapse" data-parent="#accordionNav" href="#navAnchFour" aria-expanded="false" aria-controls="navAnchFour">
+              <i class="fa fa-users fa-6" aria-hidden="true"></i><span>Organisation</span><i class="fa fa-chevron-right float-right f80" aria-hidden="true" style=""></i>
             </a>
           </li>
-        </ul>
-      </li>
-      <li class="nav-item d-block">
-        <a class="nav-link collapsed" [routerLink]="['/response']"  routerLinkActive="active">
-          <i class="fa fa-pencil-square-o fa-6" aria-hidden="true"></i>
-          <span>Response</span>
-        </a>
-      </li>
-      <li class="nav-item d-block">
-        <a class="nav-link collapsed" data-toggle="collapse" href="#orga" aria-expanded="false" aria-controls="collapseExample">
-          <i class="fa fa-users fa-6" aria-hidden="true"></i>
-          <span>Organisation</span>
-          <i class="fa fa-chevron-right float-right f80" aria-hidden="true" style=""></i>
-        </a>
-        <ul class="pt-3 pb-3 collapse pl-0" id="orga">
-          <li class="nav-item d-block">
-            <a class="nav-link collapsed border-0 pr-0 pb-2 pt-2 pl-5" [routerLink]="['/user']" routerLinkActive="active">
-              <i class="fa fa-user-o pr-3 f80" aria-hidden="true"></i>User
-            </a>
-          </li>
-          <li class="nav-item d-block">
-            <a class="nav-link collapsed border-0 pr-0 pb-2 pt-2 pl-5" [routerLink]="['/assessor']" routerLinkActive="active">
-              <i class="fa fa-address-card-o pr-2 f80" aria-hidden="true"></i>&nbsp;Assessor
-            </a>
-          </li>
-          <li class="nav-item d-block">
-            <a class="nav-link collapsed border-0 pr-0 pb-2 pt-2 pl-5" [routerLink]="['/teams']" routerLinkActive="active">
-              <i class="fa fa-building-o pr-3 f80" aria-hidden="true"></i>Teams
-            </a>
-          </li>
-        </ul>
-      </li>
-      <!--<li class="nav-item"><a class="nav-link " style="border-bottom:none;"></a></li>-->
+        </div>
+        <div id="navAnchFour" class="collapse" role="tabpanel" aria-labelledby="navFour">
+          <div class="card-block">
+            <ul class="pt-3 pb-3 pl-0">
+              <li class="nav-item d-block">
+                <a class="nav-link border-0 pr-0 pb-2 pt-2 pl-5" [routerLink]="['/user']" routerLinkActive="active">
+                  <i class="fa fa-user-o pr-3 f80" aria-hidden="true"></i>User
+                </a>
+              </li>
+              <li class="nav-item d-block">
+                <a class="nav-link border-0 pr-0 pb-2 pt-2 pl-5" [routerLink]="['/assessor']" routerLinkActive="active">
+                  <i class="fa fa-address-card-o pr-2 f80" aria-hidden="true"></i>&nbsp;Assessor
+                </a>
+              </li>
+              <li class="nav-item d-block">
+                <a class="nav-link border-0 pr-0 pb-2 pt-2 pl-5" [routerLink]="['/teams']" routerLinkActive="active">
+                  <i class="fa fa-building-o pr-3 f80" aria-hidden="true"></i>Teams
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
       <li class="nav-item d-block p-1 pos-bl text-center text-white">@2018, Quality Quancil of India</li>
     </ul>
   </div>

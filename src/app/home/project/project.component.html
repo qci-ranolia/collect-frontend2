@@ -1,37 +1,11 @@
-<div class="col-sm-12 text-right"><!--pos-abso-tr -->
-  <button type="button" class="btn btn-primary col-sm-3 col-md-2 pt-3 pb-3 mt-3" data-toggle="modal" data-target="#projectModal">+ Project</button>
-</div>
-<!--<div id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="card">
-    <div class="card-header" role="tab" id="headingOne">
-      <h5 class="mb-0">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Collapsible Group Item #1</a>
-      </h5>
-    </div>
-    <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
-      <div class="card-block">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab" id="headingTwo">
-      <h5 class="mb-0">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Collapsible Group Item #2</a>
-      </h5>
-    </div>
-    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-      <div class="card-block">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
+<!--<div class="col-sm-12 text-right">//pos-abso-tr
+  
 </div>-->
-<div class="container-fluid p-0 mt-1" id="accordion" role="tablist" aria-multiselectable="true">
-    <div class="row ml-0 mr-0 mb-5" role="tab" id="headingOne">
-      <div class="card-header col-sm-12 pl-0 pr-0" role="tab" id="headingOne">
-        <h5 class="mb-0">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Collapsible Group Item #1</a>
+<div class="container-fluid p-0 mt-3" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="card bg-trans border-bottom-0 border-right-0 border-left-0">
+      <div class="card-header bg-white pt-0 pb-0" role="tab" id="headingOne">
+        <h5 class="mb-0 col-sm-12 pl-0 pr-0">
+          <a class="d-inline-block pt-2 pb-2 col-sm-12 pl-0 pr-0" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">+ Graph Description</a>
         </h5>
       </div>
       <div class="collapse show row m-0 col-sm-12 p-0" id="collapseOne" role="tabpanel" aria-labelledby="headingOne">
@@ -43,9 +17,12 @@
           </div>
           <div class="col-md-12 p-3">
             <div class="col-sm-12 p-2 bg-white" style="height:257px;">
-              <!--Project Summary Blocks-->Project Summary Block<br /><br /><br /><br /><br /><br /><br /><br /><!--Project Summary Blocks Ends-->
-              <!--<div class="text-center p-3">
-              </div>-->
+              <!-- Project Summary Blocks -->Project Summary Block<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+              <button type="button" class="btn btn-primary col-sm-3 col-md-3 pt-2 pb-2 mt-3" data-toggle="modal" data-target="#projectModal">+ Project</button>
+              <!-- Project Summary Blocks Ends -->
+              <!--
+                <div class="text-center p-3"></div>
+              -->
             </div>
           </div>
         </div>
@@ -56,52 +33,58 @@
         </div>
       </div>
     </div>
-    <div class="clearfix p-3"></div>
+    <!--<div class="clearfix p-3"></div>-->
     <!--clearfix class is used to remove the floats-->
-    <div class="row justify-content-center bg2 mt-4 mb-5"><!--Whenever it is necessary to use bg2 class, use mt-5 and mb-5 class too-->
-      <h1 class="col-sm-12 text-center">Project Information</h1>
-      <div *ngFor='let project of projects' class="col-lg-4 col-md-6 col-sm-12 pt-3">
-        <div class="col-sm-12 pl-0 pr-0 mb-3 crdHvr">
-          <!--<div class="collapse" id="collapseExample">
-              <i class="fa fa-close float-right p-3 collapsed" aria-hidden="true" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample"></i>
-              <h4 class="text-left col-11 pt-5 pl-4 pb-0 pr-3 mb-0">Project Description</h4>
-              <p class="pt-0 pl-4 pr-4 text-justify mb-5">{{project.desc}}</p>
-          </div>-->
-          <!--<i class="fa fa-ellipsis-v float-right pl-3 pr-4 pt-3 pb-3" aria-hidden="true"></i>--><!-- data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"-->
-          <h3 class="text-left col-12 pl-4 pr-4 pt-2 pb-1 mb-0">
-            <span class="pb-1">{{project.name}}</span>
-            <small class="pt-2"><u>Short Description:</u> {{project.desc}}</small>
-          </h3>
-          <hr />
-          <div class="row m-0 pt-2 pb-2">
-            <p class="col-4 text-center mb-0 p-0">
-              <i class="fa fa-file p-2 fa-6 rounded-circle cbx mb-2" aria-hidden="true"></i><br />
-              Forms: <span>{{project.form}}</span>
-            </p>
-            <p class="col-4 text-center mb-0 p-0">
-              <i class="fa fa-user-circle fa-6 p-2 rounded-circle cbx mb-2" aria-hidden="true"></i><br />
-              Users: <span>{{project.user}}</span>
-            </p>
-            <p class="col-4 text-center mb-0 p-0">
-              <i class="fa fa-universal-access fa-6 p-2 rounded-circle cbx mb-2" aria-hidden="true"></i><br />
-              Assessor: <span>{{project.assessor}}</span>
-            </p>
+    <div class="card bg-trans border-bottom-0 border-right-0 border-left-0">
+      <div class="card-header bg-white pt-0 pb-0" role="tab" id="headingTwo">
+        <h5 class="mb-0 col-sm-12 pl-0 pr-0">
+          <a class="d-inline-block pt-2 pb-2 col-sm-12 pl-0 pr-0 collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">+ Project Information</a>
+        </h5>
+      </div>
+      <div class="row justify-content-center bg2 mt-2 mb-5 collapse" id="collapseTwo" role="tabpanel" aria-labelledby="headingTwo"><!--Whenever it is necessary to use bg2 class, use mt-5 and mb-5 class too-->
+        <div *ngFor='let project of projects' class="col-lg-4 col-md-6 col-sm-12 pt-3 float-left">
+          <div class="col-sm-12 pl-0 pr-0 mb-3 crdHvr">
+            <!--<div class="collapse" id="collapseExample">
+                <i class="fa fa-close float-right p-3 collapsed" aria-hidden="true" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample"></i>
+                <h4 class="text-left col-11 pt-5 pl-4 pb-0 pr-3 mb-0">Project Description</h4>
+                <p class="pt-0 pl-4 pr-4 text-justify mb-5">{{project.desc}}</p>
+            </div>-->
+            <!--<i class="fa fa-ellipsis-v float-right pl-3 pr-4 pt-3 pb-3" aria-hidden="true"></i>--><!-- data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"-->
+            <h3 class="text-left col-12 pl-4 pr-4 pt-2 pb-1 mb-0">
+              <span class="pb-1">{{project.name}}</span>
+              <small class="pt-2"><u>Short Description:</u> {{project.desc}}</small>
+            </h3>
+            <hr />
+            <div class="row m-0 pt-2 pb-2">
+              <p class="col-4 text-center mb-0 p-0">
+                <i class="fa fa-file p-2 fa-6 rounded-circle cbx mb-2" aria-hidden="true"></i><br />
+                Forms: <span>{{project.form}}</span>
+              </p>
+              <p class="col-4 text-center mb-0 p-0">
+                <i class="fa fa-user-circle fa-6 p-2 rounded-circle cbx mb-2" aria-hidden="true"></i><br />
+                Users: <span>{{project.user}}</span>
+              </p>
+              <p class="col-4 text-center mb-0 p-0">
+                <i class="fa fa-universal-access fa-6 p-2 rounded-circle cbx mb-2" aria-hidden="true"></i><br />
+                Assessor: <span>{{project.assessor}}</span>
+              </p>
+            </div>
           </div>
         </div>
+        <div class="clearfix col-sm-12"></div><!--So that navigation will remain below the projects div box-->
+        <!--pagination html-->
+        <!--<nav aria-label="Page navigation example" class="d-inline float-right pt-4">
+          <ul class="pagination">
+            <li class="page-item bg-sc"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item bg-sc"><a class="page-link" href="#">Next</a></li>
+          </ul>
+        </nav>-->
+        <div class="clearfix col-sm-12"></div>
+        <!--pagination html Ends-->
       </div>
-      <div class="clearfix col-sm-12"></div><!--So that navigation will remain below the projects div box-->
-      <!--pagination html-->
-      <!--<nav aria-label="Page navigation example" class="d-inline float-right pt-4">
-        <ul class="pagination">
-          <li class="page-item bg-sc"><a class="page-link" href="#">Previous</a></li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item bg-sc"><a class="page-link" href="#">Next</a></li>
-        </ul>
-      </nav>-->
-      <div class="clearfix col-sm-12"></div>
-      <!--pagination html Ends-->
     </div>
   </div>
   <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -111,26 +94,26 @@
           <h5 class="modal-title" id="exampleModalLabel">+ New Project</h5>
         </div>
         <div class="modal-body text-center">
-            <form class="col-sm-12">
-              <label class="row ml-0 mr-0 mb-3">
-                <span class="col-4 text-left pt-2 pl-0">Project Name :</span>
-                <input type="text" name="Project Name" value="" class="col-7 form-control pt-2 pb-2" [(ngModel)]='pname' required />
-              </label>
-              <label class="row ml-0 mr-0 mb-3">
-                <span class="col-4 text-left pt-2 pl-0">Project Description :</span>
-                <input type="text" name="Project Desc" value="" class="col-7 form-control pt-2 pb-2" [(ngModel)]='pdesc' required />
-              </label>
-              <!--<fieldset class="form-group row">
-                  <input class="form-control pl-0" id="pn" type="text" name="Project name" value="" [(ngModel)]='pname' required />
-                  <label class="col-form-label" for="pn">Project Name:</label>
-                  <div class="after"></div>
-              </fieldset>
-              <fieldset class="form-group row">
-                  <input class="form-control pl-0" id="pd" type="text" name="Project Desc" value="" [(ngModel)]='pdesc' required />
-                  <label class="col-form-label" for="pd">Project Desc:</label>
-                  <div class="after"></div>
-              </fieldset>-->
-            </form>
+          <form class="col-sm-12">
+            <label class="row ml-0 mr-0 mb-3">
+              <span class="col-4 text-left pt-2 pl-0">Project Name :</span>
+              <input type="text" name="Project Name" value="" class="col-7 form-control pt-2 pb-2" [(ngModel)]='pname' required />
+            </label>
+            <label class="row ml-0 mr-0 mb-3">
+              <span class="col-4 text-left pt-2 pl-0">Project Description :</span>
+              <input type="text" name="Project Desc" value="" class="col-7 form-control pt-2 pb-2" [(ngModel)]='pdesc' required />
+            </label>
+            <!--<fieldset class="form-group row">
+                <input class="form-control pl-0" id="pn" type="text" name="Project name" value="" [(ngModel)]='pname' required />
+                <label class="col-form-label" for="pn">Project Name:</label>
+                <div class="after"></div>
+            </fieldset>
+            <fieldset class="form-group row">
+                <input class="form-control pl-0" id="pd" type="text" name="Project Desc" value="" [(ngModel)]='pdesc' required />
+                <label class="col-form-label" for="pd">Project Desc:</label>
+                <div class="after"></div>
+            </fieldset>-->
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary col-sm-4 pt-3 pb-3" data-target="#addRules" (click)='newProject()'>Initialize project</button>

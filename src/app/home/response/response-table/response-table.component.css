@@ -1,44 +1,44 @@
 th{
   text-align:center;
 }
-.noTag,  .tb .noTag:hover{
+.noTag, .tb .noTag:hover, .tm .noTag:hover{
   color:#c5c5c5;
   background-color:#fafafa;
   border:1px solid #e0e0e0;
   border-radius:2px;
-  height: 20px;line-height: 20px;
+  height: 20px;line-height: 16px;
 }
-.flaggedTag, .tb .flaggedTag:hover {
+.flaggedTag, .tb .flaggedTag:hover, .tm .flaggedTag:hover {
   color:#525351;
   font-weight:bold;
   background-color:#ffd27f;
   border:1px solid orange;
   border-radius:4px;
-  height: 20px;line-height: 20px;
+  height: 20px;line-height: 16px;
 }
-.pendingTag, .tb .pendingTag:hover {
+.pendingTag, .tb .pendingTag:hover, .tm .pendingTag:hover {
   color:#525351;
   font-weight:bold;
   background-color:#7ff0ff;
   border:1px solid #2196F3;
   border-radius:4px;
-  height: 20px;line-height: 20px;
+  height: 20px;line-height: 16px;
 }
-.verifiedTag, .tb .verifiedTag:hover {
+.verifiedTag, .tb .verifiedTag:hover, .tm .verifiedTag:hover {
   color:#525351;
   font-weight:bold;
   background-color:#cffd9a;
   border:1px solid #8BC34A;
   border-radius:4px;
-  height: 20px;line-height: 20px;
+  height: 20px;line-height: 16px;
 }
-.archivedTag, .tb .archivedTag:hover {
+.archivedTag, .tb .archivedTag:hover, .tm .archivedTag:hover {
   color:#525351;
   font-weight:bold;
   background-color:#ffd9d7;
   border:1px solid #ff796f;
   border-radius:4px;
-  height: 20px;line-height: 20px;
+  height: 20px;line-height: 16px;
 }
 
 
