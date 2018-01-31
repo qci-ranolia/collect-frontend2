@@ -45,34 +45,37 @@
 </div>
 <!-- rule modal starts here-->
 <div class="modal fade" id="rules" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog bg-white" role="document" >
+  <div class="modal-dialog bg-white mx70 mt-5" role="document" >
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Rules</h5>
       </div>
-      <div class="modal-body text-center ofy" style="height:600px;">
+      <div class="modal-body text-center ofy" style="height:550px;">
         <div class="row justify-content-center" >
           <div *ngIf='rulesArray.length < 1' >
             <h4> No Rule was created </h4>
           </div>
-          <div *ngFor='let rule of rulesArray; let i = index ' class="col-5 text-center" style="overflow:auto; border: 2px solid gray; border-radius: 4px; height: 230px;  margin:6px" >
-            <h5>{{i+1}}. Rule Name: {{rule.name}} </h5>
-            <hr>Template: <b>{{rule.tempName}}</b><hr>
-            <p>Q. {{rule.elementName}}</p>
-            <p>A. {{rule.elementValue}}</p>
-            <p> Match all (if multiple values): {{rule.satisfyAll}}</p>
-            <div *ngIf='rule.tempName == "Form question"'>Associate Q: {{rule.ruleFormQuestion.name}}
-              <div *ngIf="rule.ruleFormQuestion.option" >
-                <div *ngIf="rule.ruleFormQuestion.option.length" >
-                  <div *ngFor="let m of rule.ruleFormQuestion.option" >
-                    <p><i class="fa fa-arrow-right" aria-hidden="true"></i>{{m}}</p>
+          <div *ngFor='let rule of rulesArray; let i = index' class="col-6 text-left mb-3" [class.active]="clicked === rule" (click)="clicked = rule">
+            <div class="ofy brd-def p-3 rounded-0">
+              <button type="button" class="btn btn-primary float-right pl-2 pr-2 pt-1 pb-1 f80 rounded-0" (click)="deleteRule(rule.cid)"><b>X</b></button>
+              <h6 class="d-block col-9 p-0 mb-0"><strong>{{i+1}}. Rule Name: {{rule.name}}</strong></h6>
+              <p class="mb-0">Template: {{rule.tempName}}</p>
+              <hr class="mb-2 mt-2" />
+              <div class="col-sm-12 p-0 float-left">
+                <p class="mb-0"><strong>Q.</strong> {{rule.elementName}}</p>
+                <p class="mb-2"><strong>A.</strong> {{rule.elementValue}}</p>
+                <p class="mb-0">Match all (if multiple values): {{rule.satisfyAll}}</p>
+                <div *ngIf='rule.tempName == "Form question"'>Associate Q: {{rule.ruleFormQuestion.name}}
+                  <div *ngIf="rule.ruleFormQuestion.option">
+                    <div *ngIf="rule.ruleFormQuestion.option.length">
+                      <div *ngFor="let m of rule.ruleFormQuestion.option">
+                        <p class="mb-0 col-sm-3 float-left">{{m}}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- <p>Condition: {{rule.elementValue}} </p> -->
-            <!-- <a class="card-link" href="#" >Edit</a> -->
-            <button type="button" class="btn btn-primary" (click)="deleteRule(rule.cid)"><b>X</b></button>
           </div>
         </div>
       </div>
@@ -87,44 +90,54 @@
 <!-- rule modal ends here-->
 <!--Add rule modal starts here-->
 <div class="modal fade" id="addRules" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog mx70 mt-5" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">+ Add Rules</h5>
       </div>
-      <div class="modal-body text-center ofy" style="height:600px;">
-        <input type="text" name="" value="" [(ngModel)]='ruleName' placeholder="Rule Name" class="col-12 form-control mb-5" />
-        <label class="row ml-0 mr-0 col-12 pl-0 pr-0">
-          <span class="col-4 pl-0 pr-0 pt-2 text-left">1. Select element :</span>
-          <select [(ngModel)]="ruleElement" (change)='getVal()' class="col-4 form-control">
-            <option *ngFor='let opt of rnameArray; let i=i' [ngValue]=opt  >{{opt.name}}</option>
-          </select>
-        </label>
-        <label class="row ml-0 mr-0 col-12 pl-0 pr-0">
-          <span class="col-4 pl-0 pr-0 pt-2 text-left">2. Condition : Equals</span>
-        </label>
-        <label class="row ml-0 mr-0 col-12 pl-0 pr-0">
-          <span class="col-4 pl-0 pr-0 pt-2 text-left">3. Value :</span>
-          <input *ngIf="!multiOption" type="text" name="" value="" [(ngModel)]='ruleTarget' class="col-4 form-control" />
-          <ss-multiselect-dropdown *ngIf="multiOption" [options]="ruleOptions" [(ngModel)]="ruleTargetM" (ngModelChange)="onChangeRuleOption($event)"></ss-multiselect-dropdown>
-          <br />
-          <!-- <i *ngIf='hint' > hint: {{hint}}</i>
-          <! css not Defined yet-->
-          <!-- <i>(* If multiple, saparated by commas)</i> -->
-        </label>
-        <input type="checkbox" class="form-check-input" [checked]="satisfyAll" (change)='satisfyAllCondition()'> Satisfy all conditions (Only if multiple!)
-        <label class="row ml-0 mr-0 col-12 pl-0 pr-0">
-          <span class="col-4 pl-0 pr-0 pt-2 text-left">4. Associate template:</span>
-          <select [(ngModel)]="ruleTempTail" class="col-4 form-control">
-            <option *ngFor='let opt of templateArray; let i=i' [ngValue]=opt>{{opt.Details.name}}</option>
-          </select>
-        </label>- - OR - -
-        <label class="row ml-0 mr-0 col-12 pl-0 pr-0">
-          <span class="col-4 pl-0 pr-0 pt-2 text-left">&nbsp;  Associate form element</span>
-          <select [(ngModel)]="ruleFormQuestion" class="col-4 form-control">
-            <option *ngFor='let opt of rnameArray; let i=i' [ngValue]=opt  >{{opt.name}}</option>
-          </select>
-        </label>
+      <div class="modal-body text-center ofy" style="height:550px;">
+        <div class="col-8 p-0 float-left">
+          <input type="text" name="" value="" [(ngModel)]='ruleName' placeholder="Rule Name" class="col-12 form-control mb-5" />
+          <label class="row ml-0 mr-0 col-12 pl-0 pr-0">
+            <span class="col-6 pl-0 pr-0 pt-2 text-left">1. Select element :</span>
+            <ng-select [(ngModel)]="ruleElement" (change)='getVal()' class="col-sm-6 form-control p-0 border-0">
+              <option *ngFor='let opt of rnameArray; let i=i' [ngValue]=opt  >{{opt.name}}</option>
+            </ng-select>
+            <!--
+            <select [(ngModel)]="ruleElement" (change)='getVal()' class="col-sm-6 form-control rounded-0">
+              <option *ngFor='let opt of rnameArray; let i=i' [ngValue]=opt  >{{opt.name}}</option>
+            </select>-->
+          </label>
+          <label class="row ml-0 mr-0 col-12 pl-0 pr-0">
+            <span class="col-6 pl-0 pr-0 pt-2 text-left">2. Condition : Equals</span>
+          </label>
+          <label class="row ml-0 mr-0 col-12 pl-0 pr-0">
+            <span class="col-6 pl-0 pr-0 pt-2 text-left">3. Value :</span>
+            <input *ngIf="!multiOption" type="text" name="" value="" [(ngModel)]='ruleTarget' class="col-sm-6 form-control rounded-0" />
+            <ss-multiselect-dropdown *ngIf="multiOption" [options]="ruleOptions" [(ngModel)]="ruleTargetM" (ngModelChange)="onChangeRuleOption($event)"></ss-multiselect-dropdown>
+            <br />
+            <!--<i *ngIf='hint' > hint: {{hint}}</i>
+            <! css not Defined yet-->
+            <!--<i>(* If multiple, saparated by commas)</i> -->
+          </label>
+          <label class="row ml-0 mr-0 col-12">
+            <input type="checkbox" class="form-check-input" [checked]="satisfyAll" (change)='satisfyAllCondition()'> Satisfy all conditions (Only if multiple!)
+          </label>
+          <label class="row ml-0 mr-0 col-12 pl-0 pr-0">
+            <span class="col-6 pl-0 pr-0 pt-2 text-left">4. Associate template:</span>
+            <select [(ngModel)]="ruleTempTail" class="col-sm-6 form-control rounded-0">
+              <option *ngFor='let opt of templateArray; let i=i' [ngValue]=opt>{{opt.Details.name}}</option>
+            </select>
+          </label>
+          <label class="row ml-0 mr-0 col-12 pl-0 pr-0"><strong>- - OR - -</strong></label>
+          <label class="row ml-0 mr-0 col-12 pl-0 pr-0">
+            <span class="col-6 pl-0 pr-0 pt-2 text-left">&nbsp; Associate form element</span>
+            <select [(ngModel)]="ruleFormQuestion" class="col-sm-6 form-control rounded-0">
+              <option *ngFor='let opt of rnameArray; let i=i' [ngValue]=opt  >{{opt.name}}</option>
+            </select>
+          </label>
+        </div>
+        <div class="col-4 p-0 float-left bl"></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary col-sm-3 pt-3 pb-3" (click)='conformRule()'>Create rule</button>

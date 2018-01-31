@@ -188,21 +188,21 @@ table.dataTable thead .sorting_desc {
         </tr>
       </tbody>
     </table>-->
-    <table id="exampleFormResponse" class="tm display table table-striped table-responsive-md text-left bg-white" cellspacing="0" cellpadding="0">
-      <thead class="d-inline-block col-sm-12 p-0">
+    <table id="exampleFormResponse" class="tm display table table-striped table-responsive-md text-left" cellspacing="0" cellpadding="0">
+      <thead class="d-inline-block col-sm-12 p-0 border-0">
         <tr class="d-inline-block col-sm-12 p-0">
           <th class="sr f80 p-0 text-center">Sr no.</th>
           <th class="info"></th>
           <th class="main"></th>
         </tr>
       </thead>
-      <tbody class="d-inline-block col-sm-12 p-0">
+      <tbody class="bg-white d-inline-block col-sm-12 p-0">
         <tr class="d-inline-block col-sm-12 p-0" *ngFor='let res of response; let i = index' [class.active]="clicked === res" (click)="clicked = res">
           <td class="sr f80 p-0">
             <div class="out">
               <table class="col-sm-12 p-0" cellspacing="0" cellpadding="0"><!--tb display table table-striped table-responsive-md text-left -->
                 <tbody class="d-inline-block col-sm-12 p-0">          
-                  <tr class="d-inline-block col-sm-12 p-0">
+                  <tr class="bg-trans d-inline-block col-sm-12 p-0">
                     <td class="text-center col-sm-12 p-0">{{i+1}}</td>
                   </tr>
                 </tbody>
@@ -214,7 +214,7 @@ table.dataTable thead .sorting_desc {
             <div class="out">
               <table class="d-inline-block col-sm-12 p-0" cellspacing="0" cellpadding="0"><!--tb display table table-striped table-responsive-md text-left -->
                 <tbody class="d-inline-block col-sm-12 p-0">
-                  <tr class="d-inline-block col-sm-12 row m-0 p-0 up bb">
+                  <tr class="bg-trans d-inline-block col-sm-12 row m-0 p-0 up bb">
                     <td class="details col-2 text-center">
                       <div class="col-sm-12 pl-0 pr-0 pt-3">
                         <button type="button" class="btn btn-primary pt-1 pb-1 pl-2 pr-2" (click)='$event.stopPropagation()'>Details</button>
@@ -255,10 +255,10 @@ table.dataTable thead .sorting_desc {
                       </div>
                     </td>
                   </tr>
-                  <tr class="d-inline-block col-sm-12 p-0 below">
+                  <tr class="bg-trans d-inline-block col-sm-12 p-0 below">
                     <td class="col-sm-12">
                       <table class="col-sm-12 pl-0 pr-0" cellspacing="0" cellpadding="0">
-                        <tr class="col-sm-12 pl-0 pr-0">
+                        <tr class="bg-trans col-sm-12 pl-0 pr-0">
                           <td class="col-sm-12 pl-0 pr-0">
                             <div class="col-sm-12 deaf">
                               <div class="col-sm-9 float-left p-0">
@@ -291,84 +291,84 @@ table.dataTable thead .sorting_desc {
             <div class="out">
               <table class="col-sm-12 p-0 ques" cellspacing="0" cellpadding="0"><!--tb display table table-striped table-responsive-md text-left-->
                 <tbody class="d-inline-block col-sm-12 p-0">
-                  <tr class="d-inline-block col-sm-12 p-0 questTR">
+                  <tr class="bg-trans d-inline-block col-sm-12 p-0 questTR">
                     <td class="col-sm-12 quesTD">
                       <div class="col-sm-12">
                         <p class="m-0"><span>Toilet is open for use on which days:</span>             <strong class="float-right d-inline"><i class="fa fa-calendar text-info" aria-hidden="true"></i>&nbsp;&nbsp;Mon - Sat        </strong></p>
                       </div>
                     </td>
                   </tr>
-                  <tr class="d-inline-block col-sm-12 p-0 questTR">
+                  <tr class="bg-trans d-inline-block col-sm-12 p-0 questTR">
                     <td class="col-sm-12 quesTD">
                       <div class="col-sm-12">
                         <p class="m-0"><span>Toilet Timings:</span>                                   <strong class="float-right d-inline"><i class="fa fa-clock-o text-info" aria-hidden="true"></i>&nbsp;&nbsp;6:00AM-6:00PM    </strong></p>
                       </div>
                     </td>
                   </tr>
-                  <tr class="d-inline-block col-sm-12 p-0 questTR">
+                  <tr class="bg-trans d-inline-block col-sm-12 p-0 questTR">
                     <td class="col-sm-12 quesTD">
                       <div class="col-sm-12">
                         <p class="m-0"><span>Toilet Seats:</span>                                     <strong class="float-right d-inline">10               </strong></p>
                       </div>
                     </td>
                   </tr>
-                  <tr class="d-inline-block col-sm-12 p-0 questTR">
+                  <tr class="bg-trans d-inline-block col-sm-12 p-0 questTR">
                     <td class="col-sm-12 quesTD">
                       <div class="col-sm-12">
                         <p class="m-0"><span>Toilet can be used by:</span>                            <strong class="float-right d-inline">Gents & Ladies   </strong></p>
                       </div>
                     </td>
                   </tr>
-                  <tr class="d-inline-block col-sm-12 p-0 questTR">
+                  <tr class="bg-trans d-inline-block col-sm-12 p-0 questTR">
                     <td class="col-sm-12 quesTD">
                       <div class="col-sm-12">
                         <p class="m-0"><span>Is Child Friendly:</span>                                <strong class="float-right d-inline"><i class="fa fa-child text-info" aria-hidden="true"></i>&nbsp;&nbsp;Yes              </strong></p>
                       </div>
                     </td>
                   </tr>
-                  <tr class="d-inline-block col-sm-12 p-0 questTR">
+                  <tr class="bg-trans d-inline-block col-sm-12 p-0 questTR">
                     <td class="col-sm-12 quesTD">
                       <div class="col-sm-12">
                         <p class="m-0"><span>Is Differently-abled friendly:</span>                    <strong class="float-right d-inline"><i class="fa fa-wheelchair text-info" aria-hidden="true"></i>&nbsp;&nbsp;Yes              </strong></p>
                       </div>
                     </td>
                   </tr>
-                  <tr class="d-inline-block col-sm-12 p-0 questTR">
+                  <tr class="bg-trans d-inline-block col-sm-12 p-0 questTR">
                     <td class="col-sm-12 quesTD">
                       <div class="col-sm-12">
                         <p class="m-0"><span>Sanitary Napkin Machine:</span>                          <strong class="float-right d-inline">No       </strong></p> 
                       </div>
                     </td>
                   </tr>
-                  <tr class="d-inline-block col-sm-12 p-0 questTR">
+                  <tr class="bg-trans d-inline-block col-sm-12 p-0 questTR">
                     <td class="col-sm-12 quesTD">
                       <div class="col-sm-12">
                         <p class="m-0"><span>An Incinerator for Sanitary Pads:</span>                 <strong class="float-right d-inline">No       </strong></p> 
                       </div>
                     </td>
                   </tr>
-                  <tr class="d-inline-block col-sm-12 p-0 questTR">
+                  <tr class="bg-trans d-inline-block col-sm-12 p-0 questTR">
                     <td class="col-sm-12 quesTD">
                       <div class="col-sm-12">
                         <p class="m-0"><span>Water ATM available in the toilet compound:</span>       <strong class="float-right d-inline">No       </strong></p> 
                       </div>
                     </td>
                   </tr>
-                  <tr class="d-inline-block col-sm-12 p-0 questTR">
+                  <tr class="bg-trans d-inline-block col-sm-12 p-0 questTR">
                     <td class="col-sm-12 quesTD">
                       <div class="col-sm-12">
                         <p class="m-0"><span>Any other facility available:</span>                     <strong class="float-right d-inline">No       </strong></p> 
                       </div>
                     </td>
                   </tr>
-                  <tr class="d-inline-block col-sm-12 p-0 questTR">
+                  <tr class="bg-trans d-inline-block col-sm-12 p-0 questTR">
                     <td class="col-sm-12 quesTD">
                       <div class="col-sm-12">
                         <p class="m-0"><span>If Yes, please specify:</span>                           <strong class="float-right d-inline">Yes      </strong></p> 
                       </div>
                     </td>
                   </tr>
-                  <tr class="d-inline-block col-sm-12 p-0 questTR">
+                  <tr class="bg-trans d-inline-block col-sm-12 p-0 questTR">
                     <td class="col-sm-12 quesTD">
                       <div class="col-sm-12">
                         <p class="m-0"><span>Is there a fee applicable for using Toilet:</span>       <strong class="float-right d-inline">Pay & Use ( &#8377;10)</strong></p> 

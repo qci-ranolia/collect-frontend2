@@ -136,7 +136,6 @@
                       <span>Required</span>
                     </label>
                   </div>
-
                 </div>
 
                 <!-- Email Input s3 -->
@@ -162,15 +161,20 @@
                       <input class="form-control form-control-sm" type="text" placeholder="" [(ngModel)]='alias' >
                     </div>
                   </div>
-                  <div class="form-check">
+                  <!--<div class="form-check">
                     <label class="form-check-label">
                       <input type="checkbox" class="form-check-input" [checked]="required"   (change)='checked()'>
                         &nbsp; Required
                     </label>
+                  </div>-->
+                  <div class="form-check">
+                    <label class="chkbx">
+                      <input type="checkbox" (change)='checked()' [checked]="required" />
+                      <div class="chkbx_in"></div>
+                      <span>Required</span>
+                    </label>
                   </div>
-
                 </div>
-
                 <!-- Number Input s4 -->
                 <div class="tab-pane" id="s4" role="tabpanel">
                   <h5>Number Input</h5>
@@ -202,11 +206,18 @@
                     <div class="col-3">
                       <input class="form-control form-control-sm" type="number" placeholder="" [(ngModel)]='rangeTo' >
                     </div>
-                  </div>
+                  </div><!--
                   <div class="form-check">
                     <label class="form-check-label">
                       <input type="checkbox" class="form-check-input"  [checked]="required"  (change)='checked()'>
                         &nbsp; Required
+                    </label>
+                  </div>-->
+                  <div class="form-check">
+                    <label class="chkbx">
+                      <input type="checkbox" (change)='checked()' [checked]="required" />
+                      <div class="chkbx_in"></div>
+                      <span>Required</span>
                     </label>
                   </div>
 
@@ -234,13 +245,20 @@
                       <input class="form-control form-control-sm" type="text" placeholder="" [(ngModel)]='alias' >
                     </div>
                   </div>
+                  <!--
                   <div class="form-check">
                     <label class="form-check-label">
                       <input type="checkbox" class="form-check-input"  [checked]="required" (change)='checked()'>
                         &nbsp; Required
                     </label>
+                  </div>-->
+                  <div class="form-check">
+                    <label class="chkbx">
+                      <input type="checkbox" (change)='checked()' [checked]="required" />
+                      <div class="chkbx_in"></div>
+                      <span>Required</span>
+                    </label>
                   </div>
-
                 </div>
 
                 <!-- Textarea Input s6 -->
@@ -266,11 +284,18 @@
                     </div>
                   </div>
                   <div class="form-check">
+                    <label class="chkbx">
+                      <input type="checkbox" (change)='checked()' [checked]="required" />
+                      <div class="chkbx_in"></div>
+                      <span>Required</span>
+                    </label>
+                  </div><!--
+                  <div class="form-check">
                     <label class="form-check-label">
                       <input type="checkbox" class="form-check-input"  [checked]="required" (change)='checked()'>
                         &nbsp; Required
                     </label>
-                  </div>
+                  </div>-->
 
                 </div>
 
@@ -307,11 +332,18 @@
                     </div>
                   </div>
                   <div class="form-check">
+                    <label class="chkbx">
+                      <input type="checkbox" (change)='checked()' [checked]="required" />
+                      <div class="chkbx_in"></div>
+                      <span>Required</span>
+                    </label>
+                  </div><!--
+                  <div class="form-check">
                     <label class="form-check-label">
                       <input type="checkbox" class="form-check-input"  [checked]="required" (change)='checked()'>
                         &nbsp; Required
                     </label>
-                  </div>
+                  </div>-->
                 </div>
 
                 <!-- Time Input s8 -->
@@ -347,11 +379,18 @@
                     </div>
                   </div>
                   <div class="form-check">
+                    <label class="chkbx">
+                      <input type="checkbox" (change)='checked()' [checked]="required" />
+                      <div class="chkbx_in"></div>
+                      <span>Required</span>
+                    </label>
+                  </div><!--
+                  <div class="form-check">
                     <label class="form-check-label">
                       <input type="checkbox" class="form-check-input"  [checked]="required" (change)='checked()'>
                         &nbsp; Required
                     </label>
-                  </div>
+                  </div>-->
                 </div>
 
                 <!-- Radio Input s9 -->
@@ -377,42 +416,44 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Inputs </label>
-
-                    <div class="col-7">
+                    <label for="staticEmail" class="col-sm-4 col-form-label">Inputs</label>
+                    <div class="col-6">
                       <input class="form-control form-control-sm" type="text" [(ngModel)]='opti' placeholder="">
-
                     </div>
-
-                    <div class="col-3">
-                     <button type="button" (click)="addInOptionArray()">+</button>
-                     <button type="button" (click)="truncate()" >X</button>
+                    <div class="col-1 p-0">
+                     <button class="btn btn-primary pt-0 pb-1 pl-2 pr-2" type="button" (click)="addInOptionArray()">+</button>
+                     <button class="btn btn-primary pt-0 pb-1 pl-2 pr-2" type="button" (click)="truncate()" >X</button>
                     </div>
-
-                    <div *ngFor="let op of optionArray; let i = index"  class="col-12" >
-                      <div class="row" >
-                        <div class="col-10" >
+                    <div *ngFor="let op of optionArray; let i = index" class="col-12 mt-2">
+                      <div class="row">
+                        <div class="col-4">
                           <i class="fa fa-arrow-right" aria-hidden="true"></i> {{i+1}}. <span style="background-color:#d2f5aa" > {{op}} </span>
                         </div>
-                        <div class="col-2" >
-                          <button type="button" (click)="spliceOptionArray(i)" >X</button>
+                        <div class="col-2">
+                          <button class="btn bg-white brd-def pt-0 pb-1 pl-2 pr-2" type="button" (click)="spliceOptionArray(i)" >X</button>
                         </div>
                       </div>
                     </div>
-
-                    <div class="col-12">
-                      <label for="staticEmail" class="col-sm-4 col-form-label"> Selected </label>
-                      <input class="form-control form-control-sm" type="text" placeholder="" [(ngModel)]='value'>
-                    </div>
-
                   </div>
-
+                  <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-4 col-form-label"> Selected </label>
+                    <div class="col-8">
+                      <input class="form-control form-control-sm" type="text" placeholder="" [(ngModel)]='value' />
+                    </div>
+                  </div>
+                  <div class="form-check">
+                    <label class="chkbx">
+                      <input type="checkbox" (change)='checked()' [checked]="required" />
+                      <div class="chkbx_in"></div>
+                      <span>Required</span>
+                    </label>
+                  </div><!--
                   <div class="form-check">
                     <label class="form-check-label">
                       <input type="checkbox" class="form-check-input"  [checked]="required" (change)='checked()'>
                         &nbsp; Required
                     </label>
-                  </div>
+                  </div>-->
                 </div>
 
                 <!-- Checkbox Input s10 -->
@@ -438,43 +479,45 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Inputs </label>
-
-                    <div class="col-7">
+                    <label for="staticEmail" class="col-sm-4 col-form-label">Inputs </label>
+                    <div class="col-6">
                       <input class="form-control form-control-sm" type="text" [(ngModel)]='opti' placeholder="">
-
+                    </div>
+                    <div class="col-2 p-0">
+                     <button class="btn btn-primary pt-0 pb-1 pl-2 pr-2" type="button" (click)="addInOptionArray()">+</button>
+                     <button class="btn btn-primary pt-0 pb-1 pl-2 pr-2" type="button" (click)="truncate()" >X</button>
                     </div>
 
-                    <div class="col-3">
-                     <button type="button" (click)="addInOptionArray()">+</button>
-                     <button type="button" (click)="truncate()" >X</button>
-                    </div>
-
-                    <div *ngFor="let op of optionArray; let i = index"  class="col-12" >
-                      <div class="row" >
-                        <div class="col-10" >
+                    <div *ngFor="let op of optionArray; let i = index" class="col-12 mt-2">
+                      <div class="row">
+                        <div class="col-4">
                           <i class="fa fa-arrow-right" aria-hidden="true"></i> {{i+1}}. <span style="background-color:#d2f5aa" > {{op}} </span>
                         </div>
-                        <div class="col-2" >
-                          <button type="button" (click)="spliceOptionArray(i)" >X</button>
+                        <div class="col-2">
+                          <button class="btn bg-white brd-def pt-0 pb-1 pl-2 pr-2" type="button" (click)="spliceOptionArray(i)" >X</button>
                         </div>
                       </div>
                     </div>
-
-
+                  </div>
+                  <div class="form-group row">
                     <label for="staticEmail" class="col-sm-4 col-form-label">Checked seperated by comas ','</label>
                     <div class="col-8">
-                      <textarea class="form-control form-control-sm mt-2" rows='2' placeholder="" [(ngModel)]='values' > </textarea>
+                      <textarea class="form-control form-control-sm mt-2" rows='2' placeholder="" [(ngModel)]='values'></textarea>
                     </div>
-
                   </div>
-
+                  <div class="form-check">
+                    <label class="chkbx">
+                      <input type="checkbox" (change)='checked()' [checked]="required" />
+                      <div class="chkbx_in"></div>
+                      <span>Required</span>
+                    </label>
+                  </div><!--
                   <div class="form-check">
                     <label class="form-check-label">
                       <input type="checkbox" class="form-check-input"  [checked]="required" (change)='checked()'>
                         &nbsp; Required
                     </label>
-                  </div>
+                  </div>-->
                 </div>
 
                 <!-- Dropdown Input s11 -->
@@ -499,43 +542,45 @@
                       <input class="form-control form-control-sm" type="text" placeholder="" [(ngModel)]='alias' >
                     </div>
                   </div>
-
                   <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Inputs </label>
-
-                    <div class="col-7">
+                    <label for="staticEmail" class="col-sm-4 col-form-label">Inputs </label>
+                    <div class="col-6">
                       <input class="form-control form-control-sm" type="text" [(ngModel)]='opti' placeholder="">
                     </div>
-
-                    <div class="col-3">
-                     <button type="button" (click)="addInOptionArray()">+</button>
-                     <button type="button" (click)="truncate()" >X</button>
+                    <div class="col-2 p-0">
+                     <button class="btn btn-primary pt-0 pb-1 pl-2 pr-2" type="button" (click)="addInOptionArray()">+</button>
+                     <button class="btn btn-primary pt-0 pb-1 pl-2 pr-2" type="button" (click)="truncate()" >X</button>
                     </div>
-
-                    <div *ngFor="let op of optionArray; let i = index"  class="col-12" >
-                      <div class="row" >
-                        <div class="col-10" >
+                    <div *ngFor="let op of optionArray; let i = index" class="col-12 mt-2">
+                      <div class="row">
+                        <div class="col-4">
                           <i class="fa fa-arrow-right" aria-hidden="true"></i> {{i+1}}. <span style="background-color:#d2f5aa" > {{op}} </span>
                         </div>
-                        <div class="col-2" >
-                          <button type="button" (click)="spliceOptionArray(i)" >X</button>
+                        <div class="col-2">
+                          <button class="btn bg-white brd-def pt-0 pb-1 pl-2 pr-2" type="button" (click)="spliceOptionArray(i)" >X</button>
                         </div>
                       </div>
                     </div>
-
+                  </div>
+                  <div class="form-group row">
                     <label for="staticEmail" class="col-sm-4 col-form-label">Default value</label>
                     <div class="col-8">
-                      <input class="form-control form-control-sm mt-2" type="text" placeholder="" [(ngModel)]='value' >
+                      <input class="form-control form-control-sm mt-2" type="text" placeholder="" [(ngModel)]='value' />
                     </div>
-
                   </div>
-
+                  <div class="form-check">
+                    <label class="chkbx">
+                      <input type="checkbox" (change)='checked()' [checked]="required" />
+                      <div class="chkbx_in"></div>
+                      <span>Required</span>
+                    </label>
+                  </div><!--
                   <div class="form-check">
                     <label class="form-check-label">
                       <input type="checkbox" class="form-check-input"  [checked]="required" (change)='checked()'>
                         &nbsp; Required
                     </label>
-                  </div>
+                  </div>-->
                 </div>
 
                 <!-- Slider Input s12 -->
@@ -574,23 +619,26 @@
                       <input class="form-control form-control-sm" type="number" placeholder="" [(ngModel)]='value' >
                     </div>
                   </div>
-
+                  <div class="form-check">
+                    <label class="chkbx">
+                      <input type="checkbox" (change)='checked()' [checked]="required" />
+                      <div class="chkbx_in"></div>
+                      <span>Required</span>
+                    </label>
+                  </div>
+                  <!--
                   <div class="form-check">
                     <label class="form-check-label">
                       <input type="checkbox" class="form-check-input"  [checked]="required" (change)='checked()'>
                         &nbsp; Required
                     </label>
-                  </div>
-
+                  </div>-->
                 </div>
-
               </div>
             </div>
-
           </div>
         </div>
         <div class="clearfix"></div>
-
       </div>
 
       <!-- File & media tab -->
@@ -634,27 +682,39 @@
                       <input class="form-control form-control-sm" type="text" placeholder="" [(ngModel)]='alias' >
                     </div>
                   </div>
-
                   <div class="form-group row">
                     <label for="staticEmail" class="col-sm-4 col-form-label">File type</label>
                     <div class="col-8">
+                      <div class="form-check d-inline ml-2 mr-2" *ngFor='let opt of fileTypes; let i=i'>
+                        <label class="chkbx">
+                          <input #flag type="checkbox" value={{opt}} name="checkbox" (change)='getVal(flag.checked,opt)' [checked]='checkVal(opt)' />
+                          <div class="chkbx_in"></div>
+                          <span>{{opt}}</span>
+                        </label>
+                      </div><!--
                       <div *ngFor='let opt of fileTypes; let i=i' >
                         <label>  
                           <input #flag type="checkbox" value={{opt}} name="checkbox" (change)='getVal(flag.checked,opt)' [checked]='checkVal(opt)' /> {{opt}}
                         </label>
-                      </div>
+                      </div>-->
                     </div>
                   </div>
-
+                  <div class="form-check">
+                    <label class="chkbx">
+                      <input type="checkbox" (change)='checked()' [checked]="required" />
+                      <div class="chkbx_in"></div>
+                      <span>Required</span>
+                    </label>
+                  </div>
+                  <!--
                   <div class="form-check">
                     <label class="form-check-label">
                       <input type="checkbox" class="form-check-input"   [checked]="required" (change)='checked()'>
                         &nbsp; Required
                     </label>
                   </div>
-
+                  -->
                 </div>
-
                 <!-- Location Input f2-->
                 <div class="tab-pane " id="f2" role="tabpanel">
                   <h5>Geo Location</h5>
@@ -664,8 +724,7 @@
                   <p>
                     Geo location will not be visible on the form. Geo location will be displayed on the responce table under column name "Form submitted location".
                   </p>
-                  <br>
-
+                  <br />
                 </div>
 
                 <!-- Camera Input f3-->
@@ -673,8 +732,8 @@
                   <h5>Camera input</h5>
                   <br>
                   <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
-                    <div class="col-10">
+                    <label for="staticEmail" class="col-sm-4 col-form-label">Name</label>
+                    <div class="col-8">
                       <input class="form-control form-control-sm" type="text" [(ngModel)]='name'  placeholder="">
                     </div>
                   </div>
@@ -685,31 +744,32 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Alias</label>
-                    <div class="col-10">
+                    <label for="staticEmail" class="col-sm-4 col-form-label">Alias</label>
+                    <div class="col-8">
                       <input class="form-control form-control-sm" type="text" placeholder="" [(ngModel)]='alias' >
                     </div>
                   </div>
-
-                  <div class="form-group row">
-                    * Captured image will be geo tagged
-                  </div>
-
+                  <div class="form-group row">* Captured image will be geo tagged</div>
+                  <div class="form-check">
+                    <label class="chkbx">
+                      <input type="checkbox" (change)='checked()' [checked]="required" />
+                      <div class="chkbx_in"></div>
+                      <span>Required</span>
+                    </label>
+                  </div><!--
                   <div class="form-check">
                     <label class="form-check-label">
                       <input type="checkbox" class="form-check-input"   [checked]="required" (change)='checked()'>
                         &nbsp; Required
                     </label>
-                  </div>
+                  </div>-->
                 </div>
-
                 <!-- Audio Input f4 -->
                 <div class="tab-pane " id="f4" role="tabpanel">
                   <h4>Video input</h4>
-                  <br>
                   <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
-                    <div class="col-10">
+                    <label for="staticEmail" class="col-sm-4 col-form-label">Name</label>
+                    <div class="col-8">
                       <input class="form-control form-control-sm" type="text" [(ngModel)]='name'  placeholder="">
                     </div>
                   </div>
@@ -720,32 +780,31 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Alias</label>
-                    <div class="col-10">
+                    <label for="staticEmail" class="col-sm-4 col-form-label">Alias</label>
+                    <div class="col-8">
                       <input class="form-control form-control-sm" type="text" placeholder="" [(ngModel)]='alias' >
                     </div>
                   </div>
-
-                  <div class="form-group row">
-                    * Captured video will be geo tagged
-                  </div>
-
+                  <div class="form-group row">* Captured video will be geo tagged</div>
+                  <div class="form-check">
+                    <label class="chkbx">
+                      <input type="checkbox" (change)='checked()' [checked]="required" />
+                      <div class="chkbx_in"></div>
+                      <span>Required</span>
+                    </label>
+                  </div><!--
                   <div class="form-check">
                     <label class="form-check-label">
                       <input type="checkbox" class="form-check-input"   [checked]="required" (change)='checked()'>
                         &nbsp; Required
                     </label>
-                  </div>
+                  </div>-->
                 </div>
-
               </div>
-
             </div>
-
           </div>
         </div>
         <div class="clearfix"></div>
-
       </div>
 
       <!-- Interface tab -->

@@ -4,7 +4,7 @@
 </div>
 <div class="tab-pane active" role="tabpanel">
   <div class="container-fluid mt-0 pb-3 text-left p-0">
-    <table *ngIf='flag' id="example2" class="table table-striped bg-white mt-0 brd-def" cellspacing="0" width="100%">
+    <table *ngIf='flag' id="example2" class="table table-striped mt-0" cellspacing="0" width="100%">
       <thead>
         <tr>
           <th class="header-1"></th>
@@ -15,7 +15,7 @@
           <th class="text-left">Details</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="bg-white">
         <tr *ngFor='let res of teams; let i = index'>
           <td class="text-center">{{i+1}}</td>
           <td>{{res.name}}</td>
@@ -80,10 +80,13 @@
           <h5 class="modal-title" id="exampleModalLabel">Associated form for {{teamName}}</h5>
         </div>
         <div class="modal-body text-center" style="height:300px; overflow-y: auto">
-          <div class="row justify-content-center" >{{teamName}} is  assigned with  form/s :  <br />
-            <div  class="col-12" *ngFor="let pro of teamFormArray; let i = index">{{i+1}}. {{pro.name+" "+pro.project}} <i class="fa fa-trash-o" aria-hidden="true" (click)='deleteFormTeamArray(pro.cid)' ></i> <br /> </div>
+          <div class="row justify-content-center">
+            <p>{{teamName}} is assigned with form/s:</p><br />
+            <div  class="col-12" *ngFor="let pro of teamFormArray; let i = index">
+              <p class="fa-6">{{i+1}}. {{pro.name+" "+pro.project}} <i class="fa fa-trash-o text-danger" aria-hidden="true" (click)='deleteFormTeamArray(pro.cid)' ></i><br />
+              </p></div>
             <br /><br /><br />
-            <div class="col-12" >Assign new project : </div>
+            <div class="col-12">Assign new project : </div>
             <select [(ngModel)]="newForm" class="col-8 form-control mb-5" >
               <option *ngFor='let opt of formArray; let i=i' [ngValue]=opt  >{{opt.Details.name + " " + opt.Details.project}}</option>
             </select>

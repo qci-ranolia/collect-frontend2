@@ -17,7 +17,7 @@
     <div *ngIf='!flag' class="mt-5 pt-5">
       <h4 class="mt-5 pt-5">Seems like there is not data to display! Hang on while we check....</h4>
     </div>
-    <table *ngIf='flag' id="example" class="table table-striped bg-white mt-0 brd-def" cellspacing="0" width="100%">
+    <table *ngIf='flag' id="example" class="table table-striped mt-0" cellspacing="0" width="100%">
       <thead>
         <tr>
           <th class="header-1"></th>
@@ -27,7 +27,7 @@
           <th class="text-left">Details</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="bg-white">
         <tr *ngFor='let res of response; let i = index'>
           <td class="text-center">{{i+1}}</td>
           <td>

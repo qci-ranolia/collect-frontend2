@@ -10,7 +10,7 @@
     
     */
   // 1. font-family         :   'Open Sans' , sans-serif
-  // 2. font-size           :   0.8 rem
+  // 2. font-size           :   
   // 3. $primary-color      :   Variable of #3f4a59
   // 4. $Secondary color    :   Variable of #ffd741
   //
@@ -50,7 +50,7 @@
 /*variables*/
 body {
   font-family:'Open Sans',sans-serif;  
-  font-size:0.8rem;
+  //font-size:0.9rem;
 }
 // text colors
 $brand-primary:red;
@@ -345,11 +345,11 @@ body{
 {
 	border-radius:0px;
 	background-color:$body-bg-white;
-	background-image:-webkit-gradient(linear, 10% 0%, 45% 54%, from( #ccc ), to( #ccc ), color-stop( .6, #999 ));/* 24a1b5 : 28b6cc */
+	background-image:-webkit-gradient(linear, 10% 0%, 45% 54%, from( #ddd ), to( #ddd ), color-stop( .1, #ddd ));/* 24a1b5 : 28b6cc */
 }
 ::-webkit-scrollbar-thumb:hover
  {
-  background-image:-webkit-gradient(linear, 10% 0%, 45% 54%, from( #bbb ), to( #bbb ), color-stop( .6, #888 ));
+  background-image:-webkit-gradient(linear, 10% 0%, 45% 54%, from( #ccc ), to( #ccc ), color-stop( .6, #ccc ));
   cursor:pointer;
 }
 .btn {
@@ -424,10 +424,9 @@ body{
 }
 /*Hamburger Menu*/
 .navbar-toggleable-md .fa-bars.text-white,
-.navbar-toggleable-md .fa-long-arrow-left.text-white,
-{
+.navbar-toggleable-md .fa-long-arrow-left.text-white,{
   background:$primary-color-dark;
-  font-size:24px;
+  font-size:16px;
   text-shadow:1px 1px 1px #555;
   display:none;
   cursor:pointer;
@@ -515,7 +514,7 @@ a.collapsed .fa-chevron-right {
   @include transition(all 0.15s linear .01s);
   //box-shadow:0px 1px 0px #fff inset;
   color:$body-bg-white;
-  padding:1em;
+  padding:0.8em;
   text-transform:capitalize; 
   //background:$primary-color-dark;
 }
@@ -728,6 +727,11 @@ i.f80 {
   overflow-x:scroll;
 }
 */
+table.dataTable thead th{
+  padding:3px 10px;
+  border:none !important;
+  background:transparent !important;
+}
 table.dataTable thead th,
   table.dataTable thead td
 {
@@ -740,11 +744,13 @@ table.dataTable tfoot th,
   border-top:1px solid $brdr-light-dim;//$brdr-light-dim
 }
 // 26dec-2017
+.table-striped tbody.bg-white{
+  box-shadow: 0 0 5px $bx-shdw-grey;
+}
 .table-striped tbody tr:nth-of-type(odd)
 {
   background:transparent;
 }
-table.dataTable tbody th,
   table.dataTable tbody td {
     line-height:24px;
     padding:2px 7px !important;
@@ -760,7 +766,7 @@ table.dataTable tbody th,
   text-shadow:1px 1px 0px $text-color-on-dark-bg !important;
   border:1px solid $brdr-light;//$brdr-light
   background:#eaeaea;
-  box-shadow:1px 1px 0px $body-bg-white inset;//$bx-shdw-pagination
+  box-shadow:1px 1px 0px $text-color-on-dark-bg inset;//$bx-shdw-pagination
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.current,
 {
@@ -911,6 +917,10 @@ table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.
 {
   padding-top:25px;
   background:#fbfbfb;
+  ul.flex-column a.active, ul.flex-column a.active:hover {
+    background:$primary-color;
+    color: $text-color-on-dark-bg !important;
+  }
 }
 .modal-backdrop.show
 {
@@ -964,6 +974,12 @@ table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.
   }
 */
 
+
+// width css
+$mx70 :70%;
+.mx70{
+  max-width:$mx70; 
+}
 
 small
 {
@@ -1689,7 +1705,6 @@ input:not([type=range]) {
 } .tb tbody td{
     color: #000;
 }*/
-
 .tm{
   display:inline-block !important;
   width:100% !important;
@@ -1702,7 +1717,7 @@ input:not([type=range]) {
     //max-width:100% !important;
     border:none !important;
     box-sizing:border-box;
-    border-bottom:1px solid $brdr-light-dark !important;//$brdr-light-dark
+    //border-bottom:1px solid $brdr-light-dark !important;//$brdr-light-dark
     tr{
       height:100%;
       th{
@@ -1732,7 +1747,7 @@ input:not([type=range]) {
     tr{
       @include transition(all 0.35s linear .01s);
       height:100%;
-      background-color:$body-bg-white;
+      //background-color:$body-bg-white;
       clear:both;
       float:left;
       td{
@@ -1796,13 +1811,14 @@ input:not([type=range]) {
     }//hover states
     tr:hover{
       cursor:pointer;
-      background:transparent !important;
+      //background:transparent !important;
     }
     //active states
     tr.active{
       @include transition(all 0.35s linear .01s);
-      box-shadow: 0 0 10px 0 $mod-hd-bx-shdw;//$tm-bx-shdw-tr
-      margin:3px 0;
+      //box-shadow: 0 0 10px 0 $mod-hd-bx-shdw;//$tm-bx-shdw-tr
+      //margin:3px 0;
+      background: $body-bg-white;
         td{
           .out{
             @include transition(all 0.35s linear .01s);
@@ -1875,4 +1891,10 @@ img{
 }
 .show.collapse{
   border-bottom:transparent;
+}
+
+
+//special class
+.table-striped tbody.bg-white > tr:nth-of-type(odd){
+  background:rgba(0, 0, 0, 0.05) !important;
 }

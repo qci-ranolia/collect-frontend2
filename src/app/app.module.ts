@@ -9,6 +9,8 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import {ToastOptions} from 'ng2-toastr';
 import {NgPipesModule} from 'ngx-pipes';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import {SelectModule} from 'ng-select';
+
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -92,6 +94,7 @@ import { TemplatesComponent } from './home/form/templates/templates.component';
     FormsModule,
     HttpModule,
     NgPipesModule,
+    SelectModule,
     RouterModule.forRoot(routes, { useHash: true }),
   ],
   providers: [
