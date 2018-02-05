@@ -678,20 +678,22 @@ export class ProjectService {
   getFormResponseArray(formId) {
     let formResponse = [];
     let tableHeader = [];
-    let finalResponse= [];
+    let finalResponse = [];
 
     this.apiService.GetFormResponse(formId).subscribe(res=> {
       console.log(res);
       if(res){
         if(res.header.length) {
           tableHeader = res.header;
+          console.log("column length is " + res.header.length);
         }
         if(res.data.length) {
           formResponse = res.data;
+          console.log("row length is " + res.data.length);
         }
         for(let i = 0; i<formResponse.length; i++) {
           for(let j=0; j<tableHeader.length; j++) {
-              // finalResponse[i].push();
+            // finalResponse[i].push();
           }
         }
         this.emitFormResponse.emit(formResponse);

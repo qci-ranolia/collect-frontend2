@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
-import {ProjectService} from '../../../service/ProjectService';
+import { ProjectService } from '../../../service/ProjectService';
 declare var $: any;
 
 // API KEY = AIzaSyA7ncvWAZbtaSujgwstq290g_Y1VskhlXE
@@ -12,7 +12,6 @@ declare var $: any;
   styleUrls: ['./response-table.component.css']
 })
 export class ResponseTableComponent implements OnInit {
-
   sub : any;
   sub1 : any;
   formId: any;
@@ -53,8 +52,8 @@ export class ResponseTableComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.activatedRoute.queryParams.subscribe(params=>{
-        this.formId = params.id;
-        this.projectService.getFormResponseArray(this.formId);
+      this.formId = params.id;
+      this.projectService.getFormResponseArray(this.formId);
     });
   }
 
@@ -83,7 +82,6 @@ export class ResponseTableComponent implements OnInit {
             rotation += 90;
             $('.north').rotate(rotation);
         });
-
       });
     }
   }
@@ -104,6 +102,7 @@ export class ResponseTableComponent implements OnInit {
     this.detailRes = res;
     this.tagPos = i;
     this.saveFlag = false;
+    //res.stopPropagation();
     $('#getDetails').modal("show");
   }
 

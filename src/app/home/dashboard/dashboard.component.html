@@ -103,11 +103,14 @@
   <div class="col-lg-10 col-sm-12 wrap-cont">
     <div class="pos-rel">
     <router-outlet></router-outlet>
-      <div class="modal fade" id="userprofile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document" style="max-width:500px;">
+      <div class="modal fade" id="userprofile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="padding-right:0px !important;">
+        <div class="modal-dialog" role="document" style="max-width:500px">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">User Profile</h5>
+              <button type="button" class="close pos-abso-tr text-white" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
             <div class="modal-body text-center">
                 <form class="col-sm-12">
@@ -143,9 +146,9 @@
                 </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary col-sm-4 pt-3 pb-3">Save Changes</button>
-              <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>
-              <i class="fa fa-sign-out fa-6 ml-5 text-right text-danger" style="margin-top:-10px;" aria-hidden="true" (click)="logout()" ></i>
+              <button type="button" class="btn btn-primary pt-2 pb-2 float-left">Save Changes</button>
+              <button type="button" class="btn btn-secondary pt-2 pb-2 float-left" data-dismiss="modal">Close</button>
+              <i class="fa fa-sign-out fa-6 ml-3 text-right text-danger" style="margin-top:-10px;" aria-hidden="true" (click)="logout()"></i>
             </div>
           </div>
         </div>

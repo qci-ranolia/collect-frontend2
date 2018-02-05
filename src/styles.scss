@@ -13,7 +13,7 @@
   // 2. font-size           :   
   // 3. $primary-color      :   Variable of #3f4a59
   // 4. $Secondary color    :   Variable of #ffd741
-  //
+  // 5. background          :   White shades(light)
   //
   //
   //
@@ -193,6 +193,9 @@ $bt-second-clr:1px solid $secondary-color;
 }
 .pos-rel {
   position:relative;
+}
+.pos-sta {
+  position:static;
 }
 .pos-abso-tl {
   position:absolute;
@@ -913,6 +916,14 @@ table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.
   color:$body-bg-white;
   z-index: 99;
 }
+.modal-header .close{
+  top:-22px;
+  right:-26px;
+  font-size:42px;
+}.modal-header .close:focus {
+  outline: none;
+  box-shadow: none !important;
+}
 .modal-body
 {
   padding-top:25px;
@@ -925,6 +936,24 @@ table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.
 .modal-backdrop.show
 {
   opacity:0.7;
+}
+.modal-body .col-11 .mh {
+  height:63px;
+  overflow:hidden;
+  @include transition( all 0.15s linear .01s );
+  hr + .col-sm-12 {
+    opacity:0;
+    @include transition( all 0.15s linear .01s );
+  }
+}
+.modal-body .col-11.active .mh {
+  height:250px;
+  overflow-y:scroll;
+  @include transition( all 0.15s linear .01s );
+  hr + .col-sm-12 {
+    opacity:1;
+    @include transition( all 0.15s linear .01s );
+  }
 }
 .modal-footer
 {
@@ -1176,22 +1205,22 @@ h5 {
   position:relative;
   display:inline-block;
   cursor:pointer;
-  padding-left:60px;
+  padding-left:48px;
   height:20px;
-  line-height:36px;
+  line-height:38px;
   margin:5px 0;
 }
 .chkbx input {
-  display: none;
+  display:none;
 }
 .chkbx_in::after {
-  content: '';
-  position: absolute;
-  top: 10px;
-  left: 0;
-  height: 20px;
-  width: 20px;
-  background-color:#d5d5d5;
+  content:'';
+  position:absolute;
+  top:10px;
+  left:0;
+  height:20px;
+  width:20px;
+  background-color:$body-bg-white;
   border-radius:50%;
   -webkit-transition:all .3s ease;
   transition:all .3s ease;
@@ -1199,15 +1228,16 @@ h5 {
   animation-name:pulsein;
   -webkit-animation-duration:.3s;
   animation-duration:.3s;
+  box-shadow:1px 1px 3px #999;
 }
 .chkbx_in::before
 {
   content:'';
   position:absolute;
-  top:16px;
+  top:14px;
   left:0;
-  width:50px;
-  height:6px;
+  width:40px;
+  height:12px;
   background-color:#d5d5d5;
   border-radius:10px;
   -webkit-transition:all .3s ease;
@@ -1215,9 +1245,9 @@ h5 {
 }
 input:checked + .chkbx_in::after
 {
-  background-color:$secondary-color;
-  -webkit-transform:translateX(35px);
-  transform:translateX(35px);
+  background-color:$secondary-color !important;
+  -webkit-transform:translateX(20px);
+  transform:translateX(20px);
   -webkit-animation-name:pulseout;
   animation-name:pulseout;
   -webkit-animation-duration:.3s;
@@ -1226,6 +1256,7 @@ input:checked + .chkbx_in::after
 input:checked + .chkbx_in::before
 {
   background-color:$secondary-color;
+  opacity:0.5;
 }
 input:disabled + .chkbx_in::after, input:disabled + .chkbx_in::before
 {
@@ -1233,19 +1264,19 @@ input:disabled + .chkbx_in::after, input:disabled + .chkbx_in::before
 }
 @-webkit-keyframes pulsein {
   0%, 100% { top: 10px; height: 20px; width: 20px; }
-  50% { top: 12px; height: 14px; width: 26px; }
+  50% { top: 12px; height: 17px; width: 23px; }
 }
 @keyframes pulsein {
   0%, 100% { top: 10px; height: 20px; width: 20px; }
-  50% { top: 12px; height: 14px; width: 26px; }
+  50% { top: 12px; height: 17px; width: 23px; }
 }
 @-webkit-keyframes pulseout {
   0%, 100% { top: 10px; height: 20px; width: 20px; }
-  50% { top: 12px; height: 14px; width: 26px; }
+  50% { top: 12px; height: 17px; width: 23px; }
 }
 @keyframes pulseout {
   0%, 100% { top: 10px; height: 20px; width: 20px; }
-  50% { top: 12px; height: 14px; width: 26px; }
+  50% { top: 12px; height: 17px; width: 23px; }
 }
 
 
@@ -1898,3 +1929,6 @@ img{
 .table-striped tbody.bg-white > tr:nth-of-type(odd){
   background:rgba(0, 0, 0, 0.05) !important;
 }
+
+
+

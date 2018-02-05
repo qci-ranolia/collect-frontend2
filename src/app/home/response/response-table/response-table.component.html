@@ -1,27 +1,25 @@
 <style>
-.responseImg {
-  max-height:60px;
-  border-radius:3px;
-}
-table.dataTable thead .sorting,
-table.dataTable thead .sorting_asc,
-table.dataTable thead .sorting_desc {
-  background:#fff;
-}
+  .responseImg{
+    max-height:60px;
+    border-radius:3px;
+  }
+  table.dataTable thead .sorting,
+  table.dataTable thead .sorting_asc,
+  table.dataTable thead .sorting_desc {
+    background:#fff;
+  }
 </style>
 <div class="container-fluid mt-3 pb-3 text-center pl-0 pr-0">        
   <div *ngIf='!flag' class="pt-5 mt-5">
-    <h4 class="pt-5 mt-5"> Just a moment please....</h4>
+    <h4 class="pt-5 mt-5">Just a moment please....</h4>
   </div>
   <div class="" style="width:100%;overflow-x:auto">
- <!--   <table *ngIf='flag' id="exampleFormResponse" class=" display table table-striped  table-responsive-md" cellspacing="0">
+ <!--<table *ngIf='flag' id="exampleFormResponse" class="display table table-striped table-responsive-md" cellspacing="0">
       <thead>
         <tr>
           <th></th>
           <th>Details</th>
-          <th *ngFor="let head of header" style="white-space:nowrap;text-overflow:ellipsis;">
-            &nbsp;{{head}}&nbsp;
-          </th>
+          <th *ngFor="let head of header" style="white-space:nowrap;text-overflow:ellipsis;">&nbsp;{{head}}&nbsp;</th>
         </tr>
       </thead>
       <tbody>
@@ -72,7 +70,6 @@ table.dataTable thead .sorting_desc {
           <th class="text-left">
             <div class="col-sm-12 pt-1 pb-1 m-0 br bb bt"></div>
           </th>
-          
         </tr>
       </thead>
       <tbody>
@@ -210,33 +207,33 @@ table.dataTable thead .sorting_desc {
             </div>
           </td>
           <!-- Sr no-->
-          <td class="info">
+          <td class="info"><!-- ng-repeat="temp in temps" -->
             <div class="out">
               <table class="d-inline-block col-sm-12 p-0" cellspacing="0" cellpadding="0"><!--tb display table table-striped table-responsive-md text-left -->
                 <tbody class="d-inline-block col-sm-12 p-0">
                   <tr class="bg-trans d-inline-block col-sm-12 row m-0 p-0 up bb">
                     <td class="details col-2 text-center">
                       <div class="col-sm-12 pl-0 pr-0 pt-3">
-                        <button type="button" class="btn btn-primary pt-1 pb-1 pl-2 pr-2" (click)='$event.stopPropagation()'>Details</button>
-                        <p class="mt-3 f80">V7/7</p>
+                        <button type="button" class="btn btn-primary pt-1 pb-1 pl-2 pr-2" (click)='getDetails(i,res);'>Details</button>
+                        <p class="mt-3 f80">{{res[1].value}} </p>
                       </div>
                     </td>
                     <td class="innrInfo col-10">
                       <div class="col-sm-12 pl-2 pr-2">
                         <p class="m-0">
-                          <i class="fa fa-user-o f80 p-0 text-info" aria-hidden="true"></i>&nbsp;Mahesh Ganesh peter
+                          <i class="fa fa-user-o f80 p-0 text-info" aria-hidden="true"></i>&nbsp;{{res[0].value}}
                           <button class="noTag">No-Tag</button>
-                          <button class="flaggedTag f80 pl-1 pr-1" (click)='$event.stopPropagation()' disabled>Flagged</button>
-                          <button class="pendingTag f80 pl-1 pr-1" (click)='$event.stopPropagation()' disabled>Pending</button>
-                          <button class="verifiedTag f80 pl-1 pr-1" (click)='$event.stopPropagation()'>Verified</button>
-                          <button class="archivedTag f80 pl-1 pr-1" (click)='$event.stopPropagation()'>Archived</button>
+                          <button class="flaggedTag f80 pl-1 pr-1" disabled>Flagged</button>
+                          <button class="pendingTag f80 pl-1 pr-1" disabled>Pending</button>
+                          <button class="verifiedTag f80 pl-1 pr-1">Verified</button>
+                          <button class="archivedTag f80 pl-1 pr-1" (click)="changeTag(i, res)">Archived</button>
                         </p>
                         <p class="m-0">
-                          <i class="fa fa-phone f80 p-0 text-blue" aria-hidden="true"></i>&nbsp;95980-09082 || <i class="fa fa-envelope f80 p-0 text-danger" aria-hidden="true"></i>&nbsp;mahesh@ganesh.com</p>
+                          <i class="fa fa-phone f80 p-0 text-blue" aria-hidden="true"></i>&nbsp;{{res[10].value}} <!--|| <i class="fa fa-envelope f80 p-0 text-danger" aria-hidden="true"></i>&nbsp;mahesh@ganesh.com--></p>
                         <hr class="m-1" />
                           <p class="m-0">
                             <span>Response ID:</span>
-                          <strong class="float-right d-inline">Ks5sasa4a5s4a5sa</strong>
+                          <strong class="float-right d-inline">{{res[1].value}}</strong>
                         </p>
                         <p class="m-0">
                           <span>Toilet ID:</span>

@@ -20,16 +20,16 @@
           <td class="text-center">{{i+1}}</td>
           <td>{{res.name}}</td>
           <td>
-            <button type="button" class="btn btn-primary tt1" (click)='showFormModal(res.name, res.cid, res.form)' >{{calForms(res.form)}} Form/s<!-- <span class="tt2" > &nbsp; {{projectForm(res.form)}}  &nbsp; </span> --></button>
+            <button type="button" class="btn btn-primary tt1 bg-trans pt-1" (click)='showFormModal(res.name, res.cid, res.form)' >{{calForms(res.form)}} Form/s<!-- <span class="tt2" > &nbsp; {{projectForm(res.form)}}  &nbsp; </span> --></button>
           </td>
           <td>
-            <button type="button" class="btn btn-primary tt1" (click)='showAssesorModal(res.name, res.cid, res.assesor)' >{{calForms(res.assesor)}} Assesor/s</button>
+            <button type="button" class="btn btn-primary tt1 bg-trans pt-1" (click)='showAssesorModal(res.name, res.cid, res.assesor)' >{{calForms(res.assesor)}} Assesor/s</button>
           </td>
           <td>
-            <button type="button" class="btn btn-primary tt1" (click)='showManagerModal(res.name, res.cid, res.tl)' >{{calForms(res.tl)}} Manager/s</button>
+            <button type="button" class="btn btn-primary tt1 bg-trans pt-1" (click)='showManagerModal(res.name, res.cid, res.tl)' >{{calForms(res.tl)}} Manager/s</button>
           </td>
           <td>
-            <button type="button" class="btn btn-primary ">{{res.details}}</button>
+            <button type="button" class="btn btn-primary bg-trans pt-1">{{res.details}}</button>
           </td>
         </tr>
       </tbody>

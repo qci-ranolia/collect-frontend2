@@ -45,20 +45,24 @@
 </div>
 <!-- rule modal starts here-->
 <div class="modal fade" id="rules" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog bg-white mx70 mt-5" role="document" >
+  <div class="modal-dialog mx70 mt-5" role="document" >
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Rules</h5>
+        <button type="button" class="close pos-abso-tr text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-body text-center ofy" style="height:550px;">
         <div class="row justify-content-center" >
           <div *ngIf='rulesArray.length < 1' >
             <h4> No Rule was created </h4>
           </div>
-          <div *ngFor='let rule of rulesArray; let i = index' class="col-6 text-left mb-3" [class.active]="clicked === rule" (click)="clicked = rule">
-            <div class="ofy brd-def p-3 rounded-0">
+          <div *ngFor='let rule of rulesArray; let i = index' class="col-11 text-left mb-4 pl-4 pr-4" [class.active]="clicked === rule" (click)="clicked = rule">
+            <div class="brd-def p-3 rounded-0 mh">
+              <span class="nmbr ml-5">{{i+1}}</span>
               <button type="button" class="btn btn-primary float-right pl-2 pr-2 pt-1 pb-1 f80 rounded-0" (click)="deleteRule(rule.cid)"><b>X</b></button>
-              <h6 class="d-block col-9 p-0 mb-0"><strong>{{i+1}}. Rule Name: {{rule.name}}</strong></h6>
+              <h6 class="d-block col-9 p-0 mb-0"><strong>Rule Name: {{rule.name}}</strong></h6>
               <p class="mb-0">Template: {{rule.tempName}}</p>
               <hr class="mb-2 mt-2" />
               <div class="col-sm-12 p-0 float-left">
@@ -69,7 +73,7 @@
                   <div *ngIf="rule.ruleFormQuestion.option">
                     <div *ngIf="rule.ruleFormQuestion.option.length">
                       <div *ngFor="let m of rule.ruleFormQuestion.option">
-                        <p class="mb-0 col-sm-3 float-left">{{m}}</p>
+                        <p class="mb-0 col-sm-6 float-left">{{m}}</p>
                       </div>
                     </div>
                   </div>
@@ -80,8 +84,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary col-sm-3 pt-3 pb-3" data-toggle="modal" data-target="#addRules">Add rule</button>
-        <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary pt-2 pb-2" data-toggle="modal" data-target="#addRules">Add rule</button>
+        <button type="button" class="btn btn-secondary pt-2 pb-2" data-dismiss="modal">Close</button>
       </div>
       <!--<a href="#" class="text-center">Add Rule</a>-->
     </div>
@@ -94,6 +98,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">+ Add Rules</h5>
+        <button type="button" class="close pos-abso-tr text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-body text-center ofy" style="height:550px;">
         <div class="col-8 p-0 float-left">
@@ -140,8 +147,8 @@
         <div class="col-4 p-0 float-left bl"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary col-sm-3 pt-3 pb-3" (click)='conformRule()'>Create rule</button>
-        <button type="button" class="btn btn-secondary col-sm-3 pt-3 pb-3" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary pt-2 pb-2" (click)='conformRule()'>Create rule</button>
+        <button type="button" class="btn btn-secondary pt-2 pb-2" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
